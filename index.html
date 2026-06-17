@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khương Trịnh - Cố Vấn & Nhà Đầu Tư BĐS Thực Chiến</title>
+    <!-- Phông chữ Outfit & Inter cao cấp -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background glowing orbs -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Profile Card -->
+        <header class="profile-card">
+            <div class="avatar-wrapper">
+                <!-- Avatar mặc định dạng ảnh nếu có -->
+                <img class="avatar" src="https://lh3.googleusercontent.com/a/default-user" alt="Khương Trịnh" id="user-avatar-main">
+            </div>
+            <div class="profile-info">
+                <h1>Khương Trịnh</h1>
+                <div class="tagline">Cố Vấn & Nhà Đầu Tư BĐS Thực Chiến</div>
+                <p class="bio">Đầu tư thực chiến — Sòng phẳng — Kỷ luật. Nơi chia sẻ tư duy, kiến thức và công cụ tối ưu hóa hiệu quả kinh doanh Bất động sản.</p>
+            </div>
+        </header>
+
+        <!-- Links Grid -->
+        <main class="links-grid">
+            <!-- Training Hub -->
+            <a href="/training-hub" class="link-card special-hub">
+                <div class="link-content">
+                    <div class="link-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="link-text">
+                        <span class="link-title">Hub.ĐàoTạo</span>
+                        <span class="link-desc">Hệ thống đào tạo nội bộ TL Land (Chỉ dành cho nhân sự)</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <!-- TL Land CRM -->
+            <a href="/crm" class="link-card special-crm">
+                <div class="link-content">
+                    <div class="link-icon">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <div class="link-text">
+                        <span class="link-title">TL Land CRM</span>
+                        <span class="link-desc">Hệ thống chăm sóc khách hàng & hành trình khách hàng</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <!-- Dành cho ỨNG VIÊN -->
+            <a href="/tuyendung" class="link-card special-career">
+                <div class="link-content">
+                    <div class="link-icon">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="link-text">
+                        <span class="link-title">Dành cho ỨNG VIÊN</span>
+                        <span class="link-desc">Cơ hội bứt phá thu nhập & đổi đời cùng team Khương Trịnh</span>
+                    </div>
+                </div>
+                <div class="arrow-icon">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Khương Trịnh © 2026. Được thiết kế bởi <a href="https://khuong.pro.vn" target="_blank" rel="noopener noreferrer">Antigravity AI</a>.
+    </footer>
+
+    <script>
+        // Tự động load avatar từ tài khoản Google của sếp nếu đã đăng nhập trước đó (UX tiện lợi)
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedAvatar = localStorage.getItem('user-avatar-url');
+            if (savedAvatar) {
+                const avatarImg = document.getElementById('user-avatar-main');
+                if (avatarImg) avatarImg.src = savedAvatar;
+            }
+        });
+    </script>
+</body>
+</html>

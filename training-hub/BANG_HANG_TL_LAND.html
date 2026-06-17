@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Hàng Tổng Hợp - TL Land</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* ============================================
+   BẢNG HÀNG TL LAND - Premium Dark UI
+   ============================================ */
+:root {
+    --bg: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --border: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --text: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --accent-blue: #0284c7;
+    --accent-purple: #7c3aed;
+    --accent-emerald: #059669;
+    --accent-amber: #d97706;
+    --accent-red: #dc2626;
+    --accent-pink: #db2777;
+    --accent-cyan: #0891b2;
+    --gradient-main: linear-gradient(135deg, #0284c7, #7c3aed);
+    --gradient-ninh-co: linear-gradient(135deg, #0284c7, #0891b2);
+    --gradient-quat-lam: linear-gradient(135deg, #7c3aed, #db2777);
+        --gradient-hoa-lac: linear-gradient(135deg, #ea580c, #dc2626);
+    --gradient-son-tay: linear-gradient(135deg, #10b981, #059669);
+    --gradient-khac: linear-gradient(135deg, #64748b, #475569);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image:
+        radial-gradient(ellipse 800px 600px at 10% 20%, rgba(2,132,199,0.04), transparent 60%),
+        radial-gradient(ellipse 600px 500px at 90% 80%, rgba(124,58,237,0.04), transparent 60%),
+        radial-gradient(ellipse 400px 300px at 50% 50%, rgba(5,150,105,0.03), transparent 60%);
+    background-attachment: fixed;
+}
+
+/* === HEADER === */
+.page-header {
+    text-align: center;
+    padding: 60px 20px 20px;
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: var(--gradient-main);
+    border-radius: 3px;
+}
+
+.company-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    background: rgba(2,132,199,0.08);
+    border: 1px solid rgba(2,132,199,0.15);
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.page-header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* === STATS ROW === */
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 30px 20px 10px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stat-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    transition: all 0.3s;
+}
+
+.stat-chip:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px -2px rgba(0,0,0,0.05);
+}
+
+.stat-chip .stat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+.stat-chip .stat-value {
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.stat-chip .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* === FILTER TABS === */
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 20px 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.filter-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+    background: var(--bg-card-hover);
+}
+
+.filter-btn.active {
+    background: var(--gradient-main);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(2,132,199,0.25);
+}
+
+.filter-btn .count {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(0,0,0,0.06);
+}
+
+.filter-btn.active .count {
+    background: rgba(255,255,255,0.25);
+}
+
+/* === SEARCH === */
+.search-wrapper {
+    max-width: 500px;
+    margin: 16px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(2,132,199,0.15);
+}
+
+/* === REGION SECTIONS === */
+.region-section {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 16px 20px;
+}
+
+.region-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 32px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.region-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.region-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.region-header .region-count {
+    margin-left: auto;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+/* === REGION LINKS === */
+.region-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 0 10px;
+}
+
+.region-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.region-link-btn i {
+    font-size: 1rem;
+}
+
+.region-link-btn:hover {
+    border-color: var(--accent-blue);
+    background: rgba(2,132,199,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(2,132,199,0.1);
+}
+
+/* Sub-region headers */
+.sub-region-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 24px 0 12px;
+}
+
+.sub-region-header::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.sub-region-header.ninh-co::before { background: var(--gradient-ninh-co); }
+.sub-region-header.quat-lam::before { background: var(--gradient-quat-lam); }
+.sub-region-header.hoa-lac::before { background: var(--gradient-hoa-lac); }
+.sub-region-header.son-tay::before { background: var(--gradient-son-tay); }
+.sub-region-header.khac::before { background: var(--gradient-khac); }
+
+.sub-region-header h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* === PRODUCT CARDS GRID === */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* === PRODUCT CARD === */
+.product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+}
+
+.product-card.ninh-co::before { background: var(--gradient-ninh-co); }
+.product-card.quat-lam::before { background: var(--gradient-quat-lam); }
+.product-card.hoa-lac::before { background: var(--gradient-hoa-lac); }
+.product-card.son-tay::before { background: var(--gradient-son-tay); }
+.product-card.khac::before { background: var(--gradient-khac); }
+
+.card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.3;
+}
+
+.card-title .check-icon {
+    color: var(--accent-emerald);
+    font-size: 0.85rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.card-note {
+    font-size: 0.75rem;
+    color: var(--accent-amber);
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding: 6px 10px;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    display: inline-block;
+    line-height: 1.4;
+}
+
+/* COMPACT GRID FOR SPECS */
+.card-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 8px;
+}
+
+.spec-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.spec-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.spec-icon.price { background: #d1fae5; color: var(--accent-emerald); }
+.spec-icon.unit-price { background: #e0f2fe; color: var(--accent-blue); }
+.spec-icon.area { background: #ede9fe; color: var(--accent-purple); }
+.spec-icon.frontage { background: #fef3c7; color: var(--accent-amber); }
+.spec-icon.commission { background: #fce7f3; color: var(--accent-pink); }
+
+.spec-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.spec-label-small {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.spec-value {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.spec-value.highlight {
+    color: var(--accent-emerald);
+}
+
+/* Commission section */
+.card-commission {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.commission-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: var(--radius-xs);
+    background: #fce7f3;
+    border: 1px solid #fbcfe8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-pink);
+    line-height: 1.3;
+}
+
+.commission-badge i { font-size: 0.7rem; }
+
+.commission-extra {
+    margin-top: 6px;
+    font-size: 0.7rem;
+    color: var(--accent-amber);
+    font-weight: 600;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/* Special note card */
+.product-card.special {
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.product-card.special::before {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+/* === EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.2;
+    color: var(--text-secondary);
+}
+
+.empty-state p {
+    font-size: 1rem;
+}
+
+/* === LAST UPDATED === */
+.update-footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.update-footer .update-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    margin-top: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+    animation: fadeInUp 0.3s ease-out both;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .page-header { padding: 30px 16px 12px; }
+    .page-header h1 { font-size: 1.5rem; }
+    
+    .products-grid { 
+        grid-template-columns: 1fr; 
+        gap: 10px; 
+    }
+    
+    .product-card { 
+        padding: 14px;
+        border-radius: 12px;
+    }
+    
+    .card-title {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    
+    .card-note {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        margin-bottom: 10px;
+    }
+    
+    .card-specs { gap: 8px; }
+    
+    .spec-icon { width: 24px; height: 24px; font-size: 0.65rem; }
+    .spec-value { font-size: 0.8rem; }
+    
+    .card-commission { margin-top: 10px; padding-top: 10px; }
+    .commission-badge { padding: 4px 8px; font-size: 0.7rem; }
+    
+    .stats-row { gap: 8px; padding-top: 20px; }
+    .stat-chip { padding: 8px 12px; font-size: 0.75rem; }
+    .stat-chip .stat-icon { width: 28px; height: 28px; }
+    .stat-chip .stat-value { font-size: 0.95rem; }
+    
+    .region-header { margin: 24px 0 16px; padding-bottom: 8px; }
+    .region-header h2 { font-size: 1.2rem; }
+    .region-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 10px; }
+    
+    .filter-btn { padding: 6px 14px; font-size: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+    .spec-row { gap: 6px; }
+    .spec-label-small { font-size: 0.6rem; }
+    .spec-value { font-size: 0.75rem; }
+}
+    </style>
+</head>
+<body>
+
+<!-- ========================================== -->
+<!-- DATA - Cập nhật dữ liệu ở đây            -->
+<!-- ========================================== -->
+<script>
+const BANG_HANG_DATA = {
+    lastUpdated: '24/05/2026 — 08:58',
+
+    regions: [
+        // =============================================
+        // KHU VỰC 1: NINH CƠ
+        // =============================================
+        {
+            id: 'ninh-co',
+            name: 'Ninh Cơ',
+            icon: 'fa-solid fa-water',
+            gradient: 'var(--gradient-ninh-co)',
+            links: [
+                { text: 'Tài Liệu', icon: 'fa-solid fa-folder-open', url: 'https://zalo.me/g/aouere171' }
+            ],
+            subRegions: [
+                {
+                    name: null,
+                    products: [
+                        {
+                            name: 'Khu Kinh tế Ninh Cơ - NB (Ninh Bình)',
+                            totalPrice: '1,53 tỷ – 2,96 tỷ',
+                            unitPrice: '16,5 – 29 triệu/m²',
+                            area: '71 – 106 m²',
+                            frontage: '4 – 18,6 m',
+                            commission: '4% + thưởng 200 triệu',
+                            note: 'Nhiều lô mặt đường, view biển, lô góc 2–3 MT. Một số lô đã cọc.'
+                        },
+                        {
+                            name: '25 lô đường bộ ven biển',
+                            totalPrice: '1,4 tỷ – 2 tỷ',
+                            unitPrice: '18 triệu/m²',
+                            area: '81 m²',
+                            frontage: '5 – 9 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '66 lô Mặt biển Hải Xuân',
+                            totalPrice: '1,68 tỷ – 4,06 tỷ',
+                            unitPrice: '18 – 40 triệu/m²',
+                            area: '80 – 104 m²',
+                            frontage: '4,4 – 19,5 m',
+                            commission: '4% + thưởng 200 triệu',
+                            note: 'Nhiều lô mặt biển, hai mặt thoáng, lô góc. Một số lô đã cọc.'
+                        },
+                        {
+                            name: '35 lô Giá rẻ Hải Xuân',
+                            totalPrice: '1,33 tỷ – 1,9 tỷ',
+                            unitPrice: '14 – 23,5 triệu/m²',
+                            area: '66 – 111 m²',
+                            frontage: '4,5 – 16,9 m',
+                            commission: 'Hoa hồng 4% + thưởng 100 triệu',
+                            note: 'Có lô view hồ, lô góc 2–3 MT, hai mặt thoáng. Một số lô đã cọc.'
+                        },
+                        {
+                            name: '106 lô Mặt biển Hải Xuân',
+                            totalPrice: '1,39 tỷ – 3,42 tỷ',
+                            unitPrice: '18 – 34,5 triệu/m²',
+                            area: '61 – 112 m²',
+                            frontage: '3,6 – 18,7 m',
+                            commission: '4% + thưởng 200 triệu',
+                            note: 'Nhiều lô view biển, lô góc 2–3 mặt tiền. Một số lô đã cọc — liên hệ sếp để check realtime.'
+                        }
+                    ]
+                }
+            ]
+        },
+
+        // =============================================
+        // KHU VỰC 2: QUẤT LÂM
+        // =============================================
+        {
+            id: 'quat-lam',
+            name: 'Quất Lâm',
+            icon: 'fa-solid fa-umbrella-beach',
+            gradient: 'var(--gradient-quat-lam)',
+            links: [
+                { text: 'Hình ảnh – Tài liệu – Video Quất Lâm', icon: 'fa-solid fa-image', url: 'https://zalo.me/g/lzmqxo830' },
+                { text: 'Tại sao nên đầu tư Quất Lâm', icon: 'fa-solid fa-file-contract', url: 'https://docs.google.com/document/d/1SctCIsFawNmHt6_REmsonsYbDoZPrK_18dt-aB2o2NU/edit?tab=t.0' },
+                { text: 'Slide đào tạo Quất Lâm', icon: 'fa-solid fa-person-chalkboard', url: 'https://bom.so/zolvMS' },
+                { text: 'Ảnh thật Quất Lâm', icon: 'fa-solid fa-camera', url: 'https://bom.so/OV5YDG' }
+            ],
+            subRegions: [
+                {
+                    name: 'A. Xóm Liên Phong (sát biển)',
+                    products: [
+                        {
+                            name: '11 + 4 + 21 lô Bãi tắm 2',
+                            totalPrice: '2,079 tỷ – hơn 3,6 tỷ',
+                            unitPrice: '26 – 39,8 triệu/m²',
+                            area: '77,6 – 97 m²',
+                            frontage: '4,3 – 5 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '13 + 30 lô Bãi tắm 2 Giao Phong',
+                            totalPrice: 'hơn 2,3 tỷ',
+                            unitPrice: '25 triệu/m²',
+                            area: '90,9 – 92,9 m²',
+                            frontage: '4,5 – 4,6 m',
+                            commission: '4% + thưởng 200 triệu + Tucson'
+                        },
+                        {
+                            name: '16 lô Mặt biển',
+                            totalPrice: '3,8 tỷ – 5,7 tỷ',
+                            unitPrice: '38 – 47 triệu/m²',
+                            area: '100 – 104 m²',
+                            frontage: '4,8 m',
+                            commission: '4% + thưởng 200 triệu + vé bốc Tucson'
+                        },
+                        {
+                            name: '30 lô Giao Phong',
+                            totalPrice: '1,9 tỷ – 4,5 tỷ',
+                            unitPrice: '21 – 47 triệu/m²',
+                            area: '86 – 100 m²',
+                            frontage: '4,4 – 5 m',
+                            commission: '4% + thưởng 200 triệu + vé bốc Tucson'
+                        },
+                        {
+                            name: '40 lô Bãi tắm QL',
+                            totalPrice: '2,5 tỷ – 3 tỷ',
+                            unitPrice: '27 – 32 triệu/m²',
+                            area: '80 – 93 m²',
+                            frontage: '4,8 – 8,76 m',
+                            commission: '4% + thưởng 100 triệu + vé bốc Tucson'
+                        },
+                        {
+                            name: 'Bãi tắm 2',
+                            totalPrice: '2,5 tỷ',
+                            unitPrice: '23 – 26 triệu/m²',
+                            area: '88 – 100 m²',
+                            frontage: '4,5 m',
+                            commission: '4% + thưởng 50–200 triệu',
+                            note: 'Lô T32: +5 vé bốc ô tô | 2 lô L15: +200 triệu'
+                        },
+                        {
+                            name: '62 lô Giao Ninh',
+                            totalPrice: '2,3 tỷ – 3,5 tỷ',
+                            unitPrice: '24 triệu/m²',
+                            area: '80 – 122 m²',
+                            frontage: '4,4 – 5 m',
+                            commission: '4% + thưởng 200 triệu + 1 vé bốc Tucson',
+                            note: 'Q6A, Q9, Q15, Q16A, Q16B, Q18, I1, I9, I22B, I32A: 2 vé/lô'
+                        },
+                        {
+                            name: '20 lô Mặt biển (Bãi tắm 1)',
+                            totalPrice: '3,5 tỷ – 3,7 tỷ',
+                            unitPrice: '40,5 triệu/m²',
+                            area: '90 m²',
+                            frontage: '4,4 – 4,7 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '7 lô giá rẻ Bãi tắm 2',
+                            totalPrice: 'hơn 1,9 tỷ',
+                            unitPrice: '22,3 triệu/m²',
+                            area: '86 – 87 m²',
+                            frontage: '4,5 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '18 lô mặt đường 10m',
+                            totalPrice: '1,776 tỷ – 3,7 tỷ',
+                            unitPrice: '21 – 36,5 triệu/m²',
+                            area: '84 – 94 m²',
+                            frontage: '4,5 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '50 lô siêu phẩm VSIP',
+                            totalPrice: '1,9 tỷ – 2,2 tỷ',
+                            unitPrice: '21 – 28 triệu/m²',
+                            area: '80 – 94 m²',
+                            frontage: '',
+                            commission: '4% + thưởng 200 triệu + bốc thăm Ford Everest'
+                        },
+                        {
+                            name: '29 lô Bãi tắm 2',
+                            totalPrice: '2 tỷ – 2,6 tỷ',
+                            unitPrice: '23 – 28 triệu/m²',
+                            area: '80 – 98 m²',
+                            frontage: '4,5 m',
+                            commission: '4% + thưởng 200 triệu'
+                        }
+                    ]
+                },
+                {
+                    name: 'B. Trong Thị trấn Quất Lâm',
+                    products: [
+                        {
+                            name: 'Thị trấn Quất Lâm',
+                            totalPrice: '1,2 tỷ – 1,7 tỷ',
+                            unitPrice: '18,5 triệu/m²',
+                            area: '68 – 86 m²',
+                            frontage: '4,4 m',
+                            commission: '4% + thưởng 50 triệu + vé bốc Tucson'
+                        },
+                        {
+                            name: 'TC lock 11 lô Thị trấn Quất Lâm',
+                            totalPrice: '1,5 tỷ – 2,5 tỷ',
+                            unitPrice: '27 – 29,5 triệu/m²',
+                            area: '54 – 83 m²',
+                            frontage: '4,5 – 5,6 m',
+                            commission: '4% + thưởng 150 triệu'
+                        },
+                        {
+                            name: '33 lô Thị trấn Quất Lâm',
+                            totalPrice: '1,3 tỷ – 1,8 tỷ',
+                            unitPrice: '20 triệu/m²',
+                            area: '64 – 76 m²',
+                            frontage: '4,5 – 7,3 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: 'TC lock 19 lô Thị trấn Quất Lâm',
+                            totalPrice: '1,2 tỷ – 1,9 tỷ',
+                            unitPrice: '15,5 – 24 triệu/m²',
+                            area: '64 – 100 m²',
+                            frontage: '4,5 – 5,65 m',
+                            commission: '4% + thưởng 200 triệu',
+                            note: 'Khu 9 lô và khu 10 lô'
+                        }
+                    ]
+                },
+                {
+                    name: 'C. Khu giữa Thị trấn và Liên Phong (gần tập đoàn)',
+                    products: [
+                        {
+                            name: '24 lô Quất Lâm (Dương Khuê)',
+                            totalPrice: '2,2 tỷ – 2,4 tỷ',
+                            unitPrice: '',
+                            area: '77 – 84 m²',
+                            frontage: '4,5 m',
+                            commission: '4% + thưởng 200 triệu + vé bốc Tucson'
+                        },
+                        {
+                            name: '9 lô Côn Tàu',
+                            totalPrice: '1,6 tỷ – 2 tỷ',
+                            unitPrice: '26 – 32 triệu/m²',
+                            area: '60 – 70 m²',
+                            frontage: '4,5 – 6,7 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: 'Thanh khoản Quất Lâm',
+                            totalPrice: '',
+                            unitPrice: '',
+                            area: '',
+                            frontage: '',
+                            commission: '',
+                            note: 'Nhóm thanh khoản cho khách đã mua. Bảng hoa hồng + thưởng từng lô cập nhật hàng ngày ở phần ghim của sếp Lương.',
+                            isSpecial: true
+                        }
+                    ]
+                }
+            ]
+        },
+
+        // =============================================
+        // KHU VỰC 3: HÒA LẠC
+        // =============================================
+        {
+            id: 'hoa-lac',
+            name: 'Hoà Lạc',
+            icon: 'fa-solid fa-mountain-city',
+            gradient: 'var(--gradient-hoa-lac)',
+            links: [
+                { text: 'Hình ảnh – Tài liệu – Video Hòa Lạc', icon: 'fa-solid fa-image', url: 'https://zalo.me/g/ziptot784' },
+                { text: 'Bài gửi khách Hòa Lạc', icon: 'fa-solid fa-paper-plane', url: 'https://zalo.me/g/uqiabm674' },
+                { text: 'Ảnh thật Hòa Lạc', icon: 'fa-solid fa-camera', url: 'https://bom.so/TcVL2Z' }
+            ],
+            subRegions: [
+                {
+                    name: null,
+                    products: [
+                        {
+                            name: '28 lô Đồng Trạng',
+                            totalPrice: '3,5 tỷ',
+                            unitPrice: '34.950 triệu/m²',
+                            area: '100 m²',
+                            frontage: '5,25 m',
+                            commission: '4% + thưởng 100 triệu',
+                            note: 'Còn 2 lô đường đâm'
+                        },
+                        {
+                            name: '10 & 16 lô Trại Hồ, Cổ Đông',
+                            totalPrice: '3 tỷ – 4 tỷ',
+                            unitPrice: 'hơn 22 – 38,6 triệu/m²',
+                            area: '100 – 130 m²',
+                            frontage: '5 – 9 m',
+                            commission: '4% + thưởng 100 triệu',
+                            note: 'Còn lô góc dính cột điện và 1 lô thường'
+                        },
+                        {
+                            name: '58 lô Hòa Lạc – Hà Nội',
+                            totalPrice: '3,7 tỷ – 4 tỷ',
+                            unitPrice: 'hơn 37 – 39 triệu/m²',
+                            area: '100 m²',
+                            frontage: '5 – 7 m',
+                            commission: '4% + thưởng 200 triệu + vé bốc thăm Tucson và iPhone 17 Promax',
+                            note: 'Còn 3 lô thôi'
+                        },
+                        {
+                            name: '16 lô Phú Cát',
+                            totalPrice: '4 tỷ – 5 tỷ',
+                            unitPrice: '39 triệu/m²',
+                            area: '100 – 130 m²',
+                            frontage: '6 – 9 m',
+                            commission: '4% + thưởng 100 triệu',
+                            note: 'Còn mỗi 1 lô góc to'
+                        },
+                        {
+                            name: '10 lô Phú Cát',
+                            totalPrice: 'hơn 4,8 – 4,9 tỷ',
+                            unitPrice: '48 – 49 triệu/m²',
+                            area: '100 m²',
+                            frontage: '5,7 – 5,9 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '5 lô Vân Lôi',
+                            totalPrice: '4,7 tỷ',
+                            unitPrice: 'gần 47 triệu/m²',
+                            area: '100 m²',
+                            frontage: '6 – 7 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '35 lô Vai Réo',
+                            totalPrice: '5 tỷ',
+                            unitPrice: '48,5 triệu/m²',
+                            area: '',
+                            frontage: '5,6 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '74 lô Đại Học Quốc Gia',
+                            totalPrice: '3,6 tỷ – 5,9 tỷ',
+                            unitPrice: '36 – 46,2 triệu/m²',
+                            area: '100 – 128 m²',
+                            frontage: '',
+                            commission: '4% + 200 triệu'
+                        },
+                        {
+                            name: 'Mặt Đường 466 Tiên Xuân',
+                            totalPrice: '5 tỷ – 20 tỷ',
+                            unitPrice: '19,8 – 51 triệu/m²',
+                            area: '150 – 1000 m²',
+                            frontage: '5 – 20 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '38 lô Trại Láng',
+                            totalPrice: '3,3 tỷ – 4,3 tỷ',
+                            unitPrice: '32 – 37 triệu/m²',
+                            area: '100 – 120 m²',
+                            frontage: '',
+                            commission: '4% + 100 triệu'
+                        },
+                        {
+                            name: 'Tân Xã',
+                            totalPrice: '3,5 tỷ – 4,5 tỷ',
+                            unitPrice: '40 – 46 triệu/m²',
+                            area: '90 – 98,5 m²',
+                            frontage: '',
+                            commission: '4%'
+                        },
+                        {
+                            name: '13 lô Đoài Phương',
+                            totalPrice: '3,4 tỷ – 4,2 tỷ',
+                            unitPrice: '31 – 36 triệu/m²',
+                            area: '103 – 117,3 m²',
+                            frontage: '',
+                            commission: '4% + 100 triệu'
+                        },
+                        {
+                            name: '14 lô Đoài Phương',
+                            totalPrice: '3 tỷ – 4 tỷ',
+                            unitPrice: '30 – 36 triệu/m²',
+                            area: '100 – 116 m²',
+                            frontage: '',
+                            commission: '4% + 100 triệu'
+                        }
+                    ]
+                }
+            ]
+        },
+        // =============================================
+        // KHU VỰC 4: SƠN TÂY
+        // =============================================
+        {
+            id: 'son-tay',
+            name: 'Sơn Tây',
+            icon: 'fa-solid fa-map-location-dot',
+            gradient: 'var(--gradient-son-tay)',
+            links: [
+                { text: 'Bài gửi khách phường Tùng Thiện', icon: 'fa-solid fa-paper-plane', url: 'https://zalo.me/g/hbwtnw210' },
+                { text: 'Tài Liệu', icon: 'fa-solid fa-folder-open', url: 'https://drive.google.com/drive/folders/1cNoblXk-43JIDXcyvp4HJFeGw1roRT8i?usp=sharing' }
+            ],
+            subRegions: [
+                {
+                    name: null,
+                    products: [
+                        {
+                            name: '63 lô phường Tùng Thiện, Sơn Tây',
+                            totalPrice: '1,7 tỷ – 2,27 tỷ',
+                            unitPrice: '33,5 – 44 triệu/m²',
+                            area: '50 – 68,9 m²',
+                            frontage: '',
+                            commission: '4% + thưởng 100 triệu/lô. Lô A01, D09-D12: 150 triệu/lô',
+                            note: 'Bán 45 ngày: bốc Tucson + 5 iPhone 17 Promax'
+                        },
+                        {
+                            name: '55 thửa phường Tùng Thiện',
+                            totalPrice: '1,73 tỷ – 3,46 tỷ',
+                            unitPrice: '35 – 49,5 triệu/m²',
+                            area: '50 – 70,1 m²',
+                            frontage: '',
+                            commission: '4% + thưởng 50 triệu + vé bốc thăm Tucson và iPhone 17 Promax'
+                        },
+                        {
+                            name: '25 lô view hồ phường Tùng Thiện',
+                            totalPrice: '2,69 tỷ – 3,61 tỷ',
+                            unitPrice: '26,9 – 37 triệu/m²',
+                            area: '96,3 – 100,5 m²',
+                            frontage: '',
+                            commission: '4% + thưởng nóng 200 triệu',
+                            note: 'Bốc thăm: 1 Tucson 800tr + 5 iPhone 17 Promax'
+                        },
+                        {
+                            name: '32 lô Phố Hữu Nghị (Tùng Thiện)',
+                            totalPrice: '1,37 tỷ – 2,51 tỷ',
+                            unitPrice: '26 – 39 triệu/m²',
+                            area: '50 – 73 m²',
+                            frontage: '',
+                            commission: '4% + thưởng nóng 120 triệu',
+                            note: 'Bốc thăm: 1 Tucson 800tr + 5 iPhone 17 Promax'
+                        }
+                    ]
+                }
+            ]
+        },
+        // =============================================
+        // KHU VỰC 5: THỊ TRƯỜNG KHÁC
+        // =============================================
+        {
+            id: 'khac',
+            name: 'Thị Trường Khác',
+            icon: 'fa-solid fa-earth-asia',
+            gradient: 'var(--gradient-khac)',
+            subRegions: [
+                {
+                    name: null,
+                    products: [
+                        {
+                            name: '108 lô La Saveur Lương Sơn',
+                            totalPrice: '2,03 tỷ – 3,4 tỷ',
+                            unitPrice: '25 – 32,75 triệu/m²',
+                            area: '80 – 105,5 m²',
+                            frontage: '',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '51 lô Dream Town GĐ1 (Lương Sơn)',
+                            totalPrice: '2,31 tỷ – 10,9 tỷ',
+                            unitPrice: '23 – 36,1 triệu/m²',
+                            area: '82,5 – 474,5 m²',
+                            frontage: '5 – 8,6 m',
+                            commission: '4% + thưởng 200 triệu'
+                        },
+                        {
+                            name: '21 lô Khu Ba Vì',
+                            totalPrice: '1 tỷ – 2 tỷ',
+                            unitPrice: '5 – 11,9 triệu/m²',
+                            area: '100 – 400 m²',
+                            frontage: '5 – 11,2 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '23 lô Phú Thọ (Khu A)',
+                            totalPrice: '702 triệu – 1,17 tỷ',
+                            unitPrice: '7,5 – 11 triệu/m²',
+                            area: '73,9 – 121,4 m²',
+                            frontage: '5 – 10,71 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '22 lô Phú Thọ (Khu Q)',
+                            totalPrice: '639 triệu – 1,126 tỷ',
+                            unitPrice: '7,5 – 12,65 triệu/m²',
+                            area: '55,6 – 104,4 m²',
+                            frontage: '3,88 – 8,1 m',
+                            commission: '4% + thưởng 100 triệu'
+                        },
+                        {
+                            name: '29 lô Phú Thọ (Khu P)',
+                            totalPrice: '625 triệu – 988 triệu',
+                            unitPrice: '8,3 – 12,8 triệu/m²',
+                            area: '67,3 – 85,6 m²',
+                            frontage: '',
+                            commission: '4% + thưởng 100 triệu'
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+</script>
+
+<!-- ========================================== -->
+<!-- HTML STRUCTURE                             -->
+<!-- ========================================== -->
+
+<div class="page-header">
+    <div class="company-badge">
+        <i class="fa-solid fa-building"></i> TL Land — Internal
+    </div>
+    <h1>Bảng Hàng Tổng Hợp</h1>
+    <p>Tổng hợp toàn bộ rổ hàng của công ty theo từng khu vực. Dành cho nhân sự nội bộ.</p>
+</div>
+
+<div class="filter-bar" id="filter-bar"></div>
+
+<div class="search-wrapper">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" class="search-input" id="search-input" placeholder="Tìm theo tên rổ hàng, khu vực...">
+</div>
+
+<div id="content-area"></div>
+
+<div class="update-footer">
+    Dữ liệu bảng hàng được cập nhật liên tục bởi Ban quản lý.
+    <br>
+    <div class="update-time" id="update-time">
+        <i class="fa-regular fa-clock"></i> Cập nhật lần cuối: --
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- RENDER ENGINE                              -->
+<!-- ========================================== -->
+<script>
+(function() {
+    const data = BANG_HANG_DATA;
+    let currentFilter = 'all';
+    let searchTerm = '';
+
+    // === RENDER FILTERS ===
+    function renderFilters() {
+        const filterBar = document.getElementById('filter-bar');
+        const totalProducts = data.regions.reduce((sum, r) =>
+            sum + r.subRegions.reduce((s, sr) => s + sr.products.length, 0), 0);
+
+        let html = `<button class="filter-btn active" data-filter="all">
+            <i class="fa-solid fa-border-all"></i> Tất cả <span class="count">${totalProducts}</span>
+        </button>`;
+
+        data.regions.forEach(r => {
+            const count = r.subRegions.reduce((s, sr) => s + sr.products.length, 0);
+            html += `<button class="filter-btn" data-filter="${r.id}">
+                <i class="${r.icon}"></i> ${r.name} <span class="count">${count}</span>
+            </button>`;
+        });
+
+        filterBar.innerHTML = html;
+
+        // Event listeners
+        filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderContent();
+            });
+        });
+    }
+
+    // === RENDER PRODUCT CARD ===
+    function renderCard(product, regionId, delay) {
+        if (product.isSpecial) {
+            return `
+                <div class="product-card special ${regionId}" style="animation-delay:${delay}ms">
+                    <div class="card-title">
+                        <i class="fa-solid fa-circle-check check-icon" style="color:var(--accent-amber)"></i>
+                        ${product.name}
+                    </div>
+                    ${product.note ? `<div class="card-note"><i class="fa-solid fa-info-circle"></i> ${product.note}</div>` : ''}
+                </div>`;
+        }
+
+        let specsHtml = '';
+
+        if (product.totalPrice) {
+            specsHtml += `
+                <div class="spec-row">
+                    <div class="spec-icon price"><i class="fa-solid fa-tag"></i></div>
+                    <div class="spec-info">
+                        <span class="spec-label-small">Tổng giá</span>
+                        <span class="spec-value highlight">${product.totalPrice}</span>
+                    </div>
+                </div>`;
+        }
+
+        if (product.unitPrice) {
+            specsHtml += `
+                <div class="spec-row">
+                    <div class="spec-icon unit-price"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="spec-info">
+                        <span class="spec-label-small">Đơn giá</span>
+                        <span class="spec-value">${product.unitPrice}</span>
+                    </div>
+                </div>`;
+        }
+
+        if (product.area) {
+            specsHtml += `
+                <div class="spec-row">
+                    <div class="spec-icon area"><i class="fa-solid fa-ruler-combined"></i></div>
+                    <div class="spec-info">
+                        <span class="spec-label-small">Diện tích</span>
+                        <span class="spec-value">${product.area}</span>
+                    </div>
+                </div>`;
+        }
+
+        if (product.frontage) {
+            specsHtml += `
+                <div class="spec-row">
+                    <div class="spec-icon frontage"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    <div class="spec-info">
+                        <span class="spec-label-small">Mặt tiền</span>
+                        <span class="spec-value">${product.frontage}</span>
+                    </div>
+                </div>`;
+        }
+
+        let commissionHtml = '';
+        if (product.commission) {
+            commissionHtml = `
+                <div class="card-commission">
+                    <div class="commission-badge">
+                        <i class="fa-solid fa-gift"></i> ${product.commission}
+                    </div>
+                    ${product.note ? `<div class="commission-extra"><i class="fa-solid fa-star"></i> ${product.note}</div>` : ''}
+                </div>`;
+        }
+
+        return `
+            <div class="product-card ${regionId}" style="animation-delay:${delay}ms">
+                <div class="card-title">
+                    <i class="fa-solid fa-circle-check check-icon"></i>
+                    ${product.name}
+                </div>
+                ${!product.commission && product.note ? `<div class="card-note"><i class="fa-solid fa-circle-info"></i> ${product.note}</div>` : ''}
+                <div class="card-specs">${specsHtml}</div>
+                ${commissionHtml}
+            </div>`;
+    }
+
+    // === RENDER CONTENT ===
+    function renderContent() {
+        const area = document.getElementById('content-area');
+        let html = '';
+        let cardIndex = 0;
+
+        const filteredRegions = currentFilter === 'all'
+            ? data.regions
+            : data.regions.filter(r => r.id === currentFilter);
+
+        filteredRegions.forEach(region => {
+            // Filter by search
+            const matchingSubRegions = region.subRegions.map(sr => {
+                const filtered = sr.products.filter(p =>
+                    !searchTerm || p.name.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                return { ...sr, products: filtered };
+            }).filter(sr => sr.products.length > 0);
+
+            if (matchingSubRegions.length === 0) return;
+
+            const totalInRegion = matchingSubRegions.reduce((s, sr) => s + sr.products.length, 0);
+
+            html += `
+                <div class="region-section">
+                    <div class="region-header">
+                        <div class="region-icon" style="background:${region.gradient}">
+                            <i class="${region.icon}"></i>
+                        </div>
+                        <h2>${region.name}</h2>
+                        <span class="region-count">${totalInRegion} rổ hàng</span>
+                    </div>`;
+
+            if (region.links && region.links.length > 0) {
+                html += '<div class="region-links">';
+                region.links.forEach(link => {
+                    const iconClass = link.icon ? link.icon : 'fa-solid fa-link';
+                    html += `
+                        <a href="${link.url}" target="_blank" class="region-link-btn">
+                            <i class="${iconClass}"></i> ${link.text}
+                        </a>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            matchingSubRegions.forEach(sr => {
+                if (sr.name) {
+                    html += `
+                        <div class="sub-region-header ${region.id}">
+                            <h3>${sr.name}</h3>
+                        </div>`;
+                }
+
+                html += '<div class="products-grid">';
+                sr.products.forEach(product => {
+                    html += renderCard(product, region.id, cardIndex * 40);
+                    cardIndex++;
+                });
+                html += '</div>';
+            });
+
+            html += '</div>';
+        });
+
+        if (!html) {
+            html = `
+                <div class="empty-state">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>Không tìm thấy rổ hàng nào phù hợp.</p>
+                </div>`;
+        }
+
+        area.innerHTML = html;
+    }
+
+    // === SEARCH ===
+    const searchInput = document.getElementById('search-input');
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            searchTerm = e.target.value.trim();
+            renderContent();
+        }, 250);
+    });
+
+    // === UPDATE TIME ===
+    document.getElementById('update-time').innerHTML =
+        `<i class="fa-regular fa-clock"></i> Cập nhật lần cuối: ${data.lastUpdated}`;
+
+    // === INIT ===
+    renderFilters();
+    renderContent();
+})();
+</script>
+
+</body>
+</html>

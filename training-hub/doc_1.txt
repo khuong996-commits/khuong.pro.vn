@@ -1,0 +1,312 @@
+﻿Quy Định và Quy Chế Công Ty TL LAND về Kinh Doanh và Hoa Hồng
+(Cập nhật chuẩn 2025 — Cơ chế 65-25-10)
+________________
+
+
+1. Chính Sách Hoa Hồng
+Tỷ Lệ Hoa Hồng và Thưởng Nóng:
+* Hoa Hồng: 4% trên giá trị giao dịch (có thể có sự dịch chuyển ở từng bảng hàng, admin sẽ cập nhật trong đó).
+* Thưởng Nóng: 50,000,000 VND đến 300,000,000 VND cho mỗi giao dịch thành công.
+* Có một số bảng hàng còn có bốc thăm trúng ô tô.
+Lưu ý: Tỷ lệ hoa hồng có thể thay đổi tùy thuộc vào từng dự án hoặc bảng hàng cụ thể.
+Cách tính Hoa Hồng = (Tổng giá lô đất - Thưởng nóng) × % hoa hồng + Thưởng nóng - Chi phí
+Ví dụ: Lô đất 3 tỷ, thưởng 200 triệu, chi phí 3tr xăng xe, 1tr ăn uống và tặng giỏ hoa quả → Hoa hồng = (3 tỷ - 200tr) × 4% + 200 triệu - 4tr = 308,000,000đ
+________________
+
+
+2. Cơ Chế Chia Hoa Hồng (CẬP NHẬT CHUẨN 2025)
+⚠️ QUAN TRỌNG: TL Land sử dụng Cơ chế Tách Lớp rõ ràng theo tỷ lệ 65% - 25% - 10% (Tính trên 100% Tổng Hoa Hồng sau khi trừ các khoản chi phí đi lại).
+Hoạt Động Theo Đội Nhóm:
+* Đa phần hoạt động của công ty diễn ra trong các đội nhóm.
+* Nếu có thỏa thuận trước giữa các thành viên trong đội nhóm, việc chia hoa hồng sẽ được tự quy định dựa trên thỏa thuận đó.
+Quy Chế Chung (Khi Không Có Thỏa Thuận Riêng):
+* 65% — NGUỒN KHÁCH: Dành cho người tìm ra khách, chi tiền Marketing, gọi điện, chăm sóc.
+* 25% — NGƯỜI HỖ TRỢ: Dành cho Leader/Chuyên gia đi cùng chốt khách ở thực địa.
+* 10% — QUẢN LÝ & TUYỂN DỤNG: Dành cho hệ thống tuyến trên.
+Giải thích:
+* Người nguồn khách (A) là người đăng tin, chạy QC… ra khách và mời được khách đi xem.
+* Người hỗ trợ (B) là người có kinh nghiệm, có phương tiện, có uy tín mà A nhờ đi tiếp khách và trực tiếp chốt giao dịch với khách hàng.
+* B phải mất 3 lần đi khách: lần 1 đưa khách đi xem đất và chốt, lần 2 đưa khách đi công chứng sang tên, lần 3 đi trả sổ cho khách.
+Nếu A vừa tự chạy ra khách VÀ tự đưa khách đi xem VÀ tự chốt → nhận 90-100% hoa hồng (ôm luôn phần Hỗ trợ).
+________________
+
+
+2.1 Chi tiết 10% Quản Lý & Tuyển Dụng (QUY TẮC 4-2-2-2)
+Trong 10% này sẽ được cắt nhỏ, đổ theo trụ dọc hệ thống:
+* 4%: Dành cho người Trực tiếp tuyển dụng (Người F1 của nhân sự mới).
+* 2%: Dành cho Trưởng nhóm (TN).
+* 2%: Dành cho Phó phòng (PP).
+* 2%: Dành cho Trưởng phòng (TP).
+Ví dụ không đồng cấp:
+* Nhân viên A mời Nhân viên B. B bán được lô đất → A hưởng 4%.
+* Trưởng nhóm C mời D. D bán được → C hưởng 4% (tuyển dụng) + 2% (TN) = 6%.
+Xử lý Đồng cấp (Nhiều quản lý cùng một nhánh):
+* 2 người Đồng cấp (VD: PP1 ở trên PP2): PP2 (sát F1) hưởng 1.5%, PP1 (bề trên) hưởng 0.5%.
+* 3 người Đồng cấp (VD: TN1 → TN2 → TN3): TN3 (sát F1) hưởng 1%, TN2 hưởng 0.5%, TN1 hưởng 0.5%.
+________________
+
+
+2.2 Quy Chế TỰ BÁN (Ăn Trọn Nguồn)
+Nếu tự ra khách (ôm 65% nguồn) thì hoa hồng nhận được = 65% + % cấp bậc đang có:
+* NV Tự bán: 65% Nguồn.
+* TN Tự bán: 65% + 2% (TN) = 67%. (Nếu TN bị lọt thỏm dưới 1 TN đồng cấp: TN tự bán lấy 66.5%, TN trên hưởng 0.5%).
+* PP Tự bán: 65% + 2% (TN) + 2% (PP) = 69%.
+* TP Tự bán: 65% + 4% + 2% (TN) + 2% (PP) + 2% (TP) = 75%.
+Đặc biệt: Nếu sale cứng tự ôm khách, TỰ ĐI CHỐT KHÁCH thành công (không nhờ Hỗ trợ) → Ôm luôn 25% Hỗ trợ → Tổng có thể lên 90% - 100%.
+________________
+
+
+2.3 Bảng Phân Bổ Chi Tiết Tỷ Lệ Hoa Hồng
+Hoạt Động
+	Tự Làm (A-Z)
+	Nguồn Khách
+	Hỗ Trợ
+	GT + Quản Lý
+	Nguồn Khách (Marketing, Tìm khách)
+	50
+	50
+	—
+	—
+	Tư Vấn (Giải thích sản phẩm, pháp lý)
+	20
+	10
+	5
+	5
+	Chốt (Đàm phán, ký cọc tại thực địa)
+	20
+	—
+	15
+	5
+	Chăm Sóc (Sau cọc, công chứng, trả sổ)
+	10
+	5
+	5
+	—
+	TỔNG
+	100%
+	65%
+	25%
+	10%
+	________________
+
+
+2.4 Quy Tắc Tư Vấn Bản Đồ (QUY ĐỊNH MỚI K11)
+Để tăng tỷ lệ mời khách đi xem đất thành công, một số khách hàng cần được hẹn cafe tư vấn bản đồ trước (xem quy hoạch, vị trí, tiềm năng trên bản đồ) trước khi quyết định đi thực địa.
+Tinh thần: Ai làm gì cũng có công.
+Trường hợp 1: Khách cần tư vấn bản đồ TRƯỚC, hôm sau mới đi xem đất
+* Người đi tư vấn bản đồ hưởng: 5% (trích từ tổng hoa hồng)
+* Phần còn lại 95% coi như 100% mới, tiếp tục chia theo 65-25-10:
+   * Nguồn Khách: 65% × 95% = 61.75%
+   * Hỗ Trợ: 25% × 95% = 23.75%
+   * Giới thiệu + Quản Lý: 10% × 95% = 9.5%
+Vai trò
+	% Hưởng (trên tổng HH)
+	Người tư vấn bản đồ
+	5%
+	Nguồn Khách
+	61.75%
+	Hỗ Trợ
+	23.75%
+	GT + Quản Lý
+	9.5%
+	TỔNG
+	100%
+	Trường hợp 2: Khách KHÔNG cần tư vấn bản đồ (đi xem đất luôn), HOẶC người tư vấn bản đồ là tư vấn cho chính khách của bản thân mình
+* Chia hoa hồng bình thường theo 65-25-10. Không trích 5%.
+P/S: Nếu khách đi tư vấn bản đồ xong mà đi xem đất luôn trong ngày (không phải hôm sau mới đi) → Cũng chia theo công thức 65-25-10 bình thường, không trích 5% tư vấn bản đồ.
+Lưu ý quan trọng: Nếu người hỗ trợ tư vấn bản đồ và người đi hỗ trợ bán hàng là CÙNG 1 NGƯỜI → Được hưởng 🌹 cả 2 lần:
+1. Lần 1: 5% tư vấn bản đồ
+2. Lần 2: 25% × 95% = 23.75% hỗ trợ bán hàng
+* Tổng cộng người đó nhận: 5% + 23.75% = 28.75%
+________________
+
+
+3. Giảm Trừ Chi Phí Trước Khi Chia Hoa Hồng
+Chi Phí Bao Gồm:
+Nếu CHỐT thành công:
+* Quất Lâm: 3,000,000 VND cho mỗi khách hàng, bao gồm:
+   * Một lần chở khách đi xem đất.
+   * Một lần chở khách đi công chứng.
+   * Một lần giao sổ cho khách.
+* Hòa Lạc: 2,000,000 VND.
+* Chi Phí Khác: Trừ cả các khoản chi phí phát sinh như ăn uống, tặng quà khách (nếu có).
+Nếu KHÔNG chốt (Chỉ đi xem):
+* Quất Lâm: 700,000 VND/chuyến (nếu nhờ Leader team khác thì thường Sếp hỗ trợ 1 nửa, còn đi với team nhà K11 thì hiện tại các Sếp đang hỗ trợ miễn phí).
+* Hòa Lạc: Thường là free.
+Lưu ý: Các chi phí này sẽ được trừ trước khi thực hiện việc chia hoa hồng theo tỷ lệ đã nêu ở mục 2.
+________________
+
+
+4. Cơ Chế Bán Chênh (NGOÀI GIÁ)
+Tiền chênh là phần giá bán cao hơn giá sàn Công ty giao.
+* Tình huống 1: Nguồn khách và Hỗ trợ thỏa thuận đôn giá từ nhà, làm việc khớp với nhau → Tiền chênh chia theo barem 65-25-10.
+* Tình huống 2: Không bàn trước. Xuống thực địa Người hỗ trợ bỗng nhiên "gắp lửa", bơm được giá cao hơn → Tiền chênh chia 50-50 giữa Nguồn khách và Người hỗ trợ.
+________________
+
+
+5. Cơ Chế Lãnh Đạo & Dòng Tiền Theo Quý (CẬP NHẬT MỚI)
+Thu nhập thụ động định kỳ dành cho những Builder xây dựng hệ thống mạnh, được công ty quyết toán và chi trả theo chu kỳ hàng Quý (3 tháng/lần).
+⚠️ Lưu ý quan trọng: Toàn bộ cơ chế này là dạng lương cơ bản của nhân sự — tuy nhiên nó có sự khác biệt rất lớn so với lương thông thường. Mỗi cấp bậc dù được hưởng % nhỏ nhưng khi nhân với tổng giá trị lô đất thì thu nhập thực tế rất đáng kể. Đây là động lực để lãnh đạo xây dựng đội nhóm chuyên nghiệp thay vì chỉ bán hàng solo.
+5.1 Tỷ lệ hưởng theo cấp bậc
+Công thức: % Cơ chế × Tổng giá trị lô đất = Thu nhập cơ chế lãnh đạo.
+Cấp bậc
+	% Cơ chế
+	Giá trị thực nhận trên mỗi lô (VD: lô 3 tỷ)
+	Trưởng nhóm (TN)
+	0.2%
+	0.2% × 3 tỷ = 6,000,000đ
+	Phó phòng (PP)
+	0.5%
+	0.5% × 3 tỷ = 15,000,000đ
+	Trưởng phòng (TP)
+	1.0%
+	1.0% × 3 tỷ = 30,000,000đ
+	Giám đốc (GĐ)
+	2.0%
+	2.0% × 3 tỷ = 60,000,000đ
+	Phó TGĐ (PTGĐ)
+	3.0%
+	3.0% × 3 tỷ = 90,000,000đ
+	5.2 Cơ chế Chia Nội Bộ Lãnh Đạo (TP trả xuống PP và TN)
+Nguyên tắc cốt lõi: Công ty trả cơ chế về cho cấp bậc cao nhất trong nhánh, sau đó cấp trên có trách nhiệm chia xuống cho cấp dưới.
+Chi tiết cách chia:
+* Trưởng nhóm (TN): Trả thẳng 0.2% × tổng giá trị lô đất.
+* Phó phòng (PP): Trưởng phòng trả 0.3% × tổng giá trị lô đất.
+* Trưởng phòng (TP): Công ty trả 1% × tổng giá trị lô đất. Trong đó:
+   * TP giữ lại 0.5% (phần thực hưởng của TP)
+   * TP trả xuống cho PP: 0.3%
+   * TP trả xuống cho TN: 0.2%
+Ví dụ cụ thể: Lô đất bán được 3 tỷ. Công ty trả về cho hệ thống TP là 1% × 3 tỷ = 30,000,000đ.
+* TP cầm: 0.5% × 3 tỷ = 15,000,000đ
+* TP đưa PP: 0.3% × 3 tỷ = 9,000,000đ
+* TP đưa TN: 0.2% × 3 tỷ = 6,000,000đ
+5.3 Quy tắc Chia 65/35 Khi Đồng Cấp (CHỈ ÁP DỤNG KHI ĐỒNG CẤP)
+⚠️ Hệ số 0.65 / 0.35 CHỈ xuất hiện khi có tình trạng ĐỒNG CẤP trong cùng một nhánh dọc. Trường hợp bình thường (không đồng cấp), các cấp bậc hưởng nguyên % trên tổng giá trị lô đất.
+Khi xuất hiện đồng cấp:
+* Quản lý cấp dưới mới thăng cấp (sát với giao dịch phát sinh hơn): Hưởng 65% tỷ lệ cơ chế của cấp bậc đó.
+* Quản lý cấp trên bị đồng cấp: Hưởng 35% tỷ lệ cơ chế của cấp bậc đó.
+* Áp dụng tương tự cho tất cả các cấp: TN, PP, TP, GĐ.
+Ví dụ đồng cấp Trưởng nhóm: TN A có nhân sự B. B tuyển được 5 người, đủ điều kiện lên TN. Khi nhánh của B phát sinh giao dịch (lô đất 3 tỷ):
+* B (TN mới): 0.2% × 0.65 × 3 tỷ = 3,900,000đ
+* A (TN bị đồng cấp): 0.2% × 0.35 × 3 tỷ = 2,100,000đ
+So sánh: Nếu không đồng cấp, TN bình thường hưởng 0.2% × 3 tỷ = 6,000,000đ
+5.4 Giới hạn số đời tính đồng cấp
+* Trưởng nhóm (TN): Tối đa 2 đời (TN1 → TN2 → TN3. Nếu xuất hiện TN4 thì TN1 không hưởng nhánh này nữa).
+* Phó phòng (PP): Tối đa 1 đời (PP1 → PP2).
+* Trưởng phòng (TP): Tối đa 1 đời (TP1 → TP2).
+5.5 Nguyên tắc Trách Nhiệm Xuyên Suốt (BẮT BUỘC)
+"Cấp bậc càng cao, được ăn cơ chế từ công ty càng nhiều → Trách nhiệm hỗ trợ nhân sự càng lớn."
+1. Người giới thiệu (F0/Tuyển dụng): Khi tuyển người mới vào, PHẢI có trách nhiệm hỗ trợ, cầm tay chỉ việc.
+2. Trưởng nhóm: Hỗ trợ trực tiếp mọi nhân sự trong nhóm (bao gồm cả F2, F3 mà lính tuyển về).
+3. Phó phòng: Hỗ trợ các Trưởng nhóm bên dưới, đồng thời hỗ trợ nhân sự mới khi cần.
+4. Trưởng phòng: Là người hưởng cơ chế cao nhất (1%) → phải chịu trách nhiệm tổng thể cho toàn bộ đội nhóm.
+Tóm lại: Trách nhiệm hỗ trợ nhân sự mới KHÔNG CHỈ thuộc về Trưởng nhóm. TẤT CẢ các cấp bậc (TN, PP, TP) đều phải chia sẻ trách nhiệm này, vì tất cả đều được hưởng lợi từ giao dịch mà nhân sự đó tạo ra.
+________________
+
+
+6. Điều Khoản Bổ Sung
+Thỏa Thuận Riêng Biệt:
+* Trong trường hợp có thỏa thuận khác với công ty hoặc giữa các thành viên trong đội nhóm, các điều khoản này sẽ được ưu tiên áp dụng, nhưng phải có tin nhắn xác nhận giữa đôi bên.
+Quản Lý và Giám Sát:
+* Tất cả các giao dịch và chia sẻ hoa hồng đều phải được ghi nhận và quản lý bởi bộ phận quản lý kinh doanh để đảm bảo tính minh bạch và công bằng.
+________________
+
+
+7. Yêu Cầu & Quy Tắc Đạo Đức Nghề
+CẤM bán hàng ngoài (Bán lén lút):
+* Cấm tự ý chèo kéo khách sang mua sản phẩm không thuộc bảng hàng công ty với giá rẻ hơn.
+* Hướng xử lý: Nếu có hàng ngoài/khách gửi bán, yêu cầu mời khách lên Văn phòng, ký gửi vào rổ hàng công ty. Nếu người khác bán được, người ký gửi sẽ được cắt 10% hoa hồng. Nếu lén lút bị phát hiện: Phạt rất nặng hoặc sa thải.
+CẤM quét Data nội bộ:
+* Không được dùng Tool quét SĐT từ bài đăng, từ Comment, từ Page của anh em trong công ty.
+* Phát hiện cướp khách qua quét Data: Phạt 10,000,000 VNĐ / lượt.
+CẤM đóng vai khách thăm dò:
+* Không giả vờ inbox, gọi điện cho Sale khác trong công ty để dò hỏi giá, dò vị trí. Có gì hỏi trực tiếp sếp trên mình.
+________________
+
+
+8. Cơ Chế và Lộ Trình Thăng Tiến (CẬP NHẬT ĐẦY ĐỦ)
+Điều kiện thăng tiến chung (Bắt buộc cho mọi cấp bậc):
+* Làm việc chuyên nghiệp (Full-time): Lên công ty làm việc chuyên nghiệp, tối thiểu mỗi tháng phải có 24 ngày làm việc có điểm danh.
+* Trạng thái hoạt động: Chỉ còn được hưởng các cơ chế khi còn đang làm việc và cống hiến thực tế tại công ty.
+* Tuân thủ kỷ luật: Tuyệt đối không vi phạm quy tắc cộng đồng.
+________________
+
+
+8.1 Điều kiện lên TRƯỞNG NHÓM (TN) — Hưởng cơ chế 0.2% × Tổng giá trị lô đất
+1. Tiêu chuẩn F1 cứng: Tuyển dụng trực tiếp được ít nhất 5 F1 làm việc chuyên nghiệp chính thức.
+   * F1 hợp lệ: Phải là nhân sự ngồi làm việc thường xuyên tại văn phòng tối thiểu 4 ngày/tuần. Không đủ thời gian này tuyệt đối không được tính là F1.
+2. Thời gian thử thách 3 tháng: Toàn bộ đội nhóm (TN + 5 F1 = 6 người) phải có thời gian làm việc liên tục tối thiểu 3 tháng trở lên tính từ ngày đội nhóm đủ quân số.
+3. Năng lực dẫn dắt (Giao dịch đội nhóm): Trong thời gian 3 tháng thử thách, đội nhóm phải phát sinh tối thiểu từ 3 đến 6 giao dịch.
+4. Làm gương thực chiến: Bản thân nhân sự ứng tuyển TN phải là người thực chiến xuất sắc và khuyến khích tự mình phát sinh giao dịch cá nhân.
+5. Kỷ luật đội nhóm: Tổ chức họp nhân sự trong nhóm tự quản định kỳ tối thiểu 1 lần/tuần.
+6. Năng lực đào tạo: Phải thành thạo và trực tiếp huấn luyện quy trình cơ bản cho nhân sự mới (4 ngày làm việc liên tục).
+________________
+
+
+8.2 Điều kiện lên PHÓ PHÒNG (PP) — Hưởng cơ chế 0.5% × Tổng giá trị lô đất
+1. Năng lực nhân bản lãnh đạo: Giúp đỡ thành công ít nhất 5 F1 trực tiếp thăng cấp lên Trưởng nhóm chuẩn.
+2. Kỷ luật đội nhóm: Tổ chức họp đội nhóm định kỳ tối thiểu 1 lần/tuần.
+3. Năng lực đào tạo: Trực tiếp huấn luyện quy trình cơ bản cho nhân sự mới (4 ngày làm việc liên tục).
+________________
+
+
+8.3 Điều kiện lên TRƯỞNG PHÒNG (TP) — Hưởng cơ chế 1.0% × Tổng giá trị lô đất
+1. Quy mô & Cơ cấu: Giúp đỡ thành công ít nhất 3 F1 trực tiếp thăng cấp lên Phó phòng chuẩn, đồng thời tổng quy mô đội nhóm đạt tối thiểu 150 nhân sự (Full-time).
+2. Kỷ luật đội nhóm: Tổ chức họp đội nhóm định kỳ tối thiểu 1 lần/tháng.
+3. Họp ban lãnh đạo: Tham gia đầy đủ các buổi họp hoạch định chiến lược tối thiểu 1 lần/tháng.
+4. Năng lực đào tạo: Đạt trình độ chuyên gia trong việc đứng lớp và đào tạo quy trình cơ bản (4 ngày làm việc liên tục).
+5. Trách nhiệm chia cơ chế: TP nhận 1% từ công ty và có trách nhiệm trả xuống cho PP (0.3%) và TN (0.2%), giữ lại 0.5% (xem chi tiết ở mục 5.3).
+________________
+
+
+8.4 Điều kiện lên GIÁM ĐỐC (GĐ) — Hưởng cơ chế 2.0% × Tổng giá trị lô đất
+1. Cơ cấu nhân sự: Giúp đỡ thành công ít nhất 3 F1 trực tiếp thăng cấp lên Trưởng phòng chuẩn.
+________________
+
+
+9. Trùng Khách (CỰC KỲ QUAN TRỌNG)
+Trùng khách là đặc sản của việc Marketing đông người.
+LUẬT TỐI THƯỢNG: NẾU KHÁCH ĐÃ CHỐT, CẤM PHÁ KHÁCH.
+* Nếu phát hiện trùng, nhưng khách ĐÃ CỌC với Sale B, Sale A tuyệt đối cấm can thiệp, xúi bậy, phá cọc.
+* Riêng với lô Khách đã mua, NGHIÊM CẤM ACE Phá Khách.
+* Cách xử lý thông minh: Cứ vui vẻ để khách mua của B, sau đó tỷ tê thân thiết mời khách mua lô thứ 2 của mình.
+* Tuy nhiên: Mọi người vẫn có Quyền Chăm khách đó để mời Khách hoặc Người Quen mua thêm lô khác.
+Khi Khách CHƯA Chốt (Cùng lúc đi xem):
+Theo nguyên tắc đồng đội (đặc biệt trong K11), các bên TRÙNG hãy báo nhau và dồn để 1 người chốt, sau đó chia tiền.
+Cách xẻ khoản hoa hồng khi trùng:
+* 25%: Dành cho người đi Hỗ Trợ chốt.
+* 65% Nguồn Khách chia như sau:
+   * 15%: Thưởng cứng cho người CÓ CÔNG HẸN KHÁCH ĐI XEM HÔM ĐÓ (và chốt được).
+   * 25%: Thưởng cho người KHÁCH CHỌN CHỐT TIỀN.
+   * 25% còn lại: CHIA ĐỀU cho toàn bộ danh sách Sale trùng báo lên (kể cả 100 người trùng cũng lấy 25% chia đều).
+   * (Lưu ý: 15 + 25 + 25 = đúng 65% Nguồn Khách. Không lẹm vào % của Hỗ trợ hay Quản lý).
+Ví dụ: Khách trùng với 4 bạn Sale A, B, C, D. Cả 4 xác nhận trùng. Khách đi xem với A và chốt với A:
+* A hưởng: 15% (hẹn khách) + 25% (chốt) = 40%
+* B, C, D chia đều: 25% ÷ 3 = ~8.33% mỗi người
+* Hỗ trợ (nếu có): 25%
+Ngoại lệ tự thỏa thuận:
+* Nếu A và B đều hẹn được khách đi xem CÙNG 1 NGÀY — khách đi với A chưa chốt, đi tiếp với B mới chốt → Hai bên nên CƯA ĐÔI khoản tiền Nguồn.
+* Còn hẹn đi 2 ngày khác nhau → chia theo đúng tỷ lệ công ty, hoặc chia theo tỷ lệ đàm phán hợp lý.
+Khi khách mua xong mới biết trùng:
+* Các lô Khách đã mua → KHÔNG được xác nhận trùng.
+* Tuy nhiên: Khách hoặc Người nhà Khách vẫn có thể mua thêm → Mọi người vẫn có quyền chăm khách tiếp.
+* Các lô sau (nếu có) → NÊN xác nhận trùng.
+* CẤM nói cắt máu sâu hơn để mời khách đi xem! Ai mời khéo hơn, khách đi với người đó → những người còn lại NÊN vun vén để người mời được khách chốt.
+Ở trên là Quy Định của Công ty, tuy nhiên tuỳ từng trường hợp Đặc Biệt Cụ Thể, Mọi người có thể Tự đàm phán tỷ lệ chia với nhau! Trên tinh thần là Xứng đáng công sức bỏ ra!
+P/S: Nhưng tốt nhất là nên theo tỷ lệ của công ty!
+________________
+
+
+10. Lưu Ý Trong Quá Trình Khai Thác Khách
+* KHÔNG quét số bài đăng, khách like bài, khách cmt của người khác trên các page đang chạy QC thị trường công ty đang làm. Nếu bị kiện lên công ty sẽ bị phạt 10,000,000đ/lượt.
+* KHÔNG giả vờ là khách vào page người khác, bài đăng người khác trong công ty hỏi tư vấn. Có gì hỏi trực tiếp sếp trên mình.
+* Công ty có cơ chế cho sale khi có nguồn hàng ký gửi lại công ty để nhờ anh em sale trong công ty cùng bán.
+________________
+
+
+(Bản cập nhật chuẩn 2025 — Đã đồng bộ toàn bộ cơ chế 65-25-10, loại bỏ cơ chế 65/35 cũ)
+
+
+
+
+   *

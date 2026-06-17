@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Nói Đầu & Nhập Môn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+            --accent-3: #10b981;
+            --accent-4: #f43f5e;
+            --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.05), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .hero { text-align: center; margin-bottom: 3rem; position: relative; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;}
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .glass-panel:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); }
+
+        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+        .section-header i { font-size: 1.8rem; color: var(--accent-1); }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: var(--text-main); margin: 0; }
+
+        .core-principle {
+            background: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid var(--accent-3);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: 2rem;
+        }
+        .core-principle h3 { color: var(--accent-3); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+
+        .highlight-text { font-weight: 700; color: var(--accent-1); }
+        p { margin-bottom: 1rem; }
+
+        /* Links styling */
+        .zalo-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .zalo-card {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; text-align: center;
+            display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: inherit;
+            transition: all 0.2s;
+        }
+        .zalo-card:hover { border-color: var(--accent-1); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.1); transform: translateY(-2px); }
+        .zalo-card i { font-size: 2rem; color: #0068ff; } /* Zalo color approximation */
+        .zalo-card strong { font-size: 1.1rem; color: var(--text-main); }
+        .zalo-card .badge-vip { background: rgba(244, 63, 94, 0.1); color: var(--accent-4); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
+
+        /* Schedule styling */
+        .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+        .schedule-card {
+            background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid #e2e8f0;
+            position: relative; overflow: hidden;
+        }
+        .schedule-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-gradient); }
+        .schedule-card.t3::before { background: #3b82f6; }
+        .schedule-card.t4::before { background: #10b981; }
+        .schedule-card.t5::before { background: #f59e0b; }
+        .schedule-card.t6::before { background: #8b5cf6; }
+        
+        .schedule-card h4 { font-family: 'Outfit'; font-size: 1.2rem; margin-bottom: 10px; }
+        .schedule-card .tag { display: inline-block; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; }
+        .schedule-card .time { color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 5px; margin-top: 10px;}
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 1.5rem;
+            display: flex; gap: 15px; align-items: flex-start; margin-top: 2rem;
+        }
+        .warning-box i { font-size: 1.5rem; color: #f59e0b; }
+        .warning-box p { margin: 0; color: #b45309; font-weight: 500; }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; background-attachment: scroll; }
+            .glass-panel { padding: 1.2rem; margin-bottom: 1.5rem; }
+            .hero { margin-bottom: 2rem; }
+            .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+            .section-header h2 { font-size: 1.4rem; }
+            .schedule-grid { grid-template-columns: 1fr; }
+            .zalo-card { padding: 1rem; }
+            .zalo-card strong { font-size: 1rem; }
+            .zalo-card .badge-vip { font-size: 0.7rem; padding: 4px 8px; text-align: center; line-height: 1.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="hero">
+            <h1>🤝 Lời Nói Đầu & Nhập Môn</h1>
+            <p>Hành trang khởi đầu - Tinh thần chiến binh TL Land</p>
+        </div>
+
+        <div class="glass-panel">
+            <div class="section-header">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <h2>Tâm Thư Từ Ban Lãnh Đạo</h2>
+            </div>
+            
+            <p>Xin chào các anh chị em nhân viên mới của <strong>TLLAND</strong>! Phòng kinh doanh rất hân hạnh chào mừng anh chị em tham gia với team <span class="highlight-text">KHƯƠNG TRỊNH BĐS</span> nói chung và công cuộc trở thành 1 chiến binh sale xuất sắc, 1 lãnh đạo kế thừa nói riêng.</p>
+
+            <div class="core-principle">
+                <h3><i class="fa-solid fa-fire"></i> Tinh Thần Chiến Binh</h3>
+                <p style="margin:0;">Khi các bạn quyết định tham gia vào lĩnh vực sale BĐS đồng nghĩa với việc bạn đã quyết định trở thành một người <strong>không ngừng học hỏi, không ngừng sáng tạo, dám chủ động tìm tòi, giao tiếp hướng tới phát triển bản thân</strong> và giành cho mình những mục tiêu về sự phát triển, về mức thu nhập mà trước đây bạn chưa từng có.</p>
+            </div>
+
+            <p>A/e Khương Trịnh phó phòng cùng toàn thể anh chị em trong team sẽ đồng hành và hỗ trợ anh chị em hết mình. Vì chúng ta là 1 tập thể gắn kết nên có bất cứ vấn đề gì, anh chị em mới hãy <strong>MẠNH DẠN HỎI</strong> mọi người trong nhóm chat chung (Team Khương Trịnh).</p>
+        </div>
+
+        <div class="glass-panel" style="border-color: rgba(59, 130, 246, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-people-group" style="color: #3b82f6;"></i>
+                <h2>Danh Sách Nhóm Zalo Bắt Buộc Cần Tham Gia</h2>
+            </div>
+            
+            <div class="zalo-links">
+                <a href="https://zalo.me/g/nwrlhi697" target="_blank" class="zalo-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <strong>Nhóm TL Khương Trịnh BĐS</strong>
+                    <span style="color: #64748b; font-size: 0.9rem;">Team nội bộ</span>
+                </a>
+                <a href="https://zalo.me/g/oldtyz950" target="_blank" class="zalo-card">
+                    <i class="fa-solid fa-building"></i>
+                    <strong>Nhóm trao đổi K11</strong>
+                    <span style="color: #64748b; font-size: 0.9rem;">Thông tin toàn khối</span>
+                </a>
+                <a href="https://zalo.me/g/zegqtk601" target="_blank" class="zalo-card">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <strong>Nhóm Truyền Thông K11</strong>
+                    <span style="color: #64748b; font-size: 0.9rem;">Cập nhật từ CĐT</span>
+                </a>
+                <a href="https://zalo.me/g/ntmenm121" target="_blank" class="zalo-card">
+                    <i class="fa-solid fa-camera"></i>
+                    <strong>Nhóm K11 ảnh và video</strong>
+                    <span style="color: #64748b; font-size: 0.9rem;">Ảnh & video dự án</span>
+                </a>
+                <a href="https://t.me/CongDongDiaOcTL/2548" target="_blank" class="zalo-card" style="border-color: var(--accent-4); background: rgba(244, 63, 94, 0.02);">
+                    <i class="fa-brands fa-telegram" style="color: var(--accent-4);"></i>
+                    <strong>Nhóm Bảng Hàng Tổng</strong>
+                    <span class="badge-vip">QUAN TRỌNG NHẤT BẮT BUỘC VÀO</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 1.5rem;"><em>* Ngoài ra còn gần 100 nhóm BẢNG HÀNG TC, Leader sẽ dần thêm các bạn vào từng nhóm theo định hướng thị trường.</em></p>
+
+            <div class="core-principle" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.05); margin-top: 1.5rem;">
+                <h3 style="color: #f59e0b;"><i class="fa-solid fa-lightbulb"></i> Mẹo Check Bảng Hàng Nhanh</h3>
+                <p style="margin:0;">Ở mỗi nhóm bảng hàng đều có Admin (Mỹ Lệ, Linh, Tiên Tiền Tỉ) cập nhật tình trạng. Để tra cứu nhanh, AE bấm vào phần <strong>Tìm kiếm (Search)</strong> trong nhóm Zalo và gõ keyword: <code>"cơ chế"</code>, sau đó đọc những tin nhắn ghim/trước đó để biết cơ chế bảng hàng là bao nhiêu %, có thưởng nóng hay không.</p>
+            </div>
+        </div>
+
+        <div class="glass-panel" style="border-color: rgba(139, 92, 246, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-calendar-check" style="color: #8b5cf6;"></i>
+                <h2>Lịch Đào Tạo Hàng Tuần K11 - TLLAND</h2>
+            </div>
+            
+            <p>CTCP địa ốc TLLAND đang triển khai các thị trường trọng điểm là: <strong>Hòa Lạc, Quất Lâm, Hải Xuân</strong> cùng nhiều thị trường vệ tinh như Sóc Sơn, Hòa Bình, Phú Thọ, Ba Vì, Sơn Tây. K11 sẽ tổ chức 4 buổi đào tạo cơ bản hàng tuần:</p>
+
+            <div class="schedule-grid">
+                <div class="schedule-card t3">
+                    <div class="tag">Thứ 3</div>
+                    <h4>Quy Định - Văn Hóa - Lộ Trình Phát Triển - Cơ Chế</h4>
+                    <p class="time"><i class="fa-regular fa-clock"></i> 14h00 | Đào tạo gia: LĐ Ngọc</p>
+                </div>
+                <div class="schedule-card t4">
+                    <div class="tag">Thứ 4</div>
+                    <h4>Sản Phẩm Công Ty - Quy Hoạch Vĩ Mô</h4>
+                    <p class="time"><i class="fa-regular fa-clock"></i> 14h00 | Đào tạo gia: LĐ Huy Otis</p>
+                </div>
+                <div class="schedule-card t5">
+                    <div class="tag">Thứ 5</div>
+                    <h4>Tìm Kiếm Khách Hàng - Kỹ Năng Đăng Tin</h4>
+                    <p class="time"><i class="fa-regular fa-clock"></i> 14h00 | Đào tạo gia: LĐ Trà</p>
+                </div>
+                <div class="schedule-card t6">
+                    <div class="tag">Thứ 6</div>
+                    <h4>Chăm Sóc Khách Hàng - Nghệ Thuật Mời Khách</h4>
+                    <p class="time"><i class="fa-regular fa-clock"></i> 14h00 | Đào tạo gia: LĐ Khương</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p><strong>LƯU Ý VỀ ĐÀO TẠO:</strong> Anh em nhân viên mới nên (và BẮT BUỘC) tham gia tối thiểu 3 buổi/chuyên đề mới có thể hiểu sâu sắc và thực chiến theo cơ bản. Đừng bỏ lỡ!</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

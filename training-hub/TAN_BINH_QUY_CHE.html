@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quy Chế & Cơ Chế Hoa Hồng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-1: #8b5cf6;
+            --accent-2: #c084fc;
+            --accent-3: #10b981;
+            --accent-4: #f43f5e;
+            --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.05), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(244, 63, 94, 0.05), transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+        
+        .hero { text-align: center; margin-bottom: 3rem; position: relative; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;}
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+        .update-badge { display: inline-block; background: rgba(139, 92, 246, 0.1); color: var(--accent-1); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-bottom: 1rem; border: 1px solid rgba(139, 92, 246, 0.3);}
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .glass-panel:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); }
+
+        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+        .section-header i { font-size: 1.8rem; color: var(--accent-1); }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: var(--text-main); margin: 0; }
+
+        h3 { color: var(--accent-1); margin: 1.5rem 0 0.5rem 0; font-family: 'Outfit'; }
+        p { margin-bottom: 1rem; }
+        ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+        .highlight-text { font-weight: 700; color: var(--accent-1); }
+
+        .info-box { background: rgba(59, 130, 246, 0.05); border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 1.5rem; }
+        .warning-box { background: rgba(245, 158, 11, 0.05); border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 1.5rem; }
+        .danger-box { background: rgba(239, 68, 68, 0.05); border-left: 4px solid #ef4444; padding: 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 1.5rem; }
+        
+        .box-title { font-weight: bold; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .info-box .box-title { color: #2563eb; }
+        .warning-box .box-title { color: #b45309; }
+        .danger-box .box-title { color: #b91c1c; }
+
+        /* Formula Box */
+        .formula-box {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #f8fafc; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0;
+            font-family: monospace; font-size: 1.1rem; text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .formula-box span { color: #10b981; font-weight: bold; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .stat-card {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .stat-card .percent { font-family: 'Outfit'; font-size: 3rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-card.c65 .percent { background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-card.c25 .percent { background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-card.c10 .percent { background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-card h4 { font-size: 1.2rem; margin: 10px 0; color: var(--text-main); }
+        .stat-card p { font-size: 0.95rem; color: var(--text-muted); margin: 0; }
+
+        /* Tables */
+        .data-table {
+            width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.5rem 0;
+            border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0;
+        }
+        .data-table th, .data-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; background: #fff; }
+        .data-table th { background: #f8fafc; font-weight: 600; color: #334155; font-family: 'Outfit'; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: #f1f5f9; }
+        
+        .badge { padding: 3px 8px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
+        .badge-green { background: rgba(16, 185, 129, 0.1); color: #059669; }
+        .badge-blue { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; background-attachment: scroll; }
+            .glass-panel { padding: 1.2rem; margin-bottom: 1.5rem; }
+            .hero { margin-bottom: 2rem; }
+            .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+            .section-header h2 { font-size: 1.4rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 1rem; margin: 1.5rem 0; }
+            .stat-card { padding: 1.5rem; }
+            .data-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .data-table th, .data-table td { padding: 0.8rem; font-size: 0.9rem; }
+            .info-box, .warning-box, .danger-box { padding: 1.2rem; }
+            .formula-box { font-size: 1rem; padding: 1.2rem; }
+        }
+
+        /* Card Khai Mở Tầm Nhìn */
+        .vision-unlock-card {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.08), rgba(139, 92, 246, 0.08));
+            backdrop-filter: blur(12px);
+            border: 2px dashed rgba(244, 63, 94, 0.4);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            margin: 1.5rem auto;
+            max-width: 320px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(244, 63, 94, 0.05);
+        }
+        .vision-unlock-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+        .vision-unlock-card:hover::before {
+            left: 125%;
+        }
+        .vision-unlock-card:hover {
+            transform: translateY(-3px);
+            border-style: solid;
+            border-color: rgba(244, 63, 94, 0.8);
+            box-shadow: 0 12px 25px rgba(244, 63, 94, 0.12);
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(139, 92, 246, 0.12));
+        }
+        .vision-icon {
+            font-size: 2rem;
+            color: #f43f5e;
+            margin-bottom: 0.6rem;
+            animation: flamePulse 2s infinite ease-in-out;
+        }
+        @keyframes flamePulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(244, 63, 94, 0.5)); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.8)); }
+        }
+        .vision-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #f43f5e, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .vision-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto 1.5rem auto;
+            line-height: 1.5;
+        }
+        .btn-unlock {
+            background: linear-gradient(135deg, #f43f5e, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-unlock:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+        }
+
+        /* Modal Popup Video */
+        .vision-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+        .vision-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+        .vision-modal.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-header {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-close {
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #f43f5e;
+            color: white;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="hero">
+            <div class="update-badge"><i class="fa-solid fa-bolt"></i> Cập Nhật Chuẩn 2025</div>
+            <h1>⚖️ Quy Chế & Cơ Chế Hoa Hồng</h1>
+            <p>Luật chơi sòng phẳng - Đảm bảo quyền lợi minh bạch tuyệt đối cho mọi thành viên TL Land.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="glass-panel" style="border-color: rgba(59, 130, 246, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-sack-dollar" style="color: #3b82f6;"></i>
+                <h2>1. Chính Sách Hoa Hồng Cơ Bản</h2>
+            </div>
+            
+            <div class="info-box">
+                <div class="box-title"><i class="fa-solid fa-percent"></i> Tỷ Lệ Hoa Hồng & Thưởng Nóng</div>
+                <ul>
+                    <li><strong>Hoa Hồng:</strong> Thường là <strong>4%</strong> trên giá trị giao dịch (có thể xê dịch tùy bảng hàng, Admin sẽ cập nhật rõ).</li>
+                    <li><strong>Thưởng Nóng:</strong> Từ <strong>50,000,000đ</strong> đến <strong>300,000,000đ</strong> cho mỗi giao dịch thành công.</li>
+                    <li><em>* Một số bảng hàng còn có bốc thăm trúng ô tô, SH...</em></li>
+                </ul>
+            </div>
+
+            <p><strong>Công thức tính Tổng Hoa Hồng Nhận Về:</strong></p>
+            <div class="formula-box">
+                Tổng HH = (Tổng giá lô đất - Thưởng nóng) × <span>4%</span> + <span>Thưởng nóng</span> - Chi phí đi lại/quà
+            </div>
+            <p><em>Ví dụ: Lô đất 3 tỷ, thưởng 200 triệu, chi phí 3tr xăng xe, 1tr ăn uống và tặng hoa quả = 4tr. <br>
+            → Hoa hồng = (3 tỷ - 200tr) × 4% + 200tr - 4tr = <strong style="color: #10b981; font-size: 1.2rem;">308,000,000đ</strong></em></p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="glass-panel" style="border-color: rgba(139, 92, 246, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-chart-pie" style="color: #8b5cf6;"></i>
+                <h2>2. Cơ Chế Chia Tách Lớp 65-25-10</h2>
+            </div>
+            
+            <div class="warning-box">
+                <div class="box-title"><i class="fa-solid fa-triangle-exclamation"></i> Nguyên Tắc Chung</div>
+                <p>TL Land sử dụng cơ chế Tách Lớp rõ ràng (tính trên 100% Tổng Hoa Hồng sau khi trừ chi phí). Nếu team có thỏa thuận trước thì làm theo thỏa thuận. Nếu KHÔNG có thỏa thuận, BẮT BUỘC áp dụng barem dưới đây:</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card c65">
+                    <div class="percent">65%</div>
+                    <h4>Nguồn Khách</h4>
+                    <p>Dành cho người bỏ tiền MKT, đăng tin, chạy ads tìm ra khách và mời khách.</p>
+                </div>
+                <div class="stat-card c25">
+                    <div class="percent">25%</div>
+                    <h4>Người Hỗ Trợ</h4>
+                    <p>Dành cho Leader/Chuyên gia đi cùng chốt khách ở thực địa & đi công chứng.</p>
+                </div>
+                <div class="stat-card c10">
+                    <div class="percent">10%</div>
+                    <h4>Quản Lý & Tuyển Dụng</h4>
+                    <p>Dành cho hệ thống tuyến trên có công đào tạo & quản lý.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="box-title"><i class="fa-solid fa-user-ninja"></i> Quy Chế Tự Bán (Ăn Trọn Nguồn)</div>
+                <p>Nếu tự ra khách (ôm 65% nguồn) thì hoa hồng nhận được = <strong>65% + % cấp bậc đang có</strong>. Đặc biệt, nếu Sale cứng tự ôm khách, <strong>TỰ ĐI CHỐT</strong> thành công (không nhờ Hỗ trợ) → <strong>Ôm luôn 25% Hỗ trợ</strong> → Tổng thu nhập lên tới <strong>90% - 100%</strong>.</p>
+            </div>
+
+            <h3>Chi tiết bảng phân bổ Tỷ lệ (Công Thức Gốc)</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Hoạt Động</th>
+                        <th>Tự Làm (A-Z)</th>
+                        <th>Nguồn Khách (65%)</th>
+                        <th>Hỗ Trợ (25%)</th>
+                        <th>Quản Lý (10%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Marketing, Tìm khách</strong></td>
+                        <td><span class="badge badge-green">50%</span></td>
+                        <td>50%</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tư Vấn</strong> (Giải thích, pháp lý)</td>
+                        <td><span class="badge badge-green">20%</span></td>
+                        <td>10%</td>
+                        <td>5%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chốt</strong> (Đàm phán, ký cọc tại đất)</td>
+                        <td><span class="badge badge-green">20%</span></td>
+                        <td>—</td>
+                        <td>15%</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chăm Sóc</strong> (Công chứng, trả sổ)</td>
+                        <td><span class="badge badge-green">10%</span></td>
+                        <td>5%</td>
+                        <td>5%</td>
+                        <td>—</td>
+                    </tr>
+                    <tr style="background: #f8fafc; font-weight: bold;">
+                        <td>TỔNG CỘNG</td>
+                        <td>100%</td>
+                        <td style="color:#2563eb;">65%</td>
+                        <td style="color:#059669;">25%</td>
+                        <td style="color:#d97706;">10%</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 style="margin-top: 2rem;"><i class="fa-solid fa-sitemap"></i> Giải mã 10% Quản Lý (Quy Tắc 4-2-2-2)</h3>
+            <p>10% này được chia dọc theo trục hệ thống để đảm bảo công bằng cho người tuyển dụng và lãnh đạo:</p>
+            <ul>
+                <li><strong>4%</strong>: Người trực tiếp tuyển dụng (Người F1 của nhân sự mới).</li>
+                <li><strong>2%</strong>: Trưởng nhóm (TN).</li>
+                <li><strong>2%</strong>: Phó phòng (PP).</li>
+                <li><strong>2%</strong>: Trưởng phòng (TP).</li>
+            </ul>
+            <div class="info-box">
+                <div class="box-title"><i class="fa-solid fa-lightbulb"></i> Ví dụ không đồng cấp</div>
+                <ul>
+                    <li>Nhân viên A mời Nhân viên B. B bán được lô đất → A hưởng <strong>4%</strong>.</li>
+                    <li>Trưởng nhóm C mời D. D bán được → C hưởng <strong>4%</strong> (tuyển dụng) + <strong>2%</strong> (TN) = <strong>6%</strong>.</li>
+                </ul>
+            </div>
+            <div class="warning-box">
+                <div class="box-title"><i class="fa-solid fa-code-branch"></i> Xử lý Đồng cấp (Nhiều quản lý cùng một nhánh)</div>
+                <ul>
+                    <li><strong>2 người Đồng cấp</strong> (VD: PP1 ở trên PP2): PP2 (sát F1) hưởng <strong>1.5%</strong>, PP1 (bề trên) hưởng <strong>0.5%</strong>.</li>
+                    <li><strong>3 người Đồng cấp</strong> (VD: TN1 → TN2 → TN3): TN3 (sát F1) hưởng <strong>1%</strong>, TN2 hưởng <strong>0.5%</strong>, TN1 hưởng <strong>0.5%</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-map-location-dot" style="color: #10b981;"></i>
+                <h2>3. Quy Tắc Tư Vấn Bản Đồ (Mới)</h2>
+            </div>
+            
+            <p>Nhiều khách hàng cần hẹn cafe <strong>Tư vấn bản đồ trước</strong> rồi hôm sau mới đi thực địa. Tinh thần TL Land: <em>"Ai làm gì cũng có công"</em>.</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Tình huống</th>
+                        <th>Cách chia Hoa Hồng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Khách cần Tư vấn bản đồ hôm trước, hôm sau mới đi</strong></td>
+                        <td>
+                            - Người tư vấn bản đồ hưởng: <strong>5%</strong><br>
+                            - 95% còn lại chia theo 65-25-10:<br>
+                            &nbsp;&nbsp;+ Nguồn Khách: 65% × 95% = <strong>61.75%</strong><br>
+                            &nbsp;&nbsp;+ Hỗ Trợ: 25% × 95% = <strong>23.75%</strong><br>
+                            &nbsp;&nbsp;+ Quản Lý: 10% × 95% = <strong>9.5%</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Khách đi xem đất luôn (Không tư vấn trước)</strong> HOẶC Tư vấn cho chính khách của mình</td>
+                        <td>Chia bình thường <strong>65 - 25 - 10</strong>. (Không trích 5%)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>* P/S: Nếu người Hỗ trợ tư vấn bản đồ và Người đi Hỗ trợ chốt tại đất là <strong>CÙNG 1 NGƯỜI</strong> → Nhận cả hai: 5% + 23.75% = <strong>28.75%</strong>.</em></p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="glass-panel" style="border-color: rgba(244, 63, 94, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-crown" style="color: #f43f5e;"></i>
+                <h2>4. Cơ Chế Lãnh Đạo Theo Quý (Dòng Tiền Thụ Động)</h2>
+            </div>
+            
+            <div class="info-box" style="border-color: #f43f5e; background: rgba(244, 63, 94, 0.05);">
+                <p style="margin:0;">Thu nhập thụ động định kỳ dành cho những <strong>Builder xây dựng hệ thống mạnh</strong>. Thanh toán 3 tháng/lần. Mỗi cấp bậc dù % nhỏ nhưng nhân với TỔNG GIÁ TRỊ LÔ ĐẤT thì con số cực kỳ khủng khiếp.</p>
+            </div>
+
+            <!-- Khung Khai Mở Tầm Nhìn (Mystery Box tối giản) -->
+            <div class="vision-unlock-card" onclick="openVisionVideo()">
+                <div class="vision-icon"><i class="fa-solid fa-fire-flame-simple"></i></div>
+                <div class="vision-title">Khai mở tầm nhìn</div>
+            </div>
+
+            <div class="warning-box">
+                <div class="box-title"><i class="fa-solid fa-arrow-down-long"></i> Cơ Chế Trả Từ Trên Xuống (Cascading)</div>
+                <p style="margin:0;">Công ty trả 3% cho Phó TGĐ → Phó TGĐ giữ 1%, đưa xuống 2% → Giám Đốc giữ 1%, đưa xuống 1% → ... cứ thế chảy xuống tới Trưởng Nhóm. <strong>Mỗi cấp chỉ nhận phần mình giữ lại, KHÔNG nhận toàn bộ % ghi trên bảng.</strong></p>
+            </div>
+
+            <!-- Flow diagram -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0; margin: 2rem 0;">
+                <!-- Công ty -->
+                <div style="background: linear-gradient(135deg, #1e293b, #334155); color: #f8fafc; padding: 14px 32px; border-radius: 12px; font-weight: 700; font-family: 'Outfit'; font-size: 1.1rem; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                    🏢 CÔNG TY trả xuống <span style="color: #f87171; font-size: 1.3rem;">3%</span>
+                </div>
+                <div style="width: 3px; height: 28px; background: linear-gradient(to bottom, #334155, #f43f5e);"></div>
+                <!-- Phó TGĐ -->
+                <div style="background: linear-gradient(135deg, rgba(244,63,94,0.08), rgba(244,63,94,0.15)); border: 2px solid rgba(244,63,94,0.3); padding: 14px 24px; border-radius: 14px; width: 100%; max-width: 520px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">👔 Phó TGĐ</span>
+                    <span style="font-size: 0.92rem; color: var(--text-muted);">Nhận <strong style="color:#f43f5e;">3%</strong> → Giữ <strong style="color:#059669;">1%</strong> → Đưa xuống <strong style="color:#2563eb;">2%</strong></span>
+                </div>
+                <div style="width: 3px; height: 22px; background: linear-gradient(to bottom, #f43f5e, #8b5cf6);"></div>
+                <!-- Giám Đốc -->
+                <div style="background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(139,92,246,0.15)); border: 2px solid rgba(139,92,246,0.3); padding: 14px 24px; border-radius: 14px; width: 100%; max-width: 480px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">🎯 Giám Đốc</span>
+                    <span style="font-size: 0.92rem; color: var(--text-muted);">Nhận <strong style="color:#8b5cf6;">2%</strong> → Giữ <strong style="color:#059669;">1%</strong> → Đưa xuống <strong style="color:#2563eb;">1%</strong></span>
+                </div>
+                <div style="width: 3px; height: 22px; background: linear-gradient(to bottom, #8b5cf6, #3b82f6);"></div>
+                <!-- Trưởng Phòng -->
+                <div style="background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.15)); border: 2px solid rgba(59,130,246,0.3); padding: 14px 24px; border-radius: 14px; width: 100%; max-width: 440px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">📋 Trưởng Phòng</span>
+                    <span style="font-size: 0.92rem; color: var(--text-muted);">Nhận <strong style="color:#3b82f6;">1%</strong> → Giữ <strong style="color:#059669;">0.5%</strong> → Đưa xuống <strong style="color:#2563eb;">0.5%</strong></span>
+                </div>
+                <div style="width: 3px; height: 22px; background: linear-gradient(to bottom, #3b82f6, #10b981);"></div>
+                <!-- Phó Phòng -->
+                <div style="background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.15)); border: 2px solid rgba(16,185,129,0.3); padding: 14px 24px; border-radius: 14px; width: 100%; max-width: 400px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">📌 Phó Phòng</span>
+                    <span style="font-size: 0.92rem; color: var(--text-muted);">Nhận <strong style="color:#10b981;">0.5%</strong> → Giữ <strong style="color:#059669;">0.3%</strong> → Đưa xuống <strong style="color:#2563eb;">0.2%</strong></span>
+                </div>
+                <div style="width: 3px; height: 22px; background: linear-gradient(to bottom, #10b981, #f59e0b);"></div>
+                <!-- Trưởng Nhóm -->
+                <div style="background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.15)); border: 2px solid rgba(245,158,11,0.3); padding: 14px 24px; border-radius: 14px; width: 100%; max-width: 360px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-weight: 700; font-size: 1.05rem;">🙋 Trưởng Nhóm</span>
+                    <span style="font-size: 0.92rem; color: var(--text-muted);">Nhận <strong style="color:#f59e0b;">0.2%</strong> → Giữ <strong style="color:#059669;">0.2%</strong> ✅</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Bảng Tổng Hợp Chi Tiết</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cấp bậc</th>
+                        <th>Nhận từ trên</th>
+                        <th>Giữ lại</th>
+                        <th>Đưa xuống</th>
+                        <th>VD Thực nhận (Lô 3 Tỷ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Phó TGĐ</strong></td>
+                        <td><span class="badge badge-blue">3.0%</span></td>
+                        <td><span class="badge badge-green">1.0%</span></td>
+                        <td>2.0%</td>
+                        <td><strong>30,000,000đ</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giám Đốc (GĐ)</strong></td>
+                        <td><span class="badge badge-blue">2.0%</span></td>
+                        <td><span class="badge badge-green">1.0%</span></td>
+                        <td>1.0%</td>
+                        <td><strong>30,000,000đ</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trưởng Phòng (TP)</strong></td>
+                        <td><span class="badge badge-blue">1.0%</span></td>
+                        <td><span class="badge badge-green">0.5%</span></td>
+                        <td>0.5%</td>
+                        <td><strong>15,000,000đ</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phó Phòng (PP)</strong></td>
+                        <td><span class="badge badge-blue">0.5%</span></td>
+                        <td><span class="badge badge-green">0.3%</span></td>
+                        <td>0.2%</td>
+                        <td><strong>9,000,000đ</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trưởng Nhóm (TN)</strong></td>
+                        <td><span class="badge badge-blue">0.2%</span></td>
+                        <td><span class="badge badge-green">0.2%</span></td>
+                        <td>—</td>
+                        <td><strong>6,000,000đ</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Quy Tắc Đồng Cấp (Chia 65/35)</h3>
+            <p>Hệ số 0.65 / 0.35 CHỈ xuất hiện khi có tình trạng <strong>ĐỒNG CẤP</strong> trong cùng một nhánh dọc (Lính thăng cấp bằng sếp).</p>
+            <ul>
+                <li><strong>Quản lý cấp dưới mới thăng cấp</strong> (sát với giao dịch hơn): Hưởng <strong>65%</strong> tỷ lệ cơ chế của cấp bậc đó.</li>
+                <li><strong>Quản lý cấp trên bị đồng cấp</strong>: Hưởng <strong>35%</strong> tỷ lệ cơ chế của cấp bậc đó.</li>
+            </ul>
+            
+            <div class="info-box">
+                <div class="box-title"><i class="fa-solid fa-stopwatch"></i> Giới hạn số đời tính đồng cấp</div>
+                <ul>
+                    <li><strong>Trưởng nhóm (TN):</strong> Tối đa 2 đời (TN1 → TN2 → TN3. Nếu xuất hiện TN4 thì TN1 không hưởng nhánh này nữa).</li>
+                    <li><strong>Phó phòng (PP):</strong> Tối đa 1 đời (PP1 → PP2).</li>
+                    <li><strong>Trưởng phòng (TP):</strong> Tối đa 1 đời (TP1 → TP2).</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <div class="box-title"><i class="fa-solid fa-gavel"></i> Nguyên Tắc Trách Nhiệm Xuyên Suốt</div>
+                <p style="margin:0;">"Cấp bậc càng cao, được ăn cơ chế từ công ty càng nhiều → Trách nhiệm hỗ trợ nhân sự càng lớn." Người giới thiệu (F0) khi tuyển người mới vào <strong>BẮT BUỘC</strong> phải có trách nhiệm hỗ trợ, cầm tay chỉ việc. Trưởng nhóm phải hỗ trợ trực tiếp mọi nhân sự trong nhóm (kể cả F2, F3).</p>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="glass-panel" style="border-color: rgba(234, 88, 12, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-money-bill-wave" style="color: #ea580c;"></i>
+                <h2>5. Giảm Trừ Chi Phí Trước Khi Chia Hoa Hồng</h2>
+            </div>
+            
+            <div class="warning-box">
+                <div class="box-title"><i class="fa-solid fa-triangle-exclamation"></i> Lưu ý quan trọng</div>
+                <p style="margin:0;">Các khoản chi phí này sẽ được trừ <strong>TRƯỚC</strong> khi thực hiện việc chia hoa hồng theo tỷ lệ 65-25-10.</p>
+            </div>
+
+            <h3>Trường hợp CHỐT thành công</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Khu vực</th>
+                        <th>Chi phí</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Quất Lâm / Ninh Cơ</strong></td>
+                        <td><span class="badge badge-blue">3,000,000đ / lô</span></td>
+                        <td>Bao gồm 3 chuyến: 1 lần chở đi xem, 1 lần đi công chứng, 1 lần giao sổ.<br><em>* Lưu ý: Tính theo từng lô. Ví dụ: Chốt 2 lô thì trừ 6,000,000đ, 3 lô thì trừ 9,000,000đ.</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hòa Lạc</strong></td>
+                        <td><span class="badge badge-blue">2,000,000đ / lô</span></td>
+                        <td>Tương tự, tính theo số lượng lô chốt được.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chi phí khác</strong></td>
+                        <td><span class="badge badge-blue">Thực tế phát sinh</span></td>
+                        <td>Ăn uống, tặng quà khách (nếu có).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Trường hợp KHÔNG chốt (Chỉ đi xem)</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Khu vực</th>
+                        <th>Chi phí</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Quất Lâm / Ninh Cơ</strong></td>
+                        <td><span class="badge badge-blue">700,000đ / chuyến</span></td>
+                        <td>Tự trả trực tiếp chi phí cho Leader team khác nếu nhờ họ đi hỗ trợ (Không liên quan đến Sếp).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hòa Lạc</strong></td>
+                        <td><span class="badge badge-green">Miễn phí (Free)</span></td>
+                        <td>Thường là miễn phí.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="glass-panel" style="border-color: rgba(14, 165, 233, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-arrow-trend-up" style="color: #0ea5e9;"></i>
+                <h2>6. Cơ Chế Bán Chênh (Ngoài Giá)</h2>
+            </div>
+            
+            <p>Tiền chênh là phần giá bán cao hơn giá sàn Công ty giao. Có 2 tình huống xảy ra:</p>
+            
+            <div class="info-box">
+                <div class="box-title">Tình huống 1: Có bàn bạc trước</div>
+                <p style="margin:0;">Nguồn khách và Hỗ trợ thỏa thuận đôn giá từ nhà, làm việc khớp với nhau → Tiền chênh <strong>chia theo barem 65-25-10</strong>.</p>
+            </div>
+            
+            <div class="info-box">
+                <div class="box-title">Tình huống 2: Hỗ trợ tự "gắp lửa"</div>
+                <p style="margin:0;">Không bàn trước. Xuống thực địa Người hỗ trợ bỗng nhiên "gắp lửa", bơm được giá cao hơn → Tiền chênh <strong>chia 50-50</strong> giữa Nguồn khách và Người hỗ trợ.</p>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="glass-panel" style="border-color: rgba(100, 116, 139, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-file-contract" style="color: #64748b;"></i>
+                <h2>7. Điều Khoản Bổ Sung</h2>
+            </div>
+            
+            <ul>
+                <li><strong>Thỏa Thuận Riêng Biệt:</strong> Trong trường hợp có thỏa thuận khác với công ty hoặc giữa các thành viên trong đội nhóm, các điều khoản này sẽ được ưu tiên áp dụng, nhưng <strong>phải có tin nhắn xác nhận</strong> giữa đôi bên.</li>
+                <li><strong>Quản Lý và Giám Sát:</strong> Tất cả các giao dịch và chia sẻ hoa hồng đều phải được ghi nhận và quản lý bởi bộ phận quản lý kinh doanh để đảm bảo tính minh bạch và công bằng.</li>
+            </ul>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="glass-panel" style="border-color: rgba(220, 38, 38, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-ban" style="color: #dc2626;"></i>
+                <h2>8. Yêu Cầu & Quy Tắc Đạo Đức Nghề</h2>
+            </div>
+            
+            <div class="danger-box">
+                <div class="box-title"><i class="fa-solid fa-store-slash"></i> CẤM Bán Hàng Ngoài (Bán Lén Lút)</div>
+                <ul>
+                    <li>Cấm tự ý chèo kéo khách sang mua sản phẩm không thuộc bảng hàng công ty với giá rẻ hơn.</li>
+                    <li><strong>Hướng xử lý:</strong> Nếu có hàng ngoài/khách gửi bán, yêu cầu mời khách lên Văn phòng, ký gửi vào rổ hàng công ty. Nếu người khác bán được, người ký gửi sẽ được cắt 10% hoa hồng.</li>
+                    <li><strong style="color:#b91c1c;">Phạt:</strong> Nếu lén lút bị phát hiện → Phạt rất nặng hoặc sa thải.</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <div class="box-title"><i class="fa-solid fa-user-secret"></i> CẤM Quét Data Nội Bộ</div>
+                <ul>
+                    <li>Không được dùng Tool quét SĐT từ bài đăng, từ Comment, từ Page của anh em trong công ty, hoặc các page đang chạy QC thị trường công ty đang làm.</li>
+                    <li><strong style="color:#b91c1c;">Phạt:</strong> Phát hiện cướp khách qua quét Data → Phạt <strong>10,000,000 VNĐ / lượt</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="danger-box" style="margin-bottom:0;">
+                <div class="box-title"><i class="fa-solid fa-masks-theater"></i> CẤM Đóng Vai Khách Thăm Dò</div>
+                <ul>
+                    <li>Không giả vờ inbox, gọi điện cho Sale khác trong công ty (hoặc vào page/bài đăng của họ) để dò hỏi giá, dò vị trí. Có gì hỏi trực tiếp sếp trên mình.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-stairs" style="color: #10b981;"></i>
+                <h2>9. Cơ Chế và Lộ Trình Thăng Tiến</h2>
+            </div>
+            
+            <div class="warning-box">
+                <div class="box-title"><i class="fa-solid fa-clipboard-check"></i> Điều Kiện Chung (Bắt buộc cho mọi cấp bậc)</div>
+                <ul>
+                    <li><strong>Làm việc chuyên nghiệp (Full-time):</strong> Lên công ty làm việc chuyên nghiệp, tối thiểu mỗi tháng phải có <strong>24 ngày làm việc</strong> có điểm danh.</li>
+                    <li><strong>Trạng thái hoạt động:</strong> Chỉ còn được hưởng các cơ chế khi còn đang làm việc và cống hiện thực tế tại công ty.</li>
+                    <li><strong>Tuân thủ kỷ luật:</strong> Tuyệt đối không vi phạm quy tắc cộng đồng.</li>
+                </ul>
+            </div>
+
+            <h3>9.1 Trưởng Nhóm (TN) — Hưởng 0.2%</h3>
+            <ul>
+                <li><strong>Tiêu chuẩn F1 cứng:</strong> Tuyển dụng trực tiếp ít nhất <strong>5 F1</strong> làm việc chuyên nghiệp chính thức (ngồi làm việc thường xuyên tại văn phòng tối thiểu 4 ngày/tuần).</li>
+                <li><strong>Thời gian thử thách 3 tháng:</strong> Toàn bộ đội nhóm (TN + 5 F1 = 6 người) phải làm việc liên tục tối thiểu 3 tháng.</li>
+                <li><strong>Năng lực dẫn dắt:</strong> Trong 3 tháng thử thách, đội nhóm phát sinh tối thiểu <strong>3 đến 6 giao dịch</strong>.</li>
+                <li><strong>Làm gương thực chiến:</strong> Bản thân ứng tuyển TN phải là người thực chiến xuất sắc.</li>
+                <li><strong>Kỷ luật:</strong> Họp nhân sự nhóm tự quản định kỳ tối thiểu 1 lần/tuần.</li>
+                <li><strong>Đào tạo:</strong> Thành thạo và trực tiếp huấn luyện quy trình cơ bản cho nhân sự mới (4 ngày làm việc liên tục).</li>
+            </ul>
+
+            <h3>9.2 Phó Phòng (PP) — Hưởng 0.5%</h3>
+            <ul>
+                <li><strong>Năng lực nhân bản:</strong> Giúp đỡ thành công ít nhất <strong>5 F1 trực tiếp</strong> thăng cấp lên Trưởng nhóm chuẩn.</li>
+                <li><strong>Kỷ luật:</strong> Họp đội nhóm định kỳ tối thiểu 1 lần/tuần.</li>
+                <li><strong>Đào tạo:</strong> Trực tiếp huấn luyện quy trình cơ bản cho nhân sự mới.</li>
+            </ul>
+
+            <h3>9.3 Trưởng Phòng (TP) — Hưởng 1.0%</h3>
+            <ul>
+                <li><strong>Quy mô & Cơ cấu:</strong> Giúp đỡ thành công ít nhất <strong>3 F1 trực tiếp</strong> thăng cấp lên Phó phòng chuẩn, đồng thời tổng quy mô đội nhóm đạt tối thiểu <strong>150 nhân sự</strong> (Full-time).</li>
+                <li><strong>Kỷ luật:</strong> Họp đội nhóm định kỳ tối thiểu 1 lần/tháng.</li>
+                <li><strong>Họp ban lãnh đạo:</strong> Tham gia đầy đủ các buổi họp hoạch định chiến lược tối thiểu 1 lần/tháng.</li>
+                <li><strong>Đào tạo:</strong> Đạt trình độ chuyên gia đứng lớp đào tạo quy trình cơ bản.</li>
+            </ul>
+
+            <h3>9.4 Giám Đốc (GĐ) — Hưởng 2.0%</h3>
+            <ul>
+                <li><strong>Cơ cấu nhân sự:</strong> Giúp đỡ thành công ít nhất <strong>3 F1 trực tiếp</strong> thăng cấp lên Trưởng phòng chuẩn.</li>
+            </ul>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="glass-panel" style="border-color: rgba(234, 179, 8, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-people-arrows" style="color: #eab308;"></i>
+                <h2>10. Trùng Khách (CỰC KỲ QUAN TRỌNG)</h2>
+            </div>
+            
+            <p>Trùng khách là đặc sản của việc Marketing đông người.</p>
+
+            <div class="danger-box">
+                <div class="box-title"><i class="fa-solid fa-gavel"></i> LUẬT TỐI THƯỢNG: NẾU KHÁCH ĐÃ CHỐT, CẤM PHÁ KHÁCH</div>
+                <ul>
+                    <li>Nếu phát hiện trùng, nhưng khách <strong>ĐÃ CỌC</strong> với Sale B, Sale A tuyệt đối cấm can thiệp, xúi bậy, phá cọc.</li>
+                    <li>Cách xử lý thông minh: Cứ vui vẻ để khách mua của B, sau đó tỷ tê thân thiết mời khách mua lô thứ 2 của mình. Mọi người vẫn có Quyền Chăm khách đó để mời mua thêm lô khác.</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="box-title"><i class="fa-solid fa-handshake-angle"></i> Khi Khách CHƯA Chốt (Cùng lúc đi xem)</div>
+                <p>Theo nguyên tắc đồng đội, các bên TRÙNG hãy báo nhau và dồn để 1 người chốt, sau đó chia tiền.</p>
+                <p><strong>Cách xẻ khoản hoa hồng 65% Nguồn Khách khi trùng:</strong></p>
+                <ul>
+                    <li><strong>15%:</strong> Thưởng cứng cho người CÓ CÔNG HẸN KHÁCH ĐI XEM HÔM ĐÓ (và chốt được).</li>
+                    <li><strong>25%:</strong> Thưởng cho người KHÁCH CHỌN CHỐT TIỀN.</li>
+                    <li><strong>25% còn lại:</strong> CHIA ĐỀU cho toàn bộ danh sách Sale trùng báo lên (kể cả 100 người trùng cũng lấy 25% chia đều).</li>
+                </ul>
+                <p><em>* Phần Hỗ trợ 25% vẫn dành trọn cho người đi Hỗ trợ chốt.</em></p>
+            </div>
+
+            <div class="formula-box" style="margin-top: 1.5rem; text-align: left; padding: 1.5rem;">
+                <strong>Ví dụ:</strong> Khách trùng với 4 bạn Sale A, B, C, D. Khách đi xem với A và chốt với A.<br><br>
+                👉 <strong>A hưởng:</strong> 15% (hẹn khách) + 25% (chốt) = <strong>40%</strong><br>
+                👉 <strong>B, C, D chia đều:</strong> 25% ÷ 3 = <strong>~8.33%</strong> mỗi người<br>
+                👉 <strong>Hỗ trợ (nếu có):</strong> 25%
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">Ngoại lệ tự thỏa thuận</h3>
+            <ul>
+                <li>Nếu A và B đều hẹn được khách đi xem CÙNG 1 NGÀY — khách đi với A chưa chốt, đi tiếp với B mới chốt → Hai bên nên <strong>CƯA ĐÔI</strong> khoản tiền Nguồn.</li>
+                <li>Còn hẹn đi 2 ngày khác nhau → chia theo đúng tỷ lệ công ty, hoặc chia theo tỷ lệ đàm phán hợp lý.</li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Khi khách mua xong mới biết trùng</h3>
+            <ul>
+                <li>Các lô Khách đã mua → <strong>KHÔNG</strong> được xác nhận trùng.</li>
+                <li>Các lô sau (nếu có) → <strong>NÊN</strong> xác nhận trùng.</li>
+                <li><strong>CẤM</strong> nói cắt máu sâu hơn để mời khách đi xem! Ai mời khéo hơn, khách đi với người đó → những người còn lại NÊN vun vén để người mời được khách chốt.</li>
+            </ul>
+            
+            <p><em>* P/S: Mọi người có thể tự đàm phán tỷ lệ chia với nhau trên tinh thần xứng đáng công sức bỏ ra. Nhưng tốt nhất là nên theo tỷ lệ của công ty!</em></p>
+        </div>
+
+    </div>
+
+    <!-- Modal Video VIP -->
+    <div id="visionModal" class="vision-modal" onclick="closeVisionVideoOnOutsideClick(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fa-solid fa-fire" style="color: #f43f5e;"></i> Khai mở tầm nhìn</div>
+                <button class="modal-close" onclick="closeVisionVideo()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="video-wrapper">
+                <iframe id="visionIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openVisionVideo() {
+            const modal = document.getElementById('visionModal');
+            const iframe = document.getElementById('visionIframe');
+            iframe.src = "https://www.youtube.com/embed/RMGxXseLyHU?autoplay=1";
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền
+        }
+        function closeVisionVideo() {
+            const modal = document.getElementById('visionModal');
+            const iframe = document.getElementById('visionIframe');
+            iframe.src = ""; // Reset iframe src để tắt tiếng video khi đóng
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Mở lại cuộn trang nền
+        }
+        function closeVisionVideoOnOutsideClick(event) {
+            const modal = document.getElementById('visionModal');
+            if (event.target === modal) {
+                closeVisionVideo();
+            }
+        }
+    </script>
+</body>
+</html>

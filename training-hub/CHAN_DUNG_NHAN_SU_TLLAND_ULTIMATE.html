@@ -1,0 +1,3049 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chân Dung Nhân Sự Ultimate — TL Land</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN cho các icon cực sắc nét -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           HỆ THỐNG CSS CORE (VARIABLES & RESET)
+           ========================================== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(0, 0, 0, 0.05);
+            --bg-glass-card: rgba(0, 0, 0, 0.03);
+            --bg-glass-hover: rgba(0, 0, 0, 0.08);
+            
+            --border-light: rgba(0, 0, 0, 0.1);
+            --border-gold: rgba(255, 215, 0, 0.25);
+            --border-fire: rgba(249, 115, 22, 0.25);
+            
+            /* Palette Màu Cao Cấp */
+            --color-gold: #ffd700;
+            --color-gold-hover: #ffe55c;
+            --color-fire: #f97316;
+            --color-fire-hover: #fb923c;
+            
+            /* Màu Trạng Thái */
+            --color-success: #10b981;
+            --color-success-bg: rgba(16, 185, 129, 0.1);
+            --color-success-border: rgba(16, 185, 129, 0.25);
+            
+            --color-info: #3b82f6;
+            --color-info-bg: rgba(59, 130, 246, 0.1);
+            --color-info-border: rgba(59, 130, 246, 0.25);
+            
+            --color-warning: #f59e0b;
+            --color-warning-bg: rgba(245, 158, 11, 0.1);
+            --color-warning-border: rgba(245, 158, 11, 0.25);
+            
+            --color-danger: #ef4444;
+            --color-danger-bg: rgba(239, 68, 68, 0.12);
+            --color-danger-border: rgba(239, 68, 68, 0.3);
+            
+            /* Text */
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            
+            /* Blur & Shadow */
+            --backdrop-blur: blur(16px);
+            --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 25px rgba(255, 215, 0, 0.08);
+            --shadow-glow-red: 0 0 25px rgba(239, 68, 68, 0.1);
+            
+            --font-title: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.02) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 80px;
+        }
+
+        a {
+            color: var(--color-gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--color-gold-hover);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==========================================
+           HEADER SECTION (ĐẲNG CẤP & BÓNG BẨY)
+           ========================================== */
+        header {
+            padding: 50px 0 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border-gold);
+            padding: 6px 16px;
+            border-radius: 100px;
+            color: var(--color-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            backdrop-filter: var(--backdrop-blur);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; box-shadow: 0 0 15px rgba(255, 215, 0, 0.15); }
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, #fcd34d 70%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 24px;
+            font-weight: 400;
+        }
+
+        .author-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .author-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .author-meta i {
+            color: var(--color-gold);
+        }
+
+        /* ==========================================
+           TAB NAVIGATION SYSTEM
+           ========================================== */
+        .tabs-container {
+            margin-bottom: 40px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            padding: 4px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 100px;
+            backdrop-filter: var(--backdrop-blur);
+            box-shadow: var(--shadow-subtle), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-family: var(--font-title);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            color: var(--bg-primary);
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-fire) 100%);
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        /* ==========================================
+           LAYOUT & COMMON COMPONENTS (CARDS)
+           ========================================== */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: var(--bg-glass-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: var(--backdrop-blur);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-subtle), 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card.highlight-gold {
+            border: 1px solid var(--border-gold);
+            box-shadow: var(--shadow-subtle), var(--shadow-glow);
+        }
+
+        .glass-card.highlight-gold:hover {
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-subtle), 0 0 35px rgba(255, 215, 0, 0.12);
+        }
+
+        .glass-card.highlight-danger {
+            border: 1px solid var(--color-danger-border);
+            box-shadow: var(--shadow-subtle), var(--shadow-glow-red);
+        }
+
+        .glass-card.highlight-danger:hover {
+            border-color: var(--color-danger);
+            box-shadow: var(--shadow-subtle), 0 0 35px rgba(239, 68, 68, 0.15);
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--color-gold);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-gold), var(--color-fire));
+            border-radius: 10px;
+        }
+
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* ==========================================
+           TAB 1: CHÂN DUNG NHÂN SỰ
+           ========================================== */
+        /* Quote Box */
+        .quote-box {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.04) 0%, rgba(249, 115, 22, 0.04) 100%);
+            border-left: 4px solid var(--color-gold);
+            padding: 24px 30px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+        }
+
+        .quote-box p {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .quote-box cite {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .principle-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--border-gold);
+            transform: translateY(-2px);
+        }
+
+        .principle-num {
+            font-family: var(--font-title);
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .principle-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .principle-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* So Sánh Table */
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 40px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table th {
+            background: rgba(15, 22, 42, 0.85);
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .comparison-table th:first-child {
+            width: 25%;
+        }
+
+        .comparison-table th:nth-child(2) {
+            color: var(--color-gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .comparison-table th:nth-child(3) {
+            color: var(--color-fire);
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .comparison-table td:nth-child(2) {
+            background: rgba(255, 215, 0, 0.01);
+            font-weight: 500;
+        }
+
+        .comparison-table td:nth-child(3) {
+            background: rgba(249, 115, 22, 0.01);
+            font-weight: 500;
+        }
+
+        /* Detail List Grid (Must Have / Nice to have) */
+        .detail-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+        }
+
+        .detail-card:hover {
+            border-color: var(--border-gold);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .detail-badge {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--color-gold);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-gold);
+        }
+
+        .detail-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .detail-body {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .detail-item {
+            margin-bottom: 10px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .detail-item::before {
+            content: '•';
+            color: var(--color-gold);
+            position: absolute;
+            left: 0;
+        }
+
+        .detail-meta {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-light);
+            font-size: 0.85rem;
+        }
+
+        .detail-meta strong {
+            color: var(--text-primary);
+        }
+
+        /* Nice to have tag */
+        .nice-to-have-card:hover {
+            border-color: var(--color-info-border);
+        }
+        .nice-to-have-card .detail-badge {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--color-info);
+            border-color: var(--color-info-border);
+        }
+        .nice-to-have-card .detail-item::before {
+            color: var(--color-info);
+        }
+
+        /* Red Flags Table */
+        .red-flag-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+        }
+
+        .red-flag-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .red-flag-table th, .red-flag-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .red-flag-table th {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--color-danger);
+            font-family: var(--font-title);
+            font-weight: 700;
+        }
+
+        .red-flag-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .red-flag-table td:first-child i {
+            color: var(--color-danger);
+        }
+
+        .red-flag-table td:last-child {
+            color: var(--text-secondary);
+        }
+
+        .red-flag-note {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid var(--color-warning-border);
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .red-flag-note h4 {
+            color: var(--color-warning);
+            font-family: var(--font-title);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .red-flag-note ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .red-flag-note li {
+            margin-bottom: 6px;
+        }
+
+        /* ==========================================
+           TAB 2: FRAMEWORK PHÂN LOẠI
+           ========================================== */
+        /* Visual Decision Matrix */
+        .matrix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+
+        .matrix-title-x {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .matrix-wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        .matrix-title-y {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+            margin-right: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(3, 1fr);
+            grid-template-rows: 40px repeat(3, 100px);
+            gap: 8px;
+            width: 100%;
+        }
+
+        .matrix-cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+        }
+
+        .matrix-cell.header {
+            background: rgba(15, 22, 42, 0.7);
+            font-family: var(--font-title);
+            color: var(--text-secondary);
+            border: none;
+        }
+
+        .matrix-cell.corner {
+            background: transparent;
+            border: none;
+        }
+
+        /* Các lớp Nhóm màu sắc */
+        .matrix-cell.group-1 {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--color-success);
+            border-color: var(--color-success-border);
+        }
+        .matrix-cell.group-1:hover {
+            background: rgba(16, 185, 129, 0.22);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell.group-2 {
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--color-info);
+            border-color: var(--color-info-border);
+        }
+        .matrix-cell.group-2:hover {
+            background: rgba(59, 130, 246, 0.22);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell.group-3 {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--color-warning);
+            border-color: var(--color-warning-border);
+        }
+        .matrix-cell.group-3:hover {
+            background: rgba(245, 158, 11, 0.22);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell.group-4 {
+            background: rgba(249, 115, 22, 0.12);
+            color: var(--color-fire);
+            border-color: var(--border-fire);
+        }
+        .matrix-cell.group-4:hover {
+            background: rgba(249, 115, 22, 0.22);
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell.group-5 {
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--color-danger);
+            border-color: var(--color-danger-border);
+        }
+        .matrix-cell.group-5:hover {
+            background: rgba(239, 68, 68, 0.22);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+            transform: scale(1.02);
+        }
+
+        .matrix-cell-sub {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Accordion style for groups */
+        .accordion-item {
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.01);
+            transition: var(--transition);
+        }
+
+        .accordion-header {
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.01);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+        }
+
+        .accordion-icon {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .accordion-body {
+            padding: 24px;
+            font-size: 0.92rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Mở trạng thái accordion */
+        .accordion-item.active {
+            border-color: var(--border-gold);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px; /* Số lớn để mở được hết nội dung */
+            transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+            color: var(--color-gold);
+        }
+
+        .group-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .group-meta-item strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .group-meta-item span {
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+
+        /* 5 Nhóm đặc thù màu sắc */
+        .accordion-item.g1 { border-left: 4px solid var(--color-success); }
+        .accordion-item.g1 .accordion-title { color: var(--color-success); }
+        .accordion-item.g2 { border-left: 4px solid var(--color-info); }
+        .accordion-item.g2 .accordion-title { color: var(--color-info); }
+        .accordion-item.g3 { border-left: 4px solid var(--color-warning); }
+        .accordion-item.g3 .accordion-title { color: var(--color-warning); }
+        .accordion-item.g4 { border-left: 4px solid var(--color-fire); }
+        .accordion-item.g4 .accordion-title { color: var(--color-fire); }
+        .accordion-item.g5 { border-left: 4px solid var(--color-danger); }
+        .accordion-item.g5 .accordion-title { color: var(--color-danger); }
+
+        .group-block-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            margin: 15px 0 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .group-block-title i {
+            color: var(--color-gold);
+        }
+
+        /* ==========================================
+           TAB 3: BỘ CÔNG CỤ PHỎNG VẤN TƯƠNG TÁC
+           ========================================== */
+        .calculator-layout {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Form elements */
+        .form-section-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section-title span.count-badge {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label.main-label {
+            display: block;
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .input-text {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .input-text:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+        }
+
+        .input-select {
+            width: 100%;
+            background: #111827;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .input-select:focus {
+            outline: none;
+            border-color: var(--color-gold);
+        }
+
+        /* Custom Checkbox */
+        .checkbox-container {
+            display: block;
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            user-select: none;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .checkbox-container:hover {
+            color: var(--text-primary);
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--color-gold);
+            border-color: var(--color-gold);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid var(--bg-primary);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Hộp checkbox cảnh báo đặc thù (Must Have) */
+        .checkbox-container.must-have-check input:checked ~ .checkmark {
+            background-color: var(--color-warning);
+            border-color: var(--color-warning);
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+        }
+        .checkbox-container.must-have-check .checkmark:after {
+            border-color: var(--bg-primary);
+        }
+
+        /* Hộp checkbox tư duy (Trục 3 Mindset) */
+        .checkbox-container.mindset-check input:checked ~ .checkmark {
+            background-color: var(--color-info);
+            border-color: var(--color-info);
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+        .checkbox-container.mindset-check .checkmark:after {
+            border-color: var(--text-primary);
+        }
+
+        .checkbox-desc {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Trục 1 Tố chất: Radio Groups dạng nút bấm */
+        .talent-criteria-box {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .talent-criteria-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .talent-criteria-header h4 {
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .talent-criteria-header span.badge {
+            font-size: 0.75rem;
+            color: var(--color-gold);
+            font-weight: 500;
+        }
+
+        .talent-criteria-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .btn-group-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-btn-label {
+            flex: 1;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+            font-weight: 500;
+        }
+
+        .radio-btn-label input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-btn-label:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .radio-btn-label.active-0 {
+            background: rgba(239, 68, 68, 0.12) !important;
+            border-color: var(--color-danger-border) !important;
+            color: var(--color-danger) !important;
+            font-weight: 600;
+        }
+
+        .radio-btn-label.active-1 {
+            background: rgba(245, 158, 11, 0.12) !important;
+            border-color: var(--color-warning-border) !important;
+            color: var(--color-warning) !important;
+            font-weight: 600;
+        }
+
+        .radio-btn-label.active-2 {
+            background: rgba(16, 185, 129, 0.12) !important;
+            border-color: var(--color-success-border) !important;
+            color: var(--color-success) !important;
+            font-weight: 600;
+        }
+
+        /* Sticky Sidebar Kết Quả */
+        .result-sidebar {
+            position: sticky;
+            top: 100px;
+            z-index: 50;
+        }
+
+        .score-bar-container {
+            margin-bottom: 18px;
+        }
+
+        .score-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .score-bar-header span.val {
+            color: var(--color-gold);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .score-bar-bg {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-gold), var(--color-fire));
+            border-radius: 10px;
+            transition: width 0.4s ease-out;
+        }
+
+        .score-bar-fill.warning {
+            background: var(--color-warning);
+        }
+
+        .score-bar-fill.success {
+            background: var(--color-success);
+        }
+
+        .score-bar-fill.danger {
+            background: var(--color-danger);
+        }
+
+        /* Khung hiển thị Nhóm kết luận */
+        .result-group-card {
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .result-group-card.group-1 {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: var(--color-success-border);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.1);
+        }
+        .result-group-card.group-2 {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: var(--color-info-border);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.1);
+        }
+        .result-group-card.group-3 {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: var(--color-warning-border);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.1);
+        }
+        .result-group-card.group-4 {
+            background: rgba(249, 115, 22, 0.08);
+            border-color: var(--border-fire);
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.1);
+        }
+        .result-group-card.group-5 {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: var(--color-danger-border);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.1);
+        }
+
+        .result-group-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .result-group-name {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .result-group-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .result-group-card.group-1 .result-group-name, .result-group-card.group-1 .result-group-icon { color: var(--color-success); }
+        .result-group-card.group-2 .result-group-name, .result-group-card.group-2 .result-group-icon { color: var(--color-info); }
+        .result-group-card.group-3 .result-group-name, .result-group-card.group-3 .result-group-icon { color: var(--color-warning); }
+        .result-group-card.group-4 .result-group-name, .result-group-card.group-4 .result-group-icon { color: var(--color-fire); }
+        .result-group-card.group-5 .result-group-name, .result-group-card.group-5 .result-group-icon { color: var(--color-danger); }
+
+        .result-group-action {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-light);
+        }
+
+        .action-details-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 16px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .action-details-card h5 {
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            color: var(--color-gold);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .action-details-card ul {
+            padding-left: 18px;
+        }
+
+        .action-details-card li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Nút thao tác của Calculator */
+        .calc-btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-calc {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-family: var(--font-title);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-calc-gold {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-fire) 100%);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);
+        }
+
+        .btn-calc-gold:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.35);
+        }
+
+        .btn-calc-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+
+        .btn-calc-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-calc-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--color-danger-border);
+            color: var(--color-danger);
+        }
+
+        .btn-calc-danger:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Toast thông báo */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(16, 185, 129, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: var(--backdrop-blur);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ==========================================
+           TAB 4: DNA & PHỤ LỤC
+           ========================================== */
+        .dna-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dna-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+        }
+
+        .dna-card:hover {
+            border-color: var(--color-gold);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .dna-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .dna-num {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-gold);
+        }
+
+        .dna-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .dna-body {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .dna-meta {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-light);
+            font-size: 0.82rem;
+            color: var(--color-fire);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN (TỐI ƯU CẢ MOBILE)
+           ========================================== */
+        @media (max-width: 1024px) {
+            .grid-3, .dna-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .calculator-layout {
+                grid-template-columns: 1fr;
+            }
+            .result-sidebar {
+                position: static;
+                margin-top: 30px;
+            }
+            .red-flag-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .principles-grid, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .tabs-container {
+                border-radius: 12px;
+                flex-wrap: wrap;
+            }
+            .tab-btn {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+                border-radius: 8px;
+            }
+            .matrix-grid {
+                grid-template-columns: 60px repeat(3, 1fr);
+                grid-template-rows: 40px repeat(3, 120px);
+                font-size: 0.8rem;
+            }
+            .matrix-cell-sub {
+                display: none;
+            }
+            .group-meta-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-card, .dna-card {
+                padding: 18px;
+            }
+        }
+
+        /* ==========================================
+           CSS CHO IN ẤN & XUẤT FILE PDF
+           ========================================== */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 10pt;
+                padding: 0;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            header, .tabs-container, .calc-btn-container, .btn-calc, footer, .tab-btn, .principles-grid {
+                display: none !important;
+            }
+            .tab-content {
+                display: none !important;
+            }
+            #calculator.tab-content {
+                display: block !important;
+            }
+            .calculator-layout {
+                display: block !important;
+            }
+            .glass-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                padding: 15px !important;
+                margin-bottom: 20px !important;
+            }
+            .form-section-title, .section-title {
+                color: black !important;
+                border-bottom: 1px solid black !important;
+            }
+            .form-group, .talent-criteria-box {
+                page-break-inside: avoid;
+                background: white !important;
+                border: 1px solid #ddd !important;
+                color: black !important;
+                padding: 10px !important;
+            }
+            .radio-btn-label {
+                border: 1px solid #ddd !important;
+                color: #555 !important;
+            }
+            .radio-btn-label.active-0, .radio-btn-label.active-1, .radio-btn-label.active-2 {
+                background: #eee !important;
+                color: black !important;
+                font-weight: bold !important;
+                border: 2px solid black !important;
+            }
+            .checkbox-container input:checked ~ .checkmark {
+                background-color: black !important;
+                border-color: black !important;
+            }
+            .result-sidebar {
+                page-break-before: always;
+            }
+            .result-group-card {
+                border: 2px solid black !important;
+                background: #f9f9f9 !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+            .result-group-name {
+                font-size: 20pt !important;
+                color: black !important;
+            }
+            .action-details-card {
+                background: white !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+            }
+            .score-bar-bg {
+                border: 1px solid black !important;
+                background: #eee !important;
+            }
+            .score-bar-fill {
+                background: #555 !important;
+            }
+            .text-secondary, .text-muted {
+                color: #333 !important;
+            }
+            .input-text, .input-select {
+                background: white !important;
+                border: 1px solid #333 !important;
+                color: black !important;
+            }
+            .header-print {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 30px;
+                border-bottom: 2px solid black;
+                padding-bottom: 15px;
+            }
+            .header-print h2 {
+                font-size: 20pt;
+                font-family: var(--font-title);
+            }
+            .header-print p {
+                font-size: 11pt;
+                color: #555;
+            }
+        }
+        
+        .header-print {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header ẩn dành riêng khi in ấn ra giấy / PDF -->
+    <div class="header-print">
+        <h2>BÁO CÁO PHỎNG VẤN & ĐÁNH GIÁ ỨNG VIÊN</h2>
+        <p>Hệ Thống Tiêu Chuẩn Nhân Sự Lành Mạnh — TL Land</p>
+        <p>Người đánh giá: Trịnh Bá Khương (Phó phòng K11) | Ngày phỏng vấn: <span id="print_date">....................</span></p>
+    </div>
+
+    <div class="container">
+        <!-- ==========================================
+           HEADER (ĐẦU TRANG)
+           ========================================== */ -->
+        <header>
+            <div class="header-badge">
+                <i class="fa-solid fa-award"></i> TL LAND INTERIOR STANDARDS v1.0
+            </div>
+            <h1>CHÂN DUNG NHÂN SỰ ULTIMATE</h1>
+            <p class="subtitle">Bản chuẩn hóa đối chiếu, phân loại ứng viên và ra quyết định phỏng vấn của khối Kinh doanh K11 — TL Land.</p>
+            <div class="author-meta">
+                <span><i class="fa-solid fa-user-tie"></i> <strong>Tác giả:</strong> Trịnh Bá Khương (Phó phòng K11)</span>
+                <span><i class="fa-solid fa-calendar-days"></i> <strong>Cập nhật:</strong> Tháng 5/2026</span>
+                <span><i class="fa-solid fa-circle-nodes"></i> <strong>Mục tiêu:</strong> Bộ lọc sinh tồn & phát triển dài hạn</span>
+            </div>
+        </header>
+
+        <!-- ==========================================
+           NAVIGATION TABS (THANH ĐIỀU HƯỚNG DẠNG KÍNH)
+           ========================================== */ -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('profile')">
+                <i class="fa-solid fa-users-gear"></i> Chân Dung
+            </button>
+            <button class="tab-btn" onclick="switchTab('framework')">
+                <i class="fa-solid fa-layer-group"></i> Framework Phân Loại
+            </button>
+            <button class="tab-btn" onclick="switchTab('calculator')" id="tab_btn_calc">
+                <i class="fa-solid fa-square-poll-vertical"></i> Bộ Công Cụ Đánh Giá
+            </button>
+            <button class="tab-btn" onclick="switchTab('dna')">
+                <i class="fa-solid fa-dna"></i> DNA & Phụ Lục
+            </button>
+        </div>
+
+        <!-- ==========================================
+           TAB 1: CHÂN DUNG NHÂN SỰ DETAILED
+           ========================================== */ -->
+        <div id="profile" class="tab-content active">
+            <!-- Triết lý gốc -->
+            <div class="quote-box">
+                <p>"Người có tố chất là những người có thể thích nghi sớm, học hỏi nhanh nhất và hành động quyết liệt để tạo ra kết quả. Dù họ làm leader hay môi giới đơn thuần, bản chất họ vẫn luôn làm tốt, nên thời gian ra kết quả của họ rất nhanh.
+                Phân biệt Loại A (Cash Cow) và Loại B (Cột nhà) thực chất KHÔNG PHẢI là hai nhóm người khác nhau, mà là hai cách thức triển khai, sử dụng trên cùng một chất liệu người có tố chất."</p>
+                <cite>— Trịnh Bá Khương (Phó phòng K11 — TL Land)</cite>
+            </div>
+
+            <div class="glass-card">
+                <h2 class="section-title"><i class="fa-solid fa-brain"></i> A. Tư Duy Gốc Tuyển Dụng</h2>
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <span class="principle-num">Nguyên tắc 1</span>
+                        <h3>Đo Bằng Hành Động</h3>
+                        <p>Không đo bằng lời hứa suông của ứng viên. Hãy khai thác những hành động cụ thể trong quá khứ đã được chứng minh thực tế.</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">Nguyên tắc 2</span>
+                        <h3>Đo Bằng Quá Khứ</h3>
+                        <p>"Em sẽ cố gắng" = 0 điểm. Một ứng viên có cơ sở vững chắc luôn tự tin chứng minh bằng cách giải quyết các tình huống khó khăn cũ.</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">Nguyên tắc 3</span>
+                        <h3>Owner Mindset Là Số 1</h3>
+                        <p>Nếu ứng viên hỏi "có lương cứng không", "data ở đâu", "công ty hỗ trợ gì marketing" → Rớt ngay từ vòng đầu, không kiểm tra tiếp.</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">Nguyên tắc 4</span>
+                        <h3>Bản Chất Người Tố Chất</h3>
+                        <p>Thích nghi sớm, học hỏi nhanh nhất và hành động quyết liệt. Sếp phân loại A/B chỉ để biết dùng người đó vào việc gì TRƯỚC.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng so sánh A vs B -->
+            <div class="glass-card">
+                <h2 class="section-title"><i class="fa-solid fa-code-compare"></i> B. Phân Biệt Hai Nhánh Nhân Sự</h2>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Tiêu chí so sánh</th>
+                                <th>Loại A — CASH COW (Sale F1)</th>
+                                <th>Loại B — CỘT NHÀ (Tố chất Leader)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Mục đích tuyển dụng</strong></td>
+                                <td>Đẻ ra doanh số ngay, ăn cơ chế F1 trực tiếp rất cao</td>
+                                <td>Nuôi dài hạn → lên Trưởng nhóm → đồng hành giúp Sếp lên cấp</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Số lượng cần</strong></td>
+                                <td>Càng nhiều càng tốt, phủ rộng pipeline</td>
+                                <td>Chọn lọc khắt khe, chỉ cần 4-5 người thực sự chất lượng</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profile lý tưởng</strong></td>
+                                <td>Hunter (Thợ săn) - solo giỏi, tập trung bán hàng</td>
+                                <td>Builder (Người xây dựng) - vừa bán giỏi vừa thích tuyển và quản lý team</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Thời gian nuôi</strong></td>
+                                <td>Khá nhanh, 2 - 3 tháng bắt buộc phải ra deal đầu</td>
+                                <td>Dài hạn hơn, cần 6 - 12 tháng để cứng cáp toàn diện</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chỉ số quan trọng nhất</strong></td>
+                                <td>Số khách đăng tin/tuần, tỷ lệ chuyển đổi chốt deal</td>
+                                <td>Khả năng truyền lửa + tuyển dụng nhân tài + kết nối đội nhóm</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ROI tương ứng cho Sếp</strong></td>
+                                <td>Cực cao trong 6 tháng đầu nhờ cơ chế hoa hồng F1 trực tiếp</td>
+                                <td>Bùng nổ trong 1-3 năm nhờ cơ chế đội nhóm + thăng cấp bền vững</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                    <i class="fa-solid fa-lightbulb" style="color: var(--color-gold);"></i> <strong>Lưu ý:</strong> Một nhân sự có thể vừa là Cash Cow vừa có tố chất Cột nhà. Đây là dạng Talent hiếm gặp, cần ưu tiên đầu tư nguồn lực huấn luyện cao nhất.
+                </div>
+            </div>
+
+            <!-- Must Have & Nice To Have -->
+            <div class="grid-2">
+                <div class="glass-card highlight-gold">
+                    <h2 class="section-title" style="color: var(--color-gold);"><i class="fa-solid fa-star"></i> C. MUST-HAVE (Thiếu 1 = LOẠI)</h2>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 15px;">
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">C1</span>
+                                <h3>Đường băng tài chính tối thiểu 3-6 tháng</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Đủ tài chính dự phòng tự sinh sống tối thiểu 3-6 tháng không có hoa hồng.</div>
+                                <div class="detail-item">Hoặc có hậu phương lo liệu (bố mẹ, vợ/chồng hỗ trợ vững vàng).</div>
+                                <div class="detail-meta"><strong>Dấu hiệu:</strong> Trả lời bình tĩnh, thẳng thắn, không né tránh khi sếp hỏi về tài chính dự trữ.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">C2</span>
+                                <h3>Owner Mindset (Tư duy làm chủ)</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Hiểu rõ và vui vẻ chấp nhận: Không lương cứng, tự đầu tư chi phí Mkt, tự chịu 100% kết quả.</div>
+                                <div class="detail-item">Mắt sáng lên khi nghe cơ chế chia hoa hồng cực cao của TL Land thay vì lo lắng rủi ro.</div>
+                                <div class="detail-meta"><strong>Test nhanh:</strong> Hỏi "Anh/chị hiểu mình đang đi làm thuê lấy lương hay đang xây dựng mini-business trên nền tảng TL Land?"</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">C3</span>
+                                <h3>Kỷ luật làm đều việc thô</h3>
+                                
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Không cần quá khéo mồm, cốt lõi là sự bền bỉ làm việc lặp đi lặp lại.</div>
+                                <div class="detail-item">Đăng tin đều, gọi cold-call đều, tương tác Zalo/Facebook đều đặn.</div>
+                                <div class="detail-meta"><strong>Dấu hiệu:</strong> Có bằng chứng quá khứ về việc duy trì một thói quen kỷ luật (tập gym, viết lách, học tập...).</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">C4</span>
+                                <h3>Chịu áp lực & Không đổ lỗi</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Chấp nhận phê bình để tiến bộ. Khi thất bại thì tìm giải pháp thay vì bao biện lý do.</div>
+                                <div class="detail-meta"><strong>Cảnh báo:</strong> Đánh rớt ngay nếu ứng viên xuất hiện nhiều từ bao biện như "tại vì...", "do...", "nếu mà..." trong phỏng vấn.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">C5</span>
+                                <h3>"Học khí" cao (Tinh thần học hỏi)</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Chủ động học hỏi, sẵn sàng hạ mình sao chép những cách làm tốt nhất của người đi trước.</div>
+                                <div class="detail-meta"><strong>Test nhanh:</strong> Cuối phỏng vấn, ứng viên có chủ động đặt câu hỏi chất lượng về cách triển khai công việc thực tế không?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="border-color: rgba(59, 130, 246, 0.2);">
+                    <h2 class="section-title" style="color: var(--color-info);"><i class="fa-solid fa-circle-plus"></i> D. NICE-TO-HAVE (Bùng nổ nhanh)</h2>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 15px;">
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D1</span>
+                                <h3>Đã từng kinh doanh / Top ngành khác</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Có sẵn kỹ năng giao tiếp, am hiểu dòng tiền và tâm lý khách hàng.</div>
+                                <div class="detail-item">Ưu tiên: Bảo hiểm, tín dụng, F&B (chủ quán), MMO, đa cấp lành mạnh.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D2</span>
+                                <h3>Có "nỗi đau" lớn hoặc gánh nặng gia đình</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Đã có vợ/chồng/con hoặc đã từng phá sản, nợ nần lành mạnh, ly hôn...</div>
+                                <div class="detail-item">Họ có động lực cực kỳ mạnh mẽ để hy sinh thời gian, chịu áp lực để đổi đời.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D3</span>
+                                <h3>Có Personal Brand online cơ bản</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Đã quen làm content, video, livestream hoặc biết tự chạy quảng cáo.</div>
+                                <div class="detail-item">Tiết kiệm 1-3 tháng đào tạo các kỹ năng marketing thô ban đầu.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D4</span>
+                                <h3>Sức bền thể lực tốt</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Nghề BĐS Quất Lâm/Ninh Cơ đòi hỏi đi xa, chịu nắng gió tốt. Người yếu sinh lý/thể lực sẽ bỏ cuộc rất sớm.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D5</span>
+                                <h3>Có ô tô riêng / phương tiện đưa khách</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Hỗ trợ cực lớn khi chốt deal đi tỉnh. Nếu không có, bắt buộc phải là người khôn khéo biết mượn sức leader.</div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card nice-to-have-card">
+                            <div class="detail-header">
+                                <span class="detail-badge">D6</span>
+                                <h3>Mạng lưới quan hệ rộng (Dành riêng cho Loại B)</h3>
+                            </div>
+                            <div class="detail-body">
+                                <div class="detail-item">Cựu quân nhân, công an, giáo viên hoặc từng quản lý hệ thống. Có khả năng kéo quân và tuyển dụng cực kỳ thần tốc.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Red Flags -->
+            <div class="glass-card highlight-danger">
+                <h2 class="section-title" style="color: var(--color-danger);"><i class="fa-solid fa-triangle-exclamation"></i> E. HỆ THỐNG CỜ ĐỎ (RED FLAGS)</h2>
+                <div class="red-flag-grid" style="margin-top: 15px;">
+                    <div>
+                        <table class="red-flag-table">
+                            <thead>
+                                <tr>
+                                    <th>Cờ đỏ tuyệt đối (Thấy là LOẠI ngay)</th>
+                                    <th>Lý do hệ thống</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hỏi lương cứng trong 10 phút đầu</td>
+                                    <td>Tư duy làm công ăn lương ăn sâu, không phù hợp môi trường tự do sinh tồn.</td>
+                                </tr>
+                                <tr>
+                                    <td>Hỏi "Công ty có hỗ trợ Mkt/Data không?"</td>
+                                    <td>Thiếu Owner Mindset nghiêm trọng, thích sẵn ăn, lười cày ải.</td>
+                                </tr>
+                                <tr>
+                                    <td>Đổ lỗi hoàn toàn cho sếp/công ty cũ</td>
+                                    <td>Thói quen tiêu cực. Gặp khó khăn tại TL Land chắc chắn sẽ tiếp tục đổ lỗi.</td>
+                                </tr>
+                                <tr>
+                                    <td>Không có đường băng tài chính dự trữ</td>
+                                    <td>Chịu áp lực cơm áo gạo tiền đè nặng dẫn đến bỏ cuộc trong 1-2 tháng, lãng phí công đào tạo.</td>
+                                </tr>
+                                <tr>
+                                    <td>Có dấu hiệu đạo đức yếu (cướp khách, lách luật)</td>
+                                    <td>Gây họa cho uy tín và cấu trúc của toàn hệ thống K11 về sau.</td>
+                                </tr>
+                                <tr>
+                                    <td>Khinh ghét việc thô (đăng tin, gọi cold-call)</td>
+                                    <td>Không bao giờ sống sót được tại môi trường thực chiến TL Land.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div class="red-flag-note">
+                            <h4><i class="fa-solid fa-circle-exclamation"></i> BẪY PROFILE NGON (CẦN TEST KỸ)</h4>
+                            <p>Ứng viên đã từng làm **SẾP / QUẢN LÝ** ở môi trường cũ, nay về TL Land khởi nghiệp lại từ đầu.</p>
+                            <p style="margin-top: 8px;"><strong>Rủi ro:</strong> Không hạ mình làm được việc thô do cái TÔI quá lớn.</p>
+                            <p style="margin-top: 8px;"><strong>Cách test cứng của sếp Khương:</strong></p>
+                            <ul>
+                                <li>Hỏi thẳng: *"Anh/chị có sẵn sàng tự tay copy đăng 30 bài FB/ngày, tự bốc máy gọi 50 cuộc cold-call/ngày, tự gửi spam Zalo từng khách không?"*</li>
+                                <li>Nhìn thẳng mắt để đo phản ứng: Nếu chần chừ, giải thích vòng vo để trốn tránh → **CẨN TRỌNG / LOẠI**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+           TAB 2: FRAMEWORK PHÂN LOẠI & MA TRẬN
+           ========================================== */ -->
+        <div id="framework" class="tab-content">
+            <div class="glass-card">
+                <h2 class="section-title"><i class="fa-solid fa-compass"></i> A. Tư Duy Hệ Thống Phân Nhóm</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 25px;">
+                    Mục đích của việc phỏng vấn không chỉ là nhận hay loại, mà là định vị chính xác ứng viên nằm ở nhóm nào trong 3 trục đo lường cốt lõi: <strong>Tố chất (Talent)</strong>, <strong>Điều kiện nền (Foundation)</strong>, và <strong>Tư duy (Mindset)</strong>. Từ đó ra quyết định dùng người hợp lý.
+                </p>
+
+                <!-- Ma Trận Grid 2D trực quan -->
+                <div class="matrix-container">
+                    <div class="matrix-title-x"><i class="fa-solid fa-arrow-right"></i> TRỤC TỐ CHẤT (Học hỏi & Hành động) <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="matrix-wrapper">
+                        <div class="matrix-title-y"><i class="fa-solid fa-arrow-left"></i> TRỤC NỀN TẢNG (Tài chính & Thời gian) <i class="fa-solid fa-arrow-left"></i></div>
+                        <div class="matrix-grid">
+                            <!-- Hàng 0: Header -->
+                            <div class="matrix-cell corner"></div>
+                            <div class="matrix-cell header">Thấp (0-4đ)</div>
+                            <div class="matrix-cell header">TB (5-7đ)</div>
+                            <div class="matrix-cell header">Cao (8-10đ)</div>
+
+                            <!-- Hàng 1: Nền tảng Cao -->
+                            <div class="matrix-cell header">Cao (4-5đ)</div>
+                            <div class="matrix-cell group-4">
+                                Nhóm 4
+                                <div class="matrix-cell-sub">Giữ mối</div>
+                            </div>
+                            <div class="matrix-cell group-2">
+                                Nhóm 2
+                                <div class="matrix-cell-sub">Tuyển dụng</div>
+                            </div>
+                            <div class="matrix-cell group-1">
+                                Nhóm 1
+                                <div class="matrix-cell-sub">Talent (Nuôi kỹ)</div>
+                            </div>
+
+                            <!-- Hàng 2: Nền tảng Trung bình -->
+                            <div class="matrix-cell header">TB (2-3đ)</div>
+                            <div class="matrix-cell group-5">
+                                Nhóm 5
+                                <div class="matrix-cell-sub">Loại thẳng</div>
+                            </div>
+                            <div class="matrix-cell group-3">
+                                Nhóm 3
+                                <div class="matrix-cell-sub">CTV thử việc</div>
+                            </div>
+                            <div class="matrix-cell group-2">
+                                Nhóm 2
+                                <div class="matrix-cell-sub">Tuyển dụng</div>
+                            </div>
+
+                            <!-- Hàng 3: Nền tảng Thấp -->
+                            <div class="matrix-cell header">Thấp (0-1đ)</div>
+                            <div class="matrix-cell group-5">
+                                Nhóm 5
+                                <div class="matrix-cell-sub">Loại thẳng</div>
+                            </div>
+                            <div class="matrix-cell group-4">
+                                Nhóm 4
+                                <div class="matrix-cell-sub">Giữ mối</div>
+                            </div>
+                            <div class="matrix-cell group-3">
+                                Nhóm 3
+                                <div class="matrix-cell-sub">CTV thử việc</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(239, 68, 68, 0.05); border: 1px dashed var(--color-danger-border); border-radius: 8px; padding: 15px; font-size: 0.88rem; color: var(--text-secondary); margin-top: 20px;">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: var(--color-danger);"></i> <strong>LƯU Ý LUẬT PHẠT ĐẶC BIỆT (TRỤC 3 - MINDSET):</strong>
+                    Thiếu 1 trong 5 tiêu chí Mindset phù hợp văn hóa → tự động tụt xuống tối đa là <strong>Nhóm 4 (Giữ mối)</strong>. Thiếu từ 2 tiêu chí trở lên → Tự động tụt xuống <strong>Nhóm 5 (Loại thẳng)</strong>, bất kể hai trục còn lại cao đến đâu.
+                </div>
+            </div>
+
+            <!-- Accordion chi tiết 5 nhóm -->
+            <div class="glass-card">
+                <h2 class="section-title"><i class="fa-solid fa-list-check"></i> B. Chi Tiết Hành Động Cho Từng Nhóm</h2>
+                <div style="margin-top: 15px;">
+                    <!-- Nhóm 1 -->
+                    <div class="accordion-item g1">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>NHÓM 1 — TUYỂN NGAY, NUÔI KỸ (Talent)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="group-meta-grid">
+                                    <div class="group-meta-item"><strong>Điều kiện</strong> Tố chất Cao (8-10) + Nền tảng Cao (4-5) + Tư duy Đạt</div>
+                                    <div class="group-meta-item"><strong>Tỷ lệ kỳ vọng</strong> 2 - 5% tổng ứng viên</div>
+                                    <div class="group-meta-item"><strong>Đặc điểm khí chất</strong> Khí lực mạnh, mắt sáng khi nghe cơ chế, tự nhẩm tính tài chính, chủ động hỏi sâu.</div>
+                                </div>
+                                <div class="group-block-title"><i class="fa-solid fa-handshake"></i> Hành động chiến lược của sếp Khương:</div>
+                                <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                                    <li>Chốt Onboarding ngay trong vòng 24h, không được chậm trễ tránh bị bên khác nẫng tay trên.</li>
+                                    <li>Sếp Khương đích thân Onboard trực tiếp 1-1 trong tuần đầu tiên, xây dựng lộ trình sự nghiệp vững chắc.</li>
+                                    <li>Lên lịch làm việc 1-1 hàng tuần trong suốt 3 tháng đầu.</li>
+                                    <li>Cho trực tiếp đi cùng sếp trong 2-3 chuyến dẫn khách đi tỉnh đầu tiên để quan sát thực tế và thẩm thấu cách chốt.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nhóm 2 -->
+                    <div class="accordion-item g2">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <i class="fa-solid fa-square-check"></i>
+                                <span>NHÓM 2 — TUYỂN, ĐI BÌNH THƯỜNG (Standard)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="group-meta-grid">
+                                    <div class="group-meta-item"><strong>Điều kiện</strong> Tố chất Khá + Nền tảng vững (hoặc ngược lại) + Tư duy Đạt</div>
+                                    <div class="group-meta-item"><strong>Tỷ lệ kỳ vọng</strong> 60 - 70% tổng ứng viên qua vòng</div>
+                                    <div class="group-meta-item"><strong>Đặc điểm khí chất</strong> Có thiện chí, có kỷ luật nhưng chưa có nhiều đột phá rõ ràng trong quá khứ.</div>
+                                </div>
+                                <div class="group-block-title"><i class="fa-solid fa-handshake"></i> Hành động chiến lược của sếp Khương:</div>
+                                <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                                    <li>Onboard theo quy trình chuẩn của phòng K11 (có thể giao bớt cho Trưởng nhóm cấp dưới hỗ trợ kèm cặp).</li>
+                                    <li>Thiết lập rõ mốc KPI 90 ngày đầu tiên (Số khách nét, số bài đăng, deal đầu tiên...).</li>
+                                    <li>Quản lý theo quy trình nhóm chung, không tốn quá nhiều thời gian 1-1 để tối ưu hóa nguồn lực cho sếp.</li>
+                                    <li>Sau 90 ngày: Đánh giá lại hiệu suất thực tế, nếu bùng nổ chuyển lên nuôi dưỡng dạng Cột nhà như Nhóm 1.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nhóm 3 -->
+                    <div class="accordion-item g3">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <i class="fa-solid fa-user-clock"></i>
+                                <span>NHÓM 3 — CTV / THỬ VIỆC 30 NGÀY (Probation)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="group-meta-grid">
+                                    <div class="group-meta-item"><strong>Điều kiện</strong> Tố chất trung bình + Nền tảng yếu + Tư duy Đạt</div>
+                                    <div class="group-meta-item"><strong>Tỷ lệ kỳ vọng</strong> 15 - 20% tổng ứng viên</div>
+                                    <div class="group-meta-item"><strong>Đặc điểm khí chất</strong> Thái độ tốt, muốn cày nhưng đang vướng bận tài chính/thời gian (làm part-time, chưa dồn lực).</div>
+                                </div>
+                                <div class="group-block-title"><i class="fa-solid fa-handshake"></i> Hành động chiến lược của sếp Khương:</div>
+                                <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                                    <li>Đề xuất làm Cộng tác viên hoặc thử việc 30 ngày khắt khe, không nhận chính thức ngay.</li>
+                                    <li>Giao việc thô cực kỳ cụ thể có công cụ đo lường: *"30 ngày tới, tự đăng đủ 90 bài, gọi 300 cuộc, ra 5 khách nét"*.</li>
+                                    <li><strong>KHÔNG đầu tư thời gian 1-1</strong>. Sếp chỉ cung cấp tài liệu tự học, để họ tự bơi kiểm chứng tố chất.</li>
+                                    <li>Hết 30 ngày: Đạt KPI và thái độ xuất sắc → Chuyển lên Nhóm 2 chính thức. Không đạt → Loại thẳng.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nhóm 4 -->
+                    <div class="accordion-item g4">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <i class="fa-solid fa-address-book"></i>
+                                <span>NHÓM 4 — TỪ CHỐI KHÉO, GIỮ MỐI (Network)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="group-meta-grid">
+                                    <div class="group-meta-item"><strong>Điều kiện</strong> Profile cao nhưng chưa hợp hoặc thiếu 1 tiêu chí tư duy/nền tảng</div>
+                                    <div class="group-meta-item"><strong>Tỷ lệ kỳ vọng</strong> 10 - 15% tổng ứng viên</div>
+                                    <div class="group-meta-item"><strong>Đặc điểm khí chất</strong> Có năng lực tốt nhưng thời điểm không phù hợp (con nhỏ, đang bận nợ nóng...) hoặc cựu sếp cái tôi lớn.</div>
+                                </div>
+                                <div class="group-block-title"><i class="fa-solid fa-handshake"></i> Hành động chiến lược của sếp Khương:</div>
+                                <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                                    <li><strong>Case 4a (Profile cao, top sale ngành khác):</strong> Chưa phù hợp làm môi giới tỉnh lúc này → Kết bạn Zalo, đưa vào danh sách khách hàng tiềm năng mua đất đầu tư hoặc tuyển lại khi họ bị "xúc phạm thu nhập".</li>
+                                    <li><strong>Case 4b (Đang vướng bận thời điểm):</strong> Hẹn phỏng vấn lại sau 3-6 tháng khi họ giải quyết xong việc gia đình.</li>
+                                    <li><strong>Case 4c (Cựu sếp, cái tôi cao không chịu làm việc thô):</strong> Từ chối khéo lịch sự. Tuyệt đối không nhận làm CTV vì sẽ gây chia rẽ và phá hỏng văn hóa kỷ luật thô của đội nhóm.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nhóm 5 -->
+                    <div class="accordion-item g5">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                                <span>NHÓM 5 — LOẠI THẲNG (Reject)</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <div class="group-meta-grid">
+                                    <div class="group-meta-item"><strong>Điều kiện</strong> Có cờ đỏ tuyệt đối hoặc thiếu từ 2 tiêu chí Mindset văn hóa trở lên</div>
+                                    <div class="group-meta-item"><strong>Tỷ lệ kỳ vọng</strong> 15 - 25% ứng viên đầu vào (Tỷ lệ lọc lành mạnh)</div>
+                                    <div class="group-meta-item"><strong>Đặc điểm khí chất</strong> Thích ăn sẵn, đòi lương cứng ngay, đổ lỗi cho sếp cũ/thị trường, biểu hiện đạo đức cơ hội.</div>
+                                </div>
+                                <div class="group-block-title"><i class="fa-solid fa-handshake"></i> Hành động chiến lược của sếp Khương:</div>
+                                <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                                    <li>Kết thúc cuộc phỏng vấn lịch sự nhưng dứt khoát.</li>
+                                    <li>Tuyệt đối không hứa hẹn mơ hồ: "Anh sẽ liên hệ lại sau" để tránh tạo hy vọng giả làm mất thời gian hai bên.</li>
+                                    <li>Phát biểu câu chốt tiêu chuẩn: *"Cảm ơn bạn. Hiện tại mô hình thực chiến không lương cứng bên mình chưa khớp với mục tiêu tài chính ngắn hạn của bạn. Chúc bạn sớm tìm được công việc phù hợp"*</li>
+                                    <li>Không kết bạn Zalo sâu, không đưa vào hệ thống follow-up.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+           TAB 3: BỘ CÔNG CỤ ĐÁNH GIÁ TƯƠNG TÁC
+           ========================================== */ -->
+        <div id="calculator" class="tab-content">
+            <div class="calculator-layout">
+                <!-- Cột trái: Form nhập liệu & checklist -->
+                <div class="glass-card">
+                    <h2 class="section-title"><i class="fa-solid fa-file-pen"></i> Nhập Thông Tin Phỏng Vấn</h2>
+                    
+                    <div class="grid-2" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label class="main-label" for="cand_name">Họ và tên ứng viên</label>
+                            <input type="text" id="cand_name" class="input-text" placeholder="Nhập tên ứng viên..." oninput="updateCalculations()">
+                        </div>
+                        <div class="form-group">
+                            <label class="main-label" for="cand_type">Định hướng phỏng vấn tuyển</label>
+                            <select id="cand_type" class="input-select" onchange="updateCalculations()">
+                                <option value="Chưa xác định">-- Chọn định hướng --</option>
+                                <option value="Loại A — CASH COW (Sale F1)">Loại A — CASH COW (Sale F1)</option>
+                                <option value="Loại B — CỘT NHÀ (Tố chất Leader)">Loại B — CỘT NHÀ (Tố chất Leader)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Phần Must Have -->
+                    <div style="margin-top: 30px;">
+                        <h3 class="form-section-title">
+                            <i class="fa-solid fa-triangle-exclamation" style="color: var(--color-warning);"></i> 
+                            1. BỘ TIÊU CHUẨN CỨNG (MUST-HAVE) 
+                            <span class="count-badge" id="must_have_count">0/5</span>
+                        </h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 15px;">
+                            *Yêu cầu bắt buộc: Ứng viên phải đạt trọn vẹn cả 5 tiêu chí. Thiếu bất kỳ 1 tiêu chí nào sẽ tự động đánh trượt xuống Nhóm 5 (Loại thẳng).*
+                        </p>
+                        
+                        <label class="checkbox-container must-have-check">
+                            Đường băng tài chính dự trữ 3-6 tháng vững vàng
+                            <span class="checkbox-desc">Tự trang trải được cuộc sống không hoa hồng hoặc có gia đình nuôi đỡ, không lo nợ nóng.</span>
+                            <input type="checkbox" id="must_c1" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container must-have-check">
+                            Owner Mindset (Tư duy làm chủ mini-business)
+                            <span class="checkbox-desc">Mắt sáng khi nghe cơ chế cao, tự đầu tư quảng cáo, không đòi hỏi lương cứng hoặc bao cấp data.</span>
+                            <input type="checkbox" id="must_c2" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container must-have-check">
+                            Có kỷ luật làm đều các việc thô lặp đi lặp lại
+                            <span class="checkbox-desc">Có bằng chứng kỷ luật quá khứ (gym đều, học tập đều, đăng content đều...). Không hứng chí nhất thời.</span>
+                            <input type="checkbox" id="must_c3" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="checkbox-container must-have-check">
+                            Chịu áp lực tốt & Tuyệt đối không đổ lỗi hoàn cảnh
+                            <span class="checkbox-desc">Nhận trách nhiệm khi thất bại, bình tĩnh chịu phê bình để sửa mình, không có câu nói "tại vì...".</span>
+                            <input type="checkbox" id="must_c4" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="checkbox-container must-have-check">
+                            "Học khí" cao, chủ động học & dám sao chép
+                            <span class="checkbox-desc">Biết lắng nghe, dám bắt chước cái hay của người đi trước, không sĩ diện, chủ động hỏi han.</span>
+                            <input type="checkbox" id="must_c5" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <!-- Trục 1 Tố chất -->
+                    <div style="margin-top: 30px;">
+                        <h3 class="form-section-title">
+                            <i class="fa-solid fa-bolt" style="color: var(--color-gold);"></i> 
+                            2. TRỤC TỐ CHẤT (TALENT) 
+                            <span class="count-badge" id="talent_score_badge">0/10 điểm</span>
+                        </h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 15px;">
+                            *Đo lường năng lượng hành động và tốc độ tự phát triển. Đánh giá mức độ thể hiện của ứng viên.*
+                        </p>
+
+                        <!-- Tiêu chuẩn 1 -->
+                        <div class="talent-criteria-box">
+                            <div class="talent-criteria-header">
+                                <h4>Học hỏi nhanh (Nắm bắt kiến thức mới)</h4>
+                                <span class="badge" id="badge_tc1">Chưa đánh giá</span>
+                            </div>
+                            <p class="talent-criteria-desc">Ứng viên tiếp nhận thông tin về sản phẩm, quy trình và thị trường nhanh hay chậm?</p>
+                            <div class="btn-group-options">
+                                <label class="radio-btn-label" onclick="selectRadio('tc1', 0, this)">
+                                    <input type="radio" name="tc1" value="0"> Yếu / Quên trước sau (0đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc1', 1, this)">
+                                    <input type="radio" name="tc1" value="1"> Trung bình / Tạm nhớ (1đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc1', 2, this)">
+                                    <input type="radio" name="tc1" value="2"> Nhanh / Hỏi rất sâu (2đ)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chuẩn 2 -->
+                        <div class="talent-criteria-box">
+                            <div class="talent-criteria-header">
+                                <h4>Khả năng thích nghi (Phản ứng với cái lạ)</h4>
+                                <span class="badge" id="badge_tc2">Chưa đánh giá</span>
+                            </div>
+                            <p class="talent-criteria-desc">Phản ứng khi nghe mô hình không lương, bán đất tỉnh xa, cách làm mới?</p>
+                            <div class="btn-group-options">
+                                <label class="radio-btn-label" onclick="selectRadio('tc2', 0, this)">
+                                    <input type="radio" name="tc2" value="0"> Phản kháng / Bàn lùi (0đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc2', 1, this)">
+                                    <input type="radio" name="tc2" value="1"> Lắng nghe e dè (1đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc2', 2, this)">
+                                    <input type="radio" name="tc2" value="2"> Chủ động xin cách làm (2đ)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chuẩn 3 -->
+                        <div class="talent-criteria-box">
+                            <div class="talent-criteria-header">
+                                <h4>Hành động quyết liệt (Sức cày)</h4>
+                                <span class="badge" id="badge_tc3">Chưa đánh giá</span>
+                            </div>
+                            <p class="talent-criteria-desc">Ứng viên đưa ra hành động mơ hồ hay có các bước triển khai cụ thể, dứt khoát?</p>
+                            <div class="btn-group-options">
+                                <label class="radio-btn-label" onclick="selectRadio('tc3', 0, this)">
+                                    <input type="radio" name="tc3" value="0"> "Em sẽ cố xem sao" (0đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc3', 1, this)">
+                                    <input type="radio" name="tc3" value="1"> Kế hoạch thô sơ (1đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc3', 2, this)">
+                                    <input type="radio" name="tc3" value="2"> Kế hoạch 1-2-3 rõ ràng (2đ)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chuẩn 4 -->
+                        <div class="talent-criteria-box">
+                            <div class="talent-criteria-header">
+                                <h4>Bằng chứng quá khứ (Ra kết quả thực)</h4>
+                                <span class="badge" id="badge_tc4">Chưa đánh giá</span>
+                            </div>
+                            <p class="talent-criteria-desc">Trong quá khứ ứng viên đã từng làm việc gì xuất sắc vượt trội ở đâu chưa?</p>
+                            <div class="btn-group-options">
+                                <label class="radio-btn-label" onclick="selectRadio('tc4', 0, this)">
+                                    <input type="radio" name="tc4" value="0"> Chưa có thành tựu gì (0đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc4', 1, this)">
+                                    <input type="radio" name="tc4" value="1"> Có thành tựu vừa tầm (1đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc4', 2, this)">
+                                    <input type="radio" name="tc4" value="2"> Top bán hàng/Chủ quán cũ (2đ)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Tiêu chuẩn 5 -->
+                        <div class="talent-criteria-box">
+                            <div class="talent-criteria-header">
+                                <h4>Khí lực / Tốc độ giao tiếp</h4>
+                                <span class="badge" id="badge_tc5">Chưa đánh giá</span>
+                            </div>
+                            <p class="talent-criteria-desc">Độ tự tin, tốc độ phản hồi ngôn ngữ và năng lượng tỏa ra khi nói chuyện.</p>
+                            <div class="btn-group-options">
+                                <label class="radio-btn-label" onclick="selectRadio('tc5', 0, this)">
+                                    <input type="radio" name="tc5" value="0"> Lờ đờ, chần chừ, chậm (0đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc5', 1, this)">
+                                    <input type="radio" name="tc5" value="1"> Đủ nghe, vừa phải (1đ)
+                                </label>
+                                <label class="radio-btn-label" onclick="selectRadio('tc5', 2, this)">
+                                    <input type="radio" name="tc5" value="2"> Nhanh, sắc sảo, tự tin (2đ)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trục 2 Nền tảng -->
+                    <div style="margin-top: 30px;">
+                        <h3 class="form-section-title">
+                            <i class="fa-solid fa-briefcase" style="color: var(--color-info);"></i> 
+                            3. TRỤC NỀN TẢNG (FOUNDATION) 
+                            <span class="count-badge" id="foundation_score_badge">0/5 điểm</span>
+                        </h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 15px;">
+                            *Đo lường các yếu tố vật chất hỗ trợ sinh tồn lâu dài. Đánh giá CÓ hoặc KHÔNG (Mỗi tiêu chí đạt = 1đ).*
+                        </p>
+
+                        <label class="checkbox-container">
+                            Đường băng tài chính vững vàng (Cả 3-6 tháng không doanh số vẫn sống ổn)
+                            <input type="checkbox" id="nt_1" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            Hậu phương hoàn toàn ủng hộ (Gia đình, vợ/chồng không bàn ra, ngăn cản nghề BĐS)
+                            <input type="checkbox" id="nt_2" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            Thể lực dẻo dai (Sẵn sàng nắng mưa đi tỉnh xem đất, không say xe, khỏe mạnh)
+                            <input type="checkbox" id="nt_3" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            Có phương tiện di chuyển độc lập tốt (Có xe máy khỏe, có ô tô đưa khách là điểm cộng lớn)
+                            <input type="checkbox" id="nt_4" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            Dành thời gian Full-time 100% (Không làm thử cuối tuần, không vướng chân việc khác)
+                            <input type="checkbox" id="nt_5" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <!-- Trục 3 Tư duy -->
+                    <div style="margin-top: 30px;">
+                        <h3 class="form-section-title">
+                            <i class="fa-solid fa-arrows-to-dot" style="color: var(--color-success);"></i> 
+                            4. TRỤC TƯ DUY VĂN HÓA (MINDSET) 
+                            <span class="count-badge" id="mindset_score_badge">0/5 đạt</span>
+                        </h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 15px;">
+                            *Đo lường sự phù hợp lâu dài với văn hóa đội nhóm K11. Áp dụng luật phạt trực tiếp kéo sụt Nhóm nếu thiếu.*
+                        </p>
+
+                        <label class="checkbox-container mindset-check">
+                            Owner Mindset (Tự chủ, chịu trách nhiệm kết quả kinh doanh của mình)
+                            <input type="checkbox" id="ms_1" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container mindset-check">
+                            Tư duy Không đổ lỗi (Tuyệt đối chịu trách nhiệm, tìm giải pháp xử lý)
+                            <input type="checkbox" id="ms_2" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container mindset-check">
+                            "Học khí" cao (Ham học hỏi chéo, không sĩ diện giấu dốt, biết hạ cái tôi)
+                            <input type="checkbox" id="ms_3" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container mindset-check">
+                            Kỷ luật cao với các việc thô lặp lại (Có thói quen làm đều, không làm hứng chí)
+                            <input type="checkbox" id="ms_4" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                        
+                        <label class="checkbox-container mindset-check">
+                            Đạo đức làm việc tốt (Trung thực, sòng phẳng win-win, không chiêu trò cướp khách)
+                            <input type="checkbox" id="ms_5" onchange="updateCalculations()">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Sticky Kết quả Real-time -->
+                <div class="result-sidebar">
+                    <div class="glass-card highlight-gold" id="result_container">
+                        <h3 class="form-section-title" style="color: var(--color-gold); border-bottom-color: var(--border-gold);">
+                            <i class="fa-solid fa-chart-line"></i> Kết Quả Đánh Giá
+                        </h3>
+                        
+                        <!-- Hiển thị Điểm số dạng ProgressBar -->
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span>Trục 1: Tố chất (Talent)</span>
+                                <span class="val" id="val_tc">0/10</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" id="fill_tc"></div>
+                            </div>
+                        </div>
+
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span>Trục 2: Nền tảng (Foundation)</span>
+                                <span class="val" id="val_nt">0/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" id="fill_nt"></div>
+                            </div>
+                        </div>
+
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span>Trục 3: Tư duy (Mindset)</span>
+                                <span class="val" id="val_ms">0/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" id="fill_ms"></div>
+                            </div>
+                        </div>
+
+                        <!-- Khung Kết Luận Nhóm -->
+                        <div class="result-group-card group-5" id="group_card">
+                            <div class="result-group-title">Phân Nhóm Ứng Viên</div>
+                            <div class="result-group-icon" id="group_icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                            <div class="result-group-name" id="group_name">NHÓM 5 — LOẠI THẲNG</div>
+                            <div class="result-group-action" id="group_action">Ứng viên chưa được đánh giá hoặc thiếu tiêu chuẩn bắt buộc.</div>
+                        </div>
+
+                        <!-- Khung hành động chi tiết -->
+                        <div class="action-details-card">
+                            <h5><i class="fa-solid fa-circle-play"></i> Khuyến Nghị Hành Động:</h5>
+                            <ul id="list_actions">
+                                <li>Vui lòng đánh giá các tiêu chí bên trái để nhận đề xuất hành động từ hệ thống.</li>
+                            </ul>
+                        </div>
+
+                        <div class="action-details-card">
+                            <h5><i class="fa-solid fa-rocket"></i> KPI Thử Thách 30/90 Ngày:</h5>
+                            <ul id="list_kpis">
+                                <li>Vui lòng đánh giá các tiêu chí bên trái để nhận bộ mốc KPI đo lường.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Nút thao tác -->
+                        <div class="calc-btn-container">
+                            <button class="btn-calc btn-calc-gold" onclick="copyReport()"><i class="fa-solid fa-copy"></i> Sao chép kết quả gửi Zalo</button>
+                            <button class="btn-calc btn-calc-secondary" onclick="printAssessment()"><i class="fa-solid fa-print"></i> In kết quả / Xuất PDF</button>
+                            <button class="btn-calc btn-calc-danger" onclick="resetCalculator()"><i class="fa-solid fa-rotate-left"></i> Xóa làm lại từ đầu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+           TAB 4: DNA & PHỤ LỤC
+           ========================================== */ -->
+        <div id="dna" class="tab-content">
+            <div class="glass-card">
+                <h2 class="section-title"><i class="fa-solid fa-dna"></i> 6 DNA Cốt Lõi Tại TL Land</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 25px;">
+                    Mọi tiêu chí lọc tuyển dụng, đào tạo và phát triển nhân sự K11 đều phái sinh trực tiếp từ 6 DNA tối cao này:
+                </p>
+
+                <div class="dna-grid">
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">01</span>
+                            <h3>Player-Coach</h3>
+                        </div>
+                        <div class="dna-body">
+                            Sếp lớn vẫn tự tay bán hàng, trực chiến sát sườn cùng anh em.
+                            <div class="dna-meta">Hệ quả: Loại bỏ ngay những người lười biếng, chỉ thích ngồi làm quản lý chỉ tay năm ngón.</div>
+                        </div>
+                    </div>
+
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">02</span>
+                            <h3>Học bằng quan sát</h3>
+                        </div>
+                        <div class="dna-body">
+                            Mật độ người giỏi xung quanh cực cao.
+                            <div class="dna-meta">Hệ quả: Nhân sự phải có "học khí" — biết tự quan sát chéo, dám hỏi và nhạy bén sao chép cái hay.</div>
+                        </div>
+                    </div>
+
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">03</span>
+                            <h3>Tin vào hệ thống</h3>
+                        </div>
+                        <div class="dna-body">
+                            TL Land là Market Maker (Nhà tạo lập thị trường).
+                            <div class="dna-meta">Hệ quả: Loại bỏ tư duy đổ lỗi *"thị trường khó quá em chịu không bán được"* của kẻ yếu.</div>
+                        </div>
+                    </div>
+
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">04</span>
+                            <h3>Win-win tổng dương</h3>
+                        </div>
+                        <div class="dna-body">
+                            Không giới hạn cấp bậc, cấp dưới hoàn toàn có thể vượt sếp về hoa hồng và thăng cấp.
+                            <div class="dna-meta">Hệ quả: Sàng lọc chuẩn những người có tham vọng chinh phục thực sự.</div>
+                        </div>
+                    </div>
+
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">05</span>
+                            <h3>Bộ lọc tự nhiên</h3>
+                        </div>
+                        <div class="dna-body">
+                            Môi trường cạnh tranh sinh tồn khốc liệt, người sống sót cày ải chắc chắn giàu có.
+                            <div class="dna-meta">Hệ quả: Phải nói thẳng sự thật gai góc ngay từ đầu phỏng vấn, không bọc đường tô hồng.</div>
+                        </div>
+                    </div>
+
+                    <div class="dna-card">
+                        <div class="dna-header">
+                            <span class="dna-num">06</span>
+                            <h3>Owner Mindset</h3>
+                        </div>
+                        <div class="dna-body">
+                            Mỗi sale là một CEO điều hành mini-business độc lập của chính mình trên nền tảng TL Land.
+                            <div class="dna-meta">Hệ quả: Tiêu chí lọc số 1. Ai mang nặng tư duy làm thuê ăn bám sẽ bị đào thải lập tức.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lộ trình tương lai -->
+            <div class="glass-card" style="border-color: rgba(255, 255, 255, 0.05);">
+                <h2 class="section-title"><i class="fa-solid fa-hourglass-half"></i> Lộ Trình Cập Nhật Tương Lai</h2>
+                <div style="color: var(--text-secondary); margin-top: 15px; font-size: 0.92rem;">
+                    <p style="margin-bottom: 12px;"><i class="fa-solid fa-square-check" style="color: var(--color-gold);"></i> <strong>Phần 1:</strong> Ultimate Chân dung nhân sự (Đã hoàn thiện & số hóa thành công).</p>
+                    <p style="margin-bottom: 12px;"><i class="fa-solid fa-square-check" style="color: var(--color-gold);"></i> <strong>Phần 2:</strong> Framework phân loại & Ma trận phân nhóm tương tác (Đã hoàn thiện & số hóa).</p>
+                    <p style="margin-bottom: 12px;"><i class="fa-regular fa-square" style="color: var(--text-muted);"></i> <strong>Phần 3:</strong> Bộ câu hỏi test thực chiến 3 tầng (Lọc CV → Phỏng vấn vòng 1 → Test thực chiến thô).</p>
+                    <p style="margin-bottom: 12px;"><i class="fa-regular fa-square" style="color: var(--text-muted);"></i> <strong>Phần 4:</strong> Template phỏng vấn 1 trang chuẩn hóa in ra dùng trực tiếp cho sếp.</p>
+                    <p style="margin-bottom: 12px;"><i class="fa-regular fa-square" style="color: var(--text-muted);"></i> <strong>Phần 5:</strong> Workflow tự động lưu trữ data ứng viên lên Google Sheets thông qua GSheets API.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 TL Land — Khối Kinh Doanh K11. Cẩm nang lưu hành nội bộ của Trịnh Bá Khương.</p>
+            <p style="margin-top: 5px; font-size: 0.75rem;">Thiết kế mỹ thuật & số hóa tương tác bởi Antigravity AI Coding Assistant.</p>
+        </footer>
+    </div>
+
+    <!-- Toast thông báo -->
+    <div id="toast" class="toast"><i class="fa-solid fa-circle-check"></i> Đã sao chép báo cáo vào bộ nhớ đệm!</div>
+
+    <!-- ==========================================
+       JAVASCRIPT LOGIC TƯƠNG TÁC CHÍNH
+       ========================================== */ -->
+    <script>
+        // Hệ thống cấu trúc dữ liệu kết quả phân nhóm khớp 100% Framework
+        const groupsData = {
+            1: {
+                name: "NHÓM 1 — TUYỂN NGAY, NUÔI KỸ (Talent)",
+                icon: '<i class="fa-solid fa-circle-check"></i>',
+                class: "group-1",
+                actionText: "Ứng viên sở hữu tố chất xuất chúng, nền tảng sinh tồn tuyệt vời và tư duy làm chủ cực sắc bén.",
+                actions: [
+                    "Chốt Onboarding nhận việc trong vòng tối đa 24 giờ tới.",
+                    "Sếp Khương trực tiếp Onboard 1-1 trong tuần đầu tiên, vạch rõ lộ trình thăng tiến Trưởng nhóm/Phó phòng.",
+                    "Lên lịch làm việc 1-1 hàng tuần trong 3 tháng đầu tiên.",
+                    "Đưa đi cùng sếp trực tiếp trong 2-3 chuyến thực chiến đi tỉnh dẫn khách đầu tiên."
+                ],
+                kpis: [
+                    "Sau 30 ngày: Ghi nhận lịch sử đăng tin ≥ 60 bài đều đặn, gọi điện ≥ 200 cuộc, tối thiểu 10 khách nét.",
+                    "Sau 30 ngày: Đã hoàn thành đi thực địa xem đất tối thiểu 2 chuyến với leader.",
+                    "Sau 90 ngày: Phát sinh Deal giao dịch đầu tiên làm bệ phóng vững vàng.",
+                    "Sau 90 ngày: Tự chủ chạy quảng cáo Mkt, duy trì đều đặn số lượng khách chốt đi tỉnh."
+                ]
+            },
+            2: {
+                name: "NHÓM 2 — TUYỂN, ĐI BÌNH THƯỜNG (Standard)",
+                icon: '<i class="fa-solid fa-square-check"></i>',
+                class: "group-2",
+                actionText: "Ứng viên có tiềm lực khá, nền tảng hoặc tố chất tương đối ổn định và tư duy văn hóa lành mạnh.",
+                actions: [
+                    "Duyệt tuyển dụng, phân bổ cho Trưởng nhóm cấp dưới phụ trách kèm cặp theo quy trình chuẩn.",
+                    "Thiết lập rõ mốc KPI thử thách 90 ngày đầu tiên.",
+                    "Quản lý theo quy trình nhóm chung để tối ưu thời gian của sếp Khương.",
+                    "Đánh giá lại sau 90 ngày: Nếu biểu hiện xuất sắc đột phá thì nâng tầm huấn luyện như Nhóm 1."
+                ],
+                kpis: [
+                    "Sau 30 ngày: Ghi nhận lịch sử đăng tin ≥ 60 bài, gọi điện ≥ 200 cuộc, tối thiểu 8 khách nét.",
+                    "Sau 30 ngày: Đi thực địa xem đất tỉnh tối thiểu 2 chuyến.",
+                    "Sau 90 ngày: Kỳ vọng phát sinh Deal giao dịch đầu tiên.",
+                    "Sau 90 ngày: Tự lập các kỹ năng marketing thô căn bản."
+                ]
+            },
+            3: {
+                name: "NHÓM 3 — CTV / THỬ VIỆC 30 NGÀY (Probation)",
+                icon: '<i class="fa-solid fa-user-clock"></i>',
+                class: "group-3",
+                actionText: "Ứng viên thái độ tốt nhưng điều kiện nền tảng yếu (vướng tài chính/thời gian) hoặc tố chất chưa rõ ràng.",
+                actions: [
+                    "Đề xuất làm CTV không chính thức hoặc thử thách thử việc 30 ngày.",
+                    "Giao việc thô có mốc đo lường KPI hàng ngày vô cùng rõ ràng.",
+                    "TUYỆT ĐỐI KHÔNG đầu tư thời gian 1-1. Sếp chỉ cung cấp tài liệu thô, để ứng viên tự bơi và tự chứng minh.",
+                    "Đánh giá nghiêm túc sau 30 ngày: Đạt thì tuyển chính thức Nhóm 2, không đạt hoặc thái độ xấu loại ngay."
+                ],
+                kpis: [
+                    "Trong 30 ngày đầu: Đăng tin đầy đủ 90 bài (3 bài/ngày đều đặn không đứt quãng).",
+                    "Trong 30 ngày đầu: Gọi điện cold-call tối thiểu 300 cuộc.",
+                    "Trong 30 ngày đầu: Đưa về danh sách tối thiểu 5 khách hàng thực sự nét.",
+                    "Thái độ: Chăm chỉ, chủ động gửi báo cáo daily report đúng giờ giấc."
+                ]
+            },
+            4: {
+                name: "NHÓM 4 — TỪ CHỐI KHÉO, GIỮ MỐI (Network)",
+                icon: '<i class="fa-solid fa-address-book"></i>',
+                class: "group-4",
+                actionText: "Ứng viên có profile rất tốt ở ngành khác hoặc cựu quản lý cái tôi lớn, hoặc có tố chất nhưng sai thời điểm.",
+                actions: [
+                    "Từ chối khéo léo, lịch sự để giữ vững mối quan hệ giao hảo dài lâu.",
+                    "Nếu là cựu sếp cái tôi cao: KHÔNG nhận làm CTV để tránh gây loãng kỷ luật chung của phòng K11.",
+                    "Nếu là top sale ngành khác: Đưa vào danh sách Zalo chăm sóc dài hạn như một nhà đầu tư/khách hàng mua đất tiềm năng.",
+                    "Lên lịch follow-up hỏi thăm lại sau 3 - 6 tháng nếu thời điểm đó phù hợp hơn."
+                ],
+                kpis: [
+                    "Không đặt KPI thử việc.",
+                    "Tập trung chăm sóc quan hệ, xây dựng mạng lưới network cá nhân cho sếp Khương."
+                ]
+            },
+            5: {
+                name: "NHÓM 5 — LOẠI THẲNG (Reject)",
+                icon: '<i class="fa-solid fa-circle-xmark"></i>',
+                class: "group-5",
+                actionText: "Ứng viên vi phạm cờ đỏ tuyệt đối, hoặc thiếu hụt nghiêm trọng tư duy văn hóa lành mạnh.",
+                actions: [
+                    "Kết thúc phỏng vấn văn minh, lịch sự nhưng dứt khoát.",
+                    "Tuyệt đối không hứa hẹn mơ hồ liên hệ lại để tránh làm mất thời gian đôi bên.",
+                    "Dùng câu nói từ chối tiêu chuẩn để bảo vệ văn hóa: *Hiện tại mô hình không lương thực chiến chưa phù hợp định hướng ngắn hạn của bạn...*",
+                    "Không kết bạn Zalo sâu, không đưa vào danh sách theo dõi."
+                ],
+                kpis: [
+                    "Từ chối thẳng thắn.",
+                    "Loại bỏ để bảo toàn văn hóa kỷ luật và nguồn lực đào tạo của K11."
+                ]
+            }
+        };
+
+        // Hàm chuyển đổi Tab mượt mà
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            
+            // Tìm nút tab tương ứng để active
+            const buttons = document.querySelectorAll('.tab-btn');
+            if (tabId === 'profile') buttons[0].classList.add('active');
+            else if (tabId === 'framework') buttons[1].classList.add('active');
+            else if (tabId === 'calculator') buttons[2].classList.add('active');
+            else if (tabId === 'dna') buttons[3].classList.add('active');
+
+            // Scroll lên đầu
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hàm điều khiển đóng mở Accordion ở Tab 2
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Đóng tất cả accordion khác
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Hàm xử lý chọn nút Radio tùy chỉnh cho Trục 1 (Tố chất)
+        let radioScores = { tc1: null, tc2: null, tc3: null, tc4: null, tc5: null };
+
+        function selectRadio(name, val, labelElement) {
+            // Xóa active cũ trong cùng group
+            const labels = labelElement.parentElement.querySelectorAll('.radio-btn-label');
+            labels.forEach(lbl => {
+                lbl.classList.remove('active-0', 'active-1', 'active-2');
+            });
+
+            // Active lựa chọn mới
+            labelElement.classList.add('active-' + val);
+            
+            // Gán giá trị vào input radio ẩn bên trong để quản lý form
+            const input = labelElement.querySelector('input');
+            input.checked = true;
+
+            // Lưu điểm số
+            radioScores[name] = val;
+
+            // Cập nhật badge
+            const badge = document.getElementById('badge_' + name);
+            if (val === 0) {
+                badge.textContent = "Yếu (0đ)";
+                badge.style.color = "var(--color-danger)";
+            } else if (val === 1) {
+                badge.textContent = "Tạm ổn (1đ)";
+                badge.style.color = "var(--color-warning)";
+            } else if (val === 2) {
+                badge.textContent = "Đạt / Xuất sắc (2đ)";
+                badge.style.color = "var(--color-success)";
+            }
+
+            // Chạy tính toán lại
+            updateCalculations();
+        }
+
+        // HÀM TÍNH TOÁN & PHÂN LOẠI ĐỘNG CHÍNH (REAL-TIME CALCULATOR)
+        function updateCalculations() {
+            // 1. Đếm số lượng Must-Have được tích
+            let mustCount = 0;
+            const mustIds = ['must_c1', 'must_c2', 'must_c3', 'must_c4', 'must_c5'];
+            mustIds.forEach(id => {
+                if (document.getElementById(id).checked) mustCount++;
+            });
+            document.getElementById('must_have_count').textContent = mustCount + "/5";
+
+            // 2. Tính điểm Trục 1 (Tố chất)
+            let scoreTC = 0;
+            let tcEvaluatedCount = 0;
+            Object.keys(radioScores).forEach(key => {
+                if (radioScores[key] !== null) {
+                    scoreTC += radioScores[key];
+                    tcEvaluatedCount++;
+                }
+            });
+            document.getElementById('talent_score_badge').textContent = scoreTC + "/10 điểm";
+            document.getElementById('val_tc').textContent = scoreTC + "/10";
+            
+            // Update fill bar tố chất
+            const fillTC = document.getElementById('fill_tc');
+            fillTC.style.width = (scoreTC * 10) + "%";
+            if (scoreTC >= 8) {
+                fillTC.className = "score-bar-fill success";
+            } else if (scoreTC >= 5) {
+                fillTC.className = "score-bar-fill warning";
+            } else {
+                fillTC.className = "score-bar-fill danger";
+            }
+
+            // 3. Tính điểm Trục 2 (Nền tảng)
+            let scoreNT = 0;
+            const ntIds = ['nt_1', 'nt_2', 'nt_3', 'nt_4', 'nt_5'];
+            ntIds.forEach(id => {
+                if (document.getElementById(id).checked) scoreNT++;
+            });
+            document.getElementById('foundation_score_badge').textContent = scoreNT + "/5 điểm";
+            document.getElementById('val_nt').textContent = scoreNT + "/5";
+            
+            // Update fill bar nền tảng
+            const fillNT = document.getElementById('fill_nt');
+            fillNT.style.width = (scoreNT * 20) + "%";
+            if (scoreNT >= 4) {
+                fillNT.className = "score-bar-fill success";
+            } else if (scoreNT >= 2) {
+                fillNT.className = "score-bar-fill warning";
+            } else {
+                fillNT.className = "score-bar-fill danger";
+            }
+
+            // 4. Tính điểm Trục 3 (Tư duy - Mindset)
+            let scoreMS = 0;
+            const msIds = ['ms_1', 'ms_2', 'ms_3', 'ms_4', 'ms_5'];
+            msIds.forEach(id => {
+                if (document.getElementById(id).checked) scoreMS++;
+            });
+            document.getElementById('mindset_score_badge').textContent = scoreMS + "/5 đạt";
+            document.getElementById('val_ms').textContent = scoreMS + "/5";
+            
+            // Update fill bar tư duy
+            const fillMS = document.getElementById('fill_ms');
+            fillMS.style.width = (scoreMS * 20) + "%";
+            if (scoreMS === 5) {
+                fillMS.className = "score-bar-fill success";
+            } else if (scoreMS >= 4) {
+                fillMS.className = "score-bar-fill warning";
+            } else {
+                fillMS.className = "score-bar-fill danger";
+            }
+
+            // 5. THỰC THI THUẬT TOÁN QUYẾT ĐỊNH PHÂN NHÓM
+            let finalGroup = 5; // Mặc định là Nhóm 5 (Loại thẳng)
+            let reason = "";
+
+            let missingMS = 5 - scoreMS;
+
+            // Kiểm tra các luật đặc biệt trước
+            if (mustCount < 5) {
+                finalGroup = 5;
+                reason = "Ứng viên chưa đạt đủ 5 tiêu chuẩn cứng bắt buộc (Must-Have) để sinh tồn trong nghề.";
+            } else if (missingMS >= 2) {
+                finalGroup = 5;
+                reason = "Vi phạm luật phạt Trục 3: Thiếu từ " + missingMS + " tiêu chí Mindset phù hợp văn hóa (chỉ đạt " + scoreMS + "/5).";
+            } else if (missingMS === 1) {
+                finalGroup = 4;
+                reason = "Vi phạm luật phạt Trục 3: Thiếu đúng 1 tiêu chí Mindset phù hợp văn hóa. Kéo nhóm tối đa xuống Nhóm 4.";
+            } else {
+                // Đạt đủ Must-have và Mindset -> Đối chiếu Ma trận quyết định 2D
+                // Phân nhóm Tố chất
+                let levelTC = "Thấp"; // 0 - 4
+                if (scoreTC >= 8) levelTC = "Cao";
+                else if (scoreTC >= 5) levelTC = "TB";
+
+                // Phân nhóm Nền tảng
+                let levelNT = "Thấp"; // 0 - 1
+                if (scoreNT >= 4) levelNT = "Cao";
+                else if (scoreNT >= 2) levelNT = "TB";
+
+                // Bảng ma trận
+                if (levelTC === "Cao") {
+                    if (levelNT === "Cao") finalGroup = 1;
+                    else if (levelNT === "TB") finalGroup = 2;
+                    else finalGroup = 3;
+                } else if (levelTC === "TB") {
+                    if (levelNT === "Cao") finalGroup = 2;
+                    else if (levelNT === "TB") finalGroup = 3;
+                    else finalGroup = 4;
+                } else { // levelTC === "Thấp"
+                    if (levelNT === "Cao") finalGroup = 4;
+                    else finalGroup = 5;
+                }
+                
+                reason = "Phân tích ma trận: Tố chất đạt mức " + levelTC + " (" + scoreTC + "/10đ) & Nền tảng đạt mức " + levelNT + " (" + scoreNT + "/5đ).";
+            }
+
+            // 6. HIỂN THỊ KẾT QUẢ RA GIAO DIỆN
+            const groupInfo = groupsData[finalGroup];
+            const card = document.getElementById('group_card');
+            
+            // Xóa tất cả group classes cũ
+            card.className = "result-group-card";
+            card.classList.add(groupInfo.class);
+
+            document.getElementById('group_icon').innerHTML = groupInfo.icon;
+            document.getElementById('group_name').textContent = groupInfo.name;
+            
+            // Hiển thị lý do phân nhóm + hành động
+            document.getElementById('group_action').innerHTML = "<strong>Lý giải:</strong> " + reason + "<br><br>" + groupInfo.actionText;
+
+            // Render danh sách hành động chi tiết
+            const listActions = document.getElementById('list_actions');
+            listActions.innerHTML = "";
+            groupInfo.actions.forEach(act => {
+                const li = document.createElement('li');
+                li.textContent = act;
+                listActions.appendChild(li);
+            });
+
+            // Render danh sách KPIs
+            const listKpis = document.getElementById('list_kpis');
+            listKpis.innerHTML = "";
+            groupInfo.kpis.forEach(kpi => {
+                const li = document.createElement('li');
+                li.textContent = kpi;
+                listKpis.appendChild(li);
+            });
+        }
+
+        // Hàm Reset toàn bộ Calculator về mặc định
+        function resetCalculator() {
+            if(confirm("Bạn có chắc chắn muốn xóa toàn bộ đánh giá hiện tại để phỏng vấn ứng viên mới không?")) {
+                document.getElementById('cand_name').value = "";
+                document.getElementById('cand_type').value = "Chưa xác định";
+
+                // Uncheck must-haves
+                const mustIds = ['must_c1', 'must_c2', 'must_c3', 'must_c4', 'must_c5'];
+                mustIds.forEach(id => document.getElementById(id).checked = false);
+
+                // Uncheck trục 2 nền tảng
+                const ntIds = ['nt_1', 'nt_2', 'nt_3', 'nt_4', 'nt_5'];
+                ntIds.forEach(id => document.getElementById(id).checked = false);
+
+                // Uncheck trục 3 mindset
+                const msIds = ['ms_1', 'ms_2', 'ms_3', 'ms_4', 'ms_5'];
+                msIds.forEach(id => document.getElementById(id).checked = false);
+
+                // Reset radios trục 1
+                document.querySelectorAll('.radio-btn-label').forEach(lbl => {
+                    lbl.classList.remove('active-0', 'active-1', 'active-2');
+                    const input = lbl.querySelector('input');
+                    if (input) input.checked = false;
+                });
+
+                radioScores = { tc1: null, tc2: null, tc3: null, tc4: null, tc5: null };
+                
+                // Reset badges tố chất
+                const tcNames = ['tc1', 'tc2', 'tc3', 'tc4', 'tc5'];
+                tcNames.forEach(name => {
+                    document.getElementById('badge_' + name).textContent = "Chưa đánh giá";
+                    document.getElementById('badge_' + name).style.color = "var(--text-muted)";
+                });
+
+                // Chạy update
+                updateCalculations();
+                
+                // Hiển thị thông báo
+                showToast("Đã thiết lập lại bộ công cụ phỏng vấn!");
+            }
+        }
+
+        // Hàm hiển thị Toast thông báo nhanh gọn
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Hàm In ấn kết quả / Xuất PDF báo cáo phỏng vấn chuyên nghiệp
+        function printAssessment() {
+            // Điền ngày hiện tại vào bản in
+            const today = new Date();
+            const dateStr = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+            document.getElementById('print_date').textContent = dateStr;
+
+            // Kích hoạt lệnh in hệ thống
+            window.print();
+        }
+
+        // HÀM SAO CHÉP NHANH BÁO CÁO (ZALO FRIENDLY) DẠNG MARKDOWN
+        function copyReport() {
+            const name = document.getElementById('cand_name').value.trim() || "Ẩn danh / Chưa nhập";
+            const type = document.getElementById('cand_type').value;
+            
+            // Lấy điểm số
+            let scoreTC = 0;
+            Object.keys(radioScores).forEach(key => {
+                if (radioScores[key] !== null) scoreTC += radioScores[key];
+            });
+
+            let scoreNT = 0;
+            const ntIds = ['nt_1', 'nt_2', 'nt_3', 'nt_4', 'nt_5'];
+            ntIds.forEach(id => {
+                if (document.getElementById(id).checked) scoreNT++;
+            });
+
+            let scoreMS = 0;
+            const msIds = ['ms_1', 'ms_2', 'ms_3', 'ms_4', 'ms_5'];
+            msIds.forEach(id => {
+                if (document.getElementById(id).checked) scoreMS++;
+            });
+
+            // Lấy nhóm kết quả
+            const groupName = document.getElementById('group_name').textContent;
+            
+            // Xây dựng chuỗi văn bản Markdown báo cáo cực đẹp
+            let reportText = `🎯 **BÁO CÁO PHỎNG VẤN NHÂN SỰ — TL LAND K11** 🎯\n`;
+            reportText += `--------------------------------------\n`;
+            reportText += `👤 **Ứng viên:** ${name}\n`;
+            reportText += `💼 **Định hướng vị trí:** ${type}\n`;
+            reportText += `📅 **Ngày đánh giá:** ${new Date().toLocaleDateString('vi-VN')}\n`;
+            reportText += `--------------------------------------\n`;
+            reportText += `📊 **ĐIỂM SỐ CÁC TRỤC ĐO LƯỜNG:**\n`;
+            reportText += `⚡ Trục 1: Tố chất (Talent): **${scoreTC}/10 điểm**\n`;
+            reportText += `🧱 Trục 2: Nền tảng (Foundation): **${scoreNT}/5 điểm**\n`;
+            reportText += `🧠 Trục 3: Tư duy (Mindset): **${scoreMS}/5 đạt**\n`;
+            reportText += `--------------------------------------\n`;
+            reportText += `🏆 **KẾT LUẬN PHÂN LOẠI:**\n`;
+            reportText += `🔥 **${groupName}**\n\n`;
+            
+            // Lấy các khuyến nghị hành động
+            reportText += `📋 **KHUYẾN NGHỊ HÀNH ĐỘNG CỦA SẾP KHƯƠNG:**\n`;
+            const actionItems = document.getElementById('list_actions').querySelectorAll('li');
+            actionItems.forEach((li, idx) => {
+                reportText += `${idx + 1}. ${li.textContent}\n`;
+            });
+            
+            reportText += `\n🚀 **MỐC KPI THỬ THÁCH 30/90 NGÀY:**\n`;
+            const kpiItems = document.getElementById('list_kpis').querySelectorAll('li');
+            kpiItems.forEach((li, idx) => {
+                reportText += `- ${li.textContent}\n`;
+            });
+            
+            reportText += `\n*Báo cáo được trích xuất tự động từ Hệ thống Đánh giá Nhân sự K11 — Trịnh Bá Khương.*`;
+
+            // Thực hiện sao chép vào Clipboard
+            navigator.clipboard.writeText(reportText).then(() => {
+                showToast("Đã sao chép báo cáo Zalo thành công!");
+            }).catch(err => {
+                alert("Không thể sao chép tự động. Vui lòng thử lại!");
+            });
+        }
+
+        // Chạy khởi tạo ban đầu khi tải trang
+        window.onload = function() {
+            updateCalculations();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/training-hub", "destination": "/training-hub/index.html" },
+    { "source": "/training-hub/:path((?!.*\\.).*)", "destination": "/training-hub/index.html" },
+    { "source": "/crm", "destination": "/CRM/index.html" },
+    { "source": "/crm/:path((?!.*\\.).*)", "destination": "/CRM/index.html" },
+    { "source": "/tuyendung", "destination": "/tuyendung/index.html" },
+    { "source": "/tuyendung/:path((?!.*\\.).*)", "destination": "/tuyendung/index.html" }
+  ]
+}

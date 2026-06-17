@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TL Land CRM - Hệ Thống Chăm Sóc Khách Hàng</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/CRM/style.css">
+</head>
+<body>
+    <!-- ======== LOGIN SCREEN (Full-Screen Overlay) ======== -->
+    <div class="login-screen" id="login-screen" style="display:none;">
+        <div class="login-bg-orbs">
+            <div class="login-orb login-orb-1"></div>
+            <div class="login-orb login-orb-2"></div>
+        </div>
+
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="login-logo-icon">
+                    <i class="fa-solid fa-hotel gold-text"></i>
+                </div>
+                <h1>TL Land <span class="gold-text">CRM</span></h1>
+                <span>Hệ Thống Chăm Sóc Khách Hàng</span>
+            </div>
+
+            <p class="login-desc">Đăng nhập bằng tài khoản Google đã đăng ký để quản lý và chăm sóc khách hàng của bạn.</p>
+
+            <!-- Nút Đăng nhập Google -->
+            <button class="google-signin-btn" id="google-signin-btn" onclick="signInWithGoogle()">
+                <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Tiếp tục với Google
+            </button>
+
+            <!-- Loading state -->
+            <div class="login-loading" id="login-loading" style="display:none;">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <span>Đang đăng nhập...</span>
+            </div>
+
+            <div class="login-error" id="login-error" style="display:none;"></div>
+
+            <div class="login-footer">
+                <i class="fa-solid fa-lock"></i> Chỉ dành cho nhân sự được cấp quyền
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== ACCESS DENIED SCREEN (Chưa được cấp phép) ======== -->
+    <div class="login-screen" id="access-denied-screen" style="display:none;">
+        <div class="login-bg-orbs">
+            <div class="login-orb login-orb-1"></div>
+            <div class="login-orb login-orb-2"></div>
+        </div>
+
+        <div class="login-card access-denied-card">
+            <div class="denied-icon">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <h2 class="denied-title" style="margin-bottom:15px; text-align:center;">Chờ Admin Cấp Phép</h2>
+            
+            <div class="denied-user-info" id="denied-user-info" style="margin-bottom:20px; text-align:center;">
+                <!-- Sẽ được fill bởi JS -->
+            </div>
+
+            <p class="denied-message" style="margin-bottom:25px; text-align:center; color: var(--text-muted); line-height: 1.6;">
+                Email của bạn chưa được cấp quyền truy cập hệ thống.<br>
+                Vui lòng liên hệ <strong>Sếp Khương</strong> để được thêm vào whitelist.
+            </p>
+
+            <button class="btn btn-primary" onclick="backToLogin()" style="width:100%; justify-content:center;">
+                <i class="fa-solid fa-arrow-left"></i> Quay Lại Đăng Nhập
+            </button>
+        </div>
+    </div>
+
+    <div class="app-container" style="display:none;">
+        <!-- Background Glowing Orbs -->
+        <div class="bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <!-- Sidebar / Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-hotel gold-text"></i>
+                    <span>TL LAND <span class="gold-text">CRM</span></span>
+                </div>
+            </div>
+            <nav class="menu">
+                <a href="#" class="menu-item active" data-view="customers">
+                    <i class="fa-solid fa-users"></i> Khách hàng
+                </a>
+                <a href="#" class="menu-item" data-view="dashboard">
+                    <i class="fa-solid fa-chart-line"></i> Báo cáo nhanh
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="role-selector-wrapper">
+                    <label for="role-select"><i class="fa-solid fa-shield-halved"></i> Vai trò giả lập</label>
+                    <select id="role-select" class="role-select">
+                        <option value="admin">Admin (Sếp Khương)</option>
+                        <option value="sales" selected>Sales (Nhân sự)</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Tìm theo tên, SĐT khách hàng...">
+                </div>
+                <div class="user-profile-wrapper" style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-profile">
+                        <span class="user-avatar"><i class="fa-solid fa-circle-user"></i></span>
+                        <div class="user-info">
+                            <span class="user-name" id="current-user-name">Đang tải...</span>
+                            <span class="user-role-label" id="current-user-role">Sales</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()" title="Đăng xuất" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; transition: color 0.2s; padding: 5px;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Workspace -->
+            <div class="workspace">
+                <!-- Customer View -->
+                <section id="customers-view" class="view-section active">
+                    <!-- Quick Stats Bar -->
+                    <div class="quick-stats">
+                        <div class="stat-card" data-status="loc">
+                            <span class="stat-icon loc-bg"><i class="fa-solid fa-filter"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="count-loc">0</span>
+                                <span class="stat-label">Lọc (Mới)</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-status="quan_tam">
+                            <span class="stat-icon quan-tam-bg"><i class="fa-solid fa-star"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="count-quan_tam">0</span>
+                                <span class="stat-label">Quan Tâm</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-status="hen_gap">
+                            <span class="stat-icon hen-gap-bg"><i class="fa-solid fa-calendar-days"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="count-hen_gap">0</span>
+                                <span class="stat-label">Hẹn Gặp/Xem Đất</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-status="da_xem">
+                            <span class="stat-icon da_xem-bg"><i class="fa-solid fa-circle-check"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="count-da_xem">0</span>
+                                <span class="stat-label">Đã Xem/Mua</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-status="khong_quan_tam">
+                            <span class="stat-icon khong-qt-bg"><i class="fa-solid fa-circle-xmark"></i></span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="count-khong_quan_tam">0</span>
+                                <span class="stat-label">Không Quan Tâm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline & View Options -->
+                    <div class="view-header">
+                        <div class="title-area">
+                            <h2>Hành Trình Khách Hàng</h2>
+                            <p class="subtitle">Quản lý và cập nhật tiến độ chăm sóc khách hàng hàng ngày</p>
+                        </div>
+                        <div class="action-buttons" style="display: flex; gap: 10px;">
+                            <button id="btn-import-sheet" class="btn btn-outline">
+                                <i class="fa-solid fa-file-import"></i> Nhập từ Google Sheet
+                            </button>
+                            <button id="btn-add-customer" class="btn btn-primary">
+                                <i class="fa-solid fa-plus"></i> Thêm Khách Hàng
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter & Tab Switch (Hiện trên cả PC và Mobile) -->
+                    <div class="crm-tabs-container">
+                        <div class="crm-tab active" data-tab="loc">
+                            <span class="tab-indicator loc-indicator"></span>
+                            <span class="tab-label">LỌC NGUỒN</span>
+                            <span class="tab-badge" id="tab-badge-loc">0</span>
+                        </div>
+                        <div class="crm-tab" data-tab="quan_tam">
+                            <span class="tab-indicator quan_tam-indicator"></span>
+                            <span class="tab-label">QUAN TÂM</span>
+                            <span class="tab-badge" id="tab-badge-quan_tam">0</span>
+                        </div>
+                        <div class="crm-tab" data-tab="hen_gap">
+                            <span class="tab-indicator hen_gap-indicator"></span>
+                            <span class="tab-label">HẸN GẶP / XEM ĐẤT</span>
+                            <span class="tab-badge" id="tab-badge-hen_gap">0</span>
+                        </div>
+                        <div class="crm-tab" data-tab="da_xem">
+                            <span class="tab-indicator da_xem-indicator"></span>
+                            <span class="tab-label">ĐÃ XEM</span>
+                            <span class="tab-badge" id="tab-badge-da_xem">0</span>
+                        </div>
+                        <div class="crm-tab" data-tab="khong_quan_tam">
+                            <span class="tab-indicator khong_quan_tam-indicator"></span>
+                            <span class="tab-label">KHÔNG QUAN TÂM</span>
+                            <span class="tab-badge" id="tab-badge-khong_quan_tam">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách khách hàng (Hiển thị dạng thẻ rộng) -->
+                    <div class="clients-list-container" id="clients-list-container">
+                        <!-- JS render khách hàng dạng danh sách rộng vào đây -->
+                    </div>
+                </section>
+
+                <!-- Dashboard View -->
+                <section id="dashboard-view" class="view-section">
+                    <div class="view-header">
+                        <div class="title-area">
+                            <h2>Báo Cáo Hiệu Suất CSKH</h2>
+                            <p class="subtitle">Thống kê dữ liệu cuộc gọi, tỷ lệ chuyển đổi nguồn khách hàng</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="chart-card">
+                            <h3>Tỷ Lệ Chuyển Đổi Khách Hàng</h3>
+                            <div class="mock-chart-container">
+                                <div class="funnel-chart">
+                                    <div class="funnel-stage stage-1" style="width: 100%;">Lọc (100%)</div>
+                                    <div class="funnel-stage stage-2" style="width: 65%;">Quan tâm (65%)</div>
+                                    <div class="funnel-stage stage-3" style="width: 35%;">Hẹn gặp (35%)</div>
+                                    <div class="funnel-stage stage-4" style="width: 15%;">Đã xem (15%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>Phân Bổ Theo Nguồn Khách</h3>
+                            <div class="source-distribution">
+                                <div class="source-item">
+                                    <span class="source-name">Quét số điện thoại</span>
+                                    <div class="progress-bar-wrapper">
+                                        <div class="progress-bar" style="width: 55%;"></div>
+                                    </div>
+                                    <span class="source-val">55%</span>
+                                </div>
+                                <div class="source-item">
+                                    <span class="source-name">Đăng tin ảo</span>
+                                    <div class="progress-bar-wrapper">
+                                        <div class="progress-bar" style="width: 30%;"></div>
+                                    </div>
+                                    <span class="source-val">30%</span>
+                                </div>
+                                <div class="source-item">
+                                    <span class="source-name">Facebook Ads</span>
+                                    <div class="progress-bar-wrapper">
+                                        <div class="progress-bar" style="width: 15%;"></div>
+                                    </div>
+                                    <span class="source-val">15%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Chi tiết khách hàng & Note lịch sử -->
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Chi Tiết Khách Hàng</h3>
+                <span class="close-modal" id="btn-close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="customer-profile-info">
+                    <div class="profile-main">
+                        <div class="profile-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                        <div>
+                            <h2 id="cust-name">Nguyễn Văn A</h2>
+                            <p class="source-tag" id="cust-source"><i class="fa-solid fa-arrow-up-right-from-square"></i> Nguồn: Quét số</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Số điện thoại</span>
+                            <span class="info-value" id="cust-phone">091***789</span>
+                            <button class="btn btn-sm btn-outline btn-call" id="btn-call-mock">
+                                <i class="fa-solid fa-phone"></i> Gọi điện
+                            </button>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Sales phụ trách</span>
+                            <span class="info-value" id="cust-sales">Bảo Nam</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Cập nhật cuối</span>
+                            <span class="info-value" id="cust-last-update">12/06/2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Lịch hẹn tiếp</span>
+                            <input type="date" id="cust-next-appointment" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-updater">
+                    <h4>Cập Nhật Trạng Thái</h4>
+                    <div class="status-buttons">
+                        <button class="status-btn" data-status="loc">Lọc</button>
+                        <button class="status-btn" data-status="quan_tam">Quan Tâm</button>
+                        <button class="status-btn" data-status="hen_gap">Hẹn Gặp/Xem Đất</button>
+                        <button class="status-btn" data-status="da_xem">Đã Xem</button>
+                        <button class="status-btn" data-status="khong_quan_tam">Không quan tâm</button>
+                    </div>
+                </div>
+
+                <div class="notes-section">
+                    <h4>Nhật Ký Chăm Sóc (Ghi chú cuộc gọi)</h4>
+                    <div class="add-note-box">
+                        <textarea id="note-input" placeholder="Nhập ghi chú cuộc gọi, thái độ khách hàng, nhu cầu cụ thể..."></textarea>
+                        <button class="btn btn-primary" id="btn-save-note">Lưu Ghi Chú</button>
+                    </div>
+                    <div class="timeline" id="notes-timeline">
+                        <!-- Ghi chú sẽ hiển thị ở đây -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Thêm khách hàng mới -->
+    <div id="add-customer-modal" class="modal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Thêm Khách Hàng Mới</h3>
+                <span class="close-modal" id="btn-close-add-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="add-customer-form">
+                    <div class="form-group">
+                        <label for="new-cust-name">Họ và Tên <span class="required">*</span></label>
+                        <input type="text" id="new-cust-name" required placeholder="Nhập tên khách hàng" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-cust-phone">Số Điện Thoại <span class="required">*</span></label>
+                        <input type="tel" id="new-cust-phone" required placeholder="Nhập số điện thoại" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-cust-source">Nguồn Khách Hàng</label>
+                        <select id="new-cust-source" class="form-control">
+                            <option value="Quét số">Quét số điện thoại</option>
+                            <option value="Đăng tin ảo">Đăng tin ảo</option>
+                            <option value="Facebook Ads">Facebook Ads</option>
+                            <option value="Khác">Nguồn khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-cust-sales">Phân cho Sales chăm sóc</label>
+                        <select id="new-cust-sales" class="form-control">
+                            <option value="Bảo Nam">Bảo Nam</option>
+                            <option value="Phương Thảo">Phương Thảo</option>
+                            <option value="Tuấn Anh">Tuấn Anh</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-cancel-add">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nhập khách hàng từ Google Sheet -->
+    <div id="import-sheet-modal" class="modal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Nhập Khách Hàng Từ Google Sheet</h3>
+                <span class="close-modal" id="btn-close-import-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="import-sheet-form">
+                    <div class="form-group">
+                        <label for="sheet-url">Đường dẫn Google Sheet <span class="required">*</span></label>
+                        <input type="url" id="sheet-url" required placeholder="https://docs.google.com/spreadsheets/d/..." class="form-control">
+                        <p class="subtitle" style="font-size: 11px; margin-top: 6px; line-height: 1.4;">
+                            <i class="fa-solid fa-circle-info"></i> Hãy chắc chắn tệp của bạn đã được cấu hình quyền chia sẻ: <strong>"Người có liên kết có quyền xem"</strong> (Anyone with the link can view).
+                        </p>
+                    </div>
+
+                    <!-- Progress / Loading state -->
+                    <div id="import-loading" style="display:none; flex-direction:column; align-items:center; gap: 10px; margin: 15px 0;">
+                        <i class="fa-solid fa-spinner fa-spin" style="font-size: 24px; color: var(--accent-color);"></i>
+                        <span id="import-status-text" style="font-size: 13px; color: var(--text-muted);">Đang cào dữ liệu...</span>
+                    </div>
+
+                    <!-- Result / Error msg -->
+                    <div id="import-error" class="login-error" style="display:none; margin: 15px 0; padding: 10px;"></div>
+                    <div id="import-success" style="display:none; margin: 15px 0; padding: 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; color: #059669; font-size: 13px; text-align:center; font-weight: 600;"></div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-cancel-import">Hủy</button>
+                        <button type="submit" class="btn btn-primary" id="btn-submit-import">Bắt đầu nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Firebase SDK (compat version cho web tĩnh) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <!-- JS Logic -->
+    <script src="/CRM/app.js"></script>
+</body>
+</html>

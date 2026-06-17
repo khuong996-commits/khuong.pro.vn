@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Lỗ Hổng Tâm Lý Khách Hàng — TL Land K11</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #fafafa;
+    --cream: #f5f0e8;
+    --ink: #1a1a2e;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --muted: #6b6b6b;
+    --border: rgba(0,0,0,0.08);
+
+    --c1: #4a3f8f;
+    --c1-bg: #eeedfe;
+    --c1-light: #f4f3ff;
+
+    --c2: #0f6e56;
+    --c2-bg: #e1f5ee;
+    --c2-light: #f0faf6;
+
+    --c3: #993c1d;
+    --c3-bg: #faece7;
+    --c3-light: #fdf5f2;
+
+    --c4: #993556;
+    --c4-bg: #fbeaf0;
+    --c4-light: #fef5f8;
+
+    --c5: #854f0b;
+    --c5-bg: #faeeda;
+    --c5-light: #fef9f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--white);
+    padding: 80px 40px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    max-width: 520px;
+  }
+  .hero-meta {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item { }
+  .hero-meta-item .label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 4px;
+  }
+  .hero-meta-item .val {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* NAV INDEX */
+  .index-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .index-bar ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 0;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .index-bar ul li a {
+    display: block;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .index-bar ul li a:hover { color: var(--black); border-bottom-color: var(--black); }
+
+  /* WRAPPER */
+  .content { max-width: 860px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* SECTION */
+  .section { padding-top: 72px; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    flex-shrink: 0;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .section-title-block {}
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  /* THEORY BOX */
+  .theory-box {
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .theory-box::before {
+    content: '"';
+    position: absolute;
+    top: 10px; left: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    line-height: 1;
+    opacity: 0.12;
+  }
+  .theory-box p {
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* MECHANISM */
+  .mechanism {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+  .mechanism h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .mechanism-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+  }
+  .flow-step:not(:last-child) {
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+  }
+  .flow-arrow {
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .flow-text { font-size: 14px; line-height: 1.6; }
+  .flow-text strong { font-weight: 600; }
+
+  /* ANALYSIS GRID */
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .analysis-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .analysis-card h5 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .analysis-card p { font-size: 13px; color: #444; line-height: 1.6; }
+
+  /* CASES */
+  .cases-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .case-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+  .case-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .case-title { font-size: 15px; font-weight: 600; }
+  .case-body {
+    padding: 0 20px 16px 42px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.65;
+  }
+  .case-body .wrong {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #fff5f5;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #c0392b;
+  }
+  .case-body .right {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f0faf6;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #0f6e56;
+  }
+  .case-body .tip {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+  }
+  .case-tag { font-weight: 700; flex-shrink: 0; }
+
+  /* KEYPOINT */
+  .keypoint {
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .keypoint .kp-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+  .keypoint .kp-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  /* COMPARE TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+  .compare-table th {
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    color: var(--muted);
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(0,0,0,0.015); }
+  .badge-weak {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+    background: #fff3cd; color: #856404;
+  }
+  .badge-strong {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+    background: #d1f2eb; color: #0b5345;
+  }
+
+  /* LEVEL TABLE */
+  .level-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .level-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .level-row p { font-size: 14px; line-height: 1.5; }
+  .level-row p strong { font-weight: 600; }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 20px 0;
+  }
+
+  /* SUMMARY TABLE */
+  .summary-section { padding-top: 72px; }
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 28px;
+  }
+  .summary-table thead th {
+    padding: 14px 18px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .summary-table thead th:first-child { border-radius: 8px 0 0 0; }
+  .summary-table thead th:last-child { border-radius: 0 8px 0 0; }
+  .summary-table tbody tr { border-bottom: 1px solid var(--border); }
+  .summary-table tbody tr:last-child { border-bottom: none; }
+  .summary-table tbody tr:hover { background: rgba(0,0,0,0.02); }
+  .summary-table tbody td { padding: 16px 18px; vertical-align: top; line-height: 1.6; }
+  .summary-table tbody td:first-child { font-weight: 700; font-size: 13px; }
+  .summary-mantra {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .num-badge {
+    display: inline-flex;
+    width: 28px; height: 28px;
+    align-items: center; justify-content: center;
+    border-radius: 50%;
+    font-size: 13px; font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 13px;
+  }
+  footer span { color: var(--gold); }
+
+  /* COLOR SCHEMES per section */
+  .s1 .section-num { background: var(--c1-bg); color: var(--c1); }
+  .s1 .section-eyebrow { color: var(--c1); }
+  .s1 .section-title { color: var(--c1); }
+  .s1 .theory-box { background: var(--c1-bg); }
+  .s1 .theory-box p { color: #3c3489; }
+  .s1 .theory-box::before { color: var(--c1); }
+  .s1 .case-dot { background: var(--c1); }
+  .s1 .keypoint { background: var(--c1-bg); color: var(--c1); }
+  .s1 .level-num { background: var(--c1-bg); color: var(--c1); }
+
+  .s2 .section-num { background: var(--c2-bg); color: var(--c2); }
+  .s2 .section-eyebrow { color: var(--c2); }
+  .s2 .section-title { color: var(--c2); }
+  .s2 .theory-box { background: var(--c2-bg); }
+  .s2 .theory-box p { color: #085041; }
+  .s2 .theory-box::before { color: var(--c2); }
+  .s2 .case-dot { background: var(--c2); }
+  .s2 .keypoint { background: var(--c2-bg); color: var(--c2); }
+  .s2 .level-num { background: var(--c2-bg); color: var(--c2); }
+
+  .s3 .section-num { background: var(--c3-bg); color: var(--c3); }
+  .s3 .section-eyebrow { color: var(--c3); }
+  .s3 .section-title { color: var(--c3); }
+  .s3 .theory-box { background: var(--c3-bg); }
+  .s3 .theory-box p { color: #712b13; }
+  .s3 .theory-box::before { color: var(--c3); }
+  .s3 .case-dot { background: var(--c3); }
+  .s3 .keypoint { background: var(--c3-bg); color: var(--c3); }
+  .s3 .level-num { background: var(--c3-bg); color: var(--c3); }
+
+  .s4 .section-num { background: var(--c4-bg); color: var(--c4); }
+  .s4 .section-eyebrow { color: var(--c4); }
+  .s4 .section-title { color: var(--c4); }
+  .s4 .theory-box { background: var(--c4-bg); }
+  .s4 .theory-box p { color: #72243e; }
+  .s4 .theory-box::before { color: var(--c4); }
+  .s4 .case-dot { background: var(--c4); }
+  .s4 .keypoint { background: var(--c4-bg); color: var(--c4); }
+  .s4 .level-num { background: var(--c4-bg); color: var(--c4); }
+
+  .s5 .section-num { background: var(--c5-bg); color: var(--c5); }
+  .s5 .section-eyebrow { color: var(--c5); }
+  .s5 .section-title { color: var(--c5); }
+  .s5 .theory-box { background: var(--c5-bg); }
+  .s5 .theory-box p { color: #633806; }
+  .s5 .theory-box::before { color: var(--c5); }
+  .s5 .case-dot { background: var(--c5); }
+  .s5 .keypoint { background: var(--c5-bg); color: var(--c5); }
+  .s5 .level-num { background: var(--c5-bg); color: var(--c5); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 52px 20px; }
+    .content { padding: 0 20px 60px; }
+    .analysis-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; gap: 12px; }
+    .hero-meta { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Tài liệu đào tạo nội bộ · TL Land K11</div>
+    <h1>5 Lỗ hổng <em>tâm lý</em><br>khách hàng</h1>
+    <p class="hero-sub">Lý thuyết nền tảng & ứng dụng thực chiến trong bán BĐS đất nền</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Biên soạn</div>
+        <div class="val">Trưởng phòng Khương Trịnh</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Team</div>
+        <div class="val">K11 · TL Land</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Thị trường</div>
+        <div class="val">Đất nền Ninh Cơ · Nam Định</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- INDEX -->
+<nav class="index-bar">
+  <ul>
+    <li><a href="#s1">① Màn chắn nhận thức</a></li>
+    <li><a href="#s2">② Tâm lý đám đông</a></li>
+    <li><a href="#s3">③ Thiên kiến kết quả</a></li>
+    <li><a href="#s4">④ Thiên vị giống mình</a></li>
+    <li><a href="#s5">⑤ Ảo giác kiểm soát</a></li>
+    <li><a href="#summary">Tổng kết</a></li>
+  </ul>
+</nav>
+
+<div class="content">
+
+<!-- ====== LỖ HỔNG 1 ====== -->
+<section class="section s1" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Lỗ hổng thứ nhất</div>
+      <div class="section-title">Màn chắn nhận thức</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <p>Xã hội thường không quan tâm bạn thực sự là ai hay có năng lực gì, mà chỉ quan tâm đến <strong>vỏ bọc ngoại hình và chức danh</strong> của bạn. Người ta đánh giá bạn qua những "nhãn mác" hay tín hiệu xã hội bên ngoài, khiến cho một ý tưởng hay từ một người vô danh có thể bị chìm vào im lặng, nhưng một câu nói bình thường từ một người có danh xưng hoành tráng lại được tung hô như chân lý.</p>
+  </div>
+
+  <div class="mechanism">
+    <h4>Cơ chế hoạt động trong não</h4>
+    <div class="mechanism-flow">
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Não người không đủ thời gian xử lý hết thông tin về 1 người lạ trong vài giây</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Não tạo ra <strong>"phán đoán nhanh"</strong> dựa trên tín hiệu bề ngoài (Halo Effect — Edward Thorndike, 1920)</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Một đặc điểm nổi bật (vest sang, chức danh lớn) tỏa "hào quang" sang toàn bộ đánh giá</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Quá trình này xảy ra trong <strong>7 giây đầu</strong>, hoàn toàn vô thức — khách không cố ý đánh giá</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cases-title">3 cấp độ tín hiệu xã hội</p>
+  <div class="level-row" style="background:#f4f3ff;">
+    <div class="level-num">1</div>
+    <p><strong>Hình ảnh:</strong> Quần áo, giày, đồng hồ, xe, không gian xung quanh</p>
+  </div>
+  <div class="level-row" style="background:#eeedfe;">
+    <div class="level-num">2</div>
+    <p><strong>Hành vi:</strong> Cách đi đứng, ánh mắt, giọng nói, tốc độ nói</p>
+  </div>
+  <div class="level-row" style="background:#e8e7f9; margin-bottom:28px;">
+    <div class="level-num">3</div>
+    <p><strong>Nhãn dán:</strong> Chức danh, học vấn, nơi làm việc, người giới thiệu — <em>mạnh nhất, nhưng đến sau</em></p>
+  </div>
+
+  <p class="cases-title">Các trường hợp áp dụng trong bán đất</p>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">Avatar và profile Zalo</div>
+    </div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> Selfie quán cafe, ảnh du lịch, avatar thiếu chuyên nghiệp</div>
+      <div class="right"><span class="case-tag">✓</span> Đứng trước công trường + bản đồ quy hoạch, tên Zalo "Khương Trịnh - TL Land", bìa ảnh trao sổ đỏ</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">10 giây đầu telesale</div>
+    </div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Alo anh, em sale bên TL Land gọi tư vấn đất Ninh Cơ cho anh ạ..."</div>
+      <div class="right"><span class="case-tag">✓</span> "Alo anh X phải không ạ? Em Khương — <strong>Trưởng phòng kinh doanh khu vực Ninh Cơ</strong> bên TL Land. Em đang chuẩn bị đánh xe xuống dự án đón đoàn, tranh thủ gọi anh 2 phút..."</div>
+      <p class="tip">→ "Trưởng phòng" = chức danh. "Đang đón đoàn" = bận, không cầu cạnh.</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">Buổi đón khách trực tiếp</div>
+    </div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Xe sạch + áo polo logo TL Land + cuốn sổ da + iPad sẵn bản đồ + bộ hồ sơ nhựa cứng đựng sổ đỏ mẫu</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">Khi khách so sánh với sale đối thủ</div>
+    </div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Mời lên văn phòng Him Lam Vạn Phúc, cho gặp Sếp Huy — tăng nhãn mác vượt trội đối thủ</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">Khách lăn tăn uy tín công ty</div>
+    </div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Dạ công ty em uy tín lắm anh ạ."</div>
+      <div class="right"><span class="case-tag">✓</span> Gửi chùm ảnh: trụ sở Him Lam, sự kiện kick-off có lãnh đạo tỉnh, đội ngũ 200+ sale, bài báo về dự án</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header">
+      <div class="case-dot"></div>
+      <div class="case-title">Đăng status Facebook</div>
+    </div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Hôm nay vừa chốt 1 deal đẹp" kèm selfie cười toe</div>
+      <div class="right"><span class="case-tag">✓</span> Ảnh đang ngồi cùng khách, trên bàn có sổ đỏ + hồ sơ → đạo cụ trong ảnh tạo nhãn mác</div>
+    </div>
+  </div>
+
+  <div class="keypoint">
+    <div class="kp-label">Câu thần chú</div>
+    <div class="kp-text">"Khách nhìn vỏ trước, nghe ruột sau."</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== LỖ HỔNG 2 ====== -->
+<section class="section s2" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Lỗ hổng thứ hai</div>
+      <div class="section-title">Tâm lý đám đông</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <p>Con người có một nỗi sợ sâu thẳm là bị khác biệt so với số đông, do đó họ thường chọn im lặng hoặc đi theo đám đông để có cảm giác an toàn. Trong xã hội này, <strong>độ tin cậy thường không đến từ nội dung sự thật</strong> mà đến từ việc đã có bao nhiêu người tin tưởng và xác nhận điều đó trước đó.</p>
+  </div>
+
+  <div class="mechanism">
+    <h4>Cơ chế hoạt động trong não</h4>
+    <div class="mechanism-flow">
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Không chắc chắn → Lo lắng → Tìm "manh mối" để giảm lo lắng</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Manh mối dễ nhất: <strong>"Người khác đang làm gì?"</strong></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Nhiều người làm = chắc đúng. Não KHÔNG kiểm tra logic của đám đông — chỉ đếm số lượng</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Nguồn gốc tiến hóa: tổ tiên ai tách đàn = bị thú ăn. Người sống sót là người đi theo bầy</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cases-title">3 cấp độ Social Proof (từ yếu đến mạnh)</p>
+  <div class="level-row" style="background:#f0faf6;">
+    <div class="level-num">1</div>
+    <p><strong>Con số khái quát:</strong> "Hàng ngàn người đã chọn" — thấp</p>
+  </div>
+  <div class="level-row" style="background:#e1f5ee;">
+    <div class="level-num">2</div>
+    <p><strong>Người cụ thể có tên:</strong> "Anh Hùng ở Mỹ Đình đã mua" — trung bình</p>
+  </div>
+  <div class="level-row" style="background:#c5eddf; margin-bottom:28px;">
+    <div class="level-num">3</div>
+    <p><strong>Người giống mình cụ thể:</strong> "Người cùng tuổi, cùng nghề như anh đã mua" — cực mạnh</p>
+  </div>
+
+  <p class="cases-title">Các trường hợp áp dụng</p>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách hỏi "Khu này có ai mua không?"</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Dạ bên em bán nhiều rồi anh ạ."</div>
+      <div class="right"><span class="case-tag">✓</span> Lôi điện thoại, mở album Zalo, show 5-10 ảnh sổ đỏ đã sang tên + sao kê chuyển khoản + video ký HĐ</div>
+      <p class="tip">→ Lời nói = 0. Bằng chứng = 100.</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Story Zalo 3 ca mỗi ngày</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Sáng (8-9h): Ảnh dẫn khách xem đất · Trưa (12-13h): Ảnh ký HĐ · Tối (20-21h): Ảnh trao sổ đỏ</div>
+      <p class="tip">→ Khách lướt story thấy lúc nào cũng đang chốt deal → "Sản phẩm này hot, ai cũng mua"</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách phân vân lúc sắp ký</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Anh cứ ký đi, lô này tốt lắm."</div>
+      <div class="right"><span class="case-tag">✓</span> "Em không ép anh. Em chỉ kể: sáng nay <strong>anh Bình cùng độ tuổi anh, cũng làm xây dựng như anh</strong>, vừa cọc 2 lô. Anh ấy cũng phân vân y như anh nửa tiếng trước khi quyết."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Dẫn khách ghép đoàn thực địa</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> Dẫn khách đi 1 mình (trừ VIP)</div>
+      <div class="right"><span class="case-tag">✓</span> Ghép 2-3 khách cùng buổi. 1 khách đã cọc + 1-2 khách F0. Tại thực địa "tình cờ" gặp khách đang đo lại lô đã mua</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách so sánh khu vực khác</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> Phân tích logic tại sao bên mình đắt hơn</div>
+      <div class="right"><span class="case-tag">✓</span> "Chỗ đó rẻ vì không có ai mua. Khu của em hot vì <strong>tuần nào cũng có 12-15 đoàn xuống xem</strong>. Anh chọn khu vắng hay khu sôi động?"</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách lo pháp lý</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> "<strong>145 khách của em đã sang tên xong, không 1 ai trục trặc.</strong> Đây là sổ đỏ đã sang tên 2 lần, đây là sang tên 3 lần. Người ta mua bán nhộn nhịp lắm anh ạ."</div>
+    </div>
+  </div>
+
+  <div class="keypoint">
+    <div class="kp-label">Câu thần chú</div>
+    <div class="kp-text">"Đừng bán. Hãy cho khách thấy người khác đang mua."</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== LỖ HỔNG 3 ====== -->
+<section class="section s3" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Lỗ hổng thứ ba</div>
+      <div class="section-title">Thiên kiến kết quả</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <p>Mọi người thường dùng <strong>"thành bại để luận anh hùng"</strong> — họ chỉ nhìn vào kết quả cuối cùng để đánh giá năng lực hay đạo đức. Nếu bạn thành công, những sai lầm có thể được gọi là sự nhạy bén. Nếu thất bại, nỗ lực dù ngay thẳng và tử tế đến đâu cũng có thể bị xem nhẹ hoặc nhận lại ánh mắt thương hại, khinh miệt.</p>
+  </div>
+
+  <div class="mechanism">
+    <h4>Cơ chế hoạt động trong não</h4>
+    <div class="mechanism-flow">
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Não đánh giá <strong>ngược chiều</strong>: từ kết quả → suy ra quá trình (Outcome Bias — Baron & Hershey, 1988)</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Người thắng → "Họ đã làm đúng". Người thua → "Họ đã làm sai". Tách rời khỏi sự thật về quá trình</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Câu chuyện thành công <strong>luôn nghe có lý</strong> sau khi đã thành công, dù lúc đó hoàn toàn ngẫu nhiên</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cases-title">So sánh cách bán hàng</p>
+  <table class="compare-table" style="margin-bottom:28px; background:white; border:1px solid var(--border); border-radius:8px; overflow:hidden;">
+    <thead>
+      <tr>
+        <th><span class="badge-weak">Cách yếu</span> — Tập trung quá trình</th>
+        <th><span class="badge-strong">Cách mạnh</span> — Tập trung kết quả</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>"Khu này 5 lý do tăng giá: quy hoạch X, hạ tầng Y..."</td><td>"Chị Lan mua 1,3 tỷ tháng 6, bán 1,85 tỷ tháng 9 — đây là sao kê"</td></tr>
+      <tr><td>"Em làm BĐS 7 năm"</td><td>"Em dẫn 145 khách, 32 đã ra hàng có lãi từ 30% đến x3"</td></tr>
+      <tr><td>"Pháp lý chuẩn lắm anh"</td><td>"Đây là 5 sổ đỏ đã sang tên 2-3 lần" (đưa xem tận tay)</td></tr>
+      <tr><td>"Tương lai chắc chắn x2 x3"</td><td>"Đợt 1 giá 20tr, đợt 2 đã 25tr — ai mua sớm lãi 30% trong 15 ngày"</td></tr>
+    </tbody>
+  </table>
+
+  <p class="cases-title">Các trường hợp áp dụng</p>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách hỏi "Khu này có lên giá không?"</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Kể ngay 3 case: "Chị Lan Hà Đông mua 1,3 tỷ tháng 6 — bán 1,85 tỷ tháng 9, lãi 550 triệu = đi làm 5 năm. Em có sao kê."</div>
+      <p class="tip">→ Công thức: [Tên + địa chỉ] + [Số tiền cụ thể] + [Thời gian] + [Bằng chứng]</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách hỏi kinh nghiệm bán hàng</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "7 năm rồi anh."</div>
+      <div class="right"><span class="case-tag">✓</span> "Em dẫn 145 khách, đều sang tên xong. 32 khách đã ra hàng lãi từ 30% đến x3. Anh muốn nói chuyện trực tiếp với họ cũng được."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách sợ thanh khoản kém</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Khu này thanh khoản tốt anh ạ."</div>
+      <div class="right"><span class="case-tag">✓</span> "Anh Bình mua tháng 5, tháng 8 ra hàng — <strong>12 ngày có khách chốt</strong>. Chị Lan mua tháng 6, bán tháng 9 — 18 ngày. Em đang có 3 khách hỏi mua sang tay lô của khách cũ, anh muốn xem inbox không?"</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách không tin Đặc khu thành hiện thực</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> "Vân Đồn 2017 cũng có người không tin — người tin đã x5 x10. Phú Quốc 2014 cũng vậy — người tin đã x8 x12. Em không thuyết phục anh tin. Em chỉ kể lịch sử đã có những người chọn tin sớm và đã thắng."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách hỏi tại sao phải mua ngay bây giờ</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Anh chần chừ mất cơ hội."</div>
+      <div class="right"><span class="case-tag">✓</span> "Người mua đợt 1 giá 20tr/m2. 15 ngày sau đợt 2 đã 25-26tr/m2. <strong>Họ đã lãi 30% trong nửa tháng.</strong> Anh tự nghĩ xem, anh muốn mua giá đợt mấy."</div>
+    </div>
+  </div>
+
+  <div class="keypoint">
+    <div class="kp-label">Câu thần chú</div>
+    <div class="kp-text">"Số liệu cụ thể đập tan 100 lời hứa hẹn."</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== LỖ HỔNG 4 ====== -->
+<section class="section s4" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Lỗ hổng thứ tư</div>
+      <div class="section-title">Thiên vị giống mình</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <p>Đằng sau những quyết định tưởng chừng có lý trí, con người bị chi phối mạnh mẽ bởi bản năng <strong>thích và tin tưởng những người giống mình</strong>. Chúng ta dễ dành cảm tình cho những ai có chung chất giọng, cách ăn mặc, sở thích hay vùng miền, trong khi người dù giỏi giang hay chính trực đến mấy nhưng thể hiện quá khác biệt thì dễ bị loại trừ trong im lặng.</p>
+  </div>
+
+  <div class="mechanism">
+    <h4>Cơ chế hoạt động trong não</h4>
+    <div class="mechanism-flow">
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Gặp người lạ → Não quét: "Có giống mình không?" (In-Group Bias — Henri Tajfel, 1971)</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Giống → Kích hoạt "An toàn, tin được". Khác → Kích hoạt "Đề phòng, lạ"</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Quá trình này xảy ra trong <strong>0.2 giây</strong>, hoàn toàn vô thức. Khách không ghét — chỉ "không cảm thấy gần"</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cases-title">7 trục "giống mình" theo thứ tự sức mạnh</p>
+  <table class="compare-table" style="background:white; border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-bottom:28px;">
+    <thead><tr><th>Trục</th><th>Sức mạnh</th><th>Ví dụ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Vùng miền / Quê quán</strong></td><td>★★★★★</td><td>"Anh cũng quê Hà Đông à? Em ở Dương Nội"</td></tr>
+      <tr><td><strong>Trải nghiệm chung</strong></td><td>★★★★★</td><td>"Em cũng từng đi qua giai đoạn đó"</td></tr>
+      <tr><td><strong>Nghề nghiệp</strong></td><td>★★★★</td><td>"Anh là dân xây dựng, em khỏi giải thích cơ bản"</td></tr>
+      <tr><td><strong>Tuổi tác</strong></td><td>★★★★</td><td>"Em cũng 9x đời đầu như anh"</td></tr>
+      <tr><td><strong>Sở thích</strong></td><td>★★★</td><td>"Anh cũng hay đá bóng cuối tuần à?"</td></tr>
+      <tr><td><strong>Cách ăn nói</strong></td><td>★★★</td><td>Dùng cùng từ lóng, cùng tốc độ nói</td></tr>
+      <tr><td><strong>Phong cách ăn mặc</strong></td><td>★★</td><td>Cùng style công sở / dân chơi</td></tr>
+    </tbody>
+  </table>
+
+  <p class="cases-title">Các trường hợp áp dụng</p>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Dò thông tin trong 60 giây đầu telesale</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Câu 1: "Anh đang ở khu vực nào?" → vùng miền. Câu 2: "Anh làm bên ngành nào?" → nghề. Câu 3: "Anh đã xem khu nào ở Nam Định chưa?" → trình độ</div>
+      <p class="tip">→ 3 câu này là "radar" để chọn vũ khí giống mình phù hợp</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Nguyên tắc "Gương soi" trong tin nhắn Zalo</div></div>
+    <div class="case-body">
+      <p style="margin-bottom:8px;">Khách dùng emoji → dùng emoji. Khách viết tắt → viết tắt theo. Khách gửi voice → gửi voice lại. Khách câu dài → câu dài.</p>
+      <div class="right"><span class="case-tag">✓</span> Khách trẻ F0: "a check info chưa? lô này nét lắm 🔥 cuối tuần xuống nhé 🚗" | Khách lớn tuổi: "Vâng bác ạ. Cháu xin gửi bác bộ hồ sơ đầy đủ..."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Phân vai sale phù hợp khi dẫn khách</div></div>
+    <div class="case-body">
+      <table class="compare-table" style="margin:0; border:none;">
+        <thead><tr><th>Khách</th><th>Sale phù hợp</th></tr></thead>
+        <tbody>
+          <tr><td>Doanh nhân, chủ DN</td><td>Sale thâm niên, xe đẹp, ăn nói chững chạc</td></tr>
+          <tr><td>Công chức về hưu</td><td>Sale điềm đạm, lịch sự, lớn tuổi hơn</td></tr>
+          <tr><td>Vợ chồng trẻ</td><td>Sale trẻ cùng tuổi, đã có gia đình</td></tr>
+          <tr><td>Khách quê Nam Định</td><td>Sale gốc Nam Định, biết phong tục</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Trên xe dẫn khách 2-3 tiếng</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Hỏi nhạc → mở đúng thể loại. Hỏi con cái → kết nối phụ huynh. Kể chuyện gia đình ngắn gọn: "Em có thằng bé 6 tuổi, hè này định đưa nó đi biển Ninh Cơ"</div>
+      <p class="tip">→ Cấm khoe khoang. Chỉ kể chuyện đời thường.</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách doanh nhân</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> Dùng từ kinh doanh: "ROI hiện tại bên anh như thế nào? BĐS Ninh Cơ ROI dự kiến 18 tháng là 60-80%." → Khách thấy đang ngồi với người cùng đẳng cấp</div>
+    </div>
+  </div>
+
+  <div class="keypoint">
+    <div class="kp-label">Câu thần chú</div>
+    <div class="kp-text">"Giống khách 80%. Khác biệt 20% để có giá trị."</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== LỖ HỔNG 5 ====== -->
+<section class="section s5" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow">Lỗ hổng thứ năm</div>
+      <div class="section-title">Ảo giác kiểm soát</div>
+    </div>
+  </div>
+
+  <div class="theory-box">
+    <p>Con người luôn khao khát tin rằng thế giới này vận hành theo một <strong>công thức công bằng và có thể kiểm soát được</strong>. Họ bám chặt vào những câu chuyện đơn giản và ảo giác này để trốn tránh nỗi sợ hãi lớn nhất: sự thật rằng đôi khi thế giới rất ngẫu nhiên, vô lý, và một người tử tế, làm đúng mọi thứ vẫn có thể thất bại.</p>
+  </div>
+
+  <div class="mechanism">
+    <h4>Cơ chế hoạt động trong não</h4>
+    <div class="mechanism-flow">
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Bị ép → Cảm giác mất tự do → Phản kháng tâm lý (Reactance Theory — Jack Brehm, 1966)</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">"Không, tôi tự quyết định!" → Từ chối ngay cả khi điều đó có lợi cho bản thân</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text"><strong>Nghịch lý bán hàng cao cấp:</strong> Càng cố thuyết phục, càng bị phản kháng. Càng để khách tự quyết, càng dễ chốt</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-arrow">→</div>
+        <div class="flow-text">Khách không mua vì bị thuyết phục. Khách mua vì <strong>tự thấy mình quyết định</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="analysis-grid" style="margin-bottom:28px;">
+    <div class="analysis-card">
+      <h5 style="color:#c0392b;">❌ Sai — Ép buộc</h5>
+      <p>"Anh PHẢI mua vì A, B, C..." → Khách phản kháng vì cảm thấy mất kiểm soát</p>
+    </div>
+    <div class="analysis-card">
+      <h5 style="color:#0f6e56;">✓ Đúng — Gieo hạt</h5>
+      <p>"Em không nói gì, anh tự nhìn rồi quyết..." → Khách cảm thấy có kiểm soát → dễ mua hơn</p>
+    </div>
+  </div>
+
+  <p class="cases-title">3 chiến thuật kích hoạt ảo giác kiểm soát</p>
+  <div class="level-row" style="background:#fef9f0; margin-bottom:8px;">
+    <div class="level-num">1</div>
+    <p><strong>Cho 2 lựa chọn:</strong> "T7 sáng 8h hoặc CN chiều 14h?" thay vì "Anh có muốn đi không?"</p>
+  </div>
+  <div class="level-row" style="background:#faeeda; margin-bottom:8px;">
+    <div class="level-num">2</div>
+    <p><strong>Câu hỏi mở:</strong> "Có lý do gì để Ninh Cơ không bằng Quất Lâm trong 2 năm không?" → Khách tự suy ra kết luận</p>
+  </div>
+  <div class="level-row" style="background:#f0c88a; margin-bottom:28px;">
+    <div class="level-num">3</div>
+    <p><strong>Để khách tự nói:</strong> Hỏi rồi pause 3-5 giây. Đợi khách phát biểu trước. Tự nói = tự tin</p>
+  </div>
+
+  <p class="cases-title">Các trường hợp áp dụng</p>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Chốt lịch hẹn đi xem</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Anh có muốn xuống xem đất không?" → Khách có quyền nói "không"</div>
+      <div class="right"><span class="case-tag">✓</span> "Cuối tuần này em có 2 chuyến: T7 sáng 8h hoặc CN chiều 14h. Anh đi chuyến nào tiện hơn?"</div>
+      <p class="tip">→ Không có lựa chọn "không đi". Khách đang kiểm soát lịch của mình — dù thực ra đã nằm trong khung của sale.</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Tour dẫn khách thực địa — 3 điểm dừng</div></div>
+    <div class="case-body">
+      <p style="margin-bottom:8px;"><strong>Điểm 1 (Nhà hàng Ocean ITM):</strong> KHÔNG nói gì về dự án. Bật video khách du lịch tắm biển. Để khách tự hỏi: "Khu này đông thật à?"</p>
+      <p style="margin-bottom:8px;"><strong>Điểm 2 (Cafe view công trường):</strong> Chỉ tay: "Anh nhìn đoàn xe tải kia, 1 ngày 200 xe." Để khách tự kết luận: "Đầu tư thật rồi."</p>
+      <p style="margin-bottom:8px;"><strong>Điểm 3 (Lô đất):</strong> KHÔNG báo giá ngay. Hỏi: "Anh thấy thế nào?" → Đợi khách tự nói điểm tốt → Sau khi khách khen, mới ra giá.</p>
+      <div class="right"><span class="case-tag">✓</span> Câu chốt cuối tour: "Em không thuyết phục anh. Anh ngồi đây 10 phút, nhìn xung quanh, tự quyết. Em ra ngoài hút điếu thuốc."</div>
+      <p class="tip">→ 10 phút khách ngồi 1 mình = khoảnh khắc tự thuyết phục. Hiệu quả gấp 10 lần sale nói.</p>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách phản đối tiềm năng</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Anh ơi chắc chắn lên giá vì..." → Cãi nhau với khách = thua</div>
+      <div class="right"><span class="case-tag">✓</span> "Em đặt 2 sự thật cạnh nhau: Quất Lâm 2019 = 19-20tr/m2, nay 40-50tr/m2. Ninh Cơ 2026 = 19-20tr/m2, cách Quất Lâm 20 phút. <strong>Anh tự xem có lý do gì để 5 năm nữa không bằng Quất Lâm không?</strong>" [Pause 5 giây]</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách muốn về suy nghĩ thêm</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Anh quyết luôn đi không hết hàng." → Ép = phản kháng</div>
+      <div class="right"><span class="case-tag">✓</span> "Vâng anh cứ về suy nghĩ. Em chỉ nhắc 1 câu: lô góc tuần trước anh Hùng cũng về suy nghĩ — sáng hôm sau quay lại đã có người cọc rồi. Anh tự cân nhắc thời gian."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Vợ/chồng khách phản đối</div></div>
+    <div class="case-body">
+      <div class="right"><span class="case-tag">✓</span> "Vợ anh chưa xem nên chưa tin, đó là bình thường. <strong>Em mời cả 2 anh chị xuống xem 1 buổi, anh chị tự xem tự quyết.</strong> Em không cần anh chốt ngay, em chỉ cần chị nhà tận mắt nhìn thấy."</div>
+    </div>
+  </div>
+
+  <div class="case-item">
+    <div class="case-header"><div class="case-dot"></div><div class="case-title">Khách hỏi câu rủi ro</div></div>
+    <div class="case-body">
+      <div class="wrong"><span class="case-tag">✗</span> "Chắc chắn thành lắm anh." → Càng bao biện, càng nghi ngờ</div>
+      <div class="right"><span class="case-tag">✓</span> "Đúng anh, đầu tư nào cũng có rủi ro. Em không phủ nhận. Em chỉ chia sẻ 5 quả bom hạ tầng ở đây đều có quyết định bằng văn bản — đây là bản đồ quy hoạch, đây là quyết định Bộ. <strong>Anh tự đánh giá rủi ro theo cách của anh.</strong>"</div>
+      <p class="tip">→ Không che giấu rủi ro = tăng tin tưởng. Khách tự đánh giá và thấy rủi ro thấp hơn họ nghĩ.</p>
+    </div>
+  </div>
+
+  <div class="keypoint">
+    <div class="kp-label">Câu thần chú</div>
+    <div class="kp-text">"Gieo hạt thay vì thuyết giảng.<br>Để khách tự thấy, đừng ép khách tin."</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ====== TỔNG KẾT ====== -->
+<section class="summary-section" id="summary">
+  <div class="section-header" style="border-bottom:2px solid var(--ink);">
+    <div class="section-num" style="background:var(--ink); color:var(--gold);">∑</div>
+    <div class="section-title-block">
+      <div class="section-eyebrow" style="color:var(--muted);">Tổng kết</div>
+      <div class="section-title" style="color:var(--ink); font-family:'Playfair Display',serif;">Bảng tổng kết 5 lỗ hổng</div>
+    </div>
+  </div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Lỗ hổng</th>
+        <th>Tên khoa học</th>
+        <th>Cơ chế lõi</th>
+        <th>Mạnh nhất khi</th>
+        <th>Câu thần chú</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="num-badge" style="background:#eeedfe; color:#26215C;">1</span></td>
+        <td><strong>Màn chắn nhận thức</strong></td>
+        <td>Halo Effect</td>
+        <td>Não phán đoán nhanh qua tín hiệu bề ngoài</td>
+        <td>7 giây đầu gặp người lạ</td>
+        <td><span class="summary-mantra">"Khách nhìn vỏ trước, nghe ruột sau."</span></td>
+      </tr>
+      <tr>
+        <td><span class="num-badge" style="background:#e1f5ee; color:#04342C;">2</span></td>
+        <td><strong>Tâm lý đám đông</strong></td>
+        <td>Social Proof</td>
+        <td>Não dùng số đông làm chuẩn khi không chắc chắn</td>
+        <td>Khách F0 chưa biết khu vực</td>
+        <td><span class="summary-mantra">"Đừng bán. Cho khách thấy người khác đang mua."</span></td>
+      </tr>
+      <tr>
+        <td><span class="num-badge" style="background:#faece7; color:#4A1B0C;">3</span></td>
+        <td><strong>Thiên kiến kết quả</strong></td>
+        <td>Outcome Bias</td>
+        <td>Não đánh giá quá trình qua kết quả cuối cùng</td>
+        <td>Khách hỏi tiềm năng / uy tín</td>
+        <td><span class="summary-mantra">"Số liệu cụ thể đập tan 100 lời hứa."</span></td>
+      </tr>
+      <tr>
+        <td><span class="num-badge" style="background:#fbeaf0; color:#4B1528;">4</span></td>
+        <td><strong>Thiên vị giống mình</strong></td>
+        <td>In-Group Bias</td>
+        <td>Não tin người giống mình hơn người giỏi hơn</td>
+        <td>Mọi tương tác trực tiếp</td>
+        <td><span class="summary-mantra">"Giống khách 80%. Khác biệt 20% để có giá trị."</span></td>
+      </tr>
+      <tr>
+        <td><span class="num-badge" style="background:#faeeda; color:#412402;">5</span></td>
+        <td><strong>Ảo giác kiểm soát</strong></td>
+        <td>Illusion of Control</td>
+        <td>Não phản kháng khi bị ép — tự quyết mới tin</td>
+        <td>Khoảnh khắc khách quyết định</td>
+        <td><span class="summary-mantra">"Gieo hạt thay vì thuyết giảng."</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  Tài liệu đào tạo nội bộ · <span>Team K11 · TL Land</span> · Trưởng phòng Khương Trịnh
+</footer>
+
+</body>
+</html>

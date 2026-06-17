@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Câu Hỏi Thấu Kính Tâm Lý Khách Hàng</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --card-hover: rgba(30, 41, 59, 0.8);
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #10b981;
+            --accent-amber: #eab308;
+            --accent-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            background: linear-gradient(145deg, var(--bg-dark), var(--bg-darker));
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 50px 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .q-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .q-number {
+            background: rgba(255,255,255,0.05);
+            color: var(--accent-amber);
+            border: 2px solid var(--accent-amber);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .q-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.4;
+            padding-top: 5px;
+        }
+
+        .q-purpose {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-emerald);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .q-body {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .q-body p {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+        
+        .q-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .q-body strong {
+            color: var(--text-main);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .b-fail { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .b-net { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .q-header { gap: 15px; }
+            .q-title { font-size: 1.25rem; }
+            .question-card { padding: 25px 20px; }
+            .q-body { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>05 Câu Truy Vấn Đọc Vị Lõi Khách Hàng</h1>
+        <p class="subtitle">Không có câu hỏi thừa. Mỗi câu hỏi là 1 bài test để lọc khách <strong>NÉT</strong> hay khách Rác, định vị đúng rổ hàng và quyết định tung kịch bản tẩy não.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Question 1 -->
+        <div class="question-card">
+            <div class="q-header">
+                <div class="q-number">1</div>
+                <div class="q-title">"Đợt này anh mua để sử dụng luôn hay đầu tư?"</div>
+            </div>
+            <div class="q-purpose"><i class="fa-solid fa-bullseye"></i> Đo lường nhu cầu & Phương án dồn khách</div>
+            <div class="q-body">
+                <p>Hỏi để biết nhu cầu của khách. Nếu bài đăng của mình ở trong khu vực đó mà khách hàng nó muốn mua để <strong>Ở (An cư)</strong> thì cơ bản là khó bán.</p>
+                <p>Nếu mà bạn có kỹ năng để thuyết phục và <strong>bẻ lái tư duy khách</strong> từ muốn mua để "Ở" chuyển sang "Đầu tư trước, sinh lời cất đó sau có tiền mua mảnh to đẹp mà Ở" thì Đẳng cấp. Nhưng cơ bản thường các khách này rất rát và khó mua vì nhu cầu bảo thủ của họ đã rõ là để ở xây nhà.</p>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card">
+            <div class="q-header">
+                <div class="q-number" style="color: var(--accent-purple); border-color: var(--accent-purple);">2</div>
+                <div class="q-title">"Tài chính hiện tại anh đang có sẵn khoảng bao nhiêu?"</div>
+            </div>
+            <div class="q-purpose" style="color: var(--accent-purple); background: rgba(192, 132, 252, 0.1);"><i class="fa-solid fa-sack-dollar"></i> Khoanh vùng vị trí & Kích Đòn Bẩy</div>
+            <div class="q-body" style="border-left-color: var(--accent-purple);">
+                <p>Để ước lượng rổ hàng xem tư vấn khách đánh ở khu vực nào.</p>
+                <p>- Khách ví mỏng chỉ có vài trăm triệu: Lái thẳng hướng về Phú Thọ, Ba Vì...</p>
+                <p>- <strong>Bài kích Bank đòn bẩy:</strong> Khéo léo gợi ý khách vay thêm Ngân hàng để chốt cố lên lô siêu phẩm ở Ninh Cơ hoặc sát Quốc Lộ.</p>
+                <p>Nếu khách dứt khoát Không vay -> Ép hướng về khu vực rẻ phù hợp. Nếu chịu Vay -> Kéo hướng sang khu đắt tiền quy hoạch đẹp hơn.</p>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card">
+            <div class="q-header">
+                <div class="q-number" style="color: var(--accent-amber); border-color: var(--accent-amber);">3</div>
+                <div class="q-title">"Anh đã biết về thị trường mà em định chia sẻ chưa?"</div>
+            </div>
+            <div class="q-purpose" style="color: var(--accent-amber); background: rgba(234, 179, 8, 0.1);"><i class="fa-solid fa-user-secret"></i> Định hình chân dung thợ đi Check Giá</div>
+            <div class="q-body" style="border-left-color: var(--accent-amber);">
+                <p>Đánh giá khách thuộc dạng có sừng có mỏ hay là tấm chiếu mới.</p>
+                <p>- <strong>Nếu khách Đã Biết:</strong> Biết rồi nhưng vẫn đi hỏi mình chứng tỏ nó đang <em>đi Check lại giá</em>. Khách này chắc chắn đã có Sale thằng khác bơm thông tin rồi nhưng chưa chốt, đang đi rào quanh tìm gốc.</p>
+                <p>- <strong>Nếu chưa biết gì:</strong> Mảnh đất trống cho Sale quẩy. Vẽ tiềm năng, thông tư tưởng giá trị vĩ mô của khu vực.</p>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card">
+            <div class="q-header">
+                <div class="q-number" style="color: var(--accent-pink); border-color: var(--accent-pink);">4</div>
+                <div class="q-title">"Hiện tại anh đang ở và sinh sống khu vực nào?"</div>
+            </div>
+            <div class="q-purpose" style="color: var(--accent-pink); background: rgba(244, 114, 182, 0.1);"><i class="fa-solid fa-map-location-dot"></i> Bộ lọc định kiến vùng miền (Cực kỳ quan trọng)</div>
+            <div class="q-body" style="border-left-color: var(--accent-pink);">
+                <p>Để đánh giá mức độ NÉT của khách dựa trên quy luật định kiến địa lý:</p>
+                <p><span class="status-badge b-fail">TẠCH</span> <strong>Khách Địa Phương:</strong> Bán đất Ninh Cơ mà khách dân Ninh Cơ gốc là fail. Xâm lý xóm làng họ không bao giờ thích bập vào đất dự án phân lô chẻ nhỏ. Họ có tư duy lân la qua hàng xóm mua ngộp hoặc rảnh rỗi đi ngắm dự án xong lắc đầu đi về chỗ khác.</p>
+                <p><span class="status-badge b-net">SIÊU NÉT</span> <strong>Khách Vùng Đã Trải Qua Đỉnh Sốt Phình To:</strong> Điển hình dân Hòa Lạc. Gốc quê lúa ngày xưa mà giá đất x10 x20. Họ là <em>tượng đài nhân chứng lịch sử sống</em>, nên khi đi mua đất ở chỗ khác họ bắt trend và niềm tin dễ xuống tiền cực gắt.</p>
+                <p><span class="status-badge b-net">NÉT</span> <strong>Khách Cư Dân Hà Nội Cũ:</strong> Ở phố thị đất chật người đông, bước chân về quê nhìn thấy đất dãn rộng thoáng đãng là ưng ngay cái bụng.</p>
+                <p><span class="status-badge b-fail">TẠCH</span> <strong>Khách Tỉnh Xa / Huyện Nghèo Đất Rộng:</strong> Nhà họ đang có hàng sào cỏ thẳng cánh cò bay. Cho họ xem quy hoạch phân lô 100m2 bán liền kề thì họ chửi thẳng mặt là như cái lỗ mũi chó không thèm mua!</p>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card">
+            <div class="q-header">
+                <div class="q-number" style="color: var(--accent-blue); border-color: var(--accent-blue);">5</div>
+                <div class="q-title">"Hỏi thêm thông tin: Anh làm văn phòng hay thu nhập tự do?"</div>
+            </div>
+            <div class="q-purpose" style="color: var(--accent-blue); background: rgba(56, 189, 248, 0.1);"><i class="fa-solid fa-briefcase"></i> Soi Ví Tiền Ẩn</div>
+            <div class="q-body" style="border-left-color: var(--accent-blue);">
+                <p>Nghe tưởng hỏi lịch đi xem nhưng cốt lõi là để nghe mùi dòng tiền.</p>
+                <p>Đo lường mức độ ổn định thu nhập và dòng tiền đều đặn để lót đường trước cho các thủ tục vay Bank hỗ trợ thanh khoản.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

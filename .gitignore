@@ -1,0 +1,13 @@
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Playwright MCP
+.playwright-mcp
+
+# Python cache
+__pycache__
+*.pyc

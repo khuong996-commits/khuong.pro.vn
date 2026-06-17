@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Khai Thác Mối Quan Hệ Sẵn Có — TL Land</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('iframe-mode');
+        }
+    </script>
+    <style>
+        /* CSS ẩn sidebar và topbar khi ở chế độ iframe */
+        html.iframe-mode #sidebar {
+            display: none !important;
+        }
+        html.iframe-mode #main-container {
+            margin-left: 0 !important;
+        }
+        html.iframe-mode header.top-bar {
+            display: none !important;
+        }
+        html.iframe-mode main#content {
+            padding: 20px !important;
+            max-width: 100% !important;
+        }
+        html.iframe-mode body {
+            background-color: transparent !important;
+        }
+        html.iframe-mode .cover-page {
+            display: none !important;
+        }
+        html.iframe-mode #back-to-top {
+            bottom: 15px !important;
+            right: 15px !important;
+        }
+    </style>
+    <style>
+        :root {
+            --primary: #1B3A5C;      /* Xanh Navy đậm - Chuyên nghiệp, uy tín */
+            --primary-light: #2c527c;
+            --secondary: #C5963A;    /* Vàng Gold - Thịnh vượng, giá trị */
+            --secondary-hover: #b0832d;
+            --bg-main: #F8F9FA;      /* Nền sáng, dễ đọc lâu */
+            --bg-card: #FFFFFF;
+            --text-main: #2C3E50;    /* Chữ đen đậm xanh */
+            --text-light: #6C757D;   /* Ghi chú, chữ xám */
+            --border-color: #E2E8F0;
+            --success: #28A745;      /* Xanh lá cho KPI đạt, Ví dụ đúng */
+            --success-bg: #D4EDDA;
+            --warning: #FFC107;      /* Vàng cảnh báo */
+            --warning-bg: #FFF3CD;
+            --danger: #DC3545;       /* Đỏ - Sai lầm, Cảnh báo đỏ */
+            --danger-bg: #F8D7DA;
+            --info: #17A2B8;         /* Tip/Gợi ý */
+            --info-bg: #E8F4FD;
+            --sidebar-width: 280px;
+            --transition-speed: 0.3s;
+        }
+
+        /* Dark Mode variables */
+        body.dark-mode {
+            --primary: #1e3f66;
+            --primary-light: #3f6fa3;
+            --secondary: #d4af37;
+            --secondary-hover: #f3e5ab;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #cbd5e1;
+            --text-light: #94a3b8;
+            --border-color: #334155;
+            --success-bg: #064e3b;
+            --warning-bg: #78350f;
+            --danger-bg: #7f1d1d;
+            --info-bg: #0c4a6e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+            min-height: 100vh;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* App Layout */
+        #sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary);
+            color: #FFFFFF;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            transition: transform var(--transition-speed);
+        }
+
+        #main-container {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* Prevents flex items from breaking grid */
+        }
+
+        /* Sidebar Header & Brand */
+        .sidebar-brand {
+            padding: 24px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-brand h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .sidebar-brand p {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Search Box */
+        .search-box {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-size: 14px;
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        .search-box input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sidebar Menu */
+        .sidebar-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu ul {
+            list-style: none;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+            border-left-color: var(--secondary);
+        }
+
+        .sidebar-menu li.active a {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            border-left-color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .sidebar-menu .menu-section-title {
+            padding: 15px 24px 5px 24px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Sidebar Footer & Actions */
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Top Bar - Header on Desktop/Mobile */
+        header.top-bar {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .progress-container {
+            width: 200px;
+            background-color: var(--border-color);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .progress-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Main Content Container */
+        main#content {
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        /* Cover Page Section */
+        .cover-page {
+            min-height: calc(100vh - 150px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(27,58,92,0.02) 0%, rgba(197,150,58,0.02) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .cover-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .cover-logo span {
+            color: var(--secondary);
+        }
+
+        .cover-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.25;
+            margin-bottom: 20px;
+            max-width: 800px;
+            text-transform: uppercase;
+        }
+
+        .cover-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .cover-meta {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .cover-meta strong {
+            color: var(--text-main);
+        }
+
+        .cover-badge {
+            background-color: var(--danger-bg);
+            color: #C53030;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 1px dashed #feb2b2;
+        }
+
+        /* Typography & Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h2.section-title {
+            font-size: 28px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h3.subsection-title {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* UI Containers & Cards */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+        }
+
+        /* Alert / Box Types */
+        .alert-box {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 5px solid transparent;
+            font-size: 15px;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .alert-info {
+            background-color: var(--info-bg);
+            border-left-color: var(--info);
+            color: #1a4f5c;
+        }
+        body.dark-mode .alert-info { color: #e0f2fe; }
+
+        .alert-warning {
+            background-color: var(--warning-bg);
+            border-left-color: var(--warning);
+            color: #664d03;
+        }
+        body.dark-mode .alert-warning { color: #fef3c7; }
+
+        .alert-danger {
+            background-color: var(--danger-bg);
+            border-left-color: var(--danger);
+            color: #842029;
+        }
+        body.dark-mode .alert-danger { color: #fecaca; }
+
+        .alert-success {
+            background-color: var(--success-bg);
+            border-left-color: var(--success);
+            color: #0f5132;
+        }
+        body.dark-mode .alert-success { color: #d1fae5; }
+
+        /* Tables style */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary);
+            color: #FFFFFF;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(248, 249, 250, 0.5);
+        }
+
+        body.dark-mode tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        tr:hover {
+            background-color: rgba(197, 150, 58, 0.05);
+        }
+
+        /* Script / Message Bubble style */
+        .script-container {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background-color: var(--bg-card);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .script-header {
+            background-color: var(--primary-light);
+            color: #FFFFFF;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .script-body {
+            padding: 20px;
+        }
+
+        .chat-bubble {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 15px;
+            border-top-left-radius: 2px;
+            margin-bottom: 15px;
+            font-style: italic;
+            position: relative;
+            font-size: 15px;
+        }
+
+        .copy-btn {
+            background-color: var(--secondary);
+            color: #FFFFFF;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        /* Tab panels */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            overflow-x: auto;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Interactive Accordion for FAQ / Situations */
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+
+        .accordion-header {
+            background-color: var(--bg-card);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(248, 249, 250, 0.8);
+        }
+
+        body.dark-mode .accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-icon {
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        /* Checklist Component */
+        .checklist-wrapper {
+            margin-bottom: 30px;
+        }
+
+        .checklist-progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            padding: 15px 20px;
+            border-radius: 8px;
+        }
+
+        .checklist-progress-bar-bg {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 10px;
+            border-radius: 5px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+
+        .checklist-progress-bar {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background-color: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--secondary);
+            background-color: rgba(197, 150, 58, 0.02);
+        }
+
+        .checklist-item.checked {
+            border-color: var(--success);
+            background-color: rgba(40, 167, 69, 0.02);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--success);
+        }
+
+        .checklist-text-wrapper {
+            flex: 1;
+        }
+
+        .checklist-text {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .checklist-item.checked .checklist-text {
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+
+        .checklist-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        /* Flow Diagram styling */
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .flow-step {
+            width: 100%;
+            max-width: 450px;
+            padding: 12px 20px;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--secondary);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border-color);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Scroll to Top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+            transition: all 0.3s;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Badge status elements */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .badge-net { background-color: var(--success-bg); color: #155724; }
+        .badge-warning { background-color: var(--warning-bg); color: #856404; }
+        .badge-danger { background-color: var(--danger-bg); color: #721c24; }
+
+        /* Highlight classes */
+        .highlight-gold {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Search Highlight class */
+        .search-highlight {
+            background-color: rgba(197, 150, 58, 0.3);
+            border-radius: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 1000px; }
+        }
+
+        /* Print styling */
+        @media print {
+            #sidebar, header.top-bar, #back-to-top {
+                display: none !important;
+            }
+            #main-container {
+                margin-left: 0 !important;
+            }
+            body {
+                background-color: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            main#content {
+                padding: 0;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #000000 !important;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            #main-container {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            main#content {
+                padding: 20px;
+            }
+            .cover-title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header.top-bar {
+                padding: 10px 15px;
+            }
+            .progress-container {
+                width: 120px;
+            }
+            main#content {
+                padding: 15px;
+            }
+            .card {
+                padding: 20px;
+            }
+            .cover-title {
+                font-size: 24px;
+            }
+            .cover-subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <nav id="sidebar">
+        <div class="sidebar-brand">
+            <h1>TL LAND</h1>
+            <p>Khương Trịnh Đầu Tư</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="doc-search" placeholder="Tìm kiếm nội dung... (Ctrl+K)">
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li class="active"><a href="#cover">🏠 Trang Bìa</a></li>
+                
+                <span class="menu-section-title">Nội dung chính</span>
+                <li><a href="#mindset">📖 1. Khát vọng & Mindset</a></li>
+                <li><a href="#framework">🎯 2. Quy trình 7 giai đoạn</a></li>
+                <li><a href="#psychology">🧠 3. Tâm lý 7 loại MQH</a></li>
+                <li><a href="#scripts">💬 4. 28 Kịch bản thực chiến</a></li>
+                <li><a href="#template">📊 5. Sàng lọc & Chấm điểm</a></li>
+                <li><a href="#situations">🔥 6. 10 Tình huống khó</a></li>
+                <li><a href="#checklist">🗓️ 7. 30 Ngày hành động</a></li>
+                
+                <span class="menu-section-title">Thông tin thêm</span>
+                <li><a href="#case-studies">🏆 8. Case Study thực tế</a></li>
+                <li><a href="#appendix">📎 Phụ lục & Quy định</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <div>TL Land — Tài liệu nội bộ</div>
+            <button class="theme-toggle-btn" id="theme-toggle">
+                🌙 Chế độ tối
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div id="main-container">
+        
+        <!-- TOP STICKY BAR -->
+        <header class="top-bar">
+            <button class="menu-toggle" id="menu-toggle-btn">☰</button>
+            <div class="progress-wrapper">
+                <span>Tiến độ đọc:</span>
+                <div class="progress-container">
+                    <div class="progress-bar" id="reading-progress"></div>
+                </div>
+                <span id="progress-text">0%</span>
+            </div>
+            <div style="font-size: 12px; font-weight: 600; color: var(--secondary)">PHIÊN BẢN v1.0</div>
+        </header>
+
+        <!-- CONTENT -->
+        <main id="content">
+            
+            <!-- SECTION: COVER -->
+            <section id="cover" class="cover-page">
+                <div class="cover-badge">Tài liệu lưu hành nội bộ — Nghiêm cấm phát tán</div>
+                <div class="cover-logo">TL <span>LAND</span></div>
+                <h1 class="cover-title">Cẩm Nang Khai Thác<br>Mối Quan Hệ Sẵn Có</h1>
+                <p class="cover-subtitle">Hướng dẫn hành động và kịch bản thực chiến chi tiết dành cho nhân sự BĐS mới của TL Land</p>
+                <div style="margin-bottom: 40px;">
+                    <a href="#mindset" style="background-color: var(--primary); color: #FFFFFF; padding: 15px 30px; text-decoration: none; border-radius: 30px; font-weight: 700; font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 15px rgba(27,58,92,0.2); transition: all 0.2s;" onmouseover="this.style.backgroundColor='var(--secondary)'" onmouseout="this.style.backgroundColor='var(--primary)'">🚀 BẮT ĐẦU HỌC</a>
+                </div>
+                <div class="cover-meta">
+                    <div>Tác giả: <strong>Ban Đào Tạo TL Land</strong></div>
+                    <div>Cập nhật: <strong>Tháng 06/2026</strong></div>
+                    <div>Thị trường: <strong>Đất nền 1-3 tỷ</strong></div>
+                </div>
+            </section>
+
+            <!-- SECTION 1: MINDSET -->
+            <section id="mindset" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">📖 PHẦN 1: TẠI SAO PHẢI KHAI THÁC MQH SẴN CÓ?</h2>
+                
+                <div class="card">
+                    <h3 class="subsection-title">1.1. Mindset nền tảng</h3>
+                    <div class="alert-box alert-info">
+                        <div class="alert-title">💡 Tôn chỉ cốt lõi:</div>
+                        <strong>"Bạn KHÔNG bán hàng cho người quen — Bạn đang GIÚP họ nắm lấy cơ hội đầu tư tốt nhất để tích sản."</strong>
+                    </div>
+                    <p>Trong nghề môi giới bất động sản đất nền của chúng tôi, có một sự thật hiển nhiên: <strong>Khai thác từ những mối quan hệ sẵn có (họ hàng, bạn bè, hàng xóm, đồng nghiệp cũ...) là con đường ngắn nhất, ít tốn chi phí nhất và mang lại tỷ lệ chốt cao nhất cho nhân sự mới.</strong></p>
+                    <p>Tại sao 90% nhân sự mới bỏ qua mỏ vàng này? Vì họ sợ! Họ bị vấp phải rào cản tâm lý sợ mất mặt, sợ bị người quen nghĩ mình chèo kéo bán hàng. Đó là do tư duy sai lệch. Khi bạn sở hữu một cơ hội đầu tư tốt (pháp lý sạch, sổ đỏ trao tay, tiềm năng sinh lời thực tế 20-30% nhờ hạ tầng mới của dự án TL Land), việc bạn giới thiệu cho người thân quen là bạn đang giúp họ tránh khỏi việc tiền bị lạm phát bào mòn trong ngân hàng.</p>
+                    <p><strong>5 lý do MQH sẵn có là mỏ vàng:</strong></p>
+                    <ol style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Chi phí tiếp cận bằng không (CAC = 0):</strong> Không mất tiền chạy quảng cáo, không tốn tiền mua data rác.</li>
+                        <li><strong>Niềm tin đã có sẵn:</strong> Giao dịch BĐS từ 1-3 tỷ dựa trên 90% niềm tin. Người quen đã biết bạn là ai, không mất thời gian xây dựng sự tin tưởng từ đầu.</li>
+                        <li><strong>Tỷ lệ chuyển đổi vượt trội:</strong> Tỷ lệ referral và chốt từ MQH cao gấp 2.3 lần so với khách hàng lạ.</li>
+                        <li><strong>Kiến thức truyền miệng:</strong> Khi một người thân mua thành công, họ sẽ nhiệt tình truyền tai cho cả dòng họ hoặc hội bạn (Hiệu ứng Domino).</li>
+                        <li><strong>Điểm chạm tự nhiên:</strong> Bạn có thể trò chuyện với họ qua bữa cơm giỗ, thang máy chung cư, cà phê cuối tuần mà không cần setup cuộc gọi áp lực.</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">1.2. Tôn chỉ lõi TL Land (Từ Chân Dung KH V2)</h3>
+                    <p>Mọi hành động tiếp cận mối quan hệ phải tuân thủ nghiêm ngặt 5 nguyên tắc vàng từ tài liệu <span class="highlight-gold">Chân Dung Khách Hàng V2</span>:</p>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nguyên tắc</th>
+                                    <th>Nội dung cốt lõi</th>
+                                    <th>Áp dụng cho MQH</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Bán cho người dễ</strong></td>
+                                    <td>Chỉ bán cho người đã có nền tảng (Nhà + Xe + Việc ổn định). KHÔNG cố bán cho người quá khôn hoặc không có tiền.</td>
+                                    <td>Chấm điểm MQH thật kỹ trước khi tiếp cận. Chỉ tập trung nguồn lực vào nhóm A.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Đi xem là chốt</strong></td>
+                                    <td>Thực địa dự án là điểm chạm quyết định 90% giao dịch. Mọi câu chuyện dẫn dắt đều phải hướng tới việc mời đi xem đất.</td>
+                                    <td>Dùng lý do tự nhiên để rủ họ đi trải nghiệm vùng đất dự án vào cuối tuần.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Đánh vào cảm xúc & FOMO</strong></td>
+                                    <td>Khách hàng F0 mua bằng cảm tính. Dùng câu chuyện thực tế về sự tăng giá và sự tiếc nuối trong quá khứ để tạo FOMO.</td>
+                                    <td>Kể chuyện người thứ 3 (khách khác mua lãi thế nào) thay vì ép người quen mua.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. LOẠI khách địa phương BK 10km</strong></td>
+                                    <td>Người sống trong bán kính 10km quanh dự án cực kỳ khôn và có tâm lý dìm hàng vì họ đã quen đất ruộng ngày xưa.</td>
+                                    <td>Họ hàng, bạn bè sống sát dự án → <strong>LOẠI NGAY</strong> khỏi danh sách tư vấn trực tiếp.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Đất nền là tích sản an toàn</strong></td>
+                                    <td>Chứng minh đất nền sổ đỏ an toàn hơn gửi tiết kiệm ngân hàng (lãi suất thấp, tiền mất giá do lạm phát).</td>
+                                    <td>Dùng bài toán so sánh thực tế giữa gửi tiết kiệm và đầu tư đất để gieo hạt.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">1.3. Phá bỏ 6 sai lầm phổ biến</h3>
+                    <p>Nhân sự mới cần đặc biệt lưu ý và sửa đổi ngay 6 sai lầm chết người sau:</p>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 1: Ngại ngùng, sợ bị từ chối, sợ mất mặt</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Tâm lý "thể diện" của người Việt rất nặng. Sợ bị đánh giá thấp và sợ hỏng mối quan hệ.</p>
+                            <p><strong>Khắc phục:</strong> Reframe tư duy — bạn đang mang cơ hội giúp họ nhân tài sản, không phải đi van xin. Hãy bắt đầu tiếp cận 3 người bạn thoải mái nhất trước để lấy đà.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 2: Không biết mở lời — sợ mang tiếng bán hàng</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Mở miệng ra là chào bán đất trực tiếp khiến người nghe phòng thủ.</p>
+                            <p><strong>Khắc phục:</strong> Áp dụng công thức <strong>K-C-T-H</strong> (Kết nối - Câu chuyện - Tò mò - Hẹn). Tái kết nối hỏi thăm trước 1-2 tuần, gieo hạt về nghề nghiệp của mình và để họ tự hỏi thêm.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 3: Tiếp cận xong rồi bỏ rơi, không nuôi dưỡng</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Tư duy ăn xổi. Thấy người quen chưa hỏi mua ngay là bỏ qua, không biết rằng BĐS cần trung bình 2-6 tuần để đưa ra quyết định.</p>
+                            <p><strong>Khắc phục:</strong> Lập file theo dõi tiến độ. Set lịch gửi thông tin giá trị (tin tức hạ tầng, tiến độ làm đường...) đều đặn 1-2 lần/tuần để duy trì điểm chạm.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 4: Không phân biệt ai nên tiếp cận — Phí sức vào người sai tệp</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Tiếp cận đại trà không chọn lọc. Nhắn tin cho người nợ nần hoặc chưa có nhà xe ổn định.</p>
+                            <p><strong>Khắc phục:</strong> Áp dụng bộ lọc 3 tầng trước khi nhắn: <em>Có tài chính ổn định không? Có thuộc tệp BĐS 1-3 tỷ không? Có quyền quyết định tài chính không?</em> Chỉ đánh nhóm A trước.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 5: Làm sai cách gây rạn nứt mối quan hệ cá nhân</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Ép mua bằng tình cảm ("Mày không mua ủng hộ tao à"), hứa hẹn lợi nhuận ảo ("Cam kết X2 sang năm"), hoặc tiết lộ thông tin nhạy cảm của người khác.</p>
+                            <p><strong>Khắc phục:</strong> Khắc cốt ghi tâm nguyên tắc: <strong>GIỮ MQH > CHỐT DEAL</strong>. Sòng phẳng về giá cả, minh bạch pháp lý, không ép khách.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>❌ Sai lầm 6: Nóng vội, đốt cháy giai đoạn</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Gốc rễ:</strong> Áp lực doanh số muốn chốt ngay trong lần đầu nói chuyện.</p>
+                            <p><strong>Khắc phục:</strong> Tuân thủ quy trình 7 giai đoạn. Tuần 1-2 tuyệt đối KHÔNG bán hàng. BĐS cần có thời gian chín muồi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: FRAMEWORK -->
+            <section id="framework" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">🎯 PHẦN 2: QUY TRÌNH 7 GIAI ĐOẠN KHAI THÁC</h2>
+                
+                <div class="flow-diagram">
+                    <div class="flow-step">Giai đoạn 1: LIỆT KÊ (Kiểm kê 100+ MQH)</div>
+                    <div class="flow-step">Giai đoạn 2: PHÂN LOẠI (Chấm điểm tiềm năng)</div>
+                    <div class="flow-step">Giai đoạn 3: TIẾP CẬN (Mở lời tái kết nối)</div>
+                    <div class="flow-step">Giai đoạn 4: NUÔI DƯỠNG (Xây niềm tin trong 30-60 ngày)</div>
+                    <div class="flow-step">Giai đoạn 5: CHỐT (Tạo FOMO mời đi xem đất)</div>
+                    <div class="flow-step">Giai đoạn 6: XIN REFERRAL (Nhận 2-3 số điện thoại giới thiệu)</div>
+                    <div class="flow-step">Giai đoạn 7: PHÁT TRIỂN (Xây dựng thương hiệu cá nhân)</div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.1. Giai đoạn 1: Liệt kê (Kiểm kê MQH)</h3>
+                    <p>Hãy rà soát toàn bộ danh bạ điện thoại, danh sách bạn bè Zalo, Facebook Messenger và ký ức cá nhân. Viết ra ít nhất <strong>100 người quen</strong> vào file mẫu. Ghi chú rõ nghề nghiệp, nơi sống và nhận định chủ quan của bạn về họ.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.2. Giai đoạn 2: Phân loại & Chấm điểm</h3>
+                    <p>Chấm điểm dựa trên 5 tiêu chí vàng (Tài chính, Nền tảng sống, Khoảng cách địa lý với dự án, Kinh nghiệm đầu tư, Mức độ tin tưởng). Lọc ra <strong>15-20 người thuộc Nhóm A (Ưu tiên 1)</strong> để tập trung chiến đấu trước.</p>
+                    <div class="alert-box alert-danger">
+                        <div class="alert-title">⚠️ Cảnh báo đỏ về nhóm Họ hàng:</div>
+                        Mức độ tin cậy của MQH họ hàng thường đạt tối đa (3/3 điểm) giúp bạn cực kỳ dễ tiếp cận và mở lời. Tuy nhiên, <strong>rủi ro đi kèm cũng ở mức cao nhất</strong>. Nếu giao dịch thất bại hoặc gặp trục trặc về pháp lý, hậu quả để lại sẽ vô cùng nặng nề cho các bữa cơm gia đình sau này. Do đó, với họ hàng, chỉ được phép giới thiệu những sản phẩm <strong>thực sự sạch 100% về pháp lý</strong> và tuyệt đối không bao giờ được ép mua bằng tình cảm gia đình.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.3. Giai đoạn 3: Tiếp cận (Mở lời tự nhiên)</h3>
+                    <p>Tùy theo mức độ thân thiết của từng người để chọn kênh tiếp cận phù hợp: Nhắn tin Zalo/Facebook, gọi điện hẹn cà phê, hay tương tác gián tiếp qua trung gian.</p>
+                    <div class="alert-box alert-success">
+                        <div class="alert-title">✅ Sửa lỗi mở lời với Hàng xóm:</div>
+                        Trong lần đầu tiên gặp mặt hàng xóm ở thang máy hoặc ngõ phố, chỉ chia sẻ ngắn gọn về công việc của mình: <em>"Dạo này em chuyển sang làm mảng BĐS đất nền rồi anh ạ, thấy hay và mở mang đầu óc lắm."</em> — <strong>DỪNG LẠI TẠI ĐÂY.</strong> Tuyệt đối không hỏi thêm câu bán hàng trực tiếp: <em>"Anh có quan tâm đầu tư đất cát đợt này không?"</em> vì câu hỏi này sẽ dựng lên bức tường phòng vệ tâm lý và khiến họ cảm giác bạn đang tiếp cận chỉ để bán hàng.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.4. Giai đoạn 4: Nuôi dưỡng (Xây dựng niềm tin)</h3>
+                    <p>Quy trình nuôi dưỡng chia theo mốc thời gian 30-60-90 ngày. Giai đoạn này, bạn đóng vai trò là một người chia sẻ tin tức vĩ mô hữu ích, tiến độ làm hạ tầng xung quanh dự án của công ty để biến mình thành một chuyên gia BĐS trong mắt họ.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.5. Giai đoạn 5: Chốt (Mời đi xem đất)</h3>
+                    <p>Chốt giao dịch với MQH quen biết khác hoàn toàn với khách lạ. Bạn không thể dùng kỹ thuật ép push mạnh bạo mà phải dùng kỹ thuật <strong>FOMO tinh tế</strong>, bài học so sánh quá khứ (ví dụ như đất Hòa Lạc 2018), hoặc thiết kế một lộ trình thanh toán "may đo" riêng cho khả năng tài chính của họ.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.6. Giai đoạn 6: Xin Referral (Lời giới thiệu)</h3>
+                    <p>Tận dụng triệt để 2 nguồn referral: Khách hàng đã chốt giao dịch và cả những người quen chưa mua đất nhưng tin tưởng vào sự chân thành của bạn. <strong>Tỷ lệ vàng: 1 khách hàng hài lòng → 2.3 lời giới thiệu khách hàng mới.</strong></p>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2.7. Giai đoạn 7: Phát triển dài lâu</h3>
+                    <p>Tập trung xây dựng thương hiệu cá nhân (Personal Branding) chuẩn mực trên Zalo và Facebook theo công thức phân bổ nội dung <strong>70% Giá trị chia sẻ - 20% Đời sống cá nhân - 10% Bán hàng trực tiếp</strong>.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 3: PSYCHOLOGY -->
+            <section id="psychology" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">🧠 PHẦN 3: PHÂN TÍCH TÂM LÝ 7 LOẠI MQH</h2>
+                <p>Hiểu rõ tâm lý hai chiều của bạn (người bán) và của họ (người mua) để có chiến thuật giao tiếp phù hợp nhất.</p>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab(event, 'tab-friend')">Bạn bè cũ</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-relative')">Họ hàng</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-colleague')">Đồng nghiệp cũ</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-neighbor')">Hàng xóm</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-group')">Hội nhóm</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-social')">Mạng xã hội</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'tab-old-client')">Khách cũ</button>
+                </div>
+
+                <!-- Tab Panes -->
+                <div id="tab-friend" class="tab-pane active">
+                    <div class="card">
+                        <h4>🎓 Bạn bè cũ (Cấp 2, Cấp 3, Đại học)</h4>
+                        <p><strong>Tâm lý người mua:</strong> Sợ bị coi là đối tượng khai thác, lo sợ giao dịch tài chính làm hỏng tình bạn. Nhưng họ lại rất tò mò về sự thay đổi cuộc sống của bạn.</p>
+                        <p><strong>Rào cản chính:</strong> Mối quan hệ đã "nguội" do nhiều năm không gặp. Nhắn tin trực tiếp BĐS sẽ gây phản cảm mạnh.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Gợi lại những kỷ niệm chung thời đi học (kích hoạt oxytocin gắn kết). Kể về hành trình chuyển đổi sự nghiệp của bạn một cách chân thành.</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Nhóm 1 (Dân văn phòng tích lũy), Nhóm 2 (Bạn trẻ IT/Freelancer thu nhập cao nhưng mù BĐS).</p>
+                    </div>
+                </div>
+
+                <div id="tab-relative" class="tab-pane">
+                    <div class="card">
+                        <h4>👨‍👩‍👧 Họ hàng (Cô dì chú bác, anh chị em họ)</h4>
+                        <p><strong>Tâm lý người mua:</strong> Đã có sẵn niềm tin về con người của bạn nhưng nghi ngờ năng lực chuyên môn BĐS ("Cháu nó còn trẻ thì biết cái gì mà tư vấn"). Sợ bị dòng họ đồn thổi nếu mua hớ.</p>
+                        <p><strong>Rào cản chính:</strong> Tiền bạc rất nhạy cảm trong quan hệ họ hàng. Sợ mang tiếng "ăn chênh lệch" của người nhà.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Tiếp cận "Key Person" (người có tiếng nói hoặc giàu nhất trong họ) trước. Sử dụng kịch bản "nhờ cô/chú góp ý kiến, tư vấn hướng đi cho cháu mới đổi nghề".</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Nhóm 3 (Tiểu thương buôn bán), Nhóm 5 (Quân đội/Công an sắp hưu), Nhóm 6 (Nhà được đền bù GPMB).</p>
+                    </div>
+                </div>
+
+                <div id="tab-colleague" class="tab-pane">
+                    <div class="card">
+                        <h4>💼 Đồng nghiệp cũ / Mối quan hệ công việc cũ</h4>
+                        <p><strong>Tâm lý người mua:</strong> Đã biết rõ tính cách và năng lực làm việc cũ của bạn. Họ sẽ đánh giá bạn dựa trên uy tín công việc trước đây.</p>
+                        <p><strong>Rào cản chính:</strong> Sự chênh lệch về vị thế cũ (nếu bạn từng là cấp dưới của họ) hoặc tâm lý đề phòng vì quá hiểu nhau.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Hiệu ứng "Social Proof" trong nhóm nhỏ công ty cũ. Nếu một đồng nghiệp cũ mua, cả phòng sẽ xôn xao quan tâm vì họ có chung mức thu nhập.</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Nhóm 1A (Dân văn phòng lâu năm), Nhóm 1B (Quản lý cấp trung).</p>
+                    </div>
+                </div>
+
+                <div id="tab-neighbor" class="tab-pane">
+                    <div class="card">
+                        <h4>🏘️ Hàng xóm / Cùng chung cư</h4>
+                        <p><strong>Tâm lý người mua:</strong> Đề phòng tin đồn trong khu phố/tòa nhà chung cư. Họ thích quan sát sự thay đổi đời sống thực tế của bạn trước.</p>
+                        <p><strong>Rào cản chính:</strong> Mối quan hệ thường chỉ dừng ở mức xã giao, chào hỏi ở thang máy hoặc ngõ phố.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Sự thay đổi trực quan của bạn (thay xe, sửa nhà, cách ăn mặc chuyên nghiệp hơn) chính là bằng chứng thuyết phục nhất. Dùng kỹ thuật "nhờ giới thiệu người quen" để kích thích sự tò mò của chính họ.</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Nhóm 8 (Người nội thành đất chật thích tích lũy), Nhóm 1B (Quản lý cấp trung ở chung cư).</p>
+                    </div>
+                </div>
+
+                <div id="tab-group" class="tab-pane">
+                    <div class="card">
+                        <h4>🏃 Người quen qua hội nhóm (Thể thao, CLB, Yoga)</h4>
+                        <p><strong>Tâm lý người mua:</strong> Thoải mái nhất vì từ chối không gây áp lực lớn cho mối quan hệ. Đã có sẵn điểm chung (common ground) về sở thích.</p>
+                        <p><strong>Rào cản chính:</strong> MQH lỏng lẻo, cần nhiều thời gian để chuyển hóa từ sân thể thao sang bàn đàm phán tài chính.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Áp dụng thiên kiến nội nhóm (In-group bias). Người cùng CLB tennis/pickleball sẽ tin tưởng bạn hơn một sale BĐS xa lạ bên ngoài.</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Nhóm 1B, Nhóm 2, Nhóm 10.</p>
+                    </div>
+                </div>
+
+                <div id="tab-social" class="tab-pane">
+                    <div class="card">
+                        <h4>📱 Mối quan hệ mạng xã hội (Follower, Like/Comment)</h4>
+                        <p><strong>Tâm lý người mua:</strong> Niềm tin ban đầu gần như bằng 0. Cực kỳ dị ứng với tin nhắn chào mời spam tự động.</p>
+                        <p><strong>Rào cản chính:</strong> Khoảng cách ảo lớn. Cần timeline hâm nóng dài hạn.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Đi qua phễu niềm tin mạng xã hội: Like bài → Comment chất lượng → Nhắn tin chia sẻ giá trị cá nhân → Kể chuyện nghề → Tư vấn tự nhiên. Quy trình kéo dài 4-6 tuần.</p>
+                        <p><strong>Nhóm KH V2 tương ứng:</strong> Tất cả các nhóm (phải lọc kỹ qua ảnh avatar và bài đăng profile cá nhân).</p>
+                    </div>
+                </div>
+
+                <div id="tab-old-client" class="tab-pane">
+                    <div class="card">
+                        <h4>⭐ Khách cũ đã mua (Referral / Giao dịch thêm)</h4>
+                        <p><strong>Tâm lý người mua:</strong> Đã trải qua quá trình làm việc và có kết quả thực tế. Họ có xu hướng muốn củng cố quyết định mua hàng cũ của mình (Confirmation Bias).</p>
+                        <p><strong>Rào cản chính:</strong> Dễ bị bỏ quên sau khi chốt deal do nhân sự chuyển sang tìm kiếm khách mới.</p>
+                        <p><strong>Điểm khai thác vàng:</strong> Chăm sóc sát sao trong 30 ngày đầu sau cọc. Báo tin vui về tiến độ và giá đất tăng để xin giới thiệu bạn bè của họ. Khách cũ là mỏ vàng mang lại tỷ lệ chốt cao nhất (+30 điểm nét).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: SCRIPTS -->
+            <section id="scripts" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">💬 PHẦN 4: 28 KỊCH BẢN THỰC CHIẾN MẪU</h2>
+                
+                <div class="alert-box alert-warning">
+                    <div class="alert-title">⚠️ QUY TẮC CHỐNG COPY-PASTE (BẮT BUỘC ĐỌC):</div>
+                    Các kịch bản dưới đây được thiết kế để bạn <strong>hiểu logic dẫn dắt</strong> và cấu trúc hội thoại. <strong>Tuyệt đối nghiêm cấm việc copy-paste nguyên văn tin nhắn gửi cho khách hàng quen.</strong> Người quen của bạn sẽ nhận ra sự giả tạo ngay lập tức. Hãy biến đổi ngôn từ theo đúng cách xưng hô và văn phong nói chuyện thường ngày của bạn.
+                </div>
+
+                <!-- Tab selectors for MQH and Channels -->
+                <div style="background-color: var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+                    <div style="color: #FFFFFF; font-weight: 600; margin-bottom: 10px; font-size: 14px;">Bước 1: Chọn mối quan hệ</div>
+                    <select id="mqh-selector" onchange="updateScriptMatrix()" style="width: 100%; padding: 10px; border-radius: 4px; border: none; font-weight: 600; font-size: 15px; margin-bottom: 15px;">
+                        <option value="friends">Bạn bè cũ</option>
+                        <option value="relatives">Họ hàng</option>
+                        <option value="colleagues">Đồng nghiệp cũ</option>
+                        <option value="neighbors">Hàng xóm</option>
+                        <option value="groups">Người quen hội nhóm</option>
+                        <option value="socials">Mạng xã hội</option>
+                        <option value="oldclients">Khách cũ đã mua</option>
+                    </select>
+
+                    <div style="color: #FFFFFF; font-weight: 600; margin-bottom: 10px; font-size: 14px;">Bước 2: Chọn kênh tiếp cận</div>
+                    <select id="channel-selector" onchange="updateScriptMatrix()" style="width: 100%; padding: 10px; border-radius: 4px; border: none; font-weight: 600; font-size: 15px;">
+                        <option value="zalo">Zalo (Tin nhắn chi tiết)</option>
+                        <option value="facebook">Facebook (Messenger & Gợi ý đăng bài)</option>
+                        <option value="direct">Gặp trực tiếp (Café, Sự kiện)</option>
+                        <option value="broker">Qua trung gian (Nhờ người giới thiệu)</option>
+                    </select>
+                </div>
+
+                <!-- Dynamic Script Display -->
+                <div class="script-container">
+                    <div class="script-header">
+                        <span id="script-title-text">Kịch bản: Bạn bè cũ × Zalo</span>
+                        <span style="color: var(--secondary); font-size: 12px; font-weight: 700;">TL Land Thực Chiến</span>
+                    </div>
+                    <div class="script-body" id="script-content-body">
+                        <!-- Content will be injected by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: TEMPLATE -->
+            <section id="template" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">📊 PHẦN 5: SÀNG LỌC & CHẤM ĐIỂM TIỀM NĂNG</h2>
+                
+                <div class="card">
+                    <h3 class="subsection-title">5.1. Bảng chấm điểm tiềm năng (Tham chiếu Chân Dung KH V2)</h3>
+                    <p>Chấm điểm từng mối quan hệ sẵn có dựa trên các tiêu chí sau. Tổng số điểm tối đa là 15 điểm:</p>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tiêu chí</th>
+                                    <th>Điểm cao (3đ)</th>
+                                    <th>Điểm TB (2đ)</th>
+                                    <th>Điểm thấp (1đ)</th>
+                                    <th>Bị Loại (0đ)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Tài chính (Vốn)</strong></td>
+                                    <td>Vốn sẵn có 1.5 tỷ+, việc kinh doanh tốt</td>
+                                    <td>Vốn tích lũy 800tr - 1.5 tỷ, có gửi bank</td>
+                                    <td>Vốn dưới 500 triệu, thu nhập trung bình</td>
+                                    <td>Nợ nần, mất khả năng tài chính</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Nền tảng sống</strong></td>
+                                    <td>Đã sở hữu nhà riêng + có xe hơi + việc ổn định</td>
+                                    <td>Có 2/3 yếu tố trên</td>
+                                    <td>Có 1/3 yếu tố trên</td>
+                                    <td>Chưa có nhà xe, công việc bấp bênh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Khoảng cách địa lý</strong></td>
+                                    <td>Sống ở Hà Nội nội thành, HCM hoặc tỉnh xa 100km+</td>
+                                    <td>Ngoại thành KĐT (Hà Đông, Long Biên...)</td>
+                                    <td>Sống ở tỉnh lân cận (cách dự án 50km)</td>
+                                    <td><strong>Sống trong BK 10km quanh dự án</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Kinh nghiệm BĐS</strong></td>
+                                    <td>Chưa từng đầu tư BĐS bao giờ (F0)</td>
+                                    <td>Đầu tư ít (1-2 lần ở quê), không chuyên</td>
+                                    <td>Có đọc báo và biết chút kiến thức BĐS</td>
+                                    <td>Nhà đầu tư chuyên nghiệp có đội nhóm riêng</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Mức độ thân thiết</strong></td>
+                                    <td>Rất thân, thường xuyên liên lạc và gặp mặt</td>
+                                    <td>Quen biết, thỉnh thoảng tương tác nhẹ</td>
+                                    <td>Biết mặt nhau nhưng ít khi nói chuyện</td>
+                                    <td>Không biết nhau ngoài đời (chỉ kết bạn dạo)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p><strong>Xếp hạng ưu tiên tiếp cận:</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><span class="badge badge-net">12 - 15 Điểm</span> → 🔴 <strong>Ưu tiên 1 (Nhóm A):</strong> Tiếp cận ngay trong tuần đầu tiên.</li>
+                        <li><span class="badge badge-warning">9 - 11 Điểm</span> → 🟠 <strong>Ưu tiên 2 (Nhóm B):</strong> Tiếp cận tuần 2 và tuần 3.</li>
+                        <li><span class="badge badge-danger">Dưới 9 Điểm hoặc dính 0đ địa lý</span> → ⚫ <strong>Tạm thời gác lại:</strong> Không tốn thời gian.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">5.2. Danh sách MQH Tuyệt Đối KHÔNG TIẾP CẬN</h3>
+                    <p>Vì an toàn cho công việc và gia đình của bạn, <strong>tuyệt đối không chào bán BĐS</strong> cho các đối tượng thuộc danh sách đỏ dưới đây:</p>
+                    
+                    <div class="alert-box alert-danger">
+                        <div class="alert-title">❌ DANH SÁCH ĐỎ - CẤM TIẾP CẬN BÁN HÀNG:</div>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Bố mẹ ruột / Bố mẹ vợ, bố mẹ chồng:</strong> Áp lực trách nhiệm gia đình quá lớn lúc mới bắt đầu vào nghề dễ gây stress nặng nếu có biến động thị trường. Bạn chỉ nên chia sẻ công việc để ba mẹ ủng hộ tinh thần, không kêu gọi ba mẹ rút tiền dưỡng già ra mua đất nền dự án khi bạn chưa vững tay nghề.</li>
+                            <li><strong>Người quen đang bệnh nặng hoặc có người thân bị bệnh hiểm nghèo:</strong> Dù họ có tiền tích lũy lớn, dòng tiền của họ phải ưu tiên tuyệt đối cho việc phòng vệ sức khỏe. Mời chào BĐS lúc này cực kỳ thiếu nhân văn và gây ác cảm lớn.</li>
+                            <li><strong>Người quen đang kiệt quệ tài chính hoặc mới phá sản:</strong> Chào mời họ mua đất lúc này chẳng khác nào xát muối vào vết thương của họ.</li>
+                            <li><strong>Gia đình người quen mới có tang sự trong vòng 100 ngày:</strong> Họ đang trong trạng thái tâm lý bất ổn, đau buồn. Tuyệt đối tôn trọng khoảng lặng này.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">5.3. Bảng Template quản lý danh sách MQH (Tương tác mẫu)</h3>
+                    <p>Nhân sự mới điền thông tin và theo dõi hàng tuần. Bảng mẫu 12 cột:</p>
+                    <div class="table-responsive">
+                        <table style="min-width: 1000px;">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Họ tên</th>
+                                    <th>Loại MQH</th>
+                                    <th>Nghề nghiệp</th>
+                                    <th>Ước lượng vốn</th>
+                                    <th>Đã có nhà/xe</th>
+                                    <th>Nơi sống</th>
+                                    <th>Kinh nghiệm BĐS</th>
+                                    <th>Điểm</th>
+                                    <th>Kênh tiếp cận</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Nguyễn Minh Tuấn</td>
+                                    <td>Bạn cấp 3</td>
+                                    <td>Trưởng phòng IT</td>
+                                    <td>1.2 tỷ</td>
+                                    <td>Có nhà + xe hơi</td>
+                                    <td>Cầu Giấy, HN</td>
+                                    <td>Chưa bao giờ (F0)</td>
+                                    <td class="highlight-gold">14</td>
+                                    <td>Zalo + Café</td>
+                                    <td><span class="badge badge-net">Đang nuôi dưỡng</span></td>
+                                    <td>Bạn thân đại học cũ</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Cô Hoa (Bác ruột)</td>
+                                    <td>Họ hàng</td>
+                                    <td>Tiểu thương chợ</td>
+                                    <td>2 tỷ</td>
+                                    <td>Có nhà riêng</td>
+                                    <td>Quận Đống Đa</td>
+                                    <td>Mua đất ở quê 1 lần</td>
+                                    <td class="highlight-gold">13</td>
+                                    <td>Gặp trực tiếp</td>
+                                    <td><span class="badge badge-warning">Chưa tiếp cận</span></td>
+                                    <td>Áp dụng rủi ro họ hàng</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Anh Thắng</td>
+                                    <td>Đồng nghiệp cũ</td>
+                                    <td>Kế toán senior</td>
+                                    <td>800tr</td>
+                                    <td>Có chung cư</td>
+                                    <td>Hà Đông, HN</td>
+                                    <td>Đã đầu tư 1 lần</td>
+                                    <td class="highlight-gold">11</td>
+                                    <td>Facebook</td>
+                                    <td><span class="badge badge-warning">Chưa tiếp cận</span></td>
+                                    <td>Hay like bài nhau</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: SITUATIONS -->
+            <section id="situations" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">🔥 PHẦN 6: 10 TÌNH HUỐNG KHÓ VÀ CÁCH XỬ LÝ</h2>
+                <p>Click vào từng tình huống để xem phân tích tâm lý và các kịch bản đối thoại xử lý thực tế.</p>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 1: "Ơ dạo này đi bán đất hả? Sao làm cái nghề kỳ cục thế?"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Tò mò và có chút định kiến xã hội cũ về nghề môi giới (nghĩ là cò đất lừa đảo).</p>
+                        <p><strong>Cách phản hồi (Thẳng thắn, sòng phẳng):</strong></p>
+                        <div class="chat-bubble">
+                            "Kỳ gì mày ơi! 😄 Nghề nào kiếm tiền chân chính, pháp lý rõ ràng giúp mọi người giữ tiền không bị mất giá thì làm thôi. Hồi xưa tao làm văn phòng lương 15 triệu gò bó, giờ làm BĐS tự do mà tháng nào chốt tốt thu nhập gấp mấy lần. Mày có muốn làm CTV với tao kiếm thêm không?"
+                        </div>
+                        <p><strong>Điều cấm kỵ:</strong> Tỏ ra xấu hổ, cúi đầu giải thích dài dòng.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 2: "Tao không có tiền đầu tư đâu, đừng rủ rê"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Phòng vệ tự nhiên vì sợ bị chào hàng ép cọc.</p>
+                        <p><strong>Cách phản hồi (Hạ nhiệt áp lực):</strong></p>
+                        <div class="chat-bubble">
+                            "Ơ cái thằng này, tao bảo mày mua đâu mà phòng thủ dữ vậy! 😄 Tao mới làm mảng này thấy có nhiều thông tin quy hoạch, hạ tầng hay quá nên chia sẻ cho mày biết thôi. Bạn bè lâu năm rủ đi xem đất coi như đi du lịch đổi gió cuối tuần, mua bán gì tầm này!"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 3: "Để tao suy nghĩ đã" (Sau đó im lặng ghost tin nhắn)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Chưa đủ tin tưởng hoặc đang bận rộn bị xao nhãng chuyện gia đình.</p>
+                        <p><strong>Kế hoạch bám đuổi (Follow up 3 lần):</strong></p>
+                        <p><em>Sau 3 ngày:</em> Nhắn tin báo tình hình nhẹ nhàng:</p>
+                        <div class="chat-bubble">
+                            "Ê [Tên], lô đất B5 bữa tao chụp gửi mày xem, nay có khách khác hỏi cọc rồi. Tao nhớ mày nên nhắn hỏi lại cho chắc, mày có tính lấy không để tao giữ lại, không thì tao nhường khách khác nhé."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 4: "Bán cho người quen chắc ăn chênh lệch nhiều lắm hả?"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Sợ bị người quen lợi dụng lòng tin để mua đắt.</p>
+                        <p><strong>Cách phản hồi (Sòng phẳng, minh bạch):</strong></p>
+                        <div class="chat-bubble">
+                            "Mày nói thế oan cho tao quá! 😄 Đất nền dự án bên sàn tao có bảng giá niêm yết rõ ràng của chủ đầu tư, ai mua cũng một giá như nhau. Tao ăn lương và hoa hồng trực tiếp từ công ty trả, không lấy thêm của mày một đồng nào. Bán đắt cho mày để sau này giỗ Tết gặp nhau tao trốn đi đâu được!"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 5: "Mua đất nền dạo này rủi ro lắm, tao sợ mất tiền"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Sợ hãi do đọc quá nhiều tin tức tiêu cực trên mạng.</p>
+                        <p><strong>Cách phản hồi (Đồng cảm & Dùng dẫn chứng):</strong></p>
+                        <div class="chat-bubble">
+                            "Tao đồng ý với mày là ngoài kia nhiều dự án ma rủi ro thật. Nhưng đất bên tao bán là đất đã có sổ đỏ từng lô, hạ tầng hoàn thiện, mày tự tay cầm sổ đi công chứng sang tên. Mày sợ thì cuối tuần đi thực tế với tao, xem tận mắt, sờ tận tay rồi tự mày đánh giá."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 6: "Để tao về hỏi ý kiến vợ/chồng tao đã"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Có thể là thật, hoặc lấy lý do để từ chối khéo.</p>
+                        <p><strong>Cách phản hồi:</strong></p>
+                        <div class="chat-bubble">
+                            "Chuẩn mày ơi, chuyện lớn tài sản tỷ bạc phải cả hai vợ chồng cùng đồng ý mới mua được. Cuối tuần này mày rủ cả chị nhà đi thực tế dự án luôn đi. Đi xem tận nơi, xem sổ sách đàng hoàng rồi về hai vợ chồng bóng bàn quyết định cho dễ."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 7: "Tao vừa mới chốt mua chỗ khác mất rồi"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Đã mua thật, hoặc nói dối để bạn không làm phiền.</p>
+                        <p><strong>Cách phản hồi (Chúc mừng & Xin referral):</strong></p>
+                        <div class="chat-bubble">
+                            "Thế hả mày! Chúc mừng mày nhé, mua tầm này là đón đầu hạ tầng chuẩn rồi. Mày mua khu nào thế, bữa nào tao xem hộ quy hoạch cho. Mà mày mua rồi chắc có bạn bè đầu tư cùng, có ai đang tìm đất nữa thì giới thiệu cho tao với nha!"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 8: "Tao giới thiệu khách cho mày rồi đó, liệu mà tư vấn"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Muốn giúp bạn nhưng lo lắng uy tín cá nhân của họ bị ảnh hưởng.</p>
+                        <p><strong>Cách phản hồi (Cam kết uy tín):</strong></p>
+                        <div class="chat-bubble">
+                            "Em cảm ơn anh nhiều lắm! Anh yên tâm, người thân anh giới thiệu em sẽ chăm sóc tận tình và tư vấn chuẩn xác nhất như em làm với anh. Tuyệt đối không có chuyện ép khách hay làm ăn bậy bạ làm mất mặt anh đâu ạ."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 9: "Tao lỡ mua lô đất ngộp ở quê dạo trước, giờ kẹt tiền quá mày ra hàng giúp tao đi"</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Gặp khó khăn cần giúp đỡ thực tế. Đây là cơ hội vàng để xây dựng lòng tin tuyệt đối.</p>
+                        <p><strong>Cách phản hồi (Nhiệt tình hỗ trợ):</strong></p>
+                        <div class="chat-bubble">
+                            "Ok mày, gửi toàn bộ thông tin sổ đỏ, vị trí và giá mày muốn thu về qua Zalo tao rà soát network của tao xem có ai đang gom hàng khu đó không. Tao sẽ đăng tin và đẩy phụ mày hết sức, bán được tao báo liền!"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>❓ Case 10: "Ê giới thiệu khách mua có được chia hoa hồng không đó?"</span>
+                        <span class="accordion-icon">▼</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>Tâm lý khách:</strong> Muốn sòng phẳng về mặt tiền bạc khi giúp đỡ giới thiệu.</p>
+                        <p><strong>Cách phản hồi (Sòng phẳng, chuyên nghiệp):</strong></p>
+                        <div class="chat-bubble">
+                            "Sòng phẳng luôn mày ơi! 😄 Mày giới thiệu khách chốt thành công, tao trích ngay [X triệu/tiền mặt] gửi cafe cảm ơn mày đàng hoàng. Hoặc tao đăng ký mày làm CTV chính thức của sàn tao luôn, công ty trả hoa hồng trực tiếp cho mày cực kỳ minh bạch."
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: CHECKLIST -->
+            <section id="checklist" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">🗓️ PHẦN 7: CHECKLIST 30 NGÀY HÀNH ĐỘNG</h2>
+                <p>Nhân sự mới thực hiện lần lượt các nhiệm vụ theo tiến trình dưới đây. Tích vào các việc đã hoàn thành để theo dõi tiến độ. Hệ thống tự động lưu trữ trên trình duyệt của bạn.</p>
+
+                <div class="checklist-wrapper">
+                    <div class="checklist-progress-container">
+                        <strong>Tiến độ hoàn thành:</strong>
+                        <div class="checklist-progress-bar-bg">
+                            <div class="checklist-progress-bar" id="checklist-progress"></div>
+                        </div>
+                        <span id="checklist-pct">0%</span>
+                    </div>
+
+                    <h3 class="subsection-title">🗓️ Ngày 1 - 3: Kiểm kê tài nguyên (Mục tiêu: 100+ MQH)</h3>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-1">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Đọc kỹ phần Mindset và Tôn chỉ lõi của TL Land</div>
+                            <div class="checklist-meta">Ngày 1 — Đọc hiểu sâu sắc tư duy không cầu xin.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-2">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Lọc toàn bộ danh bạ Zalo ghi nhận người có thu nhập ổn định</div>
+                            <div class="checklist-meta">Ngày 1 — Ghi chép tên, số điện thoại vào file Excel.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-3">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Quét danh sách bạn bè Facebook hay tương tác</div>
+                            <div class="checklist-meta">Ngày 2 — Thêm vào danh sách theo dõi.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-4">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Liệt kê họ hàng cô dì chú bác có khả năng tài chính</div>
+                            <div class="checklist-meta">Ngày 2 — Lưu ý đánh dấu cảnh báo đỏ rủi ro họ hàng.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-5">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Tổng hợp danh sách đạt tối thiểu 100 MQH và nộp Leader duyệt</div>
+                            <div class="checklist-meta">Ngày 3 — Leader ký duyệt danh sách thô mới được làm tiếp.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">🗓️ Ngày 4 - 7: Phân loại & Chấm điểm tiềm năng</h3>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-6">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Chấm điểm 100 MQH theo bảng điểm 5 tiêu chí của TL Land</div>
+                            <div class="checklist-meta">Ngày 4 — Phân chia nhóm rõ ràng A, B, C.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-7">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Xác định danh sách Top 15 người thuộc nhóm A cực nét</div>
+                            <div class="checklist-meta">Ngày 5 — Tập trung nghiên cứu sâu profile Facebook/Zalo của 15 người này.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-8">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Tương tác ngầm (like bài, thả tim, comment dạo) trên tường nhóm A</div>
+                            <div class="checklist-meta">Ngày 6 - 7 — Tạo sự xuất hiện tự nhiên trở lại trong tâm trí họ.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">🗓️ Ngày 8 - 14: Tiếp cận mở lời tái kết nối</h3>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-9">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Thực hiện mở lời với 10 người nhóm A đầu tiên theo kịch bản phù hợp</div>
+                            <div class="checklist-meta">Ngày 8 - 10 — Nhắn tin hỏi thăm kỷ niệm cũ, KHÔNG nói về bán đất.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-10">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Gieo hạt nhẹ nhàng về công việc BĐS mới của mình</div>
+                            <div class="checklist-meta">Ngày 11 - 14 — Đăng story đi thực địa dự án tạo tò mò tự nhiên.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">🗓️ Ngày 15 - 21: Nuôi dưỡng sâu & Hỏi câu hỏi truy vấn vàng</h3>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-11">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Gửi tin tức quy hoạch, hạ tầng mới của dự án cho người quan tâm</div>
+                            <div class="checklist-meta">Ngày 15 - 17 — Cung cấp giá trị thông tin như một chuyên gia thực thụ.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-12">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Áp dụng kỹ thuật Hỏi truy vấn vàng (Nói Vống) xác định tài chính thật</div>
+                            <div class="checklist-meta">Ngày 18 - 21 — Xác định rõ mức vốn tích lũy và ai ra quyết định.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">🗓️ Ngày 22 - 30: Mời đi thực địa & Chốt cọc</h3>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-13">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Mời tối thiểu 3 khách nhóm A đi xem thực tế dự án vào cuối tuần</div>
+                            <div class="checklist-meta">Ngày 22 - 25 — Dùng kỹ thuật FOMO tinh tế rủ rê đi trải nghiệm thực tế.</div>
+                        </div>
+                    </div>
+                    <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                        <input type="checkbox" id="chk-14">
+                        <div class="checklist-text-wrapper">
+                            <div class="checklist-text">Phối hợp chặt chẽ với Leader tại thực địa để chốt cọc</div>
+                            <div class="checklist-meta">Ngày 26 - 30 — Chốt cọc thành công và chuyển sang xin referral.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">7.2. Chỉ số KPI đánh giá hiệu quả hàng tuần</h3>
+                    <p>Mỗi tối Chủ nhật nhân sự tự điền, thứ Hai Leader kiểm tra chéo:</p>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Chỉ số đo lường</th>
+                                    <th>Mục tiêu Tuần</th>
+                                    <th>Benchmark đạt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Số mối quan hệ mới tiếp cận</td>
+                                    <td>Tối thiểu 5 người mới/tuần</td>
+                                    <td>Duy trì liên tục đều đặn</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Tỷ lệ phản hồi tích cực</td>
+                                    <td>Đạt &ge; 30% trên tổng số tiếp cận</td>
+                                    <td>Nếu thấp hơn cần xem lại cách mở lời</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Số khách mời đi thực tế dự án</td>
+                                    <td>Tối thiểu 1 khách/tuần</td>
+                                    <td>Đi xem trực tiếp quyết định 90% thành công</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Tỷ lệ chốt cọc từ đi xem</td>
+                                    <td>Đạt &ge; 30% tổng số khách đi xem thực tế</td>
+                                    <td>Leader hỗ trợ chốt tại dự án</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: CASE STUDIES -->
+            <section id="case-studies" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">🏆 PHẦN 8: CASE STUDY THỰC TẾ</h2>
+                <div class="card">
+                    <div class="alert-box alert-info">
+                        <div class="alert-title">📢 Phần tự biên soạn của Sếp Khương:</div>
+                        Phần này dành riêng để Sếp Khương cập nhật các câu chuyện chốt đất thực chiến điển hình của đội ngũ nhân sự K11 TL Land nhằm làm tài liệu giảng dạy thực tế cho nhân sự mới khóa sau.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: APPENDIX -->
+            <section id="appendix" style="padding-top: 40px; margin-bottom: 50px;">
+                <h2 class="section-title">📎 PHỤ LỤC & QUY ĐỊNH BÀN GIAO</h2>
+                
+                <div class="card">
+                    <h3 class="subsection-title">1. Quy định bàn giao MQH khi nhân sự nghỉ việc</h3>
+                    <p>Mối quan hệ cá nhân của nhân sự là tài sản nhạy cảm. Tuy nhiên, khi làm việc tại TL Land, để bảo vệ quyền lợi cho khách hàng không bị bỏ rơi khi nhân sự nghỉ việc giữa chừng, công ty áp dụng quy trình bàn giao sòng phẳng sau:</p>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Trạng thái khách</th>
+                                    <th>Phương án bàn giao</th>
+                                    <th>Tỷ lệ chia sẻ hoa hồng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Đã cọc / Đang làm thủ tục</strong></td>
+                                    <td>Leader trực tiếp tiếp quản hỗ trợ ra sổ cho khách hàng.</td>
+                                    <td>Nhân sự nghỉ việc nhận <strong>70% hoa hồng</strong>, Leader nhận 30% hỗ trợ thủ tục.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Đang nuôi dưỡng sâu (Nhóm A)</strong></td>
+                                    <td>Bàn giao danh sách cho một nhân sự cứng khác trong nhóm tiếp quản chăm sóc.</td>
+                                    <td>Nếu chốt thành công trong vòng 30 ngày sau nghỉ việc: Nhân sự cũ nhận <strong>30% hoa hồng</strong>, nhân sự mới nhận 70%.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mới tiếp cận hoặc Chưa chăm sóc</strong></td>
+                                    <td>Xóa thông tin khách khỏi hệ thống bàn giao chung. Trả lại quyền riêng tư MQH cho nhân sự nghỉ việc.</td>
+                                    <td>Không áp dụng chia sẻ hoa hồng.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">2. Chiến lược khai thác MQH cho nhân sự bán thời gian (Part-time)</h3>
+                    <p>Đối với nhân sự cộng tác viên hoặc part-time, do giới hạn về thời gian có mặt trực tiếp tại văn phòng, cần áp dụng chiến lược tinh gọn sau:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Tập trung 100% vào Online Warm-up:</strong> Tận dụng thời gian rảnh rỗi buổi tối để tương tác mạng xã hội và nhắn tin Zalo hâm nóng mối quan hệ.</li>
+                        <li><strong>Chỉ làm nhiệm vụ "Bắc cầu":</strong> Nhân sự part-time KHÔNG tự mình đi tư vấn sâu về dự án hay thủ tục pháp lý phức tạp. Nhiệm vụ duy nhất của bạn là khơi gợi nhu cầu, tạo tò mò và mời được khách đi xem đất.</li>
+                        <li><strong>Chuyển giao chốt chặn:</strong> Khi khách hàng đồng ý đi thực địa hoặc muốn nghe tư vấn sâu, chuyển giao ngay thông tin cho Leader hoặc một nhân sự full-time cùng nhóm hỗ trợ tư vấn 3 bên để nâng cao tỷ lệ chốt. Hoa hồng chia sẻ theo tỷ lệ sòng phẳng 50/50.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="subsection-title">3. Khác biệt văn hóa vùng miền (Bắc - Trung - Nam)</h3>
+                    <p>Khi tiếp cận mối quan hệ sẵn có ở các vùng miền khác nhau, bạn cần điều chỉnh tone giọng và cách cư xử cho phù hợp với đặc tính văn hóa bản địa:</p>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>📍 Khách hàng miền Bắc (Đặc biệt Hà Nội)</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Cực kỳ coi trọng thể diện, lễ nghĩa bề ngoài và tính pháp lý an toàn của dự án. Mở lời cần tinh tế, lịch sự, tôn trọng vai vế. Thích nói chuyện vĩ mô, quy hoạch đường sá lớn, hạ tầng đồng bộ.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>📍 Khách hàng miền Trung</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Cực kỳ cẩn trọng, thực tế và tiết kiệm. Họ cần nhìn thấy con số cụ thể, giá trị thực của mảnh đất và tiến độ thi công hiện tại. Không thích những lời hứa hẹn tâng bốc quá mức.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>📍 Khách hàng miền Nam</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Thoải mái, phóng khoáng, thích sự nhanh gọn, sòng phẳng và vui vẻ. Họ quyết định nhanh hơn nếu cảm thấy tin tưởng vào tính cách chân thành của bạn. Thích các kịch bản đối thoại cởi mở, không quá trịnh trọng.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer>
+                <p>Tài liệu đào tạo nội bộ TL Land — Khương Trịnh Đầu Tư</p>
+                <p style="margin-top: 5px; font-size: 11px;">Nghiêm cấm sao chép, phát tán dưới mọi hình thức dưới danh nghĩa cá nhân. v1.0 — 06/2026</p>
+            </footer>
+
+        </main>
+
+        <!-- BACK TO TOP BUTTON -->
+        <button id="back-to-top" title="Lên đầu trang">↑</button>
+
+    </div>
+
+    <!-- JAVASCRIPT FOR INTERACTION -->
+    <script>
+        // Data Matrix for 28 Scripts (7 MQH x 4 Channels)
+        const scriptData = {
+    "friends": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời (Ngày 1):</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên] ơi, lâu quá không gặp mày rồi! Hôm qua tao lục album ảnh cũ thấy tấm hình hồi bọn mình [nhắc kỷ niệm cụ thể — ví dụ: trốn tiết đi chơi Net, đi dã ngoại bị mưa...]. Cười đau bụng 😂 Mày giờ sao rồi, vẫn ở [thành phố cũ] không?\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng (Ngày 3-5):</strong></p>\n<p>Sau khi bạn reply, nói chuyện bình thường 2-3 tin. Rồi dẫn tự nhiên:</p>\n<div class=\"chat-bubble\">*\"Ừ tao giờ chuyển sang làm bất động sản rồi. Ban đầu cũng ngại, nhưng mà làm rồi mới thấy hay — được đi thực địa, gặp nhiều người, thu nhập cũng ngon hơn hồi đi làm công ty. Mày giờ vẫn làm [nghề cũ] hả?\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt (Ngày 7-10):</strong></p>\n<div class=\"chat-bubble\">*\"À mà tao mới phát hiện cái này hay. Mày biết khu [tên khu vực] không? Giờ đang xây hạ tầng ầm ầm, giá đất còn mềm lắm. Tao vừa dẫn mấy thằng bạn đi xem, tụi nó bảo 'sao không nói sớm'. Mày có rảnh cuối tuần không, tao chở mày đi xem thử cho biết. Không mua cũng được, coi như đi chơi.\"*</div>\n<p><strong>Xử lý từ chối:</strong></p>\n<p>- *\"Thôi tao không có tiền đâu\"* → *\"Ê ai bảo mày mua đâu! Tao bảo đi xem cho biết thôi. Mày biết tao, tao có ép mày bao giờ đâu. Coi như cuối tuần bọn mình đi uống cà phê luôn.\"*</p>\n<p>- *\"Để tao suy nghĩ\"* → *\"Ok mày cứ tính. Tao chỉ nói thật là giá khu này tháng sau khác tháng trước. Khi nào rảnh ping tao.\"*</p>\n<p><strong>Xin referral:</strong></p>\n<div class=\"chat-bubble\">*\"À mà mày có thằng nào trong nhóm mình đang tính tìm đất không? Tao tư vấn miễn phí, đỡ phải đi tìm sale lạ không biết tin ai.\"*</div>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên]! Lâu quá mày không thấy đăng gì, cứ tưởng mày bỏ FB rồi 😄 Mày giờ ở đâu, làm gì rồi? Hôm nào bọn mình gặp nhau café đi, lâu quá trời!\"*</div>\n<p><strong>Cách đăng bài cá nhân thu hút (không bán trực tiếp):</strong></p>\n<p>• <strong>Post 1 — Kể chuyện:</strong>:  *\"Hôm nay dẫn khách đi xem đất, gặp ông anh cùng lớp cấp 3 hồi xưa. Thế giới nhỏ thật 😄 Trò chuyện mới biết ảnh cũng đang tìm đất đầu tư. 10 năm không gặp mà gặp lại ở mảnh đất, duyên thật sự.\"*</p>\n<p>• <strong>Post 2 — Chia sẻ giá trị:</strong>:  *\"3 thứ tao ước ai nói cho tao biết từ 5 năm trước: 1. Tiền để bank mất giá mỗi năm, 2. Đất là tài sản ít rủi ro nhất nếu chọn đúng vị trí, 3. Mua đất không cần giàu — cần đúng thời điểm.\"*</p>\n<p>• <strong>Story:</strong>:  Ảnh thực địa + caption ngắn: *\"Cuối tuần dẫn khách đi xem, khí trời sạch sẽ. Ai muốn đi xem cho biết inbox tao.\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Hội lớp, đám cưới bạn chung, gặp tình cờ.</p>\n<p>**Câu mở:** *\"Ê [Tên]! Lâu quá rồi! Mày giờ khác quá, trông già hơn hồi xưa nhiều 😄\"* (Nói đùa tạo không khí thoải mái)</p>\n<p><strong>Câu dẫn:</strong></p>\n<p>- Bạn hỏi: *\"Mày giờ làm gì?\"*</p>\n<p>- Trả lời: *\"Tao làm bất động sản. Ban đầu gia đình cũng bảo 'ơ sao mày bỏ nghề', nhưng làm rồi mới thấy — thu nhập tốt hơn, mà lại tự do. Tao chuyên tư vấn đất nền đầu tư, kiểu giúp mọi người tìm đất vừa sức, pháp lý sạch.\"*</p>\n<p>**Câu gieo mầm:** *\"Mày biết khu [tên khu vực] không? Giờ đất ở đó còn tầm [giá mềm], mà hạ tầng sắp về tới nơi rồi. Tao dẫn mấy khách đi tuần trước, ai cũng bất ngờ.\"*</p>\n<p>**Câu mời:** *\"Mày có hứng không? Cuối tuần tao hay dẫn mấy anh chị đi xem. Mày đi cho vui, coi như bọn mình đi chơi luôn.\"*</p>\n<p>**Xử lý từ chối:** *\"Không sao! Tao không ép. Nhưng mày nhớ nhé — khi nào mày hoặc ai đó cần tìm đất thì ping tao. Tao tư vấn thật, không vẽ vời.\"*</p>\n<p>**Xin referral:** *\"À mà trong nhóm bạn mày, có ai đang tính mua đất không? Giới thiệu cho tao, tao lo từ A-Z.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Cách nhờ bạn chung giới thiệu:</strong></p>\n<p>Nhắn cho bạn chung (đã thân):</p>\n<div class=\"chat-bubble\">*\"Ê [Tên bạn chung], mày có số Zalo thằng [Tên người muốn tiếp cận] không? Tao muốn liên lạc lại. À mà tao giờ làm BĐS rồi, nếu thằng [Tên] hay ai trong nhóm mình đang tính tìm đất, mày kết nối cho tao nhé. Tao tư vấn miễn phí, đảm bảo thật thà — mày biết tính tao rồi.\"*</div>\n<p><strong>Mẫu câu cho người trung gian nói hộ:</strong></p>\n<div class=\"chat-bubble\">*\"Ê tao giới thiệu cho mày thằng [Tên], hồi đi học chung với tao đó. Giờ nó làm BĐS, tư vấn đất nền. Nó tư vấn thật, không kiểu sale lằng nhằng đâu. Mày đang tính tìm đất thì liên hệ nó thử.\"*</div>\n<p>---</p>\n"
+    },
+    "relatives": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời (Dịp lễ/Tết/sinh nhật):</strong></p>\n<div class=\"chat-bubble\">*\"Chú/Bác/Anh [Tên] ơi, con/em chúc [dịp lễ] chú bác mạnh khỏe, gia đình vui vẻ ạ! Lâu rồi con không ghé thăm, dạo này chú bác có khỏe không ạ?\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng (Sau 3-5 ngày):</strong></p>\n<p>Khi họ hỏi \"Dạo này con/em làm gì?\":</p>\n<div class=\"chat-bubble\">*\"Dạ con/em giờ chuyển sang làm bất động sản rồi ạ. Ban đầu cũng ngại, nhưng làm rồi thấy hợp — công việc tự do, thu nhập ổn hơn trước. Toàn ngày đi thực địa, gặp người này người kia.\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt (Khi họ tỏ ra quan tâm):</strong></p>\n<div class=\"chat-bubble\">*\"Dạ thật ra nghề này hay lắm ạ. Hôm trước con dẫn một anh đi xem khu [tên khu vực], đất sổ đỏ, hạ tầng đang làm — ảnh mua xong mà cứ gọi cảm ơn con hoài. Chú/Bác có ai quen đang muốn tìm đất không ạ? Con tư vấn giúp được.\"*</div>\n<p>**Lưu ý:** Với họ hàng, KHÔNG NÓI \"chú mua đi\". Chỉ kể chuyện khách hàng khác → để họ TỰ HỎI.</p>\n<p>**Xử lý từ chối:** *\"Dạ con đâu có mời chú mua đâu ạ 😄 Con chỉ kể chuyện nghề thôi. Khi nào chú có ai quen hỏi thăm thì giới thiệu cho con nhé.\"*</p>\n<p>**Xin referral:** *\"Dạ chú/bác có anh chị nào đang tính tìm đất không ạ? Giới thiệu cho con, con lo chu đáo — mình là người nhà, con không dám làm ẩu đâu ạ.\"*</p>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, em thấy ảnh con anh/chị lớn quá rồi! Dạo này gia đình có khỏe không ạ? Em muốn ghé thăm anh chị, hôm nào rảnh mình gặp nhau ạ?\"*</div>\n<p><strong>Bài đăng cá nhân hướng đến họ hàng:</strong></p>\n<p>- *\"Cuối tuần về quê thăm ông bà, ngồi nghe các chú nói chuyện đất cát mới thấy: thế hệ trước mua đất chỉ cần 'chỗ nào quen, sổ sạch là mua'. Giờ phức tạp hơn nhiều — nhưng nguyên tắc thì vẫn vậy. Đất sạch + vị trí tốt + kiên nhẫn = thắng.\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Đám giỗ, Tết, sinh nhật, đám cưới trong họ.</p>\n<p>**Câu mở:** *\"Dạ chú/bác ơi, lâu quá con không ghé thăm. Gia đình mình dạo này có gì mới không ạ?\"*</p>\n<p>**Câu dẫn (khi họ hỏi công việc):** *\"Dạ con giờ làm bất động sản ạ. Chuyên tư vấn đất nền đầu tư. Công việc cũng vất vả nhưng mà con thấy hợp, được gặp nhiều người, học nhiều thứ.\"*</p>\n<p>**Câu gieo mầm:** *\"Hôm trước con dẫn một chú cũng tuổi bác đi xem đất. Chú đó để tiền bank 3 năm, lãi có tí — giờ chuyển sang mua đất. Mới 8 tháng mà lô đó tăng gần 30% rồi ạ. Con thấy tiếc cho mấy chú cứ để tiền bank hoài.\"*</p>\n<p>**Câu mời:** *\"Bác/Chú có muốn cuối tuần con chở đi xem cho biết không ạ? Không mua cũng được, biết thêm thị trường để sau này ai hỏi thì biết đường tư vấn.\"*</p>\n<p>**Xử lý từ chối:** *\"Dạ không sao ạ! Con chỉ nói vui thôi. Khi nào bác có hứng thú thì bảo con. Hoặc ai quen bác hỏi thăm đất cát thì nhớ con nhé ạ.\"*</p>\n<p>**Xin referral:** *\"Bác ơi, bác có anh chị em nào, bạn bè bác đang tính tìm đất không ạ? Bác giới thiệu cho con, con tư vấn tận tâm — người nhà giới thiệu con phải lo cho tốt chứ.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Nhờ bố/mẹ, anh/chị ruột nói hộ:</strong></p>\n<div class=\"chat-bubble\">*\"Mẹ/Ba ơi, hôm gặp chú [Tên] mẹ nói giúp con: 'Thằng [Tên con] giờ làm BĐS, tư vấn đất nền đàng hoàng lắm. Chú có ai quen đang tìm đất thì bảo nó, người nhà nó lo chu đáo.' Mẹ đừng nói 'mua đi' nhé, chỉ nói vậy thôi ạ.\"*</div>\n<p>---</p>\n"
+    },
+    "colleagues": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, em [Tên mình] hồi làm chung ở [Công ty cũ] đây ạ. Lâu quá không liên lạc, anh/chị giờ vẫn ở [công ty] không? Dạo này có gì mới không ạ?\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng (Ngày 2-4):</strong></p>\n<div class=\"chat-bubble\">*\"Em giờ chuyển sang làm bất động sản rồi anh/chị ạ. Nghỉ [công ty cũ] được [x tháng] rồi. Ban đầu cũng phân vân, nhưng giờ thấy quyết định đúng — công việc năng động hơn, thu nhập cũng tốt hơn hồi đi làm công.\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt (Ngày 5-7):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, em hỏi thật nhé: anh/chị có đang tính tìm kênh đầu tư gì không ạ? Em hỏi vì em thấy mấy anh chị đồng nghiệp cũ lương cũng tốt, mà cứ để tiền bank thì phí quá. Em đang tư vấn mấy lô đất nền pháp lý sạch, phân khúc 1-3 tỷ — rất phù hợp với người đi làm muốn tích sản.\"*</div>\n<p><strong>Xử lý từ chối:</strong></p>\n<p>- *\"Anh chưa tính\"* → *\"Dạ em hiểu. Em chỉ gợi ý thôi ạ. Khi nào anh có hứng thú hoặc ai hỏi thì nhớ em nhé. Em làm nghề này, tư vấn thật — anh biết tính em mà.\"*</p>\n<p>**Xin referral:** *\"Anh/Chị ơi, trong phòng mình hồi đó hoặc bạn bè anh/chị có ai đang tính tìm đất không ạ? Anh/chị kết nối giúp em, em tư vấn chu đáo. Người quen giới thiệu em phải lo cho tốt chứ.\"*</p>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi! Em thấy anh/chị đổi công ty mới rồi hả? Chúc mừng anh/chị! Em giờ cũng chuyển sang lĩnh vực mới rồi — làm BĐS ạ. Hôm nào mình café catch up nhé?\"*</div>\n<p><strong>Bài đăng cá nhân (hướng đồng nghiệp cũ):</strong></p>\n<p>- *\"Hồi đi làm công ty, tao cứ nghĩ lương 20-30tr/tháng là ổn. Đến khi nghỉ việc chuyển sang BĐS mới ngộ ra: ổn định ≠ an toàn. Tiền lương không bao giờ đuổi kịp giá đất. Ai đi làm 10 năm rồi mà chưa có mảnh đất nào thì nên nghĩ lại.\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Gặp lại tình cờ, hẹn café.</p>\n<p>**Câu mở:** *\"Anh/Chị [Tên]! Trời ơi lâu quá! Anh/chị giờ vẫn ở [công ty] không? Dạo này thế nào?\"*</p>\n<p>**Câu dẫn:** *\"Em giờ chuyển sang BĐS rồi anh/chị ạ. Cũng ngạc nhiên, nhưng mà em thấy hợp. Được tự chủ thời gian, thu nhập cũng ổn — quan trọng là em thấy mình đang giúp người ta tìm được tài sản tốt, chứ không phải ngồi văn phòng gõ report.\"*</p>\n<p>**Câu gieo mầm:** *\"Em nói thật nhé, em thấy mấy anh chị hồi làm chung, lương tốt mà toàn để bank. Trong khi mấy khách của em — cũng lương tầm đó — người ta mua đất 2 năm trước giờ đã lãi 40-50%. Cùng tiền mà cách dùng khác nhau.\"*</p>\n<p>**Câu mời:** *\"Cuối tuần em hay dẫn khách đi xem thực địa. Anh/chị muốn đi cho biết không? Coi như mình gặp nhau luôn.\"*</p>\n<p>**Xử lý từ chối:** *\"Dạ không sao ạ. Em không ép. Nhưng anh/chị nhớ nhé — khi nào tính tìm đất thì gọi em. Em tư vấn thật, người quen cũ em không dám làm ẩu.\"*</p>\n<p>**Xin referral:** *\"Anh/chị có ai quen đang tính đầu tư không ạ? Kết nối cho em, em lo từ A-Z.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Nhờ đồng nghiệp thân giới thiệu:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên đồng nghiệp thân] ơi, em biết anh [Tên người muốn tiếp cận] cũng đang tính tìm kênh đầu tư. Anh/chị nhắc giúp em nhé: 'Thằng [Tên mình] giờ làm BĐS, tư vấn đất nền. Mày đang tìm đất thì nó giúp được, người quen tin được.' Em cảm ơn anh/chị!\"*</div>\n<p>---</p>\n"
+    },
+    "neighbors": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời:</strong></p>\n<div class=\"chat-bubble\">*\"Chú/Cô/Anh/Chị [Tên] ơi, dạo này nhà mình ổn không ạ? Em thấy hôm trước nhà chú sửa lại cái cổng đẹp quá!\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng:</strong></p>\n<p>Khi nói chuyện bình thường, dẫn tự nhiên:</p>\n<div class=\"chat-bubble\">*\"Dạ em giờ làm bất động sản rồi ạ. Cũng hay ho lắm, ngày nào cũng đi thực địa. Hôm trước em dẫn khách đi xem mấy lô đất, khu đó đang lên giá mạnh lắm.\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt:</strong></p>\n<div class=\"chat-bubble\">*\"Chú/Anh ơi, em nói thật nhé: dạo này tiền gửi bank lãi suất thấp quá. Mấy chú bác bên khu mình em thấy mấy người cũng đang tìm đất. Chú/Anh có đang tính gì không ạ?\"*</div>\n<p>**Xử lý từ chối:** *\"Dạ không sao ạ! Em chỉ hỏi thăm thôi. Khi nào chú có ai hỏi thăm đất cát thì nhớ em nhé — hàng xóm với nhau, em tư vấn tận tình.\"*</p>\n<p>**Xin referral:** *\"Chú/Anh có ai quen — bạn bè, anh em — đang tính tìm đất không ạ? Giới thiệu cho em, em lo từ A-Z.\"*</p>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Chị [Tên] ơi! Em thấy ảnh chị đi [du lịch/sự kiện] đẹp quá! Dạo này chị khỏe không? Lâu quá không gặp chị ở sân chung rồi.\"*</div>\n<p><strong>Bài đăng hướng hàng xóm:</strong></p>\n<p>- *\"Sáng nay đi bộ quanh khu, gặp chú hàng xóm hỏi: 'Mày giờ làm đất hả? Có lô nào ngon chỉ chú với!' 😄 Hóa ra ai cũng quan tâm đất cát — chỉ là không biết hỏi ai cho tin tưởng.\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Gặp ở sân chung cư, quán cafe gần nhà, đi bộ sáng, tiệc khu phố.</p>\n<p>**Câu mở:** *\"Chú/Anh [Tên] ơi, dạo này sao rồi? Thấy chú/anh đi làm sớm quá!\"*</p>\n<p>**Câu dẫn:** Khi họ hỏi *\"Mày giờ làm gì?\"*: *\"Dạ em làm bất động sản ạ. Tư vấn đất nền đầu tư. Nghe thì lạ nhưng mà em thấy hợp, được đi nhiều, gặp nhiều người.\"*</p>\n<p>**Câu gieo mầm:** *\"Chú/Anh biết khu [tên khu vực] không? Đất ở đó giờ còn rẻ lắm mà hạ tầng đang về. Em vừa dẫn mấy khách đi, ai cũng bất ngờ vì giá mềm quá.\"*</p>\n<p>**Câu mời:** *\"Cuối tuần chú/anh có rảnh không? Em đang dẫn mấy anh chị đi xem. Chú/Anh đi cho biết, coi như đi chơi.\"*</p>\n<p>**Xử lý từ chối:** *\"Dạ không sao! Em chỉ rủ cho vui thôi. Khi nào chú/anh tính thì nói em.\"*</p>\n<p>**Xin referral:** *\"Chú/Anh có bạn bè, anh em ai đang tính tìm đất không ạ? Chỉ cho em, em tư vấn giúp — hàng xóm mà, em lo cho tốt.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Nhờ hàng xóm thân giới thiệu:</strong></p>\n<div class=\"chat-bubble\">*\"Cô [Tên] ơi, cô biết anh [Tên] ở tầng trên không ạ? Em nghe ảnh đang tính tìm đất. Cô nói giúp em: 'Thằng [Tên mình] ở tầng dưới giờ làm BĐS, mày hỏi nó — hàng xóm tin được.'\"*</div>\n<p>---</p>\n"
+    },
+    "groups": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, lâu quá không thấy anh/chị đi [chạy bộ/đá bóng/yoga] với nhóm mình rồi! Dạo này bận quá hả? Hôm nào quay lại đi!\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng:</strong></p>\n<div class=\"chat-bubble\">*\"Ừ em giờ vẫn đi [hoạt động] đều. Nhưng mà em có thêm việc mới — làm bất động sản. Cũng hay, vừa được đi nhiều vừa kiếm tiền 😄\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, em hỏi thật nhé: trong nhóm mình có ai đang tính tìm đất đầu tư không ạ? Em chuyên tư vấn đất nền, pháp lý sạch, phân khúc 1-3 tỷ. Ai quan tâm em share thông tin. Mình quen biết nhau rồi, em tư vấn thật.\"*</div>\n<p>**Xử lý từ chối:** *\"Dạ ok ạ! Em chỉ hỏi thăm thôi. Khi nào có ai hỏi thì nhớ em nhé.\"*</p>\n<p>**Xin referral:** *\"Anh/Chị có bạn bè, đồng nghiệp nào đang tìm đất không? Kết nối cho em, em lo chu đáo.\"*</p>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Anh [Tên] ơi! Hôm qua nhóm mình đi [hoạt động] vui quá! Anh dạo này có tiếp tục không? À mà em có chuyện muốn hỏi anh — hôm nào mình café nhé?\"*</div>\n<p><strong>Bài đăng cá nhân (tag nhóm):</strong></p>\n<p>- *\"Sáng nay chạy bộ xong, mấy anh em trong CLB ngồi café bàn chuyện đầu tư. Một anh nói: 'Tao chạy 10km mỗi sáng mà tiền vẫn nằm yên trong bank 😤'. Tao bảo: 'Anh ơi, cho tiền chạy theo đất đi, nó chạy nhanh hơn anh.' 😄\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Sau buổi tập, café sau hoạt động nhóm, sự kiện CLB.</p>\n<p>**Câu mở:** *\"Anh/Chị [Tên] hôm nay form tốt quá! Dạo này tập đều ha?\"*</p>\n<p>**Câu dẫn:** Trong lúc ngồi café sau buổi tập: *\"À mà em giờ làm thêm bên BĐS nữa. Tư vấn đất nền đầu tư. Mấy anh chị trong nhóm mình em thấy nhiều người cũng quan tâm.\"*</p>\n<p>**Câu gieo mầm:** *\"Anh/chị biết không, tuần trước em dẫn một anh cũng trong CLB chạy bộ đi xem đất. Ảnh mua lô 1.2 tỷ, sổ đỏ riêng. Giờ đất khu đó đã lên 1.5 tỷ rồi — mới có 6 tháng.\"*</p>\n<p>**Câu mời:** *\"Cuối tuần em dẫn mấy anh chị đi xem thực địa. Anh/chị muốn đi không? Đi cho biết, có gì mình bàn thêm.\"*</p>\n<p>**Xử lý từ chối:** *\"Không sao ạ! Em chỉ rủ cho vui. Khi nào anh/chị tính thì gọi em.\"*</p>\n<p>**Xin referral:** *\"Trong nhóm mình hay ngoài nhóm, anh/chị có ai đang tìm đất không? Giới thiệu cho em — em tư vấn thật, không vẽ vời.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Nhờ trưởng nhóm/người có ảnh hưởng trong CLB:</strong></p>\n<div class=\"chat-bubble\">*\"Anh [Tên trưởng nhóm] ơi, em giờ làm BĐS, tư vấn đất nền. Trong nhóm mình ai đang tìm đất thì anh kết nối cho em nhé. Em tư vấn miễn phí, đảm bảo thật thà — anh em trong nhóm mà, em không dám làm bậy.\"*</div>\n<p>---</p>\n"
+    },
+    "socials": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời (Sau 2-3 tuần tương tác FB/Zalo):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, em [Tên mình] — mình hay like bài nhau trên FB đó ạ. Em thấy anh/chị hay chia sẻ về [chủ đề họ quan tâm] hay quá nên muốn kết nối Zalo cho tiện. Anh/chị dạo này thế nào ạ?\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng (1-2 tuần):</strong></p>\n<p>Nói chuyện bình thường về sở thích chung, KHÔNG nhắc đến BĐS. Tạo giá trị trước: chia sẻ bài hay, hỏi thăm, comment chân thành.</p>\n<p><strong>Giai đoạn 3 — Dẫn dắt (Sau 3-4 tuần quen nhau):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, em hỏi thật nhé — anh/chị có đang quan tâm đến kênh đầu tư nào không ạ? Em hỏi vì em làm bên BĐS, chuyên tư vấn đất nền. Nếu anh/chị quan tâm em share thông tin. Không quan tâm cũng ok, mình vẫn nói chuyện bình thường 😄\"*</div>\n<p>**Xử lý từ chối:** *\"Dạ ok ạ, không sao! Em chỉ hỏi thăm thôi. Mình cứ giữ liên lạc nhé, khi nào anh/chị có hứng thú thì bảo em.\"*</p>\n<p>**Xin referral:** *\"Anh/Chị có bạn bè nào đang tìm đất không ạ? Anh/chị kết nối giúp em — em tư vấn thật, không bán hàng kiểu spam đâu ạ.\"*</p>\n<p>---</p>\n",
+        "facebook": "<p><strong>Chiến thuật tương tác trước khi inbox:</strong></p>\n<p>1. **Tuần 1-2:** Like + comment CHÂN THÀNH vào bài họ đăng (đừng comment kiểu \"🔥🔥\" — hãy comment có nội dung)</p>\n<p>2. **Tuần 3:** React story, reply story</p>\n<p>3. **Tuần 4:** Inbox</p>\n<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi! Em hay thấy bài anh/chị trên feed — anh/chị share hay quá 😄 Em [Tên mình], mình quen nhau qua [nhóm/page/tương tác]. Em muốn kết nối thêm nè. Anh/chị dạo này sao ạ?\"*</div>\n<p><strong>Bài đăng cá nhân (thu hút MQH mạng xã hội):</strong></p>\n<p>- *\"Một năm trước tao chỉ là người lướt FB. Giờ tao làm BĐS, mỗi tuần dẫn 3-4 khách đi xem đất, tháng nào cũng chốt deal. Không phải tao giỏi — mà vì tao chọn đúng sản phẩm tốt. Ai đang tìm kênh đầu tư an toàn, inbox tao chia sẻ.\"*</p>\n<p>- *\"Hôm qua có bạn inbox hỏi: 'Ê mày làm đất thật hả? Tao cứ tưởng mày đùa!' 😂 Không đùa đâu — tao làm thật, tư vấn thật, và khách tao ai mua xong cũng cảm ơn thật. Tin hay không inbox tao hỏi.\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Hẹn café lần đầu gặp offline.</p>\n<p>**Câu mở:** *\"Anh/Chị [Tên] đây hả? Gặp ngoài đời khác ảnh trên FB quá! 😄 Vui quá, cuối cùng cũng gặp được.\"*</p>\n<p>**Câu dẫn:** Nói chuyện bình thường 15-20 phút. Khi họ hỏi công việc: *\"Em làm BĐS ạ. Tư vấn đất nền đầu tư. Nghe thì nhiều người ngại, nhưng em làm kiểu tư vấn thật — sản phẩm nào tốt em mới giới thiệu.\"*</p>\n<p>**Câu gieo mầm:** *\"Anh/Chị biết không, nhiều khách em bây giờ ban đầu cũng chỉ quen em trên FB thôi. Giờ mua xong người ta còn giới thiệu bạn bè cho em. Tin tưởng nó đến từ kết quả thật.\"*</p>\n<p>**Câu mời:** *\"Anh/Chị muốn cuối tuần nào đi xem cho biết không? Em dẫn đi, không mua không sao — coi như mình gặp nhau thêm lần nữa.\"*</p>\n<p>**Xử lý từ chối:** *\"Ok ạ! Mình cứ giữ liên lạc. Khi nào anh/chị tính thì nhớ em.\"*</p>\n<p>**Xin referral:** *\"Anh/Chị có ai quen đang muốn tìm đất không? Kết nối cho em — em tư vấn miễn phí.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Cách để người quen MXH giới thiệu:</strong></p>\n<p>Sau khi đã thân qua online, nhờ họ:</p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, anh/chị có bạn bè nào đang quan tâm đất cát không ạ? Nếu được anh/chị giới thiệu giúp em. Em tư vấn chu đáo — anh/chị đã biết em, tin em rồi mà 😊\"*</div>\n<p>---</p>\n"
+    },
+    "oldclients": {
+        "zalo": "<p><strong>Giai đoạn 1 — Mở lời (Chăm sóc định kỳ, mỗi 2-4 tuần):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi, em [Tên mình] đây ạ! Em cập nhật cho anh/chị: lô [mã lô] anh/chị mua hồi [tháng/năm], khu đó giờ hạ tầng đã [cập nhật tình hình — làm đường, quy hoạch...]. Giá đất xung quanh đã lên [%] so với lúc anh/chị mua rồi ạ. Chúc mừng anh/chị!\"*</div>\n<p><strong>Giai đoạn 2 — Nuôi dưỡng:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, dạo này em thấy khu [khu vực khác] cũng đang tiềm năng lắm. Hạ tầng mới phê duyệt, giá vẫn còn mềm. Anh/chị có muốn em gửi thông tin tham khảo không ạ? Giống kiểu hồi anh/chị mua lô đầu tiên ấy — sớm thì có lợi.\"*</div>\n<p><strong>Giai đoạn 3 — Dẫn dắt (Upsell):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, em nói thật nhé: với kinh nghiệm mua lô trước, anh/chị đã biết rồi — đất mua đúng thời điểm thì cứ nằm đó nó tự lên. Em đang có mấy lô [khu mới], pháp lý sạch, giá từ [giá]. Anh/chị muốn em giữ 1 lô không ạ? Khách cũ em ưu tiên trước.\"*</div>\n<p><strong>Xin referral (Trọng tâm với khách cũ):</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị ơi, em có nhờ anh/chị một việc được không ạ? Anh/chị mua lô hồi đó ưng ý, giờ đã lên giá rồi. Nếu anh/chị có bạn bè, đồng nghiệp, người thân nào đang tìm đất — anh/chị giới thiệu cho em nhé. Em tư vấn cho họ y như em đã tư vấn cho anh/chị. Có gì em cảm ơn anh/chị sau ạ.\"*</div>\n<p>---</p>\n",
+        "facebook": "<p><strong>Tin nhắn Messenger:</strong></p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên] ơi! Em xem lại lô anh/chị mua hồi đó, khu đó giờ lên giá rồi ạ! 🎉 Chúc mừng anh/chị. Em gửi anh/chị thêm info khu mới — anh/chị xem thử nhé.\"*</div>\n<p><strong>Bài đăng (vinh danh khách cũ — xin phép trước):</strong></p>\n<p>- *\"Hôm nay gặp lại anh [Tên] — khách mua đất với em từ [năm]. Lô hồi đó giá 1.1 tỷ, giờ người ta trả 1.6 tỷ anh không bán 😄 Anh bảo: 'Mày tư vấn chuẩn, giờ tao muốn mua thêm lô nữa.' Đó, đầu tư đúng thời điểm nó như vậy. Cảm ơn anh đã tin tưởng em! 🙏\"*</p>\n<p>---</p>\n",
+        "direct": "<p>**Bối cảnh:** Mời café cảm ơn, gặp lại khi cập nhật tình hình lô.</p>\n<p>**Câu mở:** *\"Anh/Chị ơi, lâu quá không gặp! Hôm nay em mời anh/chị café — em muốn cập nhật tình hình lô anh/chị mua hồi đó.\"*</p>\n<p>**Câu dẫn:** *\"Lô của anh/chị bây giờ khu đó đã [cập nhật]. Giá xung quanh đã [%]. Anh/chị mua lúc đó là chuẩn. Em vui lắm vì tư vấn cho anh/chị mà kết quả tốt.\"*</p>\n<p>**Câu gieo mầm (Upsell):** *\"Em nói thật nhé — kinh nghiệm mua lô 1 anh/chị đã có. Giờ em đang có mấy lô khu mới, tiềm năng y hệt khu anh/chị đã mua — hạ tầng mới phê duyệt, giá còn rẻ. Anh/chị muốn em giữ 1 lô không?\"*</p>\n<p>**Câu mời:** *\"Cuối tuần em dẫn anh/chị đi xem khu mới nhé? Đi cho biết, có gì mình bàn thêm.\"*</p>\n<p>**Xử lý từ chối:** *\"Dạ không sao! Anh/chị cứ tính. Nhưng anh/chị nhớ nhé — ai quen anh/chị hỏi đất thì giới thiệu cho em. Em lo chu đáo.\"*</p>\n<p>**Xin referral:** *\"Anh/Chị ơi, em nhờ anh/chị thật: bạn bè, đồng nghiệp, người thân anh/chị — ai đang tìm đất, kết nối cho em nhé. Em tư vấn tận tâm, như đã tư vấn cho anh/chị vậy.\"*</p>\n<p>---</p>\n",
+        "broker": "<p><strong>Cách để khách cũ giới thiệu tự nhiên:</strong></p>\n<p>Gửi cho khách cũ mẫu tin nhắn họ có thể forward:</p>\n<div class=\"chat-bubble\">*\"Anh/Chị [Tên khách cũ] ơi, em gửi anh/chị thông tin khu mới này. Nếu anh/chị có ai quen quan tâm, anh/chị cứ forward tin này cho họ hoặc gửi số em: [SĐT]. Em cảm ơn anh/chị ạ!\"*</div>\n<p><strong>Mẫu tin khách cũ có thể gửi cho bạn bè họ:</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên], tao giới thiệu cho mày thằng/con [Tên sale]. Nó tư vấn đất cho tao hồi năm ngoái — tao mua xong giờ đã lên giá. Nó tư vấn thật, không kiểu sale lằng nhằng. Mày đang tìm đất thì liên hệ nó.\"*</div>\n<p>---</p>\n<p>---</p>\n<p># 📊 PHẦN B: TEMPLATE DANH SÁCH PHÂN LOẠI MQH</p>\n<p>## Hướng dẫn sử dụng</p>\n<p>1. **Liệt kê TẤT CẢ** người quen bạn nghĩ đến — không bỏ sót ai</p>\n<p>2. Phân loại theo 7 loại MQH</p>\n<p>3. Chấm điểm tiềm năng từ 1-10 theo tiêu chí bên dưới</p>\n<p>4. Chọn kênh tiếp cận phù hợp</p>\n<p>5. Cập nhật trạng thái mỗi tuần</p>\n<p>## Bảng Template</p>\n<p>| STT | Tên | Loại MQH | Nghề | Thu nhập ước lượng | Đã có nhà/xe? | Nơi sống | Kinh nghiệm BĐS | Điểm tiềm năng (1-10) | Kênh tiếp cận | Trạng thái | Ghi chú |</p>\n<p>|-----|-----|----------|------|-------------------|--------------|----------|-----------------|----------------------|--------------|------------|----------|</p>\n<p>| 1 | Minh Tuấn | Bạn bè cũ (ĐH) | IT Senior | 35-40tr | Có chung cư + xe hơi | Cầu Giấy, HN | Chưa bao giờ | 8 | Zalo | 🟡 Chưa tiếp cận | Hồi ĐH cùng phòng KTX, thân |</p>\n<p>| 2 | Cô Hoa | Họ hàng | Buôn bán tạp hóa | 50-60tr doanh thu | Có nhà riêng + xe tay ga | Hà Đông | Chưa | 7 | Gặp trực tiếp | 🟡 Chưa tiếp cận | Chị họ, hay gặp dịp giỗ |</p>\n<p>| 3 | Anh Thắng | Đồng nghiệp cũ | Kế toán trưởng | 45-50tr | Có nhà riêng + Mazda CX-5 | Long Biên, HN | Mua 1 lô 2021, đang kẹt | 6 | Zalo + Facebook | 🟡 Chưa tiếp cận | Cùng phòng cũ, vẫn follow FB |</p>\n<p>| 4 | Chú Hùng | Hàng xóm | Công an sắp về hưu | Lương CB + phụ cấp | Có nhà + xe Honda CR-V | Cùng ngõ | Chưa, nhưng hay hỏi | 7 | Gặp trực tiếp | 🟡 Chưa tiếp cận | Gặp nhau sáng nào cũng đi bộ |</p>\n<p>| 5 | Chị Lan | Hội nhóm (CLB chạy bộ) | Giảng viên ĐH | 30-35tr + chồng Giám đốc | Có nhà + xe | Thanh Xuân, HN | Chưa | 8 | Zalo + Gặp trực tiếp | 🟡 Chưa tiếp cận | Cùng CLB, tập mỗi sáng CN |</p>\n<p>| 6 | @duc_trader | MXH (FB) | Trader crypto | Không rõ, có vẻ tốt | Không rõ | TP.HCM? | Có, chứng khoán/crypto | 4 | Facebook | 🟡 Chưa tiếp cận | Hay like bài nhau, chưa gặp |</p>\n<p>| 7 | Anh Hải | Khách cũ đã mua | Chủ shop online | 150-200tr | Có nhà + Mercedes C200 | Hai Bà Trưng, HN | Mua 1 lô với mình, đã lãi | 9 | Zalo + Gặp trực tiếp | 🟢 Đang chăm | Đã mua 1 lô, rất hài lòng |</p>\n<p>## Tiêu chí chấm điểm tiềm năng (1-10)</p>\n<p>| Điểm | Mô tả | Tiêu chí |</p>\n<p>|-------|--------|----------|</p>\n<p>| **9-10** | CỰC NÉT | Có vốn 1-3 tỷ + chưa đầu tư BĐS + có nhà/xe + sống xa địa phương + 1 người quyết định |</p>\n<p>| **7-8** | NÉT | Có vốn + có nhà/xe + đang quan tâm đầu tư + sống thành phố lớn |</p>\n<p>| **5-6** | KHÁ | Có vốn nhưng chưa rõ mức + hoặc đã đầu tư 1-2 lần + cần thêm thông tin |</p>\n<p>| **3-4** | BÌNH THƯỜNG | Vốn ít hoặc không rõ + chưa quan tâm BĐS + khó tiếp cận |</p>\n<p>| **1-2** | THẤP | Không có vốn rõ ràng + không quan tâm + hoặc sống khu vực nên loại |</p>\n<p>### Tiêu chí tăng điểm (+)</p>\n<p>| Tiêu chí | +Điểm |</p>\n<p>|----------|-------|</p>\n<p>| Có nhà riêng (trả xong) | +2 |</p>\n<p>| Có xe ô tô phổ thông (800tr-1.5 tỷ) | +1 |</p>\n<p>| Thu nhập ổn định 25tr+/tháng | +1 |</p>\n<p>| Chưa bao giờ đầu tư BĐS | +2 |</p>\n<p>| Sống Hà Nội nội thành | +1 |</p>\n<p>| Từng chứng kiến đất khu mình tăng giá | +2 |</p>\n<p>| Bạn bè/người thân giới thiệu | +2 |</p>\n<p>| Hay quan tâm chuyện tài chính trên FB | +1 |</p>\n<p>### Tiêu chí giảm điểm (-)</p>\n<p>| Tiêu chí | -Điểm |</p>\n<p>|----------|-------|</p>\n<p>| Sống tại khu vực BK 10km (Nam Định, Hải Hậu...) | -5 |</p>\n<p>| Đầu tư BĐS chuyên nghiệp, nhiều dự án | -3 |</p>\n<p>| Tài sản >10 tỷ (không phải tệp mình) | -2 |</p>\n<p>| Quê đất rộng vài sào | -3 |</p>\n<p>| Nghề không ổn định | -2 |</p>\n<p>## Bảng mã trạng thái</p>\n<p>| Trạng thái | Ý nghĩa | Hành động |</p>\n<p>|------------|---------|-----------|</p>\n<p>| 🟡 **Chưa tiếp cận** | Mới liệt kê, chưa nhắn/gọi | Lên kế hoạch tiếp cận theo kênh phù hợp |</p>\n<p>| 🔵 **Đã tiếp cận** | Đã nhắn/gọi lần đầu | Theo dõi phản hồi, chuẩn bị giai đoạn nuôi dưỡng |</p>\n<p>| 🟢 **Đang chăm** | Đang nuôi dưỡng, nói chuyện đều | Tiếp tục gửi thông tin, tìm thời điểm mời đi xem |</p>\n<p>| 🟠 **Đã mời đi xem** | Đã mời và chờ phản hồi | Follow up, nhắc nhẹ, tạo FOMO |</p>\n<p>| 🔴 **Đã đi xem / Đang chốt** | Đã đi thực địa, đang quyết định | Chốt trong 24-48h, mời Leader nếu cần |</p>\n<p>| ⚫ **Từ chối / Tạm gác** | Không quan tâm hiện tại | Ghi chú lý do, quay lại sau 1-2 tháng |</p>\n<p>| ⭐ **Đã mua** | Đã chốt deal | Chăm sóc sau mua + xin referral |</p>\n<p>## Hướng dẫn rà soát hàng tuần</p>\n<p>1. Mỗi **thứ Hai**: Rà lại bảng, cập nhật trạng thái</p>\n<p>2. **Ưu tiên** người điểm 7+ → tiếp cận trước</p>\n<p>3. Mỗi tuần tiếp cận tối thiểu **5 người mới**</p>\n<p>4. Người từ chối → đổi trạng thái ⚫, quay lại sau 30 ngày</p>\n<p>5. Ai mua xong → chuyển ⭐, xin referral ngay trong 7 ngày đầu</p>\n<p>---</p>\n<p>---</p>\n<p># 🔥 PHẦN C: 10 TÌNH HUỐNG KHÓ VÀ CÁCH XỬ LÝ</p>\n<p>---</p>\n<p>## Tình huống 1: \"Ơ mày giờ bán đất hả? Nghề gì kỳ vậy?\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Bất ngờ vì bạn chuyển nghề</p>\n<p>- Có thể hơi coi thường nghề sale BĐS</p>\n<p>- Tò mò nhiều hơn là chê bai</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Nhẹ nhàng, hài hước:</strong></p>\n<div class=\"chat-bubble\">*\"Ừ, tao cũng bất ngờ! 😄 Nhưng mà làm rồi mới thấy — thu nhập ngon hơn hồi ngồi văn phòng nhiều. Tao chuyên tư vấn đất nền, giúp mọi người tìm tài sản tốt. Nghề nào cũng vậy, làm tử tế thì ổn.\"*</div>\n<p><strong>Cách 2 — Thẳng thắn kiểu Sếp Khương:</strong></p>\n<div class=\"chat-bubble\">*\"Kỳ gì! 😄 Nghề nào kiếm tiền chân chính cũng được. Tao hồi đi làm công ty lương 15-20tr, giờ tao làm BĐS tháng tốt kiếm gấp 3-4 lần. Mà quan trọng là tao giúp người ta có tài sản thật, không phải bán ảo bán đa cấp.\"*</div>\n<p><strong>Cách 3 — Trực tiếp:</strong></p>\n<div class=\"chat-bubble\">*\"Mày nghĩ bán đất là kỳ hả? 😄 Đất là tài sản thật, người mua được là người ta cảm ơn mình. Hồi đi làm văn phòng tao mới thấy kỳ — ngồi 8 tiếng lương đủ sống. Giờ tao tự do, thu nhập tốt hơn, mà lại giúp người.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không xin lỗi hay tỏ ra ngại</p>\n<p>- Không giải thích dài dòng tại sao chuyển nghề</p>\n<p>- Không tỏ ra phòng thủ</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Sau khi xử lý, dẫn ngay sang chuyện khác: *\"Mà thôi kệ nghề tao, mày dạo này sao? Vẫn ở [chỗ cũ] không?\"* → Tái kết nối bình thường, gieo mầm sau.</p>\n<p>---</p>\n<p>## Tình huống 2: \"Tao không có tiền đâu, đừng mời\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Có thể THẬT SỰ không có tiền → tôn trọng</p>\n<p>- Có thể CÓ TIỀN nhưng ngại → khéo léo khai thác</p>\n<p>- Phản xạ phòng thủ tự nhiên khi bị \"chào hàng\"</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Nhẹ nhàng, không ép:</strong></p>\n<div class=\"chat-bubble\">*\"Ê ai bảo mày mua đâu! 😄 Tao có ép ai bao giờ. Tao chỉ chia sẻ thông tin thôi, vì mình bạn bè mà. Mà nói thật, nhiều người đầu tiên cũng bảo 'không có tiền', cuối cùng tìm hiểu xong thấy hay quá, tự tìm cách gom.\"*</div>\n<p><strong>Cách 2 — Thẳng thắn:</strong></p>\n<div class=\"chat-bubble\">*\"Tao hiểu. Mà tao nói thật nhé — đất nền bây giờ có lô từ 800-900 triệu thôi. Nhiều người vay bank một phần, trả góp. Không nhất thiết phải có sẵn 2-3 tỷ đâu. Nhưng mày không muốn thì thôi, tao không ép.\"*</div>\n<p><strong>Cách 3 — Chuyển hướng sang referral:</strong></p>\n<div class=\"chat-bubble\">*\"Ok tao hiểu. Mà mày có ai quen đang tính tìm đất không? Giới thiệu cho tao, tao tư vấn giúp. Mày giới thiệu, người ta mua xong tao cảm ơn mày.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không nói *\"Tiền đâu khó, vay bank được mà\"* — nghe ép</p>\n<p>- Không cố chứng minh họ có tiền — mất mặt</p>\n<p>- Không tỏ ra thất vọng</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Chuyển chủ đề, giữ MQH. Sau 2-4 tuần nhắn lại hỏi thăm bình thường. Spam timeline Zalo/FB bằng content BĐS để họ thấy.</p>\n<p>---</p>\n<p>## Tình huống 3: \"Để tao suy nghĩ đã\" (rồi im luôn)</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Chưa đủ tin tưởng → cần thêm thông tin</p>\n<p>- Ngại từ chối thẳng → nói vậy cho qua</p>\n<p>- Thật sự đang cân nhắc nhưng bị phân tâm bởi cuộc sống hàng ngày</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Ngay lúc đó:</strong></p>\n<div class=\"chat-bubble\">*\"Ok mày cứ suy nghĩ. Tao chỉ nói thật: đất khu này tháng sau giá khác tháng trước. Nhưng mày cứ tính, khi nào quyết thì ping tao.\"*</div>\n<p><strong>Sau 3 ngày (follow up lần 1):</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên], mày suy nghĩ tới đâu rồi? Tao hỏi vì hôm qua có khách hỏi mấy lô tao share cho mày. Nếu mày không tính thì tao chuyển cho khách khác nhé?\"*</div>\n<p><strong>Sau 7 ngày (follow up lần 2):</strong></p>\n<div class=\"chat-bubble\">*\"[Tên] ơi, tao biết mày bận. Tao gửi mày cái này xem chơi — [link/ảnh/video thực địa]. Không ép đâu, xem cho biết thôi.\"*</div>\n<p><strong>Sau 14 ngày (follow up cuối):</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên], tao nhắn lần cuối nhé 😄 Mấy lô hôm trước tao share, giờ bán hết 2 lô rồi. Còn 1 lô — mày muốn giữ thì nói tao. Không thì tao bán cho khách khác.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không spam liên tục mỗi ngày</p>\n<p>- Không tỏ ra giận hay trách</p>\n<p>- Không bỏ luôn sau lần đầu — phải follow up ít nhất 3 lần</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Nếu sau 3 lần follow up vẫn im → chuyển sang trạng thái ⚫. Tiếp tục spam timeline Zalo/FB, quay lại sau 1-2 tháng.</p>\n<p>---</p>\n<p>## Tình huống 4: \"Mày bán cho tao đắt cho coi, tao biết giá rồi\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Sợ bị \"ăn chênh\" vì là người quen</p>\n<p>- Đã nghe giá từ nguồn khác (có thể giá cũ/sai)</p>\n<p>- Muốn test xem mình có trung thực không</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Sòng phẳng kiểu Sếp Khương:</strong></p>\n<div class=\"chat-bubble\">*\"Ê, tao bán cho mày đắt thì mày đâu có mua! 😄 Giá đất niêm yết công khai, chủ đầu tư quy định — tao có quyền đặt giá đâu. Tao chỉ tư vấn chọn lô tốt nhất cho mày thôi. Mày biết giá thì tốt, vậy mày biết tao nói thật hay nói xạo.\"*</div>\n<p><strong>Cách 2 — Minh bạch:</strong></p>\n<div class=\"chat-bubble\">*\"Giá đất nền có bảng giá công khai của chủ đầu tư — ai mua cũng 1 giá. Tao ăn hoa hồng từ chủ đầu tư, KHÔNG lấy thêm của mày 1 đồng nào. Mày là bạn tao, tao bán đắt cho mày rồi hỏng mặt nhau — tao có ngu không?\"*</div>\n<p><strong>Cách 3 — Chuyển hướng:</strong></p>\n<div class=\"chat-bubble\">*\"Mày nghe giá ở đâu? Nói tao nghe, tao so cho mày xem. Nhiều khi giá mày nghe là giá đất thổ cư lẻ, khác với đất phân lô sổ đỏ riêng. Tao share bảng giá gốc cho mày xem luôn.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không giảm giá hoặc hứa giảm — vì giá là giá chủ đầu tư</p>\n<p>- Không tỏ ra bực bội — họ có quyền nghi ngờ</p>\n<p>- Không nói *\"Tin tao đi\"* — không ai tin câu đó cả</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Gửi bảng giá gốc của chủ đầu tư (screenshot/PDF). Minh bạch 100% → họ sẽ tin.</p>\n<p>---</p>\n<p>## Tình huống 5: \"Đất nền rủi ro lắm, tao sợ\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Nghe tin tức tiêu cực về BĐS (lừa đảo, dự án ma)</p>\n<p>- Hoặc có bạn/người quen bị lỗ khi mua đất</p>\n<p>- Sợ mất tiền — tâm lý bảo toàn vốn</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Đồng cảm + dẫn dắt:</strong></p>\n<div class=\"chat-bubble\">*\"Tao hiểu mày sợ. Ngoài kia lừa đảo đất cát nhiều thật. NHƯNG — đất nền có sổ đỏ riêng, pháp lý rõ ràng, chủ đầu tư uy tín thì khác. Mày sợ là vì mày chưa phân biệt được đất tốt với đất rác. Để tao chỉ mày cách nhận biết.\"*</div>\n<p><strong>Cách 2 — Dùng bằng chứng:</strong></p>\n<div class=\"chat-bubble\">*\"Mày biết Hòa Lạc không? 2015 đất có 5 triệu/m², giờ 50-80 triệu. Đông Anh, Mê Linh cũng vậy. Đất nền rủi ro chỉ khi mua SAI chỗ. Mua ĐÚNG chỗ thì nó là kênh đầu tư an toàn nhất — hơn vàng, hơn chứng khoán. Vì đất không ai lấy đi được.\"*</div>\n<p><strong>Cách 3 — Thẳng thắn:</strong></p>\n<div class=\"chat-bubble\">*\"Tao nói thật: cái gì cũng rủi ro. Gửi bank cũng rủi ro — tiền mất giá mỗi năm 7-8% mà lãi bank 4-5%. Mua vàng cũng rủi ro — giá lên xuống liên tục. Đất nền rủi ro ít nhất nếu mày chọn đúng: sổ đỏ sạch + vị trí có hạ tầng + giá hợp lý. 3 cái đó tao đảm bảo được.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không nói *\"Không rủi ro đâu\"* — nói vậy là nói xạo</p>\n<p>- Không chê bai sự cẩn thận của họ</p>\n<p>- Không ép — để họ tự cảm thấy yên tâm</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Mời đi xem thực địa: *\"Mày sợ vì mày chưa thấy. Đi xem tận nơi rồi mày tự đánh giá. Tao không ép mày mua, chỉ mời mày đi XEM.\"*</p>\n<p>---</p>\n<p>## Tình huống 6: \"Chồng/vợ tao không đồng ý\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Có thể THẬT — vợ/chồng phản đối</p>\n<p>- Có thể đổ cho vợ/chồng để từ chối khéo</p>\n<p>- Thường gặp ở nhóm GV, quân đội/CA, tiểu thương</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Nhẹ nhàng, tìm cách tiếp cận người kia:</strong></p>\n<div class=\"chat-bubble\">*\"Ừ tao hiểu, chuyện lớn phải bàn cả 2. Hay là thế này — cuối tuần mày rủ cả chị/anh nhà đi xem luôn. Đi cả 2 để cùng quyết. Nhiều khi vợ/chồng mày chưa đồng ý vì chưa THẤY — thấy rồi thì khác.\"*</div>\n<p><strong>Cách 2 — Thẳng thắn:</strong></p>\n<div class=\"chat-bubble\">*\"Mày ơi, tao hỏi thật: vợ/chồng mày KHÔNG ĐỒNG Ý hay là CHƯA BIẾT? Vì 2 cái khác nhau. Nếu chưa biết thì mày nói cho biết đi. Còn nếu không đồng ý thì tao muốn nói chuyện trực tiếp với chị/anh nhà — có khi tao giải thích được.\"*</div>\n<p><strong>Cách 3 — Dùng case study:</strong></p>\n<div class=\"chat-bubble\">*\"Tao kể mày nghe: 80% khách của tao ban đầu vợ/chồng đều phản đối. Nhưng khi DẪN CẢ 2 đi xem thực tế — thấy đất, thấy sổ, thấy hạ tầng — thì 70% quay lại mua. Vì vợ/chồng mày phản đối do CHƯA THẤY, chứ không phải không muốn.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không nói *\"Mày quyết được mà, cần gì hỏi vợ\"* — phá vỡ gia đình người ta</p>\n<p>- Không bỏ qua — luôn tìm cách tiếp cận người còn lại</p>\n<p>- Không chỉ nói chuyện với 1 người rồi chờ</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Xin Zalo của vợ/chồng, hoặc mời CẢ 2 đi xem. Chuẩn bị info phù hợp cho cả 2 (phụ nữ → đánh tình cảm/con cái, nam → đánh con số/lợi nhuận).</p>\n<p>---</p>\n<p>## Tình huống 7: \"Tao đã mua chỗ khác rồi\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Thật sự đã mua → vẫn là khách tiềm năng (mua lô 2, hoặc xin referral)</p>\n<p>- Nói vậy để từ chối → kiểm tra thật/giả</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Chúc mừng + khai thác:</strong></p>\n<div class=\"chat-bubble\">*\"Ồ vậy hả? Chúc mừng mày! Mày mua khu nào, giá bao nhiêu? Tao hỏi để biết thêm thị trường. Mà mày mua rồi thì tốt — vậy mày đã biết giá trị của đất. Tao có khu khác hay lắm, mày xem lô thứ 2 không?\"*</div>\n<p><strong>Cách 2 — Chuyển hướng referral:</strong></p>\n<div class=\"chat-bubble\">*\"Ngon! Mày mua sớm là đúng. Thế mày có ai quen cũng đang tìm đất không? Giới thiệu cho tao — mày là người đã mua rồi, lời mày nói có trọng lượng lắm.\"*</div>\n<p><strong>Cách 3 — Kiểm tra thật/giả (tinh tế):</strong></p>\n<div class=\"chat-bubble\">*\"Vậy hả? Khu nào vậy mày? Tao biết thị trường, tao nhận xét cho mày xem mày mua đúng chưa 😄\"* → Nếu họ ngập ngừng không trả lời được = NÓI XẠO. Nếu kể chi tiết = THẬT.</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không chê nơi họ đã mua</p>\n<p>- Không tỏ ra tiếc nuối *\"Sao mày không hỏi tao trước\"*</p>\n<p>- Không bỏ qua — đây vẫn là MỎ REFERRAL</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Nếu đã mua thật → coi như khách nhóm 7 (Khách cũ), chăm sóc + xin referral. Nếu nói xạo → ghi nhận, quay lại sau.</p>\n<p>---</p>\n<p>## Tình huống 8: \"Giới thiệu cho mày 1 người nhé\" (Referral)</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Họ muốn giúp mình → CẦM CHẮC, KHAI THÁC NGAY</p>\n<p>- Có thể nói cho qua → phải hành động nhanh để biến lời nói thành hành động</p>\n<p>### ✅ Cách phản hồi — PHẢI NHANH VÀ CỤ THỂ:</p>\n<p><strong>Bước 1 — Cảm ơn ngay:</strong></p>\n<div class=\"chat-bubble\">*\"Ê cảm ơn mày nhiều! Mày giới thiệu ai vậy? Cho tao biết tên, nghề nghiệp, dạo này ổng/bà ấy tính gì?\"*</div>\n<p><strong>Bước 2 — Xin cách kết nối:</strong></p>\n<div class=\"chat-bubble\">*\"Mày kết nối trực tiếp cho tao được không? Kiểu tạo nhóm Zalo 3 người — mày, tao, người đó. Rồi mày nói 1 câu giới thiệu, tao tiếp chuyện.\"*</div>\n<p><strong>Bước 3 — Nếu họ nói \"để tao hỏi lại\":</strong></p>\n<div class=\"chat-bubble\">*\"Ok mày hỏi xong nhắn tao ngay nhé! Tao đang có mấy lô đẹp, sợ để lâu người khác cọc mất.\"*</div>\n<p><strong>Bước 4 — Follow up sau 2 ngày nếu chưa có tin:</strong></p>\n<div class=\"chat-bubble\">*\"Ê [Tên], hôm trước mày bảo giới thiệu người quen — sao rồi? Mày kết nối cho tao nhé, tao tư vấn cho bạn mày.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không nói *\"Ok để đó\"* rồi quên — PHẢI HÀNH ĐỘNG NGAY</p>\n<p>- Không đợi họ tự liên hệ — chủ động xin kết nối</p>\n<p>- Không quên cảm ơn sau khi deal thành công</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Khi kết nối được → tư vấn tận tâm. Deal thành → cảm ơn người giới thiệu (café, quà nhỏ, tiền cảm ơn nếu có).</p>\n<p>---</p>\n<p>## Tình huống 9: \"Tao mua rồi mà giờ kẹt, mày giúp tao bán đi\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Họ đang khó khăn, cần người giúp</p>\n<p>- Đây là CƠ HỘI XÂY DỰNG NIỀM TIN cực lớn</p>\n<p>- Giúp họ = họ NỢ ƠN mình = referral chất lượng sau này</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Sẵn sàng giúp:</strong></p>\n<div class=\"chat-bubble\">*\"Ok để tao xem. Mày gửi tao thông tin lô: vị trí, diện tích, giá mua, sổ đỏ. Tao rà network tao xem có ai đang tìm khu đó không. Tao giúp mày được thì tao giúp.\"*</div>\n<p><strong>Cách 2 — Thẳng thắn nếu khó bán:</strong></p>\n<div class=\"chat-bubble\">*\"Tao nói thật nhé: khu đó giờ thị trường đang [tình hình]. Bán được nhưng có thể phải chấp nhận [hòa/lỗ nhẹ]. Mày muốn tao thử tìm khách hay mày muốn giữ thêm? Tao tư vấn thật, không nói ngon để mày ảo tưởng.\"*</div>\n<p><strong>Cách 3 — Kết hợp tư vấn mua thêm:</strong></p>\n<div class=\"chat-bubble\">*\"Tao giúp mày bán lô kẹt. Nhưng mà tao gợi ý nhé: thay vì bán, mày cân nhắc gom thêm 1 lô ở khu đang lên — lấy lãi lô mới bù cho lô kẹt. Nhiều người làm vậy hiệu quả hơn.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không hứa bán được nhanh nếu không chắc</p>\n<p>- Không chê lô họ mua</p>\n<p>- Không từ chối giúp — đây là CƠ HỘI VÀNG xây dựng MQH</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Giúp hết mình. Dù bán được hay không → họ sẽ nhớ ơn → referral + khi họ có tiền tiếp = mua với mình.</p>\n<p>---</p>\n<p>## Tình huống 10: \"Ê cho tao hoa hồng giới thiệu nhé\"</p>\n<p>### 🧠 Tâm lý đằng sau:</p>\n<p>- Họ biết mình ăn hoa hồng → muốn chia phần</p>\n<p>- Thực tế: đây là chuyện BÌNH THƯỜNG trong BĐS</p>\n<p>- Nếu xử lý tốt → họ trở thành \"CTV bán hàng\" cho mình</p>\n<p>### ✅ Cách phản hồi:</p>\n<p><strong>Cách 1 — Sòng phẳng, chuyên nghiệp:</strong></p>\n<div class=\"chat-bubble\">*\"Ok, sòng phẳng nhé. Nếu mày giới thiệu khách và khách mua thật — tao gửi mày [X triệu/% cụ thể]. Tao nói thẳng, tao làm sòng phẳng. Mày giới thiệu, tao bán, ai cũng được lợi.\"*</div>\n<p><strong>Cách 2 — Nếu công ty không cho phép chia hoa hồng:</strong></p>\n<div class=\"chat-bubble\">*\"Nói thật, hoa hồng của tao công ty quy định, tao không được chia. Nhưng mà mày giới thiệu khách mà người ta mua — tao cảm ơn mày bằng [quà/café/bữa nhậu/quà Tết]. Mình bạn bè, tao không quên ơn mày.\"*</div>\n<p><strong>Cách 3 — Biến họ thành CTV:</strong></p>\n<div class=\"chat-bubble\">*\"Mày muốn kiếm thêm luôn không? Tao đăng ký mày làm CTV (cộng tác viên) của sàn tao. Mày giới thiệu khách — sàn trả hoa hồng chính thức, tao không phải bỏ tiền túi. Win-win.\"*</div>\n<p>### ❌ KHÔNG NÊN:</p>\n<p>- Không từ chối thẳng *\"Không được, tao không chia\"* — mất người giới thiệu</p>\n<p>- Không hứa rồi quên — mất uy tín</p>\n<p>- Không hứa quá nhiều rồi không đủ khả năng thực hiện</p>\n<p>### ➡️ Bước tiếp theo:</p>\n<p>Thỏa thuận rõ ràng: mấy phần trăm, khi nào trả, trả bằng gì. Viết tin nhắn xác nhận. Giữ sòng phẳng = họ giới thiệu lâu dài.</p>\n<p>---</p>\n<p>---</p>\n<p># 📝 TÓM TẮT TỔNG QUAN</p>\n<p>| Hạng mục | Số lượng | Chi tiết |</p>\n<p>|----------|---------|----------|</p>\n<p>| **Phần A** | 7 loại MQH × 4 kênh = **28 kịch bản** | Mỗi kịch bản có đủ 6 phần (mở lời, dẫn dắt, gieo mầm, mời trải nghiệm, xử lý từ chối, xin referral) |</p>\n<p>| **Phần B** | 1 template + 7 ví dụ mẫu | Bảng 12 cột, tiêu chí chấm điểm, bảng mã trạng thái, hướng dẫn sử dụng |</p>\n<p>| **Phần C** | 10 tình huống | Mỗi tình huống có phân tích tâm lý, 2-3 cách phản hồi, điều không nên làm, bước tiếp theo |</p>\n<p>**Tone xuyên suốt:** Thẳng thắn, sòng phẳng, tự nhiên — giống cách Sếp Khương nói chuyện. Không sale-sy, không sáo rỗng.</p>\n<p><strong>Nguyên tắc cốt lõi:</strong></p>\n<p>1. KHÔNG BAO GIỜ bán trực tiếp cho người quen → Kể chuyện, để họ tự hỏi</p>\n<p>2. Tái kết nối TRƯỚC → Gieo mầm SAU → Mời đi xem CUỐI CÙNG</p>\n<p>3. Bị từ chối ≠ Hết cơ hội → Follow up 3 lần, quay lại sau 1-2 tháng</p>\n<p>4. Ai không mua → Xin referral → 1 người giới thiệu = 2-3 khách mới</p>\n<p>---</p>\n<p>*Báo cáo bởi: ✍️ TP Kịch Bản*</p>\n<p>*Dự án: Khai Thác MQH Sẵn Có — Đào Tạo Nhân Sự BĐS*</p>\n<p>*Thời gian hoàn thành: 2026-06-06*</p>\n"
+    }
+};
+
+        // Function to update script box content based on selectors
+        function updateScriptMatrix() {
+            const mqh = document.getElementById('mqh-selector').value;
+            const channel = document.getElementById('channel-selector').value;
+            
+            // Get translations for labels
+            const mqhLabels = {
+                friends: 'Bạn bè cũ',
+                relatives: 'Họ hàng',
+                colleagues: 'Đồng nghiệp cũ',
+                neighbors: 'Hàng xóm',
+                groups: 'Người quen hội nhóm',
+                socials: 'Mạng xã hội',
+                oldclients: 'Khách cũ đã mua'
+            };
+            
+            const channelLabels = {
+                zalo: 'Zalo (Tin nhắn chi tiết)',
+                facebook: 'Facebook (Messenger & Gợi ý bài đăng)',
+                direct: 'Gặp trực tiếp (Café, Sự kiện)',
+                broker: 'Qua trung gian (Nhờ người giới thiệu)'
+            };
+
+            // Update title
+            document.getElementById('script-title-text').innerText = `Kịch bản: ${mqhLabels[mqh]} × ${channelLabels[channel]}`;
+            
+            // Inject body content
+            const contentBody = document.getElementById('script-content-body');
+            if (scriptData[mqh] && scriptData[mqh][channel]) {
+                contentBody.innerHTML = `
+                    ${scriptData[mqh][channel]}
+                    <div style="margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 15px; display: flex; justify-content: flex-end;">
+                        <button class="copy-btn" onclick="copyActiveScript()">📋 Sao chép kịch bản</button>
+                    </div>
+                `;
+            } else {
+                contentBody.innerHTML = `<p style="color: var(--text-light); text-align: center; padding: 20px;">Dữ liệu kịch bản đang được cập nhật...</p>`;
+            }
+        }
+
+        // Initialize script matrix on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateScriptMatrix();
+            loadChecklistState();
+        });
+
+        // Tab Switching for Psychology section
+        function switchTab(evt, tabId) {
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Accordion functionality for Situations and FAQ
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.accordion-item').forEach(accItem => {
+                    accItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Interactive Checklist functionality using localStorage
+        function toggleChecklistItem(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                element.classList.add('checked');
+            } else {
+                element.classList.remove('checked');
+            }
+            
+            saveChecklistState();
+            updateChecklistProgress();
+        }
+
+        // Prevent double toggle when clicking checkbox directly
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const item = checkbox.closest('.checklist-item');
+                if (checkbox.checked) {
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+                saveChecklistState();
+                updateChecklistProgress();
+            });
+        });
+
+        function saveChecklistState() {
+            const states = {};
+            document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+                states[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem('tlland_checklist_states', JSON.stringify(states));
+        }
+
+        function loadChecklistState() {
+            const data = localStorage.getItem('tlland_checklist_states');
+            if (data) {
+                const states = JSON.parse(data);
+                document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+                    if (states[checkbox.id] !== undefined) {
+                        checkbox.checked = states[checkbox.id];
+                        const item = checkbox.closest('.checklist-item');
+                        if (checkbox.checked) {
+                            item.classList.add('checked');
+                        } else {
+                            item.classList.remove('checked');
+                        }
+                    }
+                });
+            }
+            updateChecklistProgress();
+        }
+
+        function updateChecklistProgress() {
+            const total = document.querySelectorAll('.checklist-item').length;
+            const checked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+            const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+            
+            document.getElementById('checklist-progress').style.width = `${pct}%`;
+            document.getElementById('checklist-pct').innerText = `${pct}%`;
+            
+            // Trigger confetti if completed 100%
+            if (pct === 100 && total > 0) {
+                triggerConfetti();
+            }
+        }
+
+        // Simple HTML5 Canvas Confetti Effect
+        function triggerConfetti() {
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100vw';
+            canvas.style.height = '100vh';
+            canvas.style.zIndex = '9999';
+            canvas.style.pointerEvents = 'none';
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const colors = ['#1B3A5C', '#C5963A', '#28A745', '#DC3545', '#FFC107'];
+            const particles = [];
+            
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.07 + 0.02,
+                    tiltAngle: 0
+                });
+            }
+            
+            let angle = 0;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                let results = [];
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y += (Math.cos(angle + p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(angle);
+                    p.tilt = Math.sin(p.tiltAngle - i / 3) * 15;
+                    
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                    
+                    if (p.y <= canvas.height) {
+                        results.push(p);
+                    }
+                }
+                
+                angle += 0.01;
+                
+                if (results.length > 0) {
+                    requestAnimationFrame(draw);
+                } else {
+                    document.body.removeChild(canvas);
+                }
+            }
+            draw();
+        }
+
+        // Copy active script to clipboard
+        function copyActiveScript() {
+            // Find all chat bubbles inside the active script
+            const bubbles = document.querySelectorAll('#script-content-body .chat-bubble');
+            let textToCopy = "";
+            bubbles.forEach((bubble, index) => {
+                textToCopy += `Tin nhắn ${index + 1}:\n"${bubble.innerText.trim()}"\n\n`;
+            });
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const copyBtn = document.querySelector('#script-content-body .copy-btn');
+                const origText = copyBtn.innerHTML;
+                copyBtn.innerHTML = "✅ Đã sao chép!";
+                copyBtn.style.backgroundColor = "var(--success)";
+                setTimeout(() => {
+                    copyBtn.innerHTML = origText;
+                    copyBtn.style.backgroundColor = "var(--secondary)";
+                }, 2000);
+            }).catch(err => {
+                console.error("Lỗi khi sao chép kịch bản: ", err);
+            });
+        }
+
+        // Reading progress tracker
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = Math.round((winScroll / height) * 100);
+            
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+            document.getElementById('progress-text').innerText = scrolled + '%';
+            
+            // Show / Hide Back to Top button
+            const btt = document.getElementById('back-to-top');
+            if (winScroll > 300) {
+                btt.classList.add('show');
+            } else {
+                btt.classList.remove('show');
+            }
+        });
+
+        // Scroll to Top action
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Sidebar Navigation links active highlighting on scroll
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('#sidebar .sidebar-menu ul li');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(li => {
+                li.classList.remove('active');
+                const href = li.querySelector('a').getAttribute('href').substring(1);
+                if (href === current) {
+                    li.classList.add('active');
+                }
+            });
+        });
+
+        // Theme Toggle (Dark / Light Mode)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('tlland_theme', isDark ? 'dark' : 'light');
+            themeToggleBtn.innerHTML = isDark ? '☀️ Chế độ sáng' : '🌙 Chế độ tối';
+        });
+
+        // Load theme from localStorage
+        const savedTheme = localStorage.getItem('tlland_theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggleBtn.innerHTML = '☀️ Chế độ sáng';
+        }
+
+        // Mobile Hamburger menu toggle
+        const menuBtn = document.getElementById('menu-toggle-btn');
+        const sidebar = document.getElementById('sidebar');
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024) {
+                if (!sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+
+        // Document Search Function (Ctrl+K)
+        const searchInput = document.getElementById('doc-search');
+        
+        // Ctrl+K key binding
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            removeSearchHighlights();
+            
+            if (query === "") return;
+            
+            // Search in main content cards and headers
+            const elementsToSearch = document.querySelectorAll('main#content p, main#content li, main#content h3, main#content h4');
+            let firstMatch = null;
+            
+            elementsToSearch.forEach(el => {
+                const text = el.innerText;
+                const index = text.toLowerCase().indexOf(query);
+                if (index !== -1) {
+                    // Highlight match
+                    const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+                    el.innerHTML = text.replace(regex, '<span class="search-highlight">$1</span>');
+                    if (!firstMatch) {
+                        firstMatch = el;
+                    }
+                }
+            });
+            
+            // Scroll to first match
+            if (firstMatch) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+
+        function removeSearchHighlights() {
+            document.querySelectorAll('.search-highlight').forEach(span => {
+                const parent = span.parentNode;
+                parent.innerText = parent.innerText; // Strips html span tags
+            });
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+{
+  "du_an": "Training Hub - Thực Chiến BĐS",
+  "linh_vuc": "Đào tạo nội bộ nhân sự BĐS",
+  "domain_live": "https://team-khuongtrinh.vercel.app",
+  "owner": "Sếp Khương Trịnh",
+  "created_at": "2026-05-26",
+  "last_updated": "2026-05-27T07:50:00+07:00",
+  "version": "v2",
+  "muc_tieu": [
+    "Lưu trữ tài liệu đào tạo, quy chế, lộ trình cho nhân sự BĐS",
+    "Cung cấp kịch bản sale, chiến lược marketing thực chiến",
+    "Theo dõi tiến độ học tập nhân viên theo sơ đồ cây phân cấp",
+    "Quản lý bảng hàng, tính hoa hồng trực tuyến"
+  ],
+  "system_rules": {
+    "brand_voice": "Thực chiến, sòng phẳng, trực diện, không màu mè sáo rỗng, dùng đúng thuật ngữ sale BĐS.",
+    "tech_stack": "Web tĩnh thuần (index.html, styles.css, script.js, content.js, auth.js). Không dùng framework.",
+    "theme_style": "Premium Glassmorphism, nền sáng hiện đại, độ tương phản cao, mượt mà.",
+    "deploy_cmd": "vercel --prod --yes",
+    "deploy_dir": "/Users/khuongtrinh/Downloads/antigravity/CONG_VIEC/Nhan_su/TRAINING_HUB"
+  },
+  "quy_tac_deploy": "Mỗi ban TỰ deploy sau khi sửa xong, nhưng BẮT BUỘC ghi nhật ký vào nhat_ky_phong_ban.md và tag '→ Lưu ý cho TP Hệ Thống' để đồng bộ.",
+  "quy_tac_pham_vi": "Ban Đào Tạo (cả 2 nhóm con) được phép sửa index.html (sidebar) và auth.js (TRAINING_ROADMAP) khi thêm/đổi tên trang thuộc phạm vi mình. Các ban khác không được vượt phạm vi, trừ khi có đặc cách từ Sếp Khương (phải ghi rõ [Đặc cách] trong nhật ký).",
+  "phong_ban": [
+    {
+      "ten": "Ban Onboarding",
+      "emoji": "🟢",
+      "kieu": "self",
+      "phan_bien_voi": "Ban Nhân Sự",
+      "allowed_files": [
+        "TAN_BINH_LOI_NOI_DAU.html",
+        "TAN_BINH_QUY_CHE.html",
+        "TAN_BINH_QUY_TRINH.html"
+      ]
+    },
+    {
+      "ten": "Nhóm Kỹ Năng Bán",
+      "emoji": "📖",
+      "parent": "Ban Đào Tạo (cũ)",
+      "kieu": "research",
+      "phan_bien_voi": "Ban Sản Phẩm",
+      "allowed_files": [
+        "content.js (page-telesale, page-mau-gui-thong-tin, page-bai-dang-dau-tien)",
+        "TU_VAN_BDS_TONG_QUAN.html",
+        "BO_CAU_HOI_TRUY_VAN_KHACH_HANG.html",
+        "5_lo_hong_tam_ly.html",
+        "CHAN_DUNG_KHACH_HANG_V2_1.html"
+      ],
+      "note": "Agent research (chỉ đọc) — Tổng Quản ghi file hộ khi có thay đổi nội dung."
+    },
+    {
+      "ten": "Nhóm Marketing & Content",
+      "emoji": "🎨",
+      "parent": "Ban Đào Tạo (cũ)",
+      "kieu": "self",
+      "phan_bien_voi": "Ban Sản Phẩm",
+      "allowed_files": [
+        "content.js (page-chien-luoc-fb, page-cac-khoa-hoc, page-cam-tay-chi-viec)",
+        "lich_trinh_24h_bds_nam.html",
+        "index.html (chỉ mục sidebar đào tạo)",
+        "auth.js (chỉ TRAINING_ROADMAP)"
+      ],
+      "note": "Agent self (đọc + ghi + deploy). Được phép sửa sidebar và roadmap khi thêm/đổi tên trang."
+    },
+    {
+      "ten": "Ban Sản Phẩm",
+      "emoji": "🟡",
+      "kieu": "self",
+      "phan_bien_voi": "Nhóm Kỹ Năng Bán + Nhóm Marketing & Content",
+      "allowed_files": [
+        "BANG_HANG_TL_LAND.html",
+        "TINH_HOA_HONG.html",
+        "tinh-hoa-hong/*"
+      ]
+    },
+    {
+      "ten": "Ban Hệ Thống",
+      "emoji": "🔴",
+      "kieu": "self",
+      "phan_bien_voi": null,
+      "allowed_files": [
+        "index.html",
+        "styles.css",
+        "script.js",
+        "auth.js",
+        "firestore.rules",
+        "firebase.json",
+        "vercel.json"
+      ],
+      "note": "Monitor deploy log từ các ban. Giữ nguyên Design System."
+    },
+    {
+      "ten": "Ban Nhân Sự",
+      "emoji": "🟣",
+      "kieu": "self",
+      "phan_bien_voi": "Ban Onboarding",
+      "allowed_files": [
+        "CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html",
+        "auth.js (renderProfile, renderAdmin, whitelist logic)"
+      ]
+    }
+  ],
+  "cap_phan_bien_cheo": [
+    {
+      "cap": ["Nhóm Kỹ Năng Bán + Nhóm Marketing & Content", "Ban Sản Phẩm"],
+      "mo_ta": "Đào Tạo viết kịch bản sale → Sản Phẩm check giá/rổ hàng thực tế. Sản Phẩm cập nhật giá → Đào Tạo check nội dung có cần update không."
+    },
+    {
+      "cap": ["Ban Onboarding", "Ban Nhân Sự"],
+      "mo_ta": "Onboarding đổi quy chế → Nhân Sự check checklist đào tạo. Nhân Sự thêm role mới → Onboarding check quy trình tân binh."
+    }
+  ],
+  "phien_lam_viec": [
+    {
+      "ngay": "2026-05-26",
+      "muc_tieu": "Kích hoạt hệ thống 5 phòng ban + chạy phiên đầu tiên",
+      "trang_thai": "hoàn thành",
+      "tom_tat": "Tất cả 5 ban đã hoạt động, ghi nhật ký đầy đủ. Phát hiện 3 vi phạm ranh giới (đã đặc cách)."
+    },
+    {
+      "ngay": "2026-05-27",
+      "muc_tieu": "Kiểm toán + nâng cấp hệ thống lên v2 (tách Ban Đào Tạo, thêm phản biện chéo)",
+      "trang_thai": "đang chạy"
+    }
+  ]
+}

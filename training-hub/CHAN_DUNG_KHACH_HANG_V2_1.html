@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chân Dung Khách Hàng - TL Land</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #f8fafc;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-red: #ef4444;
+            --accent-green: #22c55e;
+            --accent-orange: #f97316;
+            --accent-yellow: #eab308;
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.03), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.03), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            background: linear-gradient(to right, var(--gold-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .version-tag {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+            margin-top: 3.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            color: var(--text-main);
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            color: #b45309; /* dark gold */
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Purpose Box */
+        .purpose-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--gold-primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+        }
+
+        .purpose-box ul {
+            list-style-type: none;
+            margin-top: 0.5rem;
+            padding-left: 0;
+        }
+
+        .purpose-box li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .purpose-box li::before {
+            content: "🎯";
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+            vertical-align: top;
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Badges & Tags */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--text-main); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-orange { background: rgba(249, 115, 22, 0.15); color: #fdba74; border: 1px solid rgba(249, 115, 22, 0.3); }
+        .badge-yellow { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .badge-green { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .badge-gray { background: rgba(148, 163, 184, 0.15); color: var(--text-muted); border: 1px solid rgba(148, 163, 184, 0.3); }
+
+        /* Quotes */
+        blockquote {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid var(--gold-primary);
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-muted);
+        }
+
+        /* Specific Sections */
+        .group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .alert-box {
+            background: rgba(239, 68, 68, 0.05);
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul li, ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code blocks */
+        pre {
+            background: #f1f5f9;
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            color: var(--text-main);
+            font-family: monospace;
+            line-height: 1.5;
+            margin: 1.5rem 0;
+        }
+
+        .chat-simulation {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 1rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .chat-client {
+            background: rgba(255, 255, 255, 0.08);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-sale {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            color: var(--gold-light);
+        }
+        
+        .chat-name {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .group-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .badge { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎯 CHÂN DUNG KHÁCH HÀNG MỤC TIÊU</h1>
+    <p class="version-tag">ĐẤT NỀN ĐẦU TƯ TL LAND • PHIÊN BẢN V2 (Cập nhật 27/04/2026)</p>
+
+    <div class="purpose-box">
+        <strong>Mục đích sử dụng:</strong>
+        <ul>
+            <li>Tài liệu đào tạo nhân sự nội bộ K11</li>
+            <li>Cẩm nang tham chiếu khi sale chăm khách trên Zalo</li>
+            <li>Định hướng phân loại và xử lý tình huống thực chiến</li>
+        </ul>
+    </div>
+
+    <!-- PHẦN 0 -->
+    <h2>🧭 PHẦN 0: TÔN CHỈ LÕI - 5 NGUYÊN TẮC PHẢI THUỘC LÒNG</h2>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th width="5%">#</th>
+                <th width="40%">Nguyên tắc</th>
+                <th>Logic đằng sau</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><strong>Bán cho người DỄ - KHÔNG bán cho người QUÁ KHÔN</strong></td>
+                <td>Người tính toán quá kỹ → đi 1 vòng quay lại thì cơ hội đã mất. Khôn quá thì không mua được đất</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>Đi xem là chốt - KHÔNG có chuyện đi xem rồi về</strong></td>
+                <td>Sản phẩm 1-3 tỷ với khách đã ổn định KHÔNG phải "tài sản cả đời" → quyết được trong ngày</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>Đánh vào FOMO + bài học quá khứ + cảm xúc</strong></td>
+                <td>Đầu tư là quyết định cảm tính. Lý trí chỉ dùng để TỰ THUYẾT PHỤC SAU khi đã có cảm xúc</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>LOẠI khách địa phương (bán kính 10km)</strong></td>
+                <td>Họ có "lựa chọn nội bộ" + tâm lý "không cần vội", đi xem hôm nay mai đi xem chỗ khác</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>Bán cho người đã có nền tảng (nhà-xe-việc)</strong></td>
+                <td>Mua không thắng cũng không sao → tâm lý nhẹ → dễ chốt</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- PHẦN 1 -->
+    <h2>👥 PHẦN 1: 11 NHÓM KHÁCH HÀNG NÉT NHẤT (Đã mở rộng V2)</h2>
+
+    <!-- NHÓM 1 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥇 NHÓM 1: Dân văn phòng tích lũy lâu năm + Quản lý cấp trung</h3>
+            <span class="badge badge-red">NÉT NHẤT</span>
+        </div>
+        <blockquote>Đây là nhóm CỐT LÕI - chiếm khoảng 35% tổng deal của TL Land</blockquote>
+        
+        <h4>1.1. Sub-nhóm A: Nhân viên văn phòng tích lũy lâu năm</h4>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Tuổi</strong></td><td>38-45 (lứa "U40 dậy thì lần 2")</td></tr>
+                <tr><td><strong>Đặc điểm cốt lõi</strong></td><td>Đi làm 15-20 năm, lương 25-50tr/tháng, đã trả xong nhà, con vào cấp 2</td></tr>
+                <tr><td><strong>Nghề điển hình</strong></td><td>Kế toán senior, IT senior không lên được Manager, kỹ sư xây dựng, nhân viên ngân hàng quèn lâu năm, biên tập viên báo, dược sĩ bán thuốc lâu năm</td></tr>
+                <tr><td><strong>Vốn nhàn rỗi</strong></td><td>800tr - 2 tỷ tiền tích lũy</td></tr>
+                <tr><td><strong>Tâm lý vàng</strong></td><td>"15 năm đi làm rồi mà chưa có tài sản nào ngoài nhà ở, phải có cái gì cho con sau này"</td></tr>
+                <tr><td><strong>Pain point chí mạng</strong></td><td>Nhìn bạn cùng tuổi đã có 2-3 mảnh đất → áp lực giấu giếm. Sợ già rồi không còn cơ hội</td></tr>
+                <tr><td><strong>Cách tiếp cận</strong></td><td>Đánh vào "đầu tư cho tương lai con" + "tiền để bank lãi 4% không bằng đất X1.5/năm"</td></tr>
+            </table>
+        </div>
+
+        <h4>1.2. Sub-nhóm B: Quản lý cấp trung (Trưởng phòng/PM)</h4>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Tuổi</strong></td><td>35-50</td></tr>
+                <tr><td><strong>Thu nhập</strong></td><td>40-150tr/tháng</td></tr>
+                <tr><td><strong>Nghề điển hình</strong></td><td>Trưởng phòng IT, Sales Manager, PM xây dựng, kế toán trưởng, R&D leader, kiểm toán viên</td></tr>
+                <tr><td><strong>Nơi ở</strong></td><td>Chung cư Hà Nội (Vinhomes, MIK, Times City, KĐT Hà Đông, Long Biên...)</td></tr>
+                <tr><td><strong>Vốn nhàn rỗi</strong></td><td>1 tỷ - 3 tỷ tiền mặt + sổ tiết kiệm</td></tr>
+                <tr><td><strong>Động cơ</strong></td><td>Tiền bank lãi 4-5%/năm không chịu nổi → muốn tài sản X2 X3</td></tr>
+            </table>
+        </div>
+
+        <h4>🔑 Câu chốt cho cả nhóm 1:</h4>
+        <blockquote>"Anh để tiền trong bank 5 năm nữa cũng chỉ ra thêm được 25%, mà lô này chỉ cần 12 tháng đặc khu nó về là X1.5 luôn. Anh tính xem cơ hội nào hời hơn?"</blockquote>
+
+        <h4>📍 Dấu hiệu nhận biết qua Zalo/FB:</h4>
+        <ul>
+            <li>Avatar gia đình đi du lịch Đà Lạt, Phú Quốc, Đà Nẵng (du lịch nội địa, không phải nước ngoài sang chảnh)</li>
+            <li>Bài đăng FB toàn check-in văn phòng, công tác, ăn cỗ đám cưới đồng nghiệp</li>
+            <li>Hay share bài về "nuôi dạy con", "đầu tư cho con", "chuẩn bị tài chính tuổi 50"</li>
+            <li>Điện thoại iPhone 12-14 (KHÔNG phải Pro Max mới nhất), Galaxy S22-S23</li>
+        </ul>
+    </div>
+
+    <!-- NHÓM 2 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥇 NHÓM 2: Bạn trẻ gặp thời kiếm tiền dễ</h3>
+            <span class="badge badge-orange">NÉT - Mới bổ sung V2</span>
+        </div>
+        <blockquote>🔥 Đây là MỎ VÀNG mà Sale ít chú ý. Chốt rất nhanh nếu biết cách</blockquote>
+        
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Tuổi</strong></td><td>25-35 (chính xác nhất là 27-32)</td></tr>
+                <tr><td><strong>Đặc điểm vàng</strong></td><td>Kiếm tiền RẤT GIỎI trong lĩnh vực của họ NHƯNG MÙ TỊT về BĐS</td></tr>
+                <tr><td><strong>Nghề điển hình</strong></td><td>Chủ shop online nghìn đơn/ngày, dropship Shopee/Tiktok, TikToker/KOL, dev IT freelance lương 3000-8000$, trader chứng khoán/crypto thắng đậm, founder startup, chủ phòng gym, chủ studio chụp ảnh, chủ quán cafe specialty</td></tr>
+                <tr><td><strong>Vốn nhàn rỗi</strong></td><td>500tr - 5 tỷ (tiền ngon, mới kiếm được, chưa biết để đâu)</td></tr>
+                <tr><td><strong>Tâm lý cốt lõi</strong></td><td>"Tao kiếm được tiền nhanh quá - giờ phải tìm chỗ giữ tiền cho an toàn. Đất là tài sản truyền thống, ông bà cũng bảo thế"</td></tr>
+            </table>
+        </div>
+        
+        <h4>🔑 ĐÒN ĐÁNH KEY:</h4>
+        <ul>
+            <li>Họ TIN người môi giới NHIỀU TUỔI HƠN, có vẻ già dặn, nói chuyện chững chạc</li>
+            <li>Họ KHÔNG đi check giá nhiều - vì mất thời gian, họ muốn quyết nhanh giống cách họ làm trong nghề của họ</li>
+            <li>Họ thích "cảm giác được người chuyên gia tư vấn" → Sale phải đóng vai mentor BĐS</li>
+            <li><strong>Bơm niềm tin = họ chốt. Tỏ ra chuyên nghiệp không bằng tỏ ra UY TÍN, CÓ KINH NGHIỆM</strong></li>
+        </ul>
+
+        <h4>📍 Dấu hiệu nhận biết:</h4>
+        <ul>
+            <li>Avatar selfie trong văn phòng riêng/coworking xịn, hoặc đứng cạnh setup máy tính 3-4 màn</li>
+            <li>Profile FB toàn share "case study kinh doanh", "review sản phẩm", "thành tích doanh số"</li>
+            <li>Đi xe Mercedes C-Class, BMW 3-Series cũ, hoặc xe tay ga đời mới (SH 350, Honda ADV)</li>
+            <li>Hay đăng story đi Vietnam Airlines/Vietjet công tác hoặc du lịch</li>
+            <li>Chat Zalo nhanh, gãy gọn, hỏi đúng việc - không lằng nhằng</li>
+        </ul>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Em làm nghề này 7 năm rồi, lứa anh em cùng tuổi anh khách hàng của em mua sớm giờ ai cũng X2 X3 tài khoản. Em nói thật, kiếm tiền giỏi như anh không thiếu, nhưng bảo toàn tiền thì cần kinh nghiệm BĐS. Anh tin em một lần, mai 9h em đón anh đi xem tận nơi"</blockquote>
+    </div>
+
+    <!-- NHÓM 3 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥈 NHÓM 3: Tiểu thương buôn bán có cửa hàng</h3>
+            <span class="badge badge-yellow">VÀNG</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Tuổi</strong></td><td>38-55</td></tr>
+                <tr><td><strong>Đặc điểm</strong></td><td>Có cửa hàng tạp hóa lớn, vật liệu xây dựng, thuốc tây, mỹ phẩm, vật tư nông nghiệp, vàng bạc, hải sản</td></tr>
+                <tr><td><strong>Vốn nhàn rỗi</strong></td><td>800tr - 3 tỷ (xoay vòng từ cửa hàng)</td></tr>
+                <tr><td><strong>Tâm lý vàng</strong></td><td>Đếm tiền mỗi ngày → KHÔNG TIN tiền ảo, chứng khoán → CHỈ TIN ĐẤT VÀ VÀNG</td></tr>
+                <tr><td><strong>Động cơ</strong></td><td>"Cất tiền cho con sau này" + thấy hàng xóm cũng mua đất → đua theo</td></tr>
+                <tr><td><strong>Hành vi nhận biết</strong></td><td>Hay đi đám cưới, ăn cỗ → nghe "cô A vừa lãi 800tr lô đất Hòa Lạc" → về tìm Sale</td></tr>
+            </table>
+        </div>
+
+        <h4>📍 Dấu hiệu nhận biết:</h4>
+        <ul>
+            <li>Avatar đứng trước cửa hàng/sạp/biển hiệu shop của mình</li>
+            <li>Profile FB nhiều ảnh sự kiện gia đình, đám cưới đám giỗ</li>
+            <li>Hay share livestream bán hàng, mời chào khách</li>
+            <li>Chat Zalo lúc nhanh lúc chậm (vì bận bán hàng) - phải kiên nhẫn</li>
+            <li>Điện thoại Samsung A series, Oppo, Vivo tầm trung, hoặc iPhone đời cũ 11/12</li>
+        </ul>
+
+        <div class="alert-box">
+            <h4>⚠️ Lưu ý:</h4>
+            <ul>
+                <li><strong>CỰC SỢ BỊ LỪA</strong> → cần dẫn đi xem nhiều lần, gặp Leader, xem sổ đỏ thật</li>
+                <li>Ghét giấy tờ phức tạp, thích "rõ ràng - ngắn gọn - giá là giá"</li>
+                <li>Phải bán cho VỢ trước (vợ là người nắm tiền)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- NHÓM 4 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥈 NHÓM 4: Giáo viên/Giảng viên có chồng/vợ "có chức"</h3>
+            <span class="badge badge-yellow">VÀNG</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Cô giáo cấp 2/cấp 3, giảng viên đại học - hiền lành, hơi "nai" về tài chính</td></tr>
+                <tr><td><strong>Vốn lực thật</strong></td><td>Đến từ chồng/vợ (giám đốc DN, công an, cán bộ thuế, hải quan, bác sĩ trưởng khoa...)</td></tr>
+                <tr><td><strong>Vốn nhàn rỗi</strong></td><td>1-3 tỷ</td></tr>
+                <tr><td><strong>Đặc điểm vàng</strong></td><td><strong>Phụ nữ chiếm 70%</strong> → cảm tính mạnh, tin "câu chuyện hoàn cảnh"</td></tr>
+            </table>
+        </div>
+
+        <h4>📍 Dấu hiệu nhận biết:</h4>
+        <ul>
+            <li>Avatar đứng cùng học sinh/lớp học/lễ tốt nghiệp</li>
+            <li>Profile FB share bài về "giáo dục con", "phụ nữ tuổi 40", "yêu thương bản thân"</li>
+            <li>Gia nhập nhiều group "Hội phụ nữ Hà Nội", "Mẹ và bé"</li>
+            <li>Phong cách chat lịch sự, có dấu, viết câu đầy đủ chủ vị</li>
+        </ul>
+
+        <div class="alert-box">
+            <h4>⚠️ Cách tiếp cận:</h4>
+            <ul>
+                <li>Tỉ mỉ, lịch sự, KHÔNG chèo kéo - họ ghét bị "ép"</li>
+                <li>Đánh vào tình cảm với con cái: *"Mua đất là cho con sau này, để con có nền tảng"*</li>
+                <li>Phải làm việc song song với chồng/vợ → cần xin Zalo cả 2</li>
+            </ul>
+        </div>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Chị ạ, mua đất là để cho con sau này, chứ tiền sinh tiền chứ chị cứ để mấy chục cây vàng trong két nó cũng có ra thêm đâu. Em thấy nhiều chị giáo cũng đầu tư đất rồi, sau này về già có cái mà cho con cháu"</blockquote>
+    </div>
+
+    <!-- NHÓM 5 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥉 NHÓM 5: Quân đội/Công an sắp về hưu hoặc bị cắt biên chế</h3>
+            <span class="badge badge-gray">KHÁ - cần kỹ thuật</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Tuổi</strong></td><td>50-60</td></tr>
+                <tr><td><strong>Vốn lực</strong></td><td><strong>Đợt cắt giảm biên chế 2025-2026 → đền bù 1.5 - 4 tỷ</strong></td></tr>
+                <tr><td><strong>Tâm lý</strong></td><td>"Đời trước cứ nghĩ lương lậu sống đủ, giờ có cục tiền không biết để đâu"</td></tr>
+                <tr><td><strong>Pain point</strong></td><td>Bạn bè cùng đơn vị đã đi mua đất, sợ bị bỏ lại</td></tr>
+            </table>
+        </div>
+
+        <h4>📍 Dấu hiệu nhận biết:</h4>
+        <ul>
+            <li>Avatar đeo quân phục/sắc phục cũ</li>
+            <li>Profile FB toàn ảnh đồng đội, kỷ niệm đơn vị, đi du lịch hội đồng đội</li>
+            <li>Hay share bài về "tình đồng đội", "ký ức quân ngũ", "lịch sử Việt Nam"</li>
+            <li>Cách chat điềm đạm, chậm rãi, dùng từ "đồng chí" hoặc "anh em"</li>
+        </ul>
+
+        <div class="alert-box">
+            <h4>⚠️ Lưu ý ĐẶC BIỆT:</h4>
+            <ul>
+                <li><strong>CỰC KỲ CẢNH GIÁC LỪA ĐẢO</strong> - vợ kiểm soát tiền chặt → phải tiếp cận CẢ HAI</li>
+                <li>KHÔNG hối thúc, KHÔNG nói "cọc luôn đi anh" → mất khách</li>
+                <li>Phải "nuôi" 1-2 tuần mới chốt được, gặp 2-3 lần</li>
+                <li>Cần dẫn theo Leader cứng (có vẻ già dặn) đi cùng → tăng uy tín</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- NHÓM 6 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥉 NHÓM 6: Người được đền bù GPMB</h3>
+            <span class="badge badge-orange">VÀNG NGUYÊN KHỐI</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Dân quê có 500m² - 1 sào đất bị thu hồi cho dự án (KCN, đường cao tốc, sân bay)</td></tr>
+                <tr><td><strong>Vốn lực</strong></td><td>2-10 tỷ tiền mặt vừa nhận</td></tr>
+                <tr><td><strong>Đặc điểm CỰC NÉT</strong></td><td><strong>TỰ MẮT THẤY giá đất khu mình tăng</strong> → tin tuyệt đối vào hạ tầng → dễ X2 X3 deal</td></tr>
+                <tr><td><strong>Khu vực vàng</strong></td><td>Đông Anh, Sóc Sơn, Hoài Đức, Mê Linh, Văn Giang, Hưng Yên (vành đai 4)</td></tr>
+            </table>
+        </div>
+
+        <h4>📍 Dấu hiệu nhận biết:</h4>
+        <ul>
+            <li>Avatar đứng trước nhà cấp 4 cũ + miếng đất (hoặc đứng trước biển báo dự án)</li>
+            <li>Profile FB hay share bài "đền bù", "quy hoạch", "thông tin tỉnh/huyện X"</li>
+            <li>Chat dùng nhiều từ địa phương, không có dấu hoặc sai chính tả nhiều</li>
+            <li>Hỏi rất nhiều về "có chắc dự án này có đền bù không em"</li>
+        </ul>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Anh thấy đó, đất nhà anh trước có 5tr/m² giờ 50tr/m² đúng chứ? Lô này em đang là phiên bản đó của 5 năm trước. Anh là người đã CHỨNG KIẾN rồi, em không cần nói nhiều"</blockquote>
+    </div>
+
+    <!-- NHÓM 7 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🥉 NHÓM 7: Người từng chứng kiến sốt đất quê</h3>
+            <span class="badge badge-red">CỰC NÉT</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Quê Hòa Lạc, Đông Anh, Mê Linh, Long Thành, Đà Nẵng (sốt 2007/2018/2022)</td></tr>
+                <tr><td><strong>Đặc điểm</strong></td><td>Từng có đất quê 5tr/m² giờ 80tr/m². Họ đã "ngộ ra" muộn</td></tr>
+                <tr><td><strong>Tâm lý</strong></td><td>"Tao tiếc đứt ruột vì lúc xưa không gom thêm" → giờ thấy chu kỳ tương tự là LAO VÀO</td></tr>
+            </table>
+        </div>
+
+        <div class="alert-box">
+            <h4>⚠️ Cách tiếp cận:</h4>
+            <ul>
+                <li>Dùng phép so sánh: <em>"Hòa Lạc 2015 cũng y hệt Ninh Cơ 2026 thôi anh"</em> → họ tự gật</li>
+                <li>Tỉ lệ chốt RẤT CAO - chỉ cần đi thực địa 1 lần</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- NHÓM 8 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🟡 NHÓM 8: Người Hà Nội nội thành đất chật</h3>
+            <span class="badge badge-gray">KHÁ</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Sống ngõ ngách Đống Đa, Ba Đình, Hai Bà Trưng, Hà Đông...</td></tr>
+                <tr><td><strong>Đặc điểm</strong></td><td>Nhà 25-40m², ngõ 1m2 xe máy, đất giá 200-300tr/m²</td></tr>
+                <tr><td><strong>Tâm lý vàng</strong></td><td><strong>Nhìn lô 90m² đất rộng = THIÊN ĐƯỜNG</strong> (ở phố không có khái niệm này)</td></tr>
+                <tr><td><strong>Loại tiền</strong></td><td>Tiền gom lương + sổ tiết kiệm 1-2 tỷ</td></tr>
+            </table>
+        </div>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Anh ở phố cả đời rồi, có miếng đất quê 90m² rộng rãi sạch sẽ, sau này về dưỡng già hoặc cho con cũng ngon mà giờ giá lại rẻ"</blockquote>
+    </div>
+
+    <!-- NHÓM 9 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🟡 NHÓM 9: F1 - Người đã đầu tư 1-2 lần nhưng chưa thắng lớn</h3>
+            <span class="badge badge-gray">CẨN THẬN</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Mua 1-2 lô lúc sốt 2021-2022, giờ kẹt hàng hoặc lãi nhẹ</td></tr>
+                <tr><td><strong>Tâm lý</strong></td><td>"Lần này phải gỡ", "Phải tìm sóng mới chứ ngồi đợi lô cũ chết"</td></tr>
+            </table>
+        </div>
+
+        <div class="alert-box">
+            <h4>⚠️ Lợi thế & Rủi ro:</h4>
+            <ul>
+                <li>✅ Không cần giáo dục thị trường - họ tự hiểu</li>
+                <li>⚠️ Họ KHÔN, hay so sánh giá - cần Leader cứng đi cùng để chốt</li>
+            </ul>
+        </div>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Anh kẹt lô cũ vì mua đỉnh sóng. Lô này em đang ở chân sóng - đặc khu mới phê duyệt thôi anh. Đừng để lần này lại hụt cơ hội"</blockquote>
+    </div>
+
+    <!-- NHÓM 10 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🟠 NHÓM 10: Vợ/chồng làm freelance, kinh doanh online vừa & nhỏ</h3>
+            <span class="badge badge-gray">KHÁ</span>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Bán hàng online (mỹ phẩm, thời trang, đồ ăn), MMO, dropship cấp vừa</td></tr>
+                <tr><td><strong>Vốn lực</strong></td><td>500tr - 1.5 tỷ (xoay vòng nhanh)</td></tr>
+                <tr><td><strong>Đặc điểm</strong></td><td>Nhanh nhạy với trend, có hệ sinh thái cộng đồng → 1 người mua dễ rủ thêm 2-3 người</td></tr>
+                <tr><td><strong>Cảnh báo</strong></td><td>Có thể "bùng" cọc nếu hôm sau đọc thấy bài tiêu cực trên mạng</td></tr>
+            </table>
+        </div>
+
+        <blockquote><strong>Lưu ý phân biệt với Nhóm 2:</strong> Nhóm 10 là người làm online ở quy mô VỪA (kiếm 30-80tr/tháng). Nhóm 2 là người ĐÃ THÀNH CÔNG (kiếm 200tr-1 tỷ/tháng). Nhóm 2 đáng giá hơn nhiều.</blockquote>
+    </div>
+
+    <!-- NHÓM 11 -->
+    <div class="glass-card">
+        <div class="group-header">
+            <h3>🟠 NHÓM 11: F0 muốn đổi đời - Người ít tiền nhưng quyết liệt</h3>
+            <span class="badge badge-red">RỦI RO CAO - ĐÁNG ĐÁNH</span>
+        </div>
+        <blockquote>🔥 Tinh thần TL Land: Mình ĐANG GIÚP người ta làm giàu, không phải hớt tiền của người nghèo</blockquote>
+        
+        <div class="table-container">
+            <table>
+                <tr><td width="25%"><strong>Profile</strong></td><td>Công nhân lâu năm, nhân viên giao hàng, lái xe taxi/Grab, chủ quán nhỏ</td></tr>
+                <tr><td><strong>Vốn lực</strong></td><td>300-800tr (gom góp + vay người thân + thế chấp sổ đỏ nhỏ)</td></tr>
+                <tr><td><strong>Tâm lý</strong></td><td>"Tôi phải đổi đời. Đời cha mẹ đã nghèo rồi, đời tôi không nghèo nữa"</td></tr>
+                <tr><td><strong>Đặc điểm</strong></td><td>Quyết liệt, dứt khoát, KHÔNG sợ vay nợ</td></tr>
+            </table>
+        </div>
+
+        <div class="alert-box">
+            <h4>⚠️ Cách tiếp cận:</h4>
+            <ul>
+                <li><strong>CẦN TRUNG THỰC TUYỆT ĐỐI</strong> với họ - không vẽ giấc mơ X10</li>
+                <li>Chỉ tư vấn lô VỪA SỨC (1 tỷ - 1.3 tỷ), tránh đẩy lên 2-3 tỷ làm họ vỡ nợ</li>
+                <li>Hỗ trợ thủ tục vay ngân hàng tận tình</li>
+                <li>Lô vào tay họ là CƠ HỘI THẬT - mình phải chọn sản phẩm đáng đầu tư</li>
+            </ul>
+        </div>
+
+        <h4>🔑 Câu chốt:</h4>
+        <blockquote>"Anh kéo cố vay được khoảng 800 củ thì em ưu tiên anh lô đẹp nhất phân khúc này. Em làm việc với anh là làm việc với người có ý chí, em sẽ chăm anh đến tận lúc anh ra hàng có lời"</blockquote>
+    </div>
+
+    <!-- PHẦN 2 -->
+    <h2>🚫 PHẦN 2: 4 NHÓM PHẢI LOẠI NGAY (Đã rút gọn V2)</h2>
+    <blockquote>⚠️ Lưu ý sửa V2: F0 nghèo KHÔNG bị loại. Khách hỏi giá/diện tích trước cũng KHÔNG bị loại. Khách đòi gửi link là 50/50.</blockquote>
+    
+    <div class="table-container">
+        <table>
+            <tr>
+                <th width="5%">#</th>
+                <th width="35%">Nhóm</th>
+                <th>Lý do loại</th>
+            </tr>
+            <tr><td>1</td><td><strong>Khách địa phương (BK 10km)</strong></td><td>Tâm lý "mai đi xem tiếp", có lựa chọn nội bộ thay thế. Đi xem chỉ để cho có</td></tr>
+            <tr><td>2</td><td><strong>Người sống vùng đất rộng (vài sào/người)</strong></td><td>Họ chê 90m² là "lỗ mũi". Quê họ đất 5tr/m² 1000m², không bao giờ mua 90m²</td></tr>
+            <tr><td>3</td><td><strong>Khách "đầu tư chuyên nghiệp" có team riêng</strong></td><td>Họ chỉ chơi mảnh to chuyển đổi - không chơi đất phân lô của mình. Họ check pháp lý đến từng dấu chấm</td></tr>
+            <tr><td>4</td><td><strong>Môi giới đối thủ giả khách</strong></td><td>Hỏi hoa hồng, hỏi sâu về chính sách, FB trắng/mới lập</td></tr>
+        </table>
+    </div>
+
+    <h3>⚠️ Khách "Hên xui" - cần đánh giá tiếp (KHÔNG LOẠI ngay)</h3>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th width="40%">Loại</th>
+                <th>Đánh giá</th>
+            </tr>
+            <tr><td><strong>Hỏi giá/diện tích trước khi hỏi tiềm năng</strong></td><td>✅ BÌNH THƯỜNG - vì mình đăng bài phễu ảo có giá rẻ. Sau khi báo giá → bơm tiềm năng</td></tr>
+            <tr><td><strong>Đòi gửi link Google Maps trước khi gặp</strong></td><td>50/50 - có thể họ muốn xem khoảng cách thực tế, không phải lúc nào cũng là tay lõi đời</td></tr>
+            <tr><td><strong>F0 ít tiền (300-800tr)</strong></td><td>✅ CÓ THỂ ĐÁNH - giúp họ làm giàu, ưu tiên lô vừa sức</td></tr>
+        </table>
+    </div>
+
+    <!-- PHẦN 3 -->
+    <h2>🔍 PHẦN 3: DẤU HIỆU NHẬN DIỆN KHÁCH NÉT (Đã sửa V2)</h2>
+    
+    <h3>3.1. Qua điện thoại & thiết bị</h3>
+    <blockquote>🔥 Sửa V2: Avatar SUV >1 tỷ thực ra là dấu hiệu KHÔN, không phải khách dễ. Điện thoại đời mới nhất cũng là dấu hiệu khó tính.</blockquote>
+    
+    <div class="table-container">
+        <table>
+            <tr>
+                <th width="40%">Tín hiệu</th>
+                <th width="20%">Đánh giá</th>
+                <th>Logic</th>
+            </tr>
+            <tr><td>iPhone 11/12/13 màn nứt vẫn dùng, không thay</td><td>✅✅ CỰC NÉT</td><td>Không khoe, không sĩ, dễ tính, không lướt giá nhanh</td></tr>
+            <tr><td>Android tầm trung Oppo, Vivo, Realme, Xiaomi 4-8tr</td><td>✅ NÉT</td><td>Tệp khách phổ thông, đúng phân khúc 1-3 tỷ</td></tr>
+            <tr><td>iPhone đời mới nhất Pro Max</td><td>⚠️ KHÔN/KHÓ</td><td>Khó tính, dùng máy xịn để lướt mạng nhanh → dễ thoát ra check giá đối thủ ngay khi đang chat với mình</td></tr>
+            <tr><td>Samsung Galaxy S/Note đời mới</td><td>⚠️ KHÔN</td><td>Tương tự Pro Max - khách kén</td></tr>
+            <tr><td>Avatar selfie với SUV Mercedes/BMW/Lexus >2 tỷ</td><td>❌ KHÔN</td><td>Xe trên 2 tỷ → tài sản >5 tỷ → không phải tệp 1-3 tỷ của mình. Họ check giá rất kỹ</td></tr>
+            <tr><td>Avatar đứng cạnh Hyundai Santa Fe, Mazda CX-5, Mitsubishi Xpander</td><td>✅ NÉT</td><td>Xe SUV/MPV phổ thông 800tr-1.4 tỷ → đúng tệp trung lưu, có vốn 1-3 tỷ</td></tr>
+            <tr><td>Avatar đi xe máy Honda Lead, Vision, Air Blade</td><td>✅ NÉT</td><td>Có thể mua xe sau, đang tích lũy đất trước</td></tr>
+            <tr><td>Avatar gia đình du lịch Đà Lạt/Phú Quốc/Sapa</td><td>✅✅ CỰC NÉT</td><td>Cuộc sống ổn định, có tiền dư, không quá giàu</td></tr>
+            <tr><td>Avatar du lịch Châu Âu/Mỹ/Nhật</td><td>⚠️ KHÔN</td><td>Tài sản lớn, đã đi nhiều, hay so sánh</td></tr>
+        </table>
+    </div>
+
+    <h4>🧠 Tư duy lõi về điện thoại:</h4>
+    <blockquote>
+        <strong>TẠI SAO khách dùng điện thoại đời mới khó bán?</strong><br><br>
+        Vì họ là người KHÔNG CHỊU ĐƯỢC giật lag → đòi hỏi cao → khó tính. Khi họ thấy bài đăng của mình, họ có thể NGAY LẬP TỨC vuốt xuống dưới để xem bài đăng của Sale khác, so giá - vì máy lướt mượt, lướt nhanh không mất công.<br><br>
+        Ngược lại, khách dùng điện thoại cũ/cùi → lướt chậm → ngại lướt thêm → thấy bài mình thì chỉ tập trung hỏi mình thôi → DỄ CHỐT HƠN.<br><br>
+        <strong>NGOẠI LỆ:</strong> Một số khách dùng máy xịn vì SĨ DIỆN (cứ có là mua) - thường là tiểu thương vùng quê mua iPhone Pro Max để khoe → loại này vẫn nét.
+    </blockquote>
+
+    <h3>3.2. Qua Avatar Facebook/Zalo</h3>
+    <div class="table-container">
+        <table>
+            <tr><th width="60%">Avatar</th><th>Đánh giá</th></tr>
+            <tr><td>Ảnh gia đình đi du lịch nội địa</td><td>✅✅ CỰC NÉT</td></tr>
+            <tr><td>Ảnh đứng trước cửa hàng/sạp/nhà mình</td><td>✅✅ CỰC NÉT (tiểu thương)</td></tr>
+            <tr><td>Ảnh chụp với học sinh/lớp học</td><td>✅ NÉT (giáo viên)</td></tr>
+            <tr><td>Ảnh đeo quân phục/sắc phục</td><td>✅ NÉT (cần kỹ thuật)</td></tr>
+            <tr><td>Ảnh selfie công sở, văn phòng</td><td>✅ NÉT (dân văn phòng)</td></tr>
+            <tr><td>Ảnh setup máy tính 3-4 màn, văn phòng riêng xịn</td><td>✅ NÉT (Nhóm 2 - Bạn trẻ kiếm tiền giỏi)</td></tr>
+            <tr><td>Avatar trắng, ảnh mặc định</td><td>❌ NGUY HIỂM - khả năng cao là môi giới đối thủ</td></tr>
+            <tr><td>Avatar selfie sang chảnh nhiều ảnh, trang điểm đậm</td><td>⚠️ HÊN XUI - có thể là KOL/người sĩ</td></tr>
+        </table>
+    </div>
+
+    <h3>3.3. Qua cách nhắn tin</h3>
+    <div class="table-container">
+        <table>
+            <tr><th width="60%">Mẫu câu khách</th><th>Phân loại</th></tr>
+            <tr><td><em>"Em ơi lô này còn không? Anh đang quan tâm"</em></td><td>✅ Khách thật, đang muốn mua</td></tr>
+            <tr><td><em>"Đất ở đâu vậy em? Có sổ đỏ chưa?"</em></td><td>✅ Khách nét - chuẩn bị đi xem</td></tr>
+            <tr><td><em>"Tài chính tầm 1.5 tỷ thì có lô nào không?"</em></td><td>✅✅ CỰC NÉT - tự khai vốn</td></tr>
+            <tr><td><em>"Cho anh xin số Zalo để tiện trao đổi"</em></td><td>✅ Nét - sẵn sàng làm việc</td></tr>
+            <tr><td><em>"Báo giá cụ thể m²/lô gửi qua đây cho anh"</em></td><td>⚠️ Bình thường - sau đó bơm tiềm năng</td></tr>
+            <tr><td><em>"Em là sale phải không? Bao nhiêu hoa hồng?"</em></td><td>❌ Loại - môi giới đối thủ</td></tr>
+            <tr><td><em>"Có giấy tờ pháp lý gì? Quy hoạch 1/500 đâu? Sổ đỏ scan cả 2 mặt?"</em></td><td>❌ Khôn - khách chuyên nghiệp, khó bán</td></tr>
+            <tr><td><em>"Anh nghe nói khu này có vấn đề tranh chấp đúng không?"</em></td><td>⚠️ Test mình - cần Leader xử</td></tr>
+        </table>
+    </div>
+
+    <h3>3.4. Qua hành vi chat trên Zalo</h3>
+    <div class="table-container">
+        <table>
+            <tr><th width="60%">Hành vi</th><th>Đánh giá</th></tr>
+            <tr><td>Chat đều đều, có dấu, viết câu đầy đủ</td><td>✅ NÉT - có học, ổn định</td></tr>
+            <tr><td>Chat nhanh, gọn, hỏi đúng việc</td><td>✅ NÉT - quyết đoán (Nhóm 2)</td></tr>
+            <tr><td>Chat lúc nhanh lúc chậm, sai chính tả nhiều</td><td>✅ NÉT - tiểu thương bận bán hàng</td></tr>
+            <tr><td>Chat điềm đạm, dùng "đồng chí" hoặc "anh em"</td><td>✅ NÉT - quân đội/công an</td></tr>
+            <tr><td>Chat khuya (22h-1h sáng)</td><td>⚠️ Hên xui - có thể là dân tài chính khôn, hoặc người đang ngủ không được vì lo lắng tiền</td></tr>
+            <tr><td>Đọc tin xong KHÔNG trả lời 1-2 ngày</td><td>⚠️ Cần spam timeline tăng nhịp</td></tr>
+            <tr><td>Voice message dài</td><td>✅ Nét - người chân thật, không có thời gian gõ</td></tr>
+        </table>
+    </div>
+
+    <!-- PHẦN 4 -->
+    <h2>💬 PHẦN 4: BỘ CÂU HỎI TRUY VẤN VÀNG (Quan trọng nhất V2)</h2>
+    <blockquote>🎯 <strong>Mục đích:</strong> Khai thác THÔNG TIN THẬT từ khách hàng để phân loại đúng độ nét, tránh bị khách giấu thông tin.</blockquote>
+
+    <div class="glass-card" style="border-left: 4px solid var(--accent-red);">
+        <h3>🔑 CÂU HỎI 1: TÀI CHÍNH (Kỹ thuật "Nói Vống")</h3>
+        <div class="highlight-box">
+            <strong>❌ Cách hỏi NGU:</strong><br>
+            <em>"Anh chị có khoảng bao nhiêu tiền ạ?"</em><br>
+            → Khách giấu, có 3 tỷ chỉ khai 1 tỷ.
+        </div>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi KHÔN (Style Sếp Khương):</strong><br>
+            <em>"Anh ơi, đợt này anh muốn nghiên cứu phân khúc khoảng 5 hay 6 tỷ ạ? Để em chuẩn bị bảng hàng cho phù hợp"</em>
+        </div>
+        <h4>🧠 Logic tâm lý đằng sau:</h4>
+        <ul>
+            <li>Mình <strong>NÓI VỐNG LÊN</strong> mức cao hơn nhiều so với mức thật</li>
+            <li>Khách sẽ thấy mình ĐÁNH GIÁ HỌ Ở TẦM CAO → tự ái, không muốn bị coi là thấp kém</li>
+            <li>Họ sẽ <strong>TỰ ĐỘNG ĐÍNH CHÍNH XUỐNG MỨC THẬT</strong>: <em>"Không em ơi, anh chỉ tính tầm 2-3 tỷ thôi"</em></li>
+            <li>→ Đây là CON SỐ THẬT mà bình thường họ sẽ giấu</li>
+        </ul>
+        <h4>📋 Các biến thể câu hỏi:</h4>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Hoàn cảnh khách</th><th>Câu hỏi vống</th></tr>
+                <tr><td>Khách ở chung cư nhìn có vẻ giàu</td><td><em>"Anh nghiên cứu tầm 5-7 tỷ hay là to hơn ạ?"</em></td></tr>
+                <tr><td>Khách trông có vẻ trung lưu</td><td><em>"Đợt này anh xem tầm 3-4 tỷ hay là 5-6 tỷ ạ?"</em></td></tr>
+                <tr><td>Khách F0 ít vốn rõ ràng</td><td><em>"Anh nghiên cứu tầm 2-3 tỷ hay là cao hơn ạ?"</em></td></tr>
+                <tr><td>Khách nhóm 2 (bạn trẻ kiếm giỏi)</td><td><em>"Em làm việc với mấy anh quy mô đầu tư 5-10 tỷ, anh chuẩn bị tầm đó hay là khác ạ?"</em></td></tr>
+            </table>
+        </div>
+        <blockquote><strong>Quy tắc vàng:</strong> Vống lên gấp 2-3 lần so với mức ước lượng. Vống quá nhiều thì khách phản cảm, vống ít quá thì khách không đính chính.</blockquote>
+    </div>
+
+    <div class="glass-card" style="border-left: 4px solid var(--gold-primary);">
+        <h3>🔑 CÂU HỎI 2: KINH NGHIỆM ĐẦU TƯ (Đánh giá độ Khôn)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi:</strong><br>
+            <em>"Trước đây anh chị đã đầu tư BĐS bao giờ chưa ạ? Hay là đợt này là lần đầu tiên?"</em>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Câu trả lời</th><th width="20%">Phân loại</th><th>Cách xử lý</th></tr>
+                <tr><td><em>"Anh đầu tư nhiều rồi, làm Hòa Lạc, Long Thành, Đà Nẵng..."</em></td><td>❌ KHÔN - chuyên nghiệp</td><td>Khó bán, cần Leader cứng. Tránh nói tâng bốc dự án quá → bị họ vạch lỗi</td></tr>
+                <tr><td><em>"Anh có 1-2 lô rồi, kẹt hàng từ 2022"</em></td><td>⚠️ F1 - Cần kỹ thuật</td><td>Đánh vào "đặc khu mới = cơ hội gỡ"</td></tr>
+                <tr><td><em>"Anh đầu tư đúng 1 lần thôi, năm 2018"</em></td><td>✅ NÉT</td><td>Có kinh nghiệm nhẹ, dễ tin Sale</td></tr>
+                <tr><td><em>"Anh chưa đầu tư bao giờ, đây là lần đầu"</em></td><td>✅✅ CỰC NÉT</td><td>Mỏ vàng - giáo dục thị trường từ đầu, dễ chốt</td></tr>
+                <tr><td><em>"Anh có nhà cho thuê thôi, chưa đất nền"</em></td><td>✅ NÉT</td><td>Có tư duy đầu tư, chưa chuyên</td></tr>
+            </table>
+        </div>
+        <h4>🔑 Câu phụ để khai thác sâu hơn:</h4>
+        <ul>
+            <li><em>"Lần đó anh mua khu nào, Sale nào tư vấn ạ?"</em></li>
+            <li><em>"Lô đó giờ anh ra hàng chưa hay vẫn giữ?"</em></li>
+            <li><em>"Anh có hài lòng với deal đó không?"</em></li>
+        </ul>
+        <p>→ Nếu khách phàn nàn về Sale cũ → mình tận dụng cơ hội thể hiện sự khác biệt.</p>
+    </div>
+
+    <div class="glass-card" style="border-left: 4px solid var(--accent-green);">
+        <h3>🔑 CÂU HỎI 3: AI RA QUYẾT ĐỊNH (Trước khi mời đi xem)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi (Tinh tế):</strong><br>
+            <em>"Anh ơi, gia đình mình thì chắc chị nhà chăm lo quán xuyến gia đình con cái, còn anh quản lý tài chính và đưa ra quyết định lớn đúng không ạ?"</em>
+        </div>
+        <h4>🧠 Logic:</h4>
+        <ul>
+            <li>Câu hỏi mặc định khách là người quyết → KHEN NGẦM khách là "trụ cột"</li>
+            <li>Khách tự ái sẽ nói: <em>"Đúng rồi em, anh quyết được"</em> → đi xem 1 mình</li>
+            <li>Khách thật thà sẽ nói: <em>"Không em, vợ anh cũng phải đồng ý nữa"</em> → mời CẢ HAI VỢ CHỒNG</li>
+        </ul>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Câu trả lời</th><th>Hành động Sale</th></tr>
+                <tr><td><em>"Anh quyết được"</em></td><td>✅ Mời đi xem 1 mình. Chốt cọc tại chỗ</td></tr>
+                <tr><td><em>"Vợ anh phải đồng ý"</em></td><td>⚠️ MỜI CẢ 2 đi xem - tuyệt đối không để 1 người đi</td></tr>
+                <tr><td><em>"Tiền của vợ anh, anh chỉ tham khảo"</em></td><td>🔄 ĐỔI HƯỚNG - làm việc trực tiếp với vợ</td></tr>
+                <tr><td><em>"Anh phải về bàn với gia đình"</em></td><td>⚠️ DELAY - nuôi 1-2 tuần, gửi info cho cả 2</td></tr>
+            </table>
+        </div>
+        <h4>💡 Câu hỏi phụ với khách nữ:</h4>
+        <blockquote><em>"Chị ơi, gia đình mình chắc anh nhà ngoài đi làm thì cũng tin tưởng chị quản lý tài chính cho gia đình đúng không ạ?"</em></blockquote>
+        <p>→ Nếu chị nói "Không, chồng chị quyết" → mời cả 2. <br>→ Nếu chị nói "Đúng rồi em, chị quyết hết" → tập trung làm việc với chị.</p>
+    </div>
+
+    <div class="glass-card">
+        <h3>🔑 CÂU HỎI 4: NƠI Ở & QUÊ QUÁN (Đánh giá độ Nét theo địa lý)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi:</strong><br>
+            <em>"Anh chị đang sinh sống và làm việc ở khu vực nào ạ? Quê anh chị gốc ở đâu để em tiện chia sẻ thêm thông tin gần khu mình"</em>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Nơi ở/Quê quán</th><th width="20%">Đánh giá</th><th>Logic</th></tr>
+                <tr><td>Hà Nội nội thành (Đống Đa, Ba Đình, Hai Bà Trưng)</td><td>✅✅ CỰC NÉT</td><td>Đất chật, vốn nhiều, dễ chấp nhận 90m²</td></tr>
+                <tr><td>Hà Đông, Long Biên, Hoàng Mai, Cầu Giấy</td><td>✅ NÉT</td><td>Trung lưu, có tích lũy</td></tr>
+                <tr><td>Hòa Lạc, Đông Anh, Mê Linh, Hoài Đức</td><td>✅✅ CỰC NÉT</td><td>Đã chứng kiến sốt đất</td></tr>
+                <tr><td>Quê Hà Tĩnh, Nghệ An, Thanh Hóa nhưng làm Hà Nội</td><td>✅ NÉT</td><td>Tâm lý "phải có đất ở đâu đó"</td></tr>
+                <tr><td>Sống ở Nam Định, Hải Hậu, Giao Thủy</td><td>❌ LOẠI</td><td>Khách địa phương (BK 10km Ninh Cơ)</td></tr>
+                <tr><td>Sống ở các tỉnh quê có đất rộng (Sơn La, Lạng Sơn, Cao Bằng)</td><td>❌ LOẠI</td><td>Quê đất rộng, chê 90m²</td></tr>
+                <tr><td>TP.HCM, Bình Dương, Đồng Nai</td><td>⚠️ KHÓ</td><td>Tâm lý "không thích miền Bắc", đi xem khó</td></tr>
+                <tr><td>Nước ngoài (Nhật, Hàn, Đài, Đức)</td><td>⚠️ HÊN XUI</td><td>Cần người nhà ra xem hộ</td></tr>
+            </table>
+        </div>
+        <h4>🔑 Câu phụ khai thác sâu:</h4>
+        <ul>
+            <li><em>"Anh sống ở khu đó lâu chưa ạ?"</em> → Đánh giá độ ổn định</li>
+            <li><em>"Quê anh giờ đất giá bao nhiêu rồi ạ?"</em> → Mượn câu chuyện để bơm so sánh</li>
+        </ul>
+    </div>
+
+    <div class="glass-card">
+        <h3>🔑 CÂU HỎI 5: NGHỀ NGHIỆP (Đánh giá nguồn vốn & cách tiếp cận)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi:</strong><br>
+            <em>"Anh chị làm hành chính nhà nước hay tự do/kinh doanh ạ? Để em tư vấn phương án thanh toán cho phù hợp"</em>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Nghề</th><th width="20%">Đánh giá</th><th>Đặc điểm</th></tr>
+                <tr><td>Văn phòng/quản lý cấp trung</td><td>✅ NÉT</td><td>Tiền lương tích lũy, cần đòn bẩy bank</td></tr>
+                <tr><td>Tiểu thương buôn bán</td><td>✅ NÉT</td><td>Tiền tươi, nhanh quyết, cần niềm tin</td></tr>
+                <tr><td>Giáo viên/giảng viên</td><td>✅ NÉT</td><td>Cần thời gian cân nhắc, cẩn thận</td></tr>
+                <tr><td>Quân đội/Công an</td><td>⚠️ Cần kỹ thuật</td><td>Cẩn trọng, cần Leader</td></tr>
+                <tr><td>Bác sĩ tự do/Phòng khám</td><td>✅ NÉT</td><td>Vốn lớn, cần lịch sự</td></tr>
+                <tr><td>Kinh doanh online quy mô lớn</td><td>✅✅ CỰC NÉT</td><td>Nhóm 2 - chốt nhanh nếu bơm niềm tin</td></tr>
+                <tr><td>Dev IT, freelance lương cao</td><td>✅ NÉT</td><td>Tiền tốt nhưng có chút khôn</td></tr>
+                <tr><td>Trader chứng khoán/crypto</td><td>⚠️ Hên xui</td><td>Liều, ăn xổi, cần cẩn thận</td></tr>
+                <tr><td>Lãnh đạo cấp cao DN tư nhân lớn</td><td>❌ LOẠI/Khôn</td><td>Tài sản >10 tỷ, không phải tệp mình</td></tr>
+                <tr><td>Công nhân/giao hàng/lái xe</td><td>⚠️ F0 vốn ít</td><td>Đánh kỹ thuật, lô vừa sức</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h3>🔑 CÂU HỎI 6: ĐỘNG CƠ (Đánh giá tâm lý)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi:</strong><br>
+            <em>"Đợt này anh chị muốn mua để đầu tư lướt sóng hay là tích sản dài hạn ạ?"</em>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><th width="40%">Câu trả lời</th><th width="20%">Đánh giá</th><th>Cách đánh</th></tr>
+                <tr><td><em>"Đầu tư lướt sóng 6-12 tháng"</em></td><td>✅ NÉT</td><td>Bơm timeline đặc khu, hạ tầng chuẩn bị về</td></tr>
+                <tr><td><em>"Để tích sản, cho con sau này"</em></td><td>✅✅ CỰC NÉT</td><td>Đánh tình cảm, an toàn dài hạn</td></tr>
+                <tr><td><em>"Mua để xây nhà nghỉ dưỡng"</em></td><td>⚠️ Hơi khó</td><td>Lái sang đầu tư trước, sau này có dư mua mảnh to</td></tr>
+                <tr><td><em>"Đa dạng hóa tài sản"</em></td><td>✅ NÉT</td><td>Khôn nhẹ - cần dữ liệu chuyên nghiệp</td></tr>
+                <tr><td><em>"Mua để cho thuê công nhân KCN"</em></td><td>✅ NÉT</td><td>Có tư duy dòng tiền, dễ phân tích Roi</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h3>🔑 CÂU HỎI 7: KÊNH BIẾT ĐẾN (Đánh giá độ tin)</h3>
+        <div class="highlight-box">
+            <strong>✅ Cách hỏi:</strong><br>
+            <em>"Anh chị biết đến em qua kênh nào ạ? Bạn bè giới thiệu hay là thấy bài đăng?"</em>
+        </div>
+        <div class="table-container">
+            <table>
+                <tr><th width="60%">Kênh</th><th>Đánh giá</th></tr>
+                <tr><td>Bạn bè/người quen giới thiệu</td><td>✅✅ CỰC NÉT - Niềm tin sẵn</td></tr>
+                <tr><td>Tự thấy bài đăng FB/Zalo</td><td>✅ NÉT - Đến từ phễu mình tạo ra</td></tr>
+                <tr><td>Group BĐS</td><td>⚠️ Bình thường</td></tr>
+                <tr><td>Thấy bài đăng trên TikTok</td><td>✅ NÉT - Trẻ, dễ tiếp cận (Nhóm 2)</td></tr>
+                <tr><td>Search Google ra</td><td>⚠️ Khôn - Khả năng đang check nhiều Sale</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- PHẦN 5 -->
+    <h2>🎯 PHẦN 5: 5 ĐỘ NÉT CỦA KHÁCH (Quy ước nội bộ K11)</h2>
+    <div class="table-container">
+        <table>
+            <tr><th width="20%">Độ nét</th><th width="40%">Mô tả</th><th>Hành động Sale</th></tr>
+            <tr><td><strong>🔴 Lửa (5/5)</strong></td><td>Đã có vốn, hỏi tiềm năng, đề nghị đi xem, khai tài chính</td><td>Chốt lịch trong 24h, mời Leader cứng đi cùng</td></tr>
+            <tr><td><strong>🟠 Cam (4/5)</strong></td><td>Khai tài chính, đi cùng vợ/chồng, hỏi thông tin sâu</td><td>Nuôi 3-7 ngày, tăng FOMO, chốt cuối tuần</td></tr>
+            <tr><td><strong>🟡 Vàng (3/5)</strong></td><td>Quan tâm, đã từng đầu tư, đang phân vân</td><td>Nuôi 2-3 tuần bằng nội dung Xuân Thiện, sa bàn 3D</td></tr>
+            <tr><td><strong>🟢 Lá (2/5)</strong></td><td>Hỏi 1 lần, không phản hồi sau, độ tương tác thấp</td><td>Spam timeline Zalo + nhắn 1 tuần/lần</td></tr>
+            <tr><td><strong>⚫ Đen (1/5)</strong></td><td>Hỏi giá rồi mất hút, hoặc lộ là môi giới</td><td><strong>LOẠI</strong> - không phí thời gian</td></tr>
+        </table>
+    </div>
+
+    <!-- PHẦN 6 -->
+    <h2>📊 PHẦN 6: BẢNG QUYẾT ĐỊNH NHANH DÀNH CHO SALE</h2>
+    <pre>
+QUY TRÌNH 7 BƯỚC NHẬN DIỆN KHÁCH NÉT:
+
+BƯỚC 1: Kiểm tra Avatar & Profile FB/Zalo
+   → Avatar trắng/mới = NGHI VẤN MÔI GIỚI → LOẠI
+   → Avatar gia đình du lịch nội địa = ✅ CỰC NÉT
+   → Avatar SUV >2 tỷ = ⚠️ KHÔN
+
+BƯỚC 2: Hỏi NƠI Ở & QUÊ QUÁN
+   → Nam Định/Hải Hậu/Giao Thủy = LOẠI (BK 10km)
+   → Tỉnh đất rộng (Sơn La, Cao Bằng) = LOẠI
+   → Hà Nội/Hòa Lạc/Đông Anh = NÉT
+
+BƯỚC 3: Hỏi NGHỀ NGHIỆP
+   → Lãnh đạo DN >10 tỷ = LOẠI/Khôn
+   → Văn phòng/Tiểu thương/Giáo viên = NÉT
+
+BƯỚC 4: Hỏi KINH NGHIỆM ĐẦU TƯ
+   → "Đầu tư nhiều rồi" = KHÔN, cần Leader
+   → "Lần đầu/1 lần" = CỰC NÉT
+
+BƯỚC 5: Hỏi TÀI CHÍNH (Kỹ thuật vống)
+   → Khách đính chính xuống = CON SỐ THẬT
+   → Phù hợp 1-3 tỷ = NÉT
+   → Trên 5 tỷ = không phải tệp mình
+
+BƯỚC 6: Hỏi AI QUYẾT ĐỊNH
+   → 1 người quyết = mời 1 người đi
+   → Cần đồng thuận = mời CẢ 2
+
+BƯỚC 7: Hỏi ĐỘNG CƠ
+   → Đầu tư/Tích sản = NÉT
+   → Mua ở/Xây nhà nghỉ = lái về đầu tư trước
+    </pre>
+
+    <!-- PHẦN 7 -->
+    <h2>🧠 PHẦN 7: TÂM LÝ HỌC SAU MUA HÀNG</h2>
+    <blockquote>
+        <strong>Nguyên tắc:</strong> Khách chốt xong KHÔNG có nghĩa là xong. Phải chăm để họ:<br>
+        1. Không hủy cọc trong 7 ngày đầu (giai đoạn "hối hận sau mua")<br>
+        2. Giới thiệu thêm 2-3 khách mới (tỉ lệ vàng: 1 khách hài lòng → 2.3 khách giới thiệu)
+    </blockquote>
+    <h4>Hành động sau cọc:</h4>
+    <ul>
+        <li><strong>Ngày 1:</strong> Gửi tin nhắn cảm ơn + ảnh tươi cười cùng khách + chứng nhận</li>
+        <li><strong>Ngày 3:</strong> Gửi bài báo mới về dự án Xuân Thiện/đặc khu để củng cố niềm tin</li>
+        <li><strong>Ngày 7:</strong> Mời cà phê/tặng quà nhỏ → khai thác referral</li>
+        <li><strong>Ngày 30:</strong> Báo "lô bên cạnh vừa bán giá X" → khách thấy mình lãi</li>
+    </ul>
+
+    <!-- PHẦN 8 -->
+    <h2>✅ PHẦN 8: TÓM TẮT THẦN CHÚ DÀNH CHO SALE</h2>
+    <pre>
+KHÁCH NÉT = (Có nhà + Có xe + Việc ổn định) 
+          × (Sống xa địa điểm 10km) 
+          × (Có vốn 1-3 tỷ thật - đã xác minh bằng kỹ thuật vống) 
+          × (Đầu tư lần đầu hoặc 1 lần) 
+          × (Cảm tính nhiều hơn lý trí)
+          × (Điện thoại đời cũ hoặc tầm trung)
+          
+KHÁCH LOẠI = (Sống tại địa phương BK 10km) 
+           OR (Quê đất rộng vài sào) 
+           OR (Đầu tư chuyên nghiệp nhiều dự án) 
+           OR (Avatar trắng - nghi môi giới) 
+           OR (Tài sản >10 tỷ - không phải tệp)
+
+KHÁCH HÊN XUI = (Avatar SUV xịn >2 tỷ - khôn)
+              OR (Điện thoại đời mới - khó tính)
+              OR (Đòi gửi link map trước)
+              OR (Hỏi pháp lý quá kỹ ngay đầu)
+    </pre>
+
+    <!-- PHẦN 9 -->
+    <h2>📌 PHẦN 9: BẢNG ĐIỂM ĐÁNH GIÁ KHÁCH (Sale tự nhẩm tính)</h2>
+    <div class="table-container">
+        <table>
+            <tr><th width="60%">Tiêu chí</th><th width="20%">+Điểm</th><th>-Điểm</th></tr>
+            <tr><td>Avatar gia đình du lịch nội địa</td><td>+20</td><td></td></tr>
+            <tr><td>Avatar đứng trước cửa hàng/sạp</td><td>+20</td><td></td></tr>
+            <tr><td>Avatar đeo quân phục cũ</td><td>+15</td><td></td></tr>
+            <tr><td>Avatar SUV >2 tỷ</td><td></td><td>-15</td></tr>
+            <tr><td>Avatar trắng/mới lập</td><td></td><td>-30</td></tr>
+            <tr><td>Sống Hà Nội nội thành</td><td>+15</td><td></td></tr>
+            <tr><td>Sống Hòa Lạc/Đông Anh/Mê Linh</td><td>+20</td><td></td></tr>
+            <tr><td>Sống tại Nam Định BK 10km</td><td></td><td>-50</td></tr>
+            <tr><td>Sống tỉnh quê đất rộng</td><td></td><td>-30</td></tr>
+            <tr><td>Khai tài chính 1-3 tỷ thật</td><td>+25</td><td></td></tr>
+            <tr><td>Khai tài chính >5 tỷ</td><td></td><td>-15</td></tr>
+            <tr><td>Đầu tư lần đầu</td><td>+25</td><td></td></tr>
+            <tr><td>Đầu tư nhiều rồi</td><td></td><td>-15</td></tr>
+            <tr><td>Hỏi tiềm năng trước</td><td>+15</td><td></td></tr>
+            <tr><td>Hỏi pháp lý quá kỹ ngay đầu</td><td></td><td>-20</td></tr>
+            <tr><td>Có vợ/chồng cùng đi xem</td><td>+15</td><td></td></tr>
+            <tr><td>1 mình quyết được</td><td>+10</td><td></td></tr>
+            <tr><td>Bạn bè giới thiệu</td><td>+30</td><td></td></tr>
+            <tr><td>Tự thấy bài đăng</td><td>+10</td><td></td></tr>
+            <tr><td>Điện thoại tầm trung/đời cũ</td><td>+10</td><td></td></tr>
+            <tr><td>Điện thoại Pro Max đời mới nhất</td><td></td><td>-10</td></tr>
+            <tr><td>Là môi giới đối thủ</td><td></td><td>-100</td></tr>
+        </table>
+    </div>
+
+    <h4>Quy đổi:</h4>
+    <ul>
+        <li><strong>80 điểm trở lên</strong> = 🔴 LỬA - Chốt trong 24h</li>
+        <li><strong>50-79 điểm</strong> = 🟠 CAM - Nuôi 1 tuần</li>
+        <li><strong>20-49 điểm</strong> = 🟡 VÀNG - Nuôi 2-3 tuần</li>
+        <li><strong>0-19 điểm</strong> = 🟢 LÁ - Spam timeline</li>
+        <li><strong>< 0 điểm</strong> = ⚫ ĐEN - LOẠI</li>
+    </ul>
+
+    <!-- PHẦN 10 -->
+    <h2>🎬 PHẦN 10: VÍ DỤ ĐỐI THOẠI MẪU</h2>
+    <div class="glass-card">
+        <h3>Tình huống: Khách inbox lần đầu</h3>
+        <div class="chat-simulation">
+            <div class="chat-msg chat-client">
+                <div class="chat-name">Khách hàng</div>
+                Em ơi lô đất biển 850tr còn không?
+            </div>
+            <div class="chat-msg chat-sale">
+                <div class="chat-name">Sale TL Land (Style chuẩn)</div>
+                Dạ axx (tên khách - Sale xin tên trước hoặc gọi a/c), lô này sáng nay em vừa nhận cọc 50tr rồi. Chủ vỡ nợ cắt lỗ sâu quá người ta húp phút mốt.<br><br>
+                Nhưng em vừa rà lại rổ hàng còn đúng 3 mã nét hơn cùng khu, ngay sát biển, pháp lý sổ đỏ cất kết. Trước khi em gửi a, cho em hỏi:<br><br>
+                1. Anh đang sinh sống ở khu vực nào để em chia sẻ thông tin gần với khu mình ạ?<br>
+                2. Đợt này anh muốn nghiên cứu phân khúc tầm 5-6 tỷ hay là khác ạ? (Để em chuẩn bị bảng hàng phù hợp)<br>
+                3. Anh đã đầu tư BĐS bao giờ chưa hay đợt này là lần đầu ạ?<br><br>
+                Anh trả lời 3 ý đó em gửi anh bảng hàng + sổ đỏ luôn nhé
+            </div>
+        </div>
+        <p style="margin-top: 1rem; color: var(--gold-primary);"><strong>→ Sale tự chấm điểm theo câu trả lời và phân loại độ nét luôn để có chiến lược chăm sóc.</strong></p>
+    </div>
+    
+    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 3rem;">
+        <em>Tài liệu nội bộ TL Land - K11 - Cấm phát tán ra ngoài<br>Phiên bản V2 - Cập nhật 27/04/2026 bởi Sếp Khương</em>
+    </p>
+
+</div>
+
+</body>
+</html>

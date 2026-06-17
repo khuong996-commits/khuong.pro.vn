@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Trình 24H - Broker BĐS Thực Chiến</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-base: #020617; 
+            --bg-card: rgba(15, 23, 42, 0.7); 
+            --text-main: #f1f5f9; 
+            --text-muted: #94a3b8; 
+            --gold: #fbbf24; 
+            --gold-light: rgba(251, 191, 36, 0.2);
+            --ocean: #0ea5e9; 
+            --ocean-light: rgba(14, 165, 233, 0.2);
+            --emerald: #10b981; 
+            --danger: #f43f5e; 
+            --rose: #e11d48; /* For Female Theme Accent */
+            --gradient: linear-gradient(135deg, var(--gold), #d97706);
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.05), transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(14, 165, 233, 0.05), transparent 30%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 0; }
+
+        /* Header */
+        .hero { text-align: center; margin-bottom: 3rem; position: relative; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(51, 65, 85, 0.5); padding: 8px 16px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; font-weight: 500; color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #fff; }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Tabs UI */
+        .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 3rem; gap: 15px; }
+        .tab-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 12px 30px; border-radius: 30px; font-size: 1.1rem; font-weight: 600; font-family: 'Outfit'; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .tab-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .tab-btn.active#tab-male { background: rgba(14, 165, 233, 0.15); border-color: var(--ocean); color: var(--ocean); box-shadow: 0 0 20px rgba(14, 165, 233, 0.2); }
+        .tab-btn.active#tab-female { background: rgba(225, 29, 72, 0.15); border-color: var(--rose); color: var(--rose); box-shadow: 0 0 20px rgba(225, 29, 72, 0.2); }
+
+        .tab-pane { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Timeline Container */
+        .timeline-container { position: relative; }
+        .timeline-container::before { content: ''; position: absolute; left: 160px; top: 0; bottom: 0; width: 2px; background: rgba(255, 255, 255, 0.1); }
+
+        /* Section Title */
+        .time-phase { position: relative; margin: 3rem 0 2rem 0; padding-left: 190px; }
+        .time-phase-title { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-card); padding: 10px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-size: 1.2rem; font-weight: 600; color: #fff; }
+        .time-phase-title i { color: var(--gold); }
+        .female-phase i { color: var(--rose) !important; }
+
+        /* Timeline Event Card */
+        .event { display: flex; margin-bottom: 2.5rem; position: relative; }
+        .time-col { width: 160px; padding-top: 15px; font-family: 'Outfit'; font-size: 1.4rem; font-weight: 800; color: var(--ocean); text-align: right; padding-right: 30px; position: relative; }
+        .female-theme .time-col { color: var(--rose); }
+        .time-col::after { content: ''; position: absolute; right: -7px; top: 22px; width: 12px; height: 12px; background: var(--bg-base); border: 2px solid var(--ocean); border-radius: 50%; box-shadow: 0 0 10px var(--ocean-light); z-index: 2; transition: all 0.3s; }
+        .female-theme .time-col::after { border-color: var(--rose); box-shadow: 0 0 10px rgba(225, 29, 72, 0.2); }
+        
+        .event:hover .time-col::after { background: var(--ocean); transform: scale(1.3); }
+        .female-theme .event:hover .time-col::after { background: var(--rose); }
+
+        .content-col { flex: 1; padding-left: 40px; }
+
+        .card { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius); padding: 2rem; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); border-color: rgba(255, 255, 255, 0.1); }
+        .card::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--gold); opacity: 0.5; }
+
+        .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
+        .card-title { font-size: 1.3rem; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .type-badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .badge-action { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-feed { background: rgba(14, 165, 233, 0.15); color: var(--ocean); border: 1px solid rgba(14, 165, 233, 0.3); }
+        .badge-story { background: rgba(244, 63, 94, 0.15); color: var(--danger); border: 1px solid rgba(244, 63, 94, 0.3); }
+
+        .purpose { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; color: var(--gold); margin-bottom: 1rem; font-style: italic; }
+        .female-theme .purpose { color: var(--rose); }
+        
+        .card-body p { margin-bottom: 0.8rem; }
+        
+        .example-box { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1.2rem; margin-top: 1rem; border-left: 2px solid var(--text-muted); }
+        .example-box p:last-child { margin-bottom: 0; }
+        .example-title { display: block; font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; font-weight: 600; }
+
+        /* Magic Rules Box */
+        .magic-rules { background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: var(--radius); padding: 2.5rem; margin-top: 5rem; box-shadow: 0 0 40px rgba(251, 191, 36, 0.05); }
+        .magic-rules h2 { color: var(--gold); display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+        .rule-item { margin-bottom: 1rem; display: flex; gap: 15px; }
+        .rule-number { background: var(--gold-light); color: var(--gold); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .rule-text strong { color: #fff; font-size: 1.1rem; display: block; margin-bottom: 5px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 2rem 0; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            
+            .tabs-wrapper { flex-wrap: wrap; gap: 10px; }
+            .tab-btn { padding: 10px 20px; font-size: 1rem; flex: 1; min-width: 140px; justify-content: center; }
+            
+            .timeline-container::before { left: 24px; }
+            .time-phase { padding-left: 55px; margin: 2rem 0 1.5rem 0; }
+            .time-phase-title { font-size: 1rem; padding: 8px 15px; }
+            
+            .event { flex-direction: column; margin-bottom: 2rem; }
+            .time-col { width: 100%; text-align: left; padding-left: 55px; padding-right: 0; margin-bottom: 10px; font-size: 1.2rem; }
+            .time-col::after { left: 18px; top: 15px; width: 14px; height: 14px; } 
+            
+            .content-col { padding-left: 35px; }
+            .card { padding: 1.5rem; }
+            .card-header { flex-direction: column; gap: 10px; }
+            .card-title { font-size: 1.15rem; }
+            
+            .magic-rules { padding: 1.5rem; margin-top: 3rem; }
+            .rule-item { flex-direction: column; gap: 10px; }
+            .rule-number { margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-badge">
+                <i data-lucide="crosshair" width="16"></i> Cẩm nang chiếm sóng Facebook BĐS
+            </div>
+            <h1>Tuyệt Mật:<br>Lịch Trình Tác Chiến 24H</h1>
+            <p>Bản thiết kế áp dụng mô hình "Chuyên Gia Phong Cách Sống". Chọn hình tượng nhân sự của bạn để xem kịch bản tối ưu nhất!</p>
+        </div>
+
+        <div class="tabs-wrapper">
+            <button class="tab-btn active" id="tab-male" onclick="openTab('male')"><i data-lucide="briefcase"></i> Nam Thực Chiến</button>
+            <button class="tab-btn" id="tab-female" onclick="openTab('female')"><i data-lucide="gem"></i> Nữ Sắc Sảo</button>
+        </div>
+
+        <!-- ======================= MALE THEME ======================= -->
+        <div id="male" class="tab-pane active">
+            <div class="timeline-container">
+                <!-- MORNING -->
+                <div class="time-phase">
+                    <div class="time-phase-title"><i data-lucide="sunrise" width="20"></i> KÍCH HOẠT HIỂN THỊ SÁNG</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">06:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #10b981;">
+                            <div class="card-header">
+                                <div class="card-title">Farming Tương Tác Dọn Đường</div>
+                                <span class="type-badge badge-action">Hoạt Động Ngầm</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="target" width="16"></i> Đánh động thuật toán "Tôi đang online, mở luồng cho tôi"</div>
+                            <div class="card-body">
+                                <p>Cầm điện thoại rà soát Newsfeed trong 30 phút. <b>Chỉ thả Tim</b> (không ấn Like) và để lại bình luận dài có tâm trên tường của Danh sách Tiềm năng.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Hành động cụ thể</span>
+                                    <p>Thấy khách khoe xe mới ➡️ "Xe nhìn chiến quá anh ơi! Đầu năm hốt lộc sớm rồi, CN rảnh vứt qua em lượn ké 1 vòng lấy vía nhé 🚘🔥"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">07:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #0ea5e9;">
+                            <div class="card-header">
+                                <div class="card-title">Năng Lượng Đầu Ngày</div>
+                                <span class="type-badge badge-feed">Đăng Feed / Story</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="trending-up" width="16"></i> Kéo Reach cực đại. Thể hiện sự nam tính, kỷ luật.</div>
+                            <div class="card-body">
+                                <p>Chụp ảnh chạy bộ, phòng gym, hoặc ngồi cafe đen kịt với iPad đang mở bản đồ quy hoạch. <b>Bắt buộc phải có mặt bạn.</b></p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Sáng 5h dậy táng 5km vã mồ hôi rồi nạp ly đen đá. Không có nhịp tim tốt thì sao lội sình xem ranh mốc cho các bác được. Chúc anh em cứng cáp ngày mới! ☕️🔥"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AFTERNOON -->
+                <div class="time-phase">
+                    <div class="time-phase-title"><i data-lucide="sun" width="20"></i> HIỂN THỊ CHUYÊN MÔN & THỰC ĐỊA</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">11:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #10b981;">
+                            <div class="card-header">
+                                <div class="card-title">Vòng Lặp Hội Thoại Giữa Ngày</div>
+                                <span class="type-badge badge-action">Hoạt Động Kéo Reach</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="message-circle" width="16"></i> Đẩy bài sáng chòi lên đỉnh Feed vào giờ nghỉ trưa.</div>
+                            <div class="card-body">
+                                <p>Vào bài lúc 07:30 sáng, lôi toàn bộ Comment ra trả lời. Cấu trúc: <b>Hài hước + Icon + MỘT CÂU HỎI MỞ ép Rep.</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">13:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #0ea5e9;">
+                            <div class="card-header">
+                                <div class="card-title">Góc Nhìn "Sát Thủ" (Phân tích mổ xẻ)</div>
+                                <span class="type-badge badge-feed">Feed (2 Ngày/Lần)</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="brain-circuit" width="16"></i> Gây sốc tâm lý. Khách đọc xong phải công nhận mình cần bạn.</div>
+                            <div class="card-body">
+                                <p>Viết bài vạch trần một Pain point. Đính kèm ảnh đứng cầm sổ tay chi chít chữ ở lô đất.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Nhiều anh đi tỉnh mua ven cứ chuộng Rẻ. Đi check ranh một mảnh 'ngộp' mới lòi ra Đất TMDV hạn 50 năm. Rẻ là cái bẫy đắt tiền nhất. Bác nào lăm le tiền cứ inbox em soi mộc cho chắc cốp."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">15:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #f43f5e;">
+                            <div class="card-header">
+                                <div class="card-title">Sự Vật Vã Trần Trụi (Hustle)</div>
+                                <span class="type-badge badge-story">Đăng Story</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="flame" width="16"></i> Mua chuộc sự tĩnh nhiệm bằng thái độ lội bùn.</div>
+                            <div class="card-body">
+                                <p>Chụp ống quần tây dính phèn, giày ố vàng, kéo thước lô giữa bãi cỏ tranh.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Lô của anh khách trong tít hẻm sâu, cỏ ngập đầu. Cháy cả lưng áo nhưng kéo ranh xong chuẩn nở hậu là thở phào. Cuốc đất vì anh em!"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVENING -->
+                <div class="time-phase">
+                    <div class="time-phase-title"><i data-lucide="moon" width="20"></i> CHỐT CHẶN TÂM LÝ KHUYA</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">19:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #0ea5e9;">
+                            <div class="card-header">
+                                <div class="card-title">Bằng Chứng Thành Công (FOMO)</div>
+                                <span class="type-badge badge-feed">Đăng Feed</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="shield-check" width="16"></i> Khoe Khéo để kích hoạt tâm lý "Sợ lỡ đò".</div>
+                            <div class="card-body">
+                                <p>Đoạn chat khách khoe đất mới mua đã có ng trả chênh.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Niềm vui làm nghề của đàn ông 30 chỉ đơn giản là khách đi theo kiếm được tiền. Sàn hết tay mơ, giờ dân pro bốc bát họ. Cuối tuần có ai chung tàu Bắc Giang không?"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Timeline -->
+        </div>
+
+        <!-- ======================= FEMALE THEME ======================= -->
+        <div id="female" class="tab-pane female-theme">
+            <div class="timeline-container">
+                <!-- MORNING -->
+                <div class="time-phase">
+                    <div class="time-phase-title female-phase"><i data-lucide="sunrise" width="20"></i> KÍCH TẦN SỐ RẠNG RỠ</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">06:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #10b981;">
+                            <div class="card-header">
+                                <div class="card-title">Làm Ấm Tệp Khách "Chị Em" & VIP</div>
+                                <span class="type-badge badge-action">Hoạt Động Ngầm</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="heart" width="16"></i> Tập trung đánh vào sự tinh tế, chỉn chu.</div>
+                            <div class="card-body">
+                                <p>Phụ nữ có lợi thế khen ngợi rất tự nhiên. Hãy dạo quanh Facebook tệp khách Doanh nhân/Chị em có tiền, Like ảnh con cái/nhà cửa và để lại lời khen tinh tế.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Hành động cụ thể</span>
+                                    <p>Thấy chị khách up ảnh cắm hoa ➡️ "Bình Peony nay mix khéo quá chị ơi hihi, để phòng khách sang hẳn. Cuối tuần chị có cắm bình mới thì chỉ em vớiii 🌸"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">07:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #e11d48;">
+                            <div class="card-header">
+                                <div class="card-title">Visual Độc Lập - Kéo Reach Đầu Ngày</div>
+                                <span class="type-badge badge-feed">Đăng Feed / Story</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="sparkles" width="16"></i> Khẳng định hình tượng phái nữ hiện đại, chăm chỉ nhưng thanh lịch.</div>
+                            <div class="card-body">
+                                <p>Chụp ảnh ngồi uống cafe sáng trong outfit gọn gàng (suit nhẹ hoặc váy thanh lịch), phía sau là sảnh văn phòng/quán cafe đẹp. Hoặc ảnh đưa con đi học buổi sáng.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Tranh thủ nhâm nhi ly trà trước khi phi vào 'chiến trường' chốt cọc cho chị khách kịp giờ hoàng đạo. Chúc cả nhà ngày thứ Tư năng suất và rạng rỡ nha! ✨💼"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AFTERNOON -->
+                <div class="time-phase">
+                    <div class="time-phase-title female-phase"><i data-lucide="sun" width="20"></i> HIỂN THỊ CHUYÊN MÔN & LÒNG TRẮC ẨN</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">13:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #0ea5e9;">
+                            <div class="card-header">
+                                <div class="card-title">Cái Đầu Cẩn Trọng (Pháp Lý)</div>
+                                <span class="type-badge badge-feed">Feed (2 Ngày/Lần)</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="shield-check" width="16"></i> Dùng đặc tính "Phụ nữ cẩn thận, xem xét chi li" để đập tan sự đề phòng của khách đầu tư nam.</div>
+                            <div class="card-body">
+                                <p>Bài phân tích xoáy vào lỗi sai giấy tờ. Kèm ảnh chụp tay cầm viết đỏ khoanh tròn các điểm bất thường trên sổ đỏ.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Nhiều anh bảo em soi quy hoạch khó tính quá, chậm trễ việc mua. Nhưng tính em cầu toàn, thà mất giao dịch chứ không để tiền mồ hôi nước mắt của khách gãy vì dính quy hoạch đường điện. Đất rẻ mà sổ chắp vá, em xin quay xe trước. Ai cần check an toàn vốn cứ nhắn em Ngọc nhé."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">15:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #f43f5e;">
+                            <div class="card-header">
+                                <div class="card-title">Hình Ảnh "Ninja Đất Nền" (Story Hustle)</div>
+                                <span class="type-badge badge-story">Đăng Story</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="flame" width="16"></i> Gây bất ngờ và nể phục: Phụ nữ đẹp nhưng ra mảng rất máu chiến.</div>
+                            <div class="card-body">
+                                <p>Sử dụng độ tương phản. Sáng đăng ảnh cafe váy vóc lụa là, chiều đăng ảnh trùm áo chống nắng kín mít, cầm dù lội ruộng check mốc.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Sáng làm nàng thơ, chiều làm Ninja săn đất ngộp cho các sếp. Nắng 39 độ cháy da nhưng sổ đỏ tới tay khách nở hậu 5m là em vui quên mệt! 🥵🌿"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVENING -->
+                <div class="time-phase">
+                    <div class="time-phase-title female-phase"><i data-lucide="moon" width="20"></i> TẦN SỐ CẢM XÚC ĐỈNH CAO</div>
+                </div>
+
+                <div class="event">
+                    <div class="time-col">19:30</div>
+                    <div class="content-col">
+                        <div class="card" style="--gold: #0ea5e9;">
+                            <div class="card-header">
+                                <div class="card-title">Sự Đồng Cảm Chốt Sale (Tâm Lý)</div>
+                                <span class="type-badge badge-feed">Đăng Feed</span>
+                            </div>
+                            <div class="purpose"><i data-lucide="heart-handshake" width="16"></i> Biến bản thân thành "người giữ tiền đáng tin". Kể chuyện lay động lòng người.</div>
+                            <div class="card-body">
+                                <p>Viết về sự rung cảm khi giải quyết thành công bài toán tài chính cho gia đình/mẹ bỉm sửa/người lớn tuổi. Che tên inbox cám ơn.</p>
+                                <div class="example-box">
+                                    <span class="example-title">Mẫu Nội dung</span>
+                                    <p>"Đọc tin nhắn cô chú cám ơn mà xúc động thực sự. Cầm 1 tỷ dưỡng già của hai cô chú, em cứ thao thức cân đong đo đếm mãi mới chốt được lô kề KCN, pháp lý tăm tắp để sinh dòng tiền an toàn. Cám ơn nghề đã cho em được làm cầu nối trao an tâm. ❤️"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Timeline -->
+        </div>
+
+        <!-- Magic Rules -->
+        <div class="magic-rules">
+            <h2><i data-lucide="shield-alert" width="28"></i> Thần Chú Quản Trị Hệ Thống</h2>
+            
+            <div class="rule-item">
+                <div class="rule-number">1</div>
+                <div class="rule-text">
+                    <strong>Chụp Quẳng (Snap & Post) Ngay Lúc Rảnh</strong>
+                    Kháng cự sự nản chí khi cạn ý tưởng. Không cần soạn câu chữ bay bổng, thấy gì cảm xúc là Chụp. Tối rảnh nằm nhà soạn 5 cái Caption nhét Note. Tới giờ vàng, Rẹt! Mất đúng 5 giây bấm Post.
+                </div>
+            </div>
+            
+            <div class="rule-item">
+                <div class="rule-number">2</div>
+                <div class="rule-text">
+                    <strong>Kháng Cự Hội Chứng "Spam Rao Vặt"</strong>
+                    Dù một ngày Post 3-4 Feed và chục Story, nhưng <b>CHỈ CÓ TỐI ĐA 1 POST mang tính chất "Có lô này mua đi anh chị"</b>. Khách sẽ tự đúc kết bạn là một chuyên gia đầy nhiệt huyết.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

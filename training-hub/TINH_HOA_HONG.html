@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Hoa Hồng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sec: #64748b;
+            --border: #e2e8f0;
+            --primary-purple: #7c3aed;
+            --primary-green: #10b981;
+            --primary-orange: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* ----- HEADER ----- */
+        .header-main {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            background: #f3e8ff;
+            color: var(--primary-purple);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 20px auto;
+        }
+        .header-main h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.05em;
+        }
+        .header-main p {
+            color: var(--text-sec);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* ----- HOME MENU ----- */
+        .home-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #e2e8f0;
+        }
+        .menu-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+        .menu-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .menu-card p {
+            color: var(--text-sec);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .icon-green { background: #dcfce7; color: #16a34a; }
+        .icon-yellow { background: #fef08a; color: #ca8a04; }
+        .icon-purple { background: #f3e8ff; color: #9333ea; }
+
+        /* ----- VIEWS ----- */
+        .view { display: none; }
+        .view.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ----- TOP NAV ----- */
+        .top-nav {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+        }
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-sec);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-back:hover { color: var(--text-main); }
+
+        /* ----- LAYOUT ----- */
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 900px) {
+            .app-container { grid-template-columns: 1.2fr 1fr; }
+            .app-container.center { grid-template-columns: 1fr; max-width: 600px; }
+        }
+
+        .panel {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        .panel-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        /* ----- FORMS ----- */
+        .form-group { margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s;
+        }
+        .input-wrap input:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+        .input-wrap .prefix, .input-wrap .suffix {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .input-wrap .prefix { left: 16px; }
+        .input-wrap .suffix { right: 16px; color: var(--text-sec); }
+        .input-wrap input.has-prefix { padding-left: 55px; }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-desc {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .btn-text {
+            color: var(--primary-purple);
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-text:hover { opacity: 0.8; }
+
+        .btn-main {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 24px;
+        }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-green { background: var(--primary-green); }
+        .btn-orange { background: var(--primary-orange); }
+        .btn-purple { background: var(--primary-purple); }
+        
+        .btn-clear {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-sec);
+            background: #f1f5f9;
+            border: none;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        /* ----- DYNAMIC LISTS ----- */
+        .list-row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr auto;
+            gap: 12px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+        .list-row select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            background: #fff;
+            outline: none;
+        }
+        .btn-del {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        /* Mobile responsive for TINH_HOA_HONG.html */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 10px !important;
+            }
+            .header-main {
+                margin-bottom: 30px !important;
+            }
+            .header-main h1 {
+                font-size: 1.8rem !important;
+            }
+            .panel {
+                padding: 16px !important;
+                border-radius: 16px !important;
+            }
+            .list-row {
+                grid-template-columns: 1fr 1fr auto !important;
+                gap: 8px !important;
+                border-bottom: 1px dashed var(--border);
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+            }
+            .list-row div:nth-child(1) {
+                grid-column: span 3 !important;
+            }
+            .list-row div:nth-child(2) {
+                grid-column: span 1 !important;
+            }
+            .list-row div:nth-child(3) {
+                grid-column: span 1 !important;
+            }
+            .list-row button {
+                grid-column: span 1 !important;
+                justify-self: end;
+            }
+            .form-row {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+            }
+            .split-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 4px !important;
+            }
+            .split-amount {
+                align-self: flex-start !important;
+                font-size: 1.1rem !important;
+            }
+            .res-val {
+                font-size: 1rem !important;
+            }
+            h2[id$="result"] {
+                font-size: 1.8rem !important;
+            }
+        }
+
+        /* ----- EMPTY STATE ----- */
+        .empty-state {
+            text-align: center;
+            color: var(--text-sec);
+        }
+        .empty-icon {
+            width: 64px;
+            height: 64px;
+            background: #f1f5f9;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 16px auto;
+            color: #94a3b8;
+        }
+        .empty-state h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .empty-state p {
+            font-size: 0.9rem;
+            max-width: 250px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* ----- RESULTS ----- */
+        .res-box { text-align: left; width: 100%; }
+        .res-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 24px; display:flex; align-items:center; gap:8px;}
+        .res-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .res-row:last-child { border-bottom: none; }
+        .res-label { font-size: 0.9rem; color: var(--text-sec); font-weight: 500; }
+        .res-val { font-size: 1.1rem; font-weight: 800; color: var(--text-main); }
+        .res-val.red { color: #ef4444; }
+        .res-val.green { color: #10b981; }
+        .res-net { background: #f0fdf4; padding: 16px; border-radius: 12px; margin: 16px 0; border: 1px solid #bbf7d0;}
+
+        .split-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .split-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;}
+        .split-name { font-weight: 800; font-size: 1rem; text-transform: uppercase; }
+        .split-role { font-size: 0.75rem; color: var(--primary-purple); font-weight: 700; }
+        .split-amount { font-size: 1.2rem; font-weight: 800; color: #10b981; }
+        .split-calc { font-size: 0.75rem; color: var(--text-sec); border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 8px; font-style: italic;}
+    </style>
+</head>
+<body>
+
+    <!-- MAIN HEADER -->
+    <div class="header-main" id="header-main">
+        <div class="header-icon"><i class="fa-solid fa-calculator"></i></div>
+        <h1>Tính hoa hồng</h1>
+        <p>Trợ lý đắc lực cho môi giới Bất động sản chuyên nghiệp</p>
+    </div>
+
+    <div class="top-nav" id="top-nav" style="display:none;">
+        <button class="btn-back" onclick="switchView('home')">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại
+        </button>
+    </div>
+
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view active">
+        <div class="home-menu">
+            <div class="menu-card" onclick="switchView('simple')">
+                <div class="menu-icon icon-green"><i class="fa-solid fa-dollar-sign"></i></div>
+                <h3>Tính Nhanh (100%)</h3>
+                <p>Ướm thử tổng thu nhập của một lô đất bất kỳ. Xem doanh thu dự kiến trước khi bắt đầu chiến dịch.</p>
+            </div>
+            <div class="menu-card" onclick="switchView('direct')">
+                <div class="menu-icon icon-yellow"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Phân Chia (Biết số tiền)</h3>
+                <p>Đã biết chính xác số tiền hoa hồng về túi? Nhập thẳng số tiền để chia ngay cho đội nhóm & trích phí cty.</p>
+            </div>
+            <div class="menu-card" onclick="switchView('advanced')">
+                <div class="menu-icon icon-purple"><i class="fa-solid fa-user-group"></i></div>
+                <h3>Tính & Phân Chia (Lô đất)</h3>
+                <p>Tính từ A-Z: Nhập giá lô, % hoa hồng, thưởng, cắt máu... sau đó phân chia chi tiết cho các thành viên.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: SIMPLE -->
+    <div id="view-simple" class="view">
+        <div class="header-main" style="margin-bottom: 30px;">
+            <div class="header-icon" style="background:#dcfce7; color:#16a34a;"><i class="fa-solid fa-dollar-sign"></i></div>
+            <h1>Tính Tổng Hoa Hồng (100%)</h1>
+            <p>Dựa trên giá bán và % hoa hồng</p>
+        </div>
+
+        <div class="app-container center">
+            <div class="panel">
+                <div class="form-group">
+                    <label class="form-label">Giá trị lô đất</label>
+                    <div class="input-wrap">
+                        <span class="prefix">VND</span>
+                        <input type="text" class="has-prefix num-input" id="sim-price" placeholder="0" oninput="formatCurrencyInput(this)">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">% Hoa hồng</label>
+                        <div class="input-wrap">
+                            <input type="number" id="sim-rate" value="4">
+                            <span class="suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Thưởng nóng</label>
+                        <div class="input-wrap">
+                            <input type="text" class="num-input" id="sim-bonus" placeholder="0" oninput="formatCurrencyInput(this)">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-main btn-green" onclick="calcSimple()">Tính ngay</button>
+
+                <div id="sim-result-box" style="display:none; margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--border); text-align:center;">
+                    <p style="color:var(--text-sec); font-size:0.9rem; font-weight:600; margin-bottom:8px;">TỔNG HOA HỒNG (GROSS)</p>
+                    <h2 style="color:var(--primary-green); font-size:2.5rem; font-weight:900;" id="sim-result">0 ₫</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: DIRECT -->
+    <div id="view-direct" class="view">
+        <div class="header-main" style="margin-bottom: 30px;">
+            <div class="header-icon" style="background:#fef08a; color:#ca8a04;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h1>Tính hoa hồng</h1>
+            <p>Chế độ nhập thẳng số tiền</p>
+        </div>
+
+        <div class="app-container">
+            <div class="panel">
+                <div class="section-title">
+                    Nhập tiền hoa hồng <span class="tag" style="background:#fef08a; color:#ca8a04;">CHẾ ĐỘ NHẬP THẲNG</span>
+                </div>
+                <div class="form-group" style="margin-top:20px;">
+                    <label class="form-label">Tổng số tiền hoa hồng về (*)</label>
+                    <div class="input-wrap">
+                        <span class="prefix">VND</span>
+                        <input type="text" class="has-prefix num-input" id="dir-gross" placeholder="0" oninput="formatCurrencyInput(this)">
+                    </div>
+                    <p style="font-size:0.75rem; color:var(--text-sec); margin-top:8px;">Nhập số tiền hoa hồng thực tế nhận được từ chủ đầu tư hoặc khách hàng.</p>
+                </div>
+
+                <div class="section-title" style="margin-top:40px;">
+                    Phân chia đội nhóm (Tổ hợp 90%)
+                    <span class="tag">90.0% / 90%</span>
+                </div>
+                <p class="section-desc" style="font-size:0.75rem;">10% CỐ ĐỊNH CHO PHÍ CTY</p>
+                
+                <div id="dir-participants"></div>
+                <button class="btn-text" onclick="addParticipant('dir')"><i class="fa-solid fa-plus"></i> Thêm thành viên khác</button>
+
+                <div class="section-title" style="margin-top:40px;">Chi phí khác (Hoàn lại cho người ứng)</div>
+                <div id="dir-expenses"></div>
+                <button class="btn-text" onclick="addExpense('dir')" style="margin-bottom: 24px;"><i class="fa-solid fa-plus"></i> Thêm mục chi phí</button>
+
+                <div style="display:flex; gap:16px;">
+                    <button class="btn-clear" style="flex:1;" onclick="resetForm('dir')"><i class="fa-solid fa-rotate-right"></i> Xóa trắng</button>
+                    <button class="btn-main btn-orange" style="flex:2; margin-top:24px;" onclick="calcComplex('dir')">Bắt đầu tính toán</button>
+                </div>
+            </div>
+
+            <div class="panel panel-right" id="dir-right">
+                <div class="empty-state">
+                    <div class="empty-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Sẵn sàng nhận lệnh</h3>
+                    <p>Hoàn tất các thông tin bên trái để nhận bảng phân chia hoa hồng chi tiết đến từng thành viên.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: ADVANCED -->
+    <div id="view-advanced" class="view">
+        <div class="header-main" style="margin-bottom: 30px;">
+            <div class="header-icon" style="background:#f3e8ff; color:#9333ea;"><i class="fa-solid fa-user-group"></i></div>
+            <h1>Tính hoa hồng</h1>
+            <p>Chế độ nhập lô đất chi tiết</p>
+        </div>
+
+        <div class="app-container">
+            <div class="panel">
+                <div class="section-title" style="margin-bottom: 20px;">Thông tin lô đất</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Mã lô</label>
+                        <div class="input-wrap"><input type="text" id="adv-code" placeholder="ví dụ: L2C"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Giá trị lô đất (*)</label>
+                        <div class="input-wrap"><input type="text" class="num-input" id="adv-price" placeholder="0" oninput="formatCurrencyInput(this)"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Thưởng nóng</label>
+                        <div class="input-wrap"><input type="text" class="num-input" id="adv-bonus" placeholder="0" oninput="formatCurrencyInput(this)"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cắt máu</label>
+                        <div class="input-wrap"><input type="text" class="num-input" id="adv-blood" placeholder="0" oninput="formatCurrencyInput(this)"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">% Hoa hồng</label>
+                    <div class="input-wrap" style="max-width: 50%;">
+                        <input type="number" id="adv-rate" value="4">
+                        <span class="suffix">%</span>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top:40px;">
+                    Phân chia đội nhóm (Tổ hợp 90%)
+                    <span class="tag">90.0% / 90%</span>
+                </div>
+                <p class="section-desc" style="font-size:0.75rem;">10% CỐ ĐỊNH CHO PHÍ CTY</p>
+                
+                <div id="adv-participants"></div>
+                <button class="btn-text" onclick="addParticipant('adv')"><i class="fa-solid fa-plus"></i> Thêm thành viên khác</button>
+
+                <div class="section-title" style="margin-top:40px;">Chi phí khác (Hoàn lại cho người ứng)</div>
+                <div id="adv-expenses"></div>
+                <button class="btn-text" onclick="addExpense('adv')" style="margin-bottom: 24px;"><i class="fa-solid fa-plus"></i> Thêm mục chi phí</button>
+
+                <div style="display:flex; gap:16px;">
+                    <button class="btn-clear" style="flex:1;" onclick="resetForm('adv')"><i class="fa-solid fa-rotate-right"></i> Xóa trắng</button>
+                    <button class="btn-main btn-purple" style="flex:2; margin-top:24px;" onclick="calcComplex('adv')">Bắt đầu tính toán</button>
+                </div>
+            </div>
+
+            <div class="panel panel-right" id="adv-right">
+                <div class="empty-state">
+                    <div class="empty-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Sẵn sàng nhận lệnh</h3>
+                    <p>Hoàn tất các thông tin bên trái để nhận bảng phân chia hoa hồng chi tiết đến từng thành viên.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // VIEW NAVIGATION
+    function switchView(viewId) {
+        document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+        document.getElementById('view-' + viewId).classList.add('active');
+        
+        if (viewId === 'home') {
+            document.getElementById('header-main').style.display = 'block';
+            document.getElementById('top-nav').style.display = 'none';
+        } else {
+            document.getElementById('header-main').style.display = 'none';
+            document.getElementById('top-nav').style.display = 'block';
+        }
+    }
+
+    // UTILS
+    function formatMoney(amount) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    }
+    function parseMoney(str) {
+        if (!str) return 0;
+        return Number(str.replace(/[^\d]/g, ''));
+    }
+    function formatCurrencyInput(input) {
+        const val = parseMoney(input.value);
+        if (val === 0 && input.value.trim() === '') {
+            input.value = '';
+            return;
+        }
+        input.value = new Intl.NumberFormat('de-DE').format(val);
+    }
+    function generateId() { return Math.floor(Math.random() * 1000000); }
+
+    // STATE
+    let state = {
+        dir: {
+            parts: [{ id: generateId(), name: '', role: 'Tự full', pct: 90 }],
+            exps: []
+        },
+        adv: {
+            parts: [{ id: generateId(), name: '', role: 'Tự full', pct: 90 }],
+            exps: []
+        }
+    };
+
+    // RENDER LISTS
+    function renderLists(mode) {
+        // Participants
+        const pContainer = document.getElementById(mode + '-participants');
+        pContainer.innerHTML = '';
+        state[mode].parts.forEach(p => {
+            const row = document.createElement('div');
+            row.className = 'list-row';
+            row.innerHTML = `
+                <div class="input-wrap"><input type="text" placeholder="Tên" value="${p.name}" oninput="updateState('${mode}', 'parts', ${p.id}, 'name', this.value)"></div>
+                <div class="input-wrap">
+                    <select onchange="updateState('${mode}', 'parts', ${p.id}, 'role', this.value)">
+                        <option value="Tự full" ${p.role==='Tự full'?'selected':''}>Tự full</option>
+                        <option value="Nguồn khách" ${p.role==='Nguồn khách'?'selected':''}>Nguồn khách</option>
+                        <option value="Gọi khách" ${p.role==='Gọi khách'?'selected':''}>Gọi khách</option>
+                        <option value="Hỗ trợ chốt" ${p.role==='Hỗ trợ chốt'?'selected':''}>Hỗ trợ chốt</option>
+                        <option value="Đi khách" ${p.role==='Đi khách'?'selected':''}>Đi khách</option>
+                    </select>
+                </div>
+                <div class="input-wrap">
+                    <input type="number" placeholder="%" value="${p.pct}" oninput="updateState('${mode}', 'parts', ${p.id}, 'pct', this.value)">
+                    <span class="suffix">%</span>
+                </div>
+                <button class="btn-del" onclick="removeState('${mode}', 'parts', ${p.id})"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+            pContainer.appendChild(row);
+        });
+
+        // Expenses
+        const eContainer = document.getElementById(mode + '-expenses');
+        eContainer.innerHTML = '';
+        const members = state[mode].parts.map(p => p.name.trim()).filter(name => name !== '');
+        state[mode].exps.forEach(e => {
+            const row = document.createElement('div');
+            row.className = 'list-row';
+            row.innerHTML = `
+                <div class="input-wrap"><input type="text" placeholder="Mục chi" value="${e.desc || ''}" oninput="updateState('${mode}', 'exps', ${e.id}, 'desc', this.value)"></div>
+                <div class="input-wrap">
+                    <select onchange="updateState('${mode}', 'exps', ${e.id}, 'paidBy', this.value)">
+                        <option value="" ${e.paidBy===''?'selected':''}>-- Người chi --</option>
+                        ${members.map(m => `<option value="${m}" ${e.paidBy===m?'selected':''}>${m}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="input-wrap"><input type="text" class="num-input" placeholder="Số tiền" value="${new Intl.NumberFormat('de-DE').format(e.amount||0)}" oninput="formatCurrencyInput(this); updateState('${mode}', 'exps', ${e.id}, 'amount', parseMoney(this.value))"></div>
+                <button class="btn-del" onclick="removeState('${mode}', 'exps', ${e.id})"><i class="fa-solid fa-trash-can"></i></button>
+            `;
+            eContainer.appendChild(row);
+        });
+    }
+
+    // STATE ACTIONS
+    function updateExpenseSelects(mode) {
+        const members = state[mode].parts.map(p => p.name.trim()).filter(name => name !== '');
+        const container = document.getElementById(mode + '-expenses');
+        if (!container) return;
+        const rows = container.querySelectorAll('.list-row');
+        rows.forEach((row, index) => {
+            const select = row.querySelector('select');
+            if (select && state[mode].exps[index]) {
+                const currentVal = state[mode].exps[index].paidBy;
+                select.innerHTML = `
+                    <option value="" ${currentVal===''?'selected':''}>-- Người chi --</option>
+                    ${members.map(m => `<option value="${m}" ${currentVal===m?'selected':''}>${m}</option>`).join('')}
+                `;
+            }
+        });
+    }
+
+    function updateState(mode, type, id, field, val) {
+        const item = state[mode][type].find(i => i.id === id);
+        if(item) {
+            if(field === 'pct') item[field] = parseFloat(val) || 0;
+            else item[field] = val;
+        }
+        if (type === 'parts' && field === 'name') {
+            updateExpenseSelects(mode);
+        }
+    }
+    function addParticipant(mode) {
+        state[mode].parts.push({ id: generateId(), name: '', role: 'Gọi khách', pct: 0 });
+        renderLists(mode);
+    }
+    function removeState(mode, type, id) {
+        state[mode][type] = state[mode][type].filter(i => i.id !== id);
+        renderLists(mode);
+    }
+    function addExpense(mode) {
+        state[mode].exps.push({ id: generateId(), paidBy: '', desc: '', amount: 0 });
+        renderLists(mode);
+    }
+    function resetForm(mode) {
+        state[mode] = {
+            parts: [{ id: generateId(), name: '', role: 'Tự full', pct: 90 }],
+            exps: []
+        };
+        renderLists(mode);
+        if(mode === 'dir') document.getElementById('dir-gross').value = '';
+        if(mode === 'adv') {
+            document.getElementById('adv-code').value = '';
+            document.getElementById('adv-price').value = '';
+            document.getElementById('adv-bonus').value = '';
+            document.getElementById('adv-blood').value = '';
+            document.getElementById('adv-rate').value = '4';
+        }
+        document.getElementById(mode+'-right').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon"><i class="fa-solid fa-calculator"></i></div>
+                <h3>Sẵn sàng nhận lệnh</h3>
+                <p>Hoàn tất các thông tin bên trái để nhận bảng phân chia hoa hồng chi tiết đến từng thành viên.</p>
+            </div>
+        `;
+    }
+
+    // INIT
+    renderLists('dir');
+    renderLists('adv');
+
+    // CALCULATIONS
+    function calcSimple() {
+        const price = parseMoney(document.getElementById('sim-price').value);
+        const rate = parseFloat(document.getElementById('sim-rate').value) || 0;
+        const bonus = parseMoney(document.getElementById('sim-bonus').value);
+        const gross = ((price - bonus) * (rate / 100)) + bonus;
+        
+        document.getElementById('sim-result').innerText = formatMoney(gross);
+        document.getElementById('sim-result-box').style.display = 'block';
+    }
+
+    function calcComplex(mode) {
+        let gross = 0;
+        let totalExpenses = state[mode].exps.reduce((sum, e) => sum + (e.amount || 0), 0);
+        let blood = 0;
+
+        if (mode === 'dir') {
+            gross = parseMoney(document.getElementById('dir-gross').value);
+        } else {
+            const price = parseMoney(document.getElementById('adv-price').value);
+            const rate = parseFloat(document.getElementById('adv-rate').value) || 0;
+            const bonus = parseMoney(document.getElementById('adv-bonus').value);
+            blood = parseMoney(document.getElementById('adv-blood').value);
+            gross = ((price - bonus) * (rate / 100)) + bonus;
+        }
+
+        const netBase = Math.max(0, gross - totalExpenses - blood);
+        const companyCut = netBase * 0.10;
+        const teamFund = netBase * 0.90;
+
+        // Aggregation logic
+        const aggregated = {};
+        state[mode].parts.forEach(p => {
+            const nameKey = (p.name || 'Thành Viên Ẩn').trim().toLowerCase();
+            if (!aggregated[nameKey]) {
+                aggregated[nameKey] = { displayName: (p.name || 'Thành Viên Ẩn').trim(), roles: [], totalPercent: 0, amount: 0, calculations: [] };
+            }
+            aggregated[nameKey].roles.push(p.role || 'Tham gia');
+            aggregated[nameKey].totalPercent += p.pct;
+            const earned = netBase * (p.pct / 100);
+            aggregated[nameKey].amount += earned;
+            if (p.pct > 0) aggregated[nameKey].calculations.push(`HH: ${formatMoney(netBase)} x ${p.pct}% = ${formatMoney(earned)}`);
+        });
+
+        state[mode].exps.forEach(e => {
+            const nameKey = (e.paidBy || 'Người Ẩn').trim().toLowerCase();
+            if (e.amount > 0 && nameKey) {
+                if (!aggregated[nameKey]) {
+                    aggregated[nameKey] = { displayName: (e.paidBy || 'Người Ẩn').trim(), roles: [], totalPercent: 0, amount: 0, calculations: [] };
+                }
+                aggregated[nameKey].roles.push('Hoàn ứng: ' + (e.desc || 'Chi phí'));
+                aggregated[nameKey].amount += e.amount;
+                aggregated[nameKey].calculations.push(`Hoàn ứng: +${formatMoney(e.amount)}`);
+            }
+        });
+
+        let splitsHtml = '';
+        Object.values(aggregated).forEach(person => {
+            const uniqueRoles = [...new Set(person.roles)].join(' + ');
+            splitsHtml += `
+                <div class="split-card">
+                    <div class="split-header">
+                        <div>
+                            <div class="split-name">${person.displayName}</div>
+                            <div class="split-role">${uniqueRoles} (${person.totalPercent}%)</div>
+                        </div>
+                        <div class="split-amount">${formatMoney(person.amount)}</div>
+                    </div>
+                    ${person.calculations.length > 0 ? `<div class="split-calc">${person.calculations.join(' | ')}</div>` : ''}
+                </div>
+            `;
+        });
+
+        const colorMode = mode === 'dir' ? 'var(--primary-orange)' : 'var(--primary-purple)';
+        const iconMode = mode === 'dir' ? 'fa-wand-magic-sparkles' : 'fa-user-group';
+
+        const rightPanel = document.getElementById(mode + '-right');
+        rightPanel.style.alignItems = 'flex-start';
+        rightPanel.innerHTML = `
+            <div class="res-box">
+                <div class="res-title" style="color: ${colorMode};"><i class="fa-solid ${iconMode}"></i> Kết quả phân bổ</div>
+                
+                <div class="res-row">
+                    <span class="res-label">Hoa hồng gộp (Gross)</span>
+                    <span class="res-val">${formatMoney(gross)}</span>
+                </div>
+                ${blood > 0 ? `<div class="res-row"><span class="res-label">Cắt máu</span><span class="res-val red">-${formatMoney(blood)}</span></div>` : ''}
+                ${totalExpenses > 0 ? `<div class="res-row"><span class="res-label">Tổng chi phí ứng trước</span><span class="res-val red">-${formatMoney(totalExpenses)}</span></div>` : ''}
+                
+                <div class="res-net">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <span style="font-size:0.85rem; font-weight:700; color:var(--primary-green); text-transform:uppercase;">Hoa Hồng Ròng</span><br>
+                            <span style="font-size:0.75rem; color:var(--text-sec);">Dùng để chia 10% - 90%</span>
+                        </div>
+                        <span style="font-size:1.5rem; font-weight:900; color:var(--primary-green);">${formatMoney(netBase)}</span>
+                    </div>
+                </div>
+
+                <div class="res-row" style="margin-top:20px;">
+                    <span class="res-label">Phí công ty (10%)</span>
+                    <span class="res-val red">-${formatMoney(companyCut)}</span>
+                </div>
+                <div class="res-row" style="border-bottom:none;">
+                    <span class="res-label">Tổng đội nhóm (90%)</span>
+                    <span class="res-val" style="color:${colorMode};">${formatMoney(teamFund)}</span>
+                </div>
+
+                <div class="res-title" style="font-size:1rem; margin-top:32px; margin-bottom:16px;"><i class="fa-solid fa-hand-holding-dollar"></i> Thực nhận cuối cùng</div>
+                ${splitsHtml}
+            </div>
+        `;
+    }
+
+</script>
+</body>
+</html>

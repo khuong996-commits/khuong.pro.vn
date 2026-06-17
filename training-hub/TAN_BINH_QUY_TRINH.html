@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quy Trình Bán Hàng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-1: #10b981;
+            --accent-2: #059669;
+            --accent-3: #f59e0b;
+            --accent-4: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05), transparent 30%),
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05), transparent 30%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        .hero { text-align: center; margin-bottom: 3rem; position: relative; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;}
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .glass-panel:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); }
+
+        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+        .section-header i { font-size: 1.8rem; color: var(--accent-1); }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: var(--text-main); margin: 0; }
+
+        .code-block {
+            background: #1e293b; color: #f8fafc; padding: 1.5rem; border-radius: 12px; font-family: monospace; font-size: 1rem; line-height: 1.8;
+            border-left: 4px solid var(--accent-1); margin-bottom: 1.5rem; position: relative;
+        }
+        .code-block .copy-btn {
+            position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.1); border: none; color: white; padding: 5px 10px; border-radius: 6px; cursor: pointer;
+        }
+        .code-block .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+        .step-list { list-style: none; }
+        .step-list li { margin-bottom: 1rem; position: relative; padding-left: 30px; }
+        .step-list li::before { content: '👉'; position: absolute; left: 0; top: 2px; }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 1.5rem;
+        }
+        .highlight-box h3 { color: #2563eb; margin-bottom: 1rem; font-family: 'Outfit'; }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; background-attachment: scroll; }
+            .glass-panel { padding: 1.2rem; margin-bottom: 1.5rem; }
+            .hero { margin-bottom: 2rem; }
+            .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+            .section-header h2 { font-size: 1.4rem; }
+            .code-block { font-size: 0.85rem; padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="hero">
+            <h1>📝 Quy Trình Bán Hàng</h1>
+            <p>Biểu mẫu chuẩn hóa: Từ khâu đặt cọc, gửi lịch công chứng đến báo cáo chốt deal</p>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="/quy-trinh.png" alt="Sơ đồ quy trình mua bán bất động sản" style="max-width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+        </div>
+
+        <div class="glass-panel" style="border-color: rgba(16, 185, 129, 0.3);">
+            <div class="section-header">
+                <i class="fa-regular fa-paper-plane" style="color: #10b981;"></i>
+                <h2>1. Mẫu Gửi Lịch Cho Khách Hàng</h2>
+            </div>
+            <p>Sử dụng mẫu tin nhắn chuẩn này để gửi cho khách hàng trước ngày đi công chứng, đảm bảo khách mang đủ giấy tờ và nắm rõ lịch trình.</p>
+            
+            <div class="code-block" style="border-color: #10b981;">
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy</button>
+Lịch công chứng thửa đất ……………<br>
+<br>
+🔶 Thời gian: …. thứ…. ngày…….<br>
+🔶 Địa điểm: Văn phòng Công chứng …..<br>
+🔶 Định vị: [Link map]<br>
+🔶 Khách Hàng:<br>
+ - Mang theo GIẤY TỜ BẢN GỐC bao gồm: CCCD 2 vợ chồng, Giấy đăng ký kết hôn, giấy đặt cọc, điện thoại có VNeID định danh mức 2 đã đăng nhập bình thường.<br>
+- Số tiền nộp thêm: ……….<br>
+<br>
+Để đạt hiệu quả công việc, mong các anh chị đến đúng giờ và mang đầy đủ giấy tờ!<br>
+Trân trọng!
+            </div>
+        </div>
+
+        <div class="glass-panel" style="border-color: rgba(245, 158, 11, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-calendar-plus" style="color: #f59e0b;"></i>
+                <h2>2. Book Lịch Công Chứng Với Admin</h2>
+            </div>
+            <p>Khi chốt được lịch ký, bạn <strong>PHẢI</strong> nhắn tin thông báo cho Admin (Mỹ Lệ) trước 2-3 ngày để Admin sắp xếp lịch và người hỗ trợ công chứng. Gửi riêng cho Lệ theo cú pháp sau:</p>
+            
+            <div class="code-block" style="border-color: #f59e0b;">
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy</button>
+Cú pháp book lịch CÔNG CHỨNG:<br>
+<br>
++ Mã lô, số thửa, khu vực: ...<br>
++ Thời gian ký: ...<br>
++ Họ và tên người đứng sổ: ...<br>
++ Tình trạng hôn nhân của KH: ...<br>
++ Người đi ký: ...<br>
++ KH có vay NH không? Vay bao nhiêu? Của NH nào: ...<br>
++ Giá bán CĐT: ...<br>
++ Cọc: ...<br>
++ Gia lộc: ...<br>
++ Tổng thu: ...<br>
+- Hồ sơ của khách bao gồm: CCCD gắn chíp (bản mới nhất), Giấy ĐKKH / Giấy xác nhận tình trạng độc thân (trong hạn 6 tháng).<br>
+- Thông tin CCCD điện tử trên VNeID.
+            </div>
+        </div>
+
+        <div class="glass-panel" style="border-color: rgba(59, 130, 246, 0.3);">
+            <div class="section-header">
+                <i class="fa-solid fa-money-bill-transfer" style="color: #3b82f6;"></i>
+                <h2>3. Báo Cáo Chốt Deal & Hoa Hồng</h2>
+            </div>
+            <p>Sau khi ký công chứng xong xuôi, bạn cần gửi thông tin tổng kết cho Kế Toán Công Ty (zalo: Trần Thế Văn) để làm thủ tục nhận tiền.</p>
+            
+            <div class="code-block" style="border-color: #3b82f6;">
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy</button>
+Gửi kế toán Trần Thế Văn:<br>
+<br>
+- Khu vực: ..................<br>
+- Mã lô: ............, diện tích: ……<br>
+- Đơn giá: ………..<br>
+- Tổng giá bán: ...................<br>
+- Đã nộp: ................... (bao gồm tiền cọc)<br>
+- ST vay NH: ......................................<br>
+- Còn thiếu: ........................... (bao gồm số tiền khách nợ đợi sổ (nếu có) + cắt máu (nếu có))
+            </div>
+
+            <div class="highlight-box">
+                <h3><i class="fa-solid fa-check-double"></i> Quy trình nhận tiền (Thứ 3 & Thứ 6)</h3>
+                <ul class="step-list">
+                    <li>Sau khi nhận form, Văn (Kế toán) sẽ tạo 1 nhóm Zalo gồm bạn, các Giám Đốc khối và những người liên quan thương vụ.</li>
+                    <li>Văn gửi 1 file Excel tính toán <strong>chi tiết hoa hồng</strong> thực nhận.</li>
+                    <li>Bạn đọc file, nếu sai phản hồi ngay. Nếu đúng thì nhắn <strong>"Xác nhận"</strong> vào nhóm.</li>
+                    <li>Khi tất cả thành viên liên quan đều Xác nhận, Hoa hồng sẽ được giải ngân tiền mặt/chuyển khoản vào <strong>Thứ 3 và Thứ 6 hàng tuần</strong> tại trụ sở chính công ty — <strong>Tầng 5, Phòng Kế Toán, Tòa nhà TL Land</strong> (<a href="https://maps.app.goo.gl/sirc1CxMHG7xoXoc9" target="_blank" style="color: #2563eb; text-decoration: underline;">Xem bản đồ</a>).</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
