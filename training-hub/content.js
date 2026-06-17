@@ -143,7 +143,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Lý Do Tăng Giá Của Bất Động Sản</span>
-                <a href="LY_DO_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/LY_DO_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -160,7 +160,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Những Giai Đoạn Tăng Giá Của Bất Động Sản</span>
-                <a href="GIAI_DOAN_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/GIAI_DOAN_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -177,7 +177,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-scale-balanced"></i> So Sánh Các Kênh Đầu Tư & Lợi Thế BĐS</span>
-                <a href="SO_SANH_KENH_DAU_TU.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/SO_SANH_KENH_DAU_TU.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -695,7 +695,7 @@ const APP_CONTENT = {
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <a href="TU_VAN_BDS_TONG_QUAN.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                <a href="/training-hub/TU_VAN_BDS_TONG_QUAN.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
                     <i class="fa-solid fa-file-lines"></i> Bấm vào đây để xem văn bản
                 </a>
             </div>
@@ -797,7 +797,7 @@ const APP_CONTENT = {
                 <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary);">5 Lỗ Hổng Tâm Lý Khách Hàng</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px;">Tài liệu đào tạo chuyên sâu về tâm lý hành vi khách hàng, áp dụng thực chiến trong Telesale và Chăm sóc khách hàng.</p>
                 
-                <a href="5_lo_hong_tam_ly.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-emerald); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);">
+                <a href="/training-hub/5_lo_hong_tam_ly.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-emerald); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);">
                     Đọc tài liệu toàn màn hình <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
@@ -1063,16 +1063,16 @@ const APP_CONTENT = {
                     </div>
                 </div>
                 <div class="pdf-actions">
-                    <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" target="_blank" class="btn-pdf btn-pdf-primary">
+                    <a href="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" target="_blank" class="btn-pdf btn-pdf-primary">
                         <i class="fa-solid fa-book-open"></i> Đọc Cẩm Nang Online
                     </a>
-                    <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" download="Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" class="btn-pdf btn-pdf-secondary">
+                    <a href="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" download="Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" class="btn-pdf btn-pdf-secondary">
                         <i class="fa-solid fa-download"></i> Tải Về Máy
                     </a>
                 </div>
             </div>
             <div class="pdf-preview">
-                <iframe src="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" style="width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
+                <iframe src="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" style="width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
             </div>
         </div>
 
@@ -1378,7 +1378,7 @@ const APP_CONTENT = {
             </p>
             
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="lich_trinh_24h_bds_nam.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color:var(--text-primary); text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);">
+                <a href="/training-hub/lich_trinh_24h_bds_nam.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color:var(--text-primary); text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);">
                     <i data-lucide="arrow-up-right" width="24"></i> Bấm Vào Đây Để Xem Kịch Bản Chi Tiết
                 </a>
             </div>
@@ -2038,7 +2038,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-table-list"></i> Bảng Hàng Tổng Hợp — TL Land</span>
-                <a href="BANG_HANG_TL_LAND.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/BANG_HANG_TL_LAND.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -2055,7 +2055,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-user-tie"></i> Chân Dung Nhân Sự TL Land</span>
-                <a href="CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -2072,7 +2072,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-route"></i> Lộ Trình Dẫn Khách — Tư Vấn BĐS Tổng Quan</span>
-                <a href="TU_VAN_BDS_TONG_QUAN.html" target="_blank" class="iframe-btn-open">
+                <a href="/training-hub/TU_VAN_BDS_TONG_QUAN.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>

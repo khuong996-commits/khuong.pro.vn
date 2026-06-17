@@ -38,7 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'page-mau-dang-tin-ao': 'mau-dang-tin-ao',
         'page-tuyet-ky-lai-khach': 'tuyet-chieu-lai-khach',
         'page-admin-emails': 'admin-emails',
-        'page-profile': 'ho-so'
+        'page-profile': 'ho-so',
+        'page-kien-thuc-nen': 'kien-thuc-nen',
+        'page-thi-truong': 'thi-truong',
+        'page-mau-gui-thong-tin': 'mau-gui-thong-tin'
     };
     const pathMap = {};
     for (let k in routeMap) pathMap[routeMap[k]] = k;
@@ -398,7 +401,7 @@ window.mauDangTinAo = {
             
             card.innerHTML = `
                 <div class="gallery-image-wrapper">
-                    <img src="assets/anh_khach_ao/${fileName}" loading="lazy" alt="Ảnh mẫu đăng tin">
+                    <img src="/training-hub/assets/anh_khach_ao/${fileName}" loading="lazy" alt="Ảnh mẫu đăng tin">
                 </div>
                 <div class="gallery-info">
                     <span class="gallery-number">Mẫu đăng tin số ${i + 1}</span>
@@ -432,7 +435,7 @@ window.mauDangTinAo = {
         const download = document.getElementById('lightbox-download');
         if (lightbox && img && caption && download) {
             const fileName = this.images[idx];
-            const src = 'assets/anh_khach_ao/' + fileName;
+            const src = '/training-hub/assets/anh_khach_ao/' + fileName;
             img.src = src;
             caption.innerText = `Mẫu số ${idx + 1} / ${this.images.length} (Tên ảnh gốc: ${fileName})`;
             download.href = src;
