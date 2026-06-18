@@ -103,3 +103,11 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Cập nhật phiên bản cache-busting lên `?v=20260618-8` trong file `index.html` của cả 2 thư mục.
 - **Kết quả:** Tiến độ hoàn thành bài học cập nhật tức thì 100%, đồng bộ ổn định và không bị mất sau khi tải lại trang.
 
+### 📌 Phiên ngày 18/06/2026 - 17:06
+- **Mục tiêu:** Sửa lỗi mất ô tích/thẻ hoàn thành ở cuối bài học khi sử dụng chức năng DOM Cache mới tải từ origin.
+- **Nội dung thực hiện:**
+  - Di chuyển logic chèn thẻ hoàn thành (`renderLessonCompletionCard`) ra ngoài khối lệnh điều kiện kiểm tra cache (`if (cached)`) trong `script.js`.
+  - Đảm bảo thẻ hoàn thành luôn được chèn động vào cuối trang bất kể trang được tải lần đầu hay tải từ bộ nhớ đệm (clone từ DOM Cache).
+  - Đồng bộ lại toàn bộ file sửa sang thư mục `TRAINING_HUB/` để đồng nhất với `khuong.pro.vn/training-hub/`.
+- **Kết quả:** Ô tích hoàn thành hiển thị chính xác và ổn định ở cuối tất cả các bài học.
+
