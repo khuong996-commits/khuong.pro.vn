@@ -11,7 +11,7 @@
     <!-- Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=5">
 
     <!-- SVG Defs dùng chung cho toàn trang -->
     <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
@@ -82,68 +82,55 @@
             </svg>
 
             <div class="avatar-container">
-                <!-- SVG Khung ảnh Hoàng gia cổ điển đẳng cấp -->
+                <!-- SVG Khung ảnh Luxury tối giản phong cách mặt đồng hồ xa xỉ -->
                 <svg class="avatar-frame-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Các vòng tròn đồng tâm làm nền -->
-                    <!-- Vòng 1: Viền ngoài nét đứt xoay ngược chiều kim đồng hồ -->
-                    <circle class="rotate-counter" cx="100" cy="100" r="86" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" stroke-dasharray="2 8" opacity="0.6" />
+                    <!-- Các vòng tròn đồng tâm mảnh thanh lịch -->
+                    <!-- Vòng ngoài cùng nét đứt mảnh xoay ngược chiều kim đồng hồ -->
+                    <circle class="rotate-counter" cx="100" cy="100" r="90" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" stroke-dasharray="1 8" opacity="0.4" />
                     
-                    <!-- Vòng 2: Viền giữa nét đứt xoay xuôi chiều kim đồng hồ -->
-                    <circle class="rotate-clockwise" cx="100" cy="100" r="77" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" stroke-dasharray="4 6" opacity="0.4" />
+                    <!-- Vòng giữa nét đứt mảnh xoay xuôi chiều kim đồng hồ -->
+                    <circle class="rotate-clockwise" cx="100" cy="100" r="82" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" stroke-dasharray="3 5" opacity="0.3" />
                     
-                    <!-- Vòng 3: Viền trong mảnh cố định -->
-                    <circle cx="100" cy="100" r="81" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.3" />
-                    <circle cx="100" cy="100" r="73" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.3" />
+                    <!-- Vòng tròn cố định kết nối -->
+                    <circle cx="100" cy="100" r="86" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.2" />
+                    <circle cx="100" cy="100" r="76" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.2" />
 
                     <!-- Rolex Bezel khía vàng bao sát avatar -->
-                    <circle cx="100" cy="100" r="67.5" stroke="url(#gold-grad)" stroke-width="2.5" stroke-dasharray="1.5 1.5" fill="none" opacity="0.8" />
-                    <circle cx="100" cy="100" r="65.5" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" opacity="0.9" />
-                    <circle cx="100" cy="100" r="69.5" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" opacity="0.9" />
+                    <circle cx="100" cy="100" r="67.5" stroke="url(#gold-grad)" stroke-width="2" stroke-dasharray="1.5 1.5" fill="none" opacity="0.8" />
+                    <circle cx="100" cy="100" r="65.5" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.9" />
+                    <circle cx="100" cy="100" r="69.5" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.9" />
 
-                    <!-- Hạt ngọc phát sáng ở các góc 45 độ cố định -->
-                    <g opacity="0.8">
-                        <circle cx="156.5" cy="43.5" r="2" fill="#e8cc6e" class="glow-dot" />
-                        <circle cx="43.5" cy="43.5" r="2" fill="#e8cc6e" class="glow-dot" />
-                        <circle cx="43.5" cy="156.5" r="2" fill="#e8cc6e" class="glow-dot" />
-                        <circle cx="156.5" cy="156.5" r="2" fill="#e8cc6e" class="glow-dot" />
+                    <!-- Hệ thống vạch chỉ giờ (Luxury Hour Ticks) siêu mảnh phong cách đồng hồ Patek/Rolex -->
+                    <g opacity="0.65">
+                        <!-- Các vạch chỉ giờ 30, 60, 120, 150, 210, 240, 300, 330 độ -->
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(30 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(60 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(120 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(150 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(210 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(240 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(300 100 100)" />
+                        <line x1="100" y1="21" x2="100" y2="25" stroke="url(#gold-grad)" stroke-width="0.8" transform="rotate(330 100 100)" />
                     </g>
 
-                    <!-- Cụm họa tiết 12h: Vương miện Hoàng gia (Royal Crown) -->
-                    <g class="crown-ornament" transform="translate(100, 22)">
-                        <!-- Thân vương miện -->
-                        <path d="M -15 6 L 15 6 L 20 -6 L 10 -1 L 0 -13 L -10 -1 L -20 -6 Z" fill="url(#gold-grad)" />
-                        <!-- Hạt châu đỉnh -->
-                        <circle cx="-20" cy="-8" r="1.8" fill="#e8cc6e" />
-                        <circle cx="0" cy="-15" r="2.2" fill="#e8cc6e" />
-                        <circle cx="22" cy="-8" r="1.8" fill="#e8cc6e" />
-                        <!-- Đế vương miện -->
-                        <path d="M -17 8 Q 0 10 17 8 L 14 10.5 Q 0 12.5 -14 10.5 Z" fill="url(#gold-grad)" opacity="0.9"/>
-                        <!-- Đá đính -->
-                        <circle cx="-9" cy="9.2" r="0.8" fill="#fff" />
-                        <circle cx="0" cy="9.6" r="0.8" fill="#fff" />
-                        <circle cx="9" cy="9.2" r="0.8" fill="#fff" />
+                    <!-- Điểm đính kim cương/hình thoi vàng ở 4 hướng chính (12h, 3h, 6h, 9h) -->
+                    <g fill="url(#gold-grad)">
+                        <!-- 12h -->
+                        <polygon points="100,18 103,23 100,28 97,23" />
+                        <!-- 3h -->
+                        <polygon points="182,100 177,103 172,100 177,97" />
+                        <!-- 6h -->
+                        <polygon points="100,182 103,177 100,172 97,177" />
+                        <!-- 9h -->
+                        <polygon points="18,100 23,103 28,100 23,97" />
                     </g>
-
-                    <!-- Cụm họa tiết 6h: Cuộn xoắn nâng đỡ Baroque -->
-                    <g class="bottom-ornament" transform="translate(100, 175)">
-                        <path d="M 0 -2 Q -12 5 -20 -3 Q -26 -10 -18 -14 Q -11 -16 -8 -8 Q -6 -3 -11 -3 Q -14 -3 -12 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <path d="M 0 -2 Q 12 5 20 -3 Q 26 -10 18 -14 Q 11 -16 8 -8 Q 6 -3 11 -3 Q 14 -3 12 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <path d="M -5 -2 C -2 7 0 12 0 12 C 0 12 2 7 5 -2 Z" fill="url(#gold-grad)" />
-                        <circle cx="0" cy="1" r="1.8" fill="#e8cc6e" />
-                    </g>
-
-                    <!-- Cụm họa tiết 9h: Baroque sườn trái -->
-                    <g class="left-ornament" transform="translate(24, 100) scale(0.85)">
-                        <path d="M 8 0 C 8 -12 -4 -20 -12 -16 C -18 -13 -15 -6 -8 -8 C -3 -9 -1 -15 4 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <path d="M 8 0 C 8 12 -4 20 -12 16 C -18 13 -15 6 -8 8 C -3 9 -1 15 4 8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <circle cx="8" cy="0" r="2" fill="#e8cc6e" />
-                    </g>
-
-                    <!-- Cụm họa tiết 3h: Baroque sườn phải -->
-                    <g class="right-ornament" transform="translate(176, 100) scale(0.85)">
-                        <path d="M -8 0 C -8 -12 4 -20 12 -16 C 18 -13 15 -6 8 -8 C 3 -9 1 -15 -4 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <path d="M -8 0 C -8 12 4 20 12 16 C 18 13 15 6 8 8 C 3 9 1 15 -4 8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
-                        <circle cx="-8" cy="0" r="2" fill="#e8cc6e" />
+                    
+                    <!-- Hiệu ứng điểm sáng lấp lánh nhẹ ở tâm các hình thoi -->
+                    <g fill="#ffffff">
+                        <circle cx="100" cy="23" r="0.8" class="glow-dot" />
+                        <circle cx="177" cy="100" r="0.8" class="glow-dot" />
+                        <circle cx="100" cy="177" r="0.8" class="glow-dot" />
+                        <circle cx="23" cy="100" r="0.8" class="glow-dot" />
                     </g>
                 </svg>
                 <div class="avatar-wrapper">
