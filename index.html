@@ -24,14 +24,36 @@
     <div class="container">
         <!-- Profile Card -->
         <header class="profile-card">
-            <div class="avatar-wrapper">
-                <!-- Avatar mặc định dạng ảnh nếu có -->
-                <img class="avatar" src="https://lh3.googleusercontent.com/a/default-user" alt="Khương Trịnh" id="user-avatar-main">
+            <div class="avatar-container">
+                <!-- SVG Arc Border with gradient and glowing dot -->
+                <svg class="arc-svg" viewBox="0 0 100 100">
+                    <defs>
+                        <linearGradient id="arc-gradient" x1="0%" y1="100%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="50%" stop-color="#3b82f6" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 12 72.5 A 44 44 0 1 1 88 72.5" fill="none" stroke="url(#arc-gradient)" stroke-width="2.5" stroke-linecap="round" />
+                    <circle cx="88" cy="72.5" r="3" fill="#f59e0b" class="glow-dot" />
+                </svg>
+                <div class="avatar-wrapper">
+                    <!-- Avatar mặc định dạng ảnh chân dung sếp -->
+                    <img class="avatar" src="avatar.jpg" alt="Khương Trịnh" id="user-avatar-main">
+                </div>
             </div>
+            
             <div class="profile-info">
                 <h1>Khương Trịnh</h1>
-                <div class="tagline">Cố Vấn & Nhà Đầu Tư BĐS Thực Chiến</div>
-                <p class="bio">Đầu tư thực chiến — Sòng phẳng — Kỷ luật. Nơi chia sẻ tư duy, kiến thức và công cụ tối ưu hóa hiệu quả kinh doanh Bất động sản.</p>
+                <div class="tagline-wrapper">
+                    <span class="tagline-line"></span>
+                    <div class="tagline">CỐ VẤN & NHÀ ĐẦU TƯ BĐS THỰC CHIẾN</div>
+                    <span class="tagline-line"></span>
+                </div>
+                <div class="badge-icon">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+                <p class="bio">Đầu tư thực chiến – Sòng phẳng – Kỷ luật.<br>Nơi chia sẻ tư duy, kiến thức và công cụ<br>tối ưu hóa hiệu quả kinh doanh Bất động sản.</p>
             </div>
         </header>
 
@@ -45,10 +67,10 @@
                     </div>
                     <div class="link-text">
                         <span class="link-title">Hub.ĐàoTạo</span>
-                        <span class="link-desc">Hệ thống đào tạo nội bộ TL Land (Chỉ dành cho nhân sự)</span>
+                        <span class="link-desc">Hệ thống đào tạo nội bộ TL Land<br>(Chỉ dành cho nhân sự)</span>
                     </div>
                 </div>
-                <div class="arrow-icon">
+                <div class="arrow-btn">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </a>
@@ -61,10 +83,10 @@
                     </div>
                     <div class="link-text">
                         <span class="link-title">TL Land CRM</span>
-                        <span class="link-desc">Hệ thống chăm sóc khách hàng & hành trình khách hàng</span>
+                        <span class="link-desc">Hệ thống chăm sóc khách hàng<br>& hành trình khách hàng</span>
                     </div>
                 </div>
-                <div class="arrow-icon">
+                <div class="arrow-btn">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </a>
@@ -77,10 +99,10 @@
                     </div>
                     <div class="link-text">
                         <span class="link-title">Dành cho ỨNG VIÊN</span>
-                        <span class="link-desc">Cơ hội bứt phá thu nhập & đổi đời cùng team Khương Trịnh</span>
+                        <span class="link-desc">Cơ hội bứt phá thu nhập<br>& đồng hành cùng team Khương Trịnh</span>
                     </div>
                 </div>
-                <div class="arrow-icon">
+                <div class="arrow-btn">
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </a>
@@ -89,7 +111,14 @@
 
     <!-- Footer -->
     <footer>
-        Khương Trịnh © 2026. Được thiết kế bởi <a href="https://khuong.pro.vn" target="_blank" rel="noopener noreferrer">Antigravity AI</a>.
+        <div class="footer-motto">
+            <span class="motto-line"></span>
+            <span class="motto-text">THỰC CHIẾN – GIÁ TRỊ – BỀN VỮNG</span>
+            <span class="motto-line"></span>
+        </div>
+        <div class="footer-copyright">
+            Khương Trịnh © 2026. Được thiết kế bởi <a href="https://khuong.pro.vn" target="_blank" rel="noopener noreferrer">Antigravity AI</a>.
+        </div>
     </footer>
 
     <script>
