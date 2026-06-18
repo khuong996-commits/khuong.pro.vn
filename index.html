@@ -11,7 +11,7 @@
     <!-- Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
 
     <!-- SVG Defs dùng chung cho toàn trang -->
     <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
@@ -82,16 +82,69 @@
             </svg>
 
             <div class="avatar-container">
-                <svg class="arc-svg" viewBox="0 0 100 100">
-                    <defs>
-                        <linearGradient id="arc-gradient" x1="0%" y1="100%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#9a7b0a" />
-                            <stop offset="50%" stop-color="#cfb53b" />
-                            <stop offset="100%" stop-color="#e8cc6e" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M 12 72.5 A 44 44 0 1 1 88 72.5" fill="none" stroke="url(#arc-gradient)" stroke-width="2.5" stroke-linecap="round" />
-                    <circle cx="88" cy="72.5" r="3" fill="#cfb53b" class="glow-dot" />
+                <!-- SVG Khung ảnh Hoàng gia cổ điển đẳng cấp -->
+                <svg class="avatar-frame-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Các vòng tròn đồng tâm làm nền -->
+                    <!-- Vòng 1: Viền ngoài nét đứt xoay ngược chiều kim đồng hồ -->
+                    <circle class="rotate-counter" cx="100" cy="100" r="86" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" stroke-dasharray="2 8" opacity="0.6" />
+                    
+                    <!-- Vòng 2: Viền giữa nét đứt xoay xuôi chiều kim đồng hồ -->
+                    <circle class="rotate-clockwise" cx="100" cy="100" r="77" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" stroke-dasharray="4 6" opacity="0.4" />
+                    
+                    <!-- Vòng 3: Viền trong mảnh cố định -->
+                    <circle cx="100" cy="100" r="81" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.3" />
+                    <circle cx="100" cy="100" r="73" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" opacity="0.3" />
+
+                    <!-- Rolex Bezel khía vàng bao sát avatar -->
+                    <circle cx="100" cy="100" r="67.5" stroke="url(#gold-grad)" stroke-width="2.5" stroke-dasharray="1.5 1.5" fill="none" opacity="0.8" />
+                    <circle cx="100" cy="100" r="65.5" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" opacity="0.9" />
+                    <circle cx="100" cy="100" r="69.5" stroke="url(#gold-grad)" stroke-width="0.6" fill="none" opacity="0.9" />
+
+                    <!-- Hạt ngọc phát sáng ở các góc 45 độ cố định -->
+                    <g opacity="0.8">
+                        <circle cx="156.5" cy="43.5" r="2" fill="#e8cc6e" class="glow-dot" />
+                        <circle cx="43.5" cy="43.5" r="2" fill="#e8cc6e" class="glow-dot" />
+                        <circle cx="43.5" cy="156.5" r="2" fill="#e8cc6e" class="glow-dot" />
+                        <circle cx="156.5" cy="156.5" r="2" fill="#e8cc6e" class="glow-dot" />
+                    </g>
+
+                    <!-- Cụm họa tiết 12h: Vương miện Hoàng gia (Royal Crown) -->
+                    <g class="crown-ornament" transform="translate(100, 22)">
+                        <!-- Thân vương miện -->
+                        <path d="M -15 6 L 15 6 L 20 -6 L 10 -1 L 0 -13 L -10 -1 L -20 -6 Z" fill="url(#gold-grad)" />
+                        <!-- Hạt châu đỉnh -->
+                        <circle cx="-20" cy="-8" r="1.8" fill="#e8cc6e" />
+                        <circle cx="0" cy="-15" r="2.2" fill="#e8cc6e" />
+                        <circle cx="22" cy="-8" r="1.8" fill="#e8cc6e" />
+                        <!-- Đế vương miện -->
+                        <path d="M -17 8 Q 0 10 17 8 L 14 10.5 Q 0 12.5 -14 10.5 Z" fill="url(#gold-grad)" opacity="0.9"/>
+                        <!-- Đá đính -->
+                        <circle cx="-9" cy="9.2" r="0.8" fill="#fff" />
+                        <circle cx="0" cy="9.6" r="0.8" fill="#fff" />
+                        <circle cx="9" cy="9.2" r="0.8" fill="#fff" />
+                    </g>
+
+                    <!-- Cụm họa tiết 6h: Cuộn xoắn nâng đỡ Baroque -->
+                    <g class="bottom-ornament" transform="translate(100, 175)">
+                        <path d="M 0 -2 Q -12 5 -20 -3 Q -26 -10 -18 -14 Q -11 -16 -8 -8 Q -6 -3 -11 -3 Q -14 -3 -12 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <path d="M 0 -2 Q 12 5 20 -3 Q 26 -10 18 -14 Q 11 -16 8 -8 Q 6 -3 11 -3 Q 14 -3 12 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <path d="M -5 -2 C -2 7 0 12 0 12 C 0 12 2 7 5 -2 Z" fill="url(#gold-grad)" />
+                        <circle cx="0" cy="1" r="1.8" fill="#e8cc6e" />
+                    </g>
+
+                    <!-- Cụm họa tiết 9h: Baroque sườn trái -->
+                    <g class="left-ornament" transform="translate(24, 100) scale(0.85)">
+                        <path d="M 8 0 C 8 -12 -4 -20 -12 -16 C -18 -13 -15 -6 -8 -8 C -3 -9 -1 -15 4 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <path d="M 8 0 C 8 12 -4 20 -12 16 C -18 13 -15 6 -8 8 C -3 9 -1 15 4 8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <circle cx="8" cy="0" r="2" fill="#e8cc6e" />
+                    </g>
+
+                    <!-- Cụm họa tiết 3h: Baroque sườn phải -->
+                    <g class="right-ornament" transform="translate(176, 100) scale(0.85)">
+                        <path d="M -8 0 C -8 -12 4 -20 12 -16 C 18 -13 15 -6 8 -8 C 3 -9 1 -15 -4 -8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <path d="M -8 0 C -8 12 4 20 12 16 C 18 13 15 6 8 8 C 3 9 1 15 -4 8" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+                        <circle cx="-8" cy="0" r="2" fill="#e8cc6e" />
+                    </g>
                 </svg>
                 <div class="avatar-wrapper">
                     <img class="avatar" src="avatar.jpg" alt="Khương Trịnh" id="user-avatar-main">
