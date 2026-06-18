@@ -8,28 +8,28 @@ const APP_CONTENT = {
     'page-tb-loi-noi-dau': `
         <div class="iframe-container-wrapper">
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/TAN_BINH_LOI_NOI_DAU.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/TAN_BINH_LOI_NOI_DAU.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
     'page-tb-quy-che': `
         <div class="iframe-container-wrapper">
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/TAN_BINH_QUY_CHE.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/TAN_BINH_QUY_CHE.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
     'page-tb-quy-trinh': `
         <div class="iframe-container-wrapper">
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/TAN_BINH_QUY_TRINH.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/TAN_BINH_QUY_TRINH.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
     'page-tinh-hoa-hong': `
         <div class="iframe-container-wrapper">
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/TINH_HOA_HONG.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/TINH_HOA_HONG.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
@@ -63,7 +63,7 @@ const APP_CONTENT = {
             </div>
             <div class="iframe-container-wrapper">
                 <div class="iframe-scroll-container">
-                    <iframe src="/training-hub/tai_lieu_khai_thac_mqh.html" class="custom-iframe"></iframe>
+                    <iframe src="/training-hub/tai_lieu_khai_thac_mqh.html" class="custom-iframe" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@ const APP_CONTENT = {
                 </a>
             </div>
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/LY_DO_TANG_GIA_BDS.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/LY_DO_TANG_GIA_BDS.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
@@ -165,7 +165,7 @@ const APP_CONTENT = {
                 </a>
             </div>
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/GIAI_DOAN_TANG_GIA_BDS.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/GIAI_DOAN_TANG_GIA_BDS.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
@@ -182,7 +182,7 @@ const APP_CONTENT = {
                 </a>
             </div>
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/SO_SANH_KENH_DAU_TU.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/SO_SANH_KENH_DAU_TU.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
@@ -427,7 +427,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Hoà Lạc
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/jStHU1-FzpQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/jStHU1-FzpQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -458,7 +458,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Sơn Tây
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/ScBckm2pBlU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/ScBckm2pBlU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -499,7 +499,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 1)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/YE-BbQ0xqnY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/YE-BbQ0xqnY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -509,7 +509,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 2)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/alBjvqprOOc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/alBjvqprOOc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -519,7 +519,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 3)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/mTdfic4HPFs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/mTdfic4HPFs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -529,7 +529,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 4)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/E7S0jdGm9LY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/E7S0jdGm9LY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -539,7 +539,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 5)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/scD4CnTU7lc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/scD4CnTU7lc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -549,7 +549,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 6)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/VwhYhCJVSt4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/VwhYhCJVSt4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -570,7 +570,7 @@ const APP_CONTENT = {
                             <i class="fa-solid fa-circle-play" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ — Sếp Huy Otis
                         </div>
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                            <iframe src="https://www.youtube.com/embed/bfqJ0uO8l-I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/bfqJ0uO8l-I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                         </div>
                     </div>
 
@@ -580,7 +580,7 @@ const APP_CONTENT = {
                             <i class="fa-solid fa-map" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ (Chi tiết)
                         </div>
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                            <iframe src="https://www.youtube.com/embed/WKd_SORPVfQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/WKd_SORPVfQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -598,7 +598,7 @@ const APP_CONTENT = {
                                 <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 1</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
-                                <iframe src="https://www.youtube.com/embed/ikyEAwAYxqk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/ikyEAwAYxqk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -608,7 +608,7 @@ const APP_CONTENT = {
                                 <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 2</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
-                                <iframe src="https://www.youtube.com/embed/vHy-sbt1HsA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/vHy-sbt1HsA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -618,7 +618,7 @@ const APP_CONTENT = {
                                 <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 3</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
-                                <iframe src="https://www.youtube.com/embed/U6w3ezwo4mQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/U6w3ezwo4mQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
@@ -628,7 +628,7 @@ const APP_CONTENT = {
                                 <span style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Short</span> Video ngắn
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
-                                <iframe src="https://www.youtube.com/embed/Kwq8WG9lTys" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/Kwq8WG9lTys" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -666,7 +666,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Phú Thọ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/w-Jw2ObEIx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/w-Jw2ObEIx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -690,7 +690,7 @@ const APP_CONTENT = {
                                 <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Hải Phòng
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                                <iframe src="https://www.youtube.com/embed/kmqUoGOmXAI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/kmqUoGOmXAI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -716,7 +716,7 @@ const APP_CONTENT = {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/Lu8638blARo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/Lu8638blARo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1114,7 +1114,7 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 177.78%; height: 0; width: 100%;">
-                        <iframe src="https://www.youtube.com/embed/UUn45Eg1xwQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/UUn45Eg1xwQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
                         <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 1: Kỹ thuật gây tò mò</h3>
@@ -1123,7 +1123,7 @@ const APP_CONTENT = {
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 177.78%; height: 0; width: 100%;">
-                        <iframe src="https://www.youtube.com/embed/0-8mZ2ONq4k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/0-8mZ2ONq4k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
                         <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 2: Bố cục tin nhắn chuẩn</h3>
@@ -1132,7 +1132,7 @@ const APP_CONTENT = {
                 <!-- Video 3 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 177.78%; height: 0; width: 100%;">
-                        <iframe src="https://www.youtube.com/embed/XwFPXIULMMU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/XwFPXIULMMU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
                         <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 3: Nghệ thuật lái khách</h3>
@@ -1141,7 +1141,7 @@ const APP_CONTENT = {
                 <!-- Video 4 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 177.78%; height: 0; width: 100%;">
-                        <iframe src="https://www.youtube.com/embed/qC4dU8ISSlM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/qC4dU8ISSlM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
                         <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 4: Tăng tỉ lệ phản hồi</h3>
@@ -1615,13 +1615,13 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/94KRLYAj5_E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/94KRLYAj5_E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/lsBhj6PtV0U" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/lsBhj6PtV0U" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1635,13 +1635,13 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/8s4DPW1GL10" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/8s4DPW1GL10" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/JklXrJBVPC4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/JklXrJBVPC4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1746,7 +1746,7 @@ const APP_CONTENT = {
                 <!-- Video Sếp Khương -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://drive.google.com/file/d/10wmmWCAqNkOhLb1jJ47nN8Ulj7hChNye/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://drive.google.com/file/d/10wmmWCAqNkOhLb1jJ47nN8Ulj7hChNye/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
                         Sếp Khương hướng dẫn đăng ảo Group đơn giản
@@ -1755,19 +1755,19 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/HYNbeb_ZcO4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/HYNbeb_ZcO4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/RM3XFKiUjWY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/RM3XFKiUjWY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 3 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/w9PZIeT4s0E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/w9PZIeT4s0E" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1779,7 +1779,7 @@ const APP_CONTENT = {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 2rem;">
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/wiRI-ugPz8s" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/wiRI-ugPz8s" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1789,19 +1789,19 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/xFmg2692jx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/xFmg2692jx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/WoqdZBFXzzQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/WoqdZBFXzzQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
                 <!-- Video 3 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/KKkzLp71HX0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/KKkzLp71HX0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -1814,7 +1814,7 @@ const APP_CONTENT = {
     'page-chan-dung-khach-hang': `
         <div class="iframe-container-wrapper">
             <div class="iframe-scroll-container">
-                <iframe src="/training-hub/CHAN_DUNG_KHACH_HANG_V2_1.html" class="custom-iframe"></iframe>
+                <iframe src="/training-hub/CHAN_DUNG_KHACH_HANG_V2_1.html" class="custom-iframe" loading="lazy"></iframe>
             </div>
         </div>
     `,
@@ -1835,7 +1835,7 @@ const APP_CONTENT = {
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/kuStPMgUD8w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/kuStPMgUD8w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
                         Tư duy MKT
@@ -1845,7 +1845,7 @@ const APP_CONTENT = {
                 <!-- Video 2 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/vr24eW0RfcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/vr24eW0RfcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
                         Tư duy MKT
@@ -1855,7 +1855,7 @@ const APP_CONTENT = {
                 <!-- Video 3 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/rJW527JbOxI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/rJW527JbOxI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
                         Tư duy MKT
@@ -1865,7 +1865,7 @@ const APP_CONTENT = {
                 <!-- Video 4 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                        <iframe src="https://www.youtube.com/embed/DTdYGlZFTAw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/DTdYGlZFTAw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
                         Tư duy MKT

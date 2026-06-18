@@ -46,6 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const pathMap = {};
     for (let k in routeMap) pathMap[routeMap[k]] = k;
 
+    // ---- DOM Cache cho tốc độ tải trang ----
+    const _domCache = {};
+    let _currentPageId = null;
+
+    function _getOrCreateDOM(pageId) {
+        // Trang admin/profile render động, không cache
+        if (pageId === 'page-admin-emails' || pageId === 'page-profile') {
+            return null;
+        }
+        if (!_domCache[pageId]) {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = APP_CONTENT[pageId];
+            _domCache[pageId] = wrapper;
+        }
+        return _domCache[pageId];
+    }
+
     window.appRoutes = {
         navigate: function(pageId, pushState = true) {
             // Check if page exists in DB
@@ -54,37 +71,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Không navigate lại trang đang xem
+            if (pageId === _currentPageId) return;
+            _currentPageId = pageId;
+
             // Push state to URL
             if (pushState && routeMap[pageId]) {
                 window.history.pushState({ pageId: pageId }, '', '/training-hub/' + routeMap[pageId]);
             }
 
-            // Update Content with smooth fade
-            appContent.style.opacity = '0';
-            setTimeout(() => {
-                // Trang admin xử lý riêng
-                if (pageId === 'page-admin-emails' && typeof renderAdminEmailPage === 'function') {
-                    renderAdminEmailPage();
-                } else if (pageId === 'page-profile' && typeof renderProfilePage === 'function') {
-                    renderProfilePage();
+            // Tạm dừng iframe cũ trước khi swap (giải phóng tài nguyên)
+            const oldIframes = appContent.querySelectorAll('iframe');
+            oldIframes.forEach(function(iframe) { iframe.src = 'about:blank'; });
+
+            // Swap nội dung ngay lập tức (không setTimeout)
+            // Trang admin xử lý riêng (render động)
+            if (pageId === 'page-admin-emails' && typeof renderAdminEmailPage === 'function') {
+                renderAdminEmailPage();
+            } else if (pageId === 'page-profile' && typeof renderProfilePage === 'function') {
+                renderProfilePage();
+            } else {
+                const cached = _getOrCreateDOM(pageId);
+                if (cached) {
+                    // Clone từ cache để không mất node gốc
+                    appContent.innerHTML = '';
+                    const clone = cached.cloneNode(true);
+                    while (clone.firstChild) {
+                        appContent.appendChild(clone.firstChild);
+                    }
                 } else {
                     appContent.innerHTML = APP_CONTENT[pageId];
                 }
-                appContent.style.opacity = '1';
-                
-                if (pageId === 'page-mau-dang-tin-ao') {
-                    if (window.mauDangTinAo && typeof window.mauDangTinAo.init === 'function') {
-                        window.mauDangTinAo.init();
-                    }
-                }
-                
-                if (window.lucide) {
-                    lucide.createIcons();
-                }
+            }
 
-                // Trigger reflow to restart animations inside content
-                void appContent.offsetWidth;
-            }, 200);
+            // Kích hoạt animation fade-in bằng class (nhanh 120ms qua CSS)
+            appContent.classList.remove('content-fade-in');
+            void appContent.offsetWidth; // Force reflow để restart animation
+            appContent.classList.add('content-fade-in');
+
+            // Khởi tạo gallery nếu cần
+            if (pageId === 'page-mau-dang-tin-ao') {
+                if (window.mauDangTinAo && typeof window.mauDangTinAo.init === 'function') {
+                    window.mauDangTinAo.init();
+                }
+            }
+            
+            if (window.lucide) {
+                lucide.createIcons();
+            }
 
             // Update Active State on Nav
             navItems.forEach(item => {
