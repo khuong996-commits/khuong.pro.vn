@@ -1,42 +1,47 @@
 /* ==========================================================================
-   KHUONG.PRO.VN - LUXURY NAVY & GOLD DESIGN
-   Design System: Deep Navy + Gold Accents + Ornamental Luxury
+   KHUONG.PRO.VN - ULTRA LUXURY NAVY & GOLD
+   Design System: Midnight Navy + True Gold + VIP Ornamental
    ========================================================================== */
 
 :root {
-    /* Navy deep palette */
-    --bg-base: #0a1628;
-    --bg-canvas: linear-gradient(170deg, #0a1628 0%, #0d1f3c 30%, #132a4a 60%, #0a1628 100%);
+    /* Midnight navy — gần đen, huyền bí */
+    --bg-base: #040b18;
+    --bg-deep: #060e1e;
+    --bg-canvas: linear-gradient(170deg, #040b18 0%, #081526 25%, #0a1a30 50%, #060e1e 75%, #040b18 100%);
     
-    /* Gold luxury palette */
-    --gold-100: #fef3c7;
-    --gold-200: #fde68a;
-    --gold-300: #fcd34d;
-    --gold-400: #fbbf24;
-    --gold-500: #d4a017;
-    --gold-600: #b8860b;
-    --gold-gradient: linear-gradient(135deg, #d4a017, #f5d060, #d4a017);
-    --gold-gradient-soft: linear-gradient(135deg, rgba(212, 160, 23, 0.15), rgba(245, 208, 96, 0.08));
-    --gold-shimmer: linear-gradient(90deg, #b8860b, #f5d060, #d4a017, #f5d060, #b8860b);
+    /* TRUE GOLD — vàng thật, đậm ấm như Rolex */
+    --gold-50: #fdf8e8;
+    --gold-100: #f5e6b8;
+    --gold-200: #e8cc6e;
+    --gold-300: #cfb53b;   /* Old Gold */
+    --gold-400: #c9a84c;   /* True Gold */
+    --gold-500: #b8960f;   /* Rich Gold */
+    --gold-600: #9a7b0a;   /* Deep Gold */
+    --gold-700: #7c6208;   /* Dark Gold */
+    --gold-gradient: linear-gradient(135deg, #9a7b0a, #cfb53b, #e8cc6e, #cfb53b, #9a7b0a);
+    --gold-gradient-text: linear-gradient(135deg, #e8cc6e 0%, #cfb53b 40%, #9a7b0a 70%, #cfb53b 100%);
+    --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(207, 181, 59, 0.08) 25%, rgba(232, 204, 110, 0.15) 50%, rgba(207, 181, 59, 0.08) 75%, transparent 100%);
     
-    /* Glass on dark */
-    --glass-bg: rgba(13, 31, 60, 0.6);
-    --glass-bg-card: rgba(15, 35, 70, 0.65);
-    --glass-border: rgba(212, 160, 23, 0.25);
-    --glass-border-hover: rgba(212, 160, 23, 0.6);
+    /* Glass on midnight */
+    --glass-bg: rgba(6, 14, 30, 0.7);
+    --glass-bg-card: rgba(8, 18, 38, 0.75);
+    --glass-border: rgba(154, 123, 10, 0.2);
+    --glass-border-hover: rgba(207, 181, 59, 0.55);
     
-    /* Text for dark bg */
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --text-gold: #f5d060;
+    /* Text for ultra dark bg */
+    --text-primary: #e8e2d3;
+    --text-secondary: #8a8678;
+    --text-muted: #5c5849;
+    --text-gold: #cfb53b;
+    --text-gold-light: #e8cc6e;
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 20px 50px -15px rgba(0, 0, 0, 0.6);
-    --shadow-gold: 0 8px 30px rgba(212, 160, 23, 0.15);
-    --shadow-gold-hover: 0 15px 40px rgba(212, 160, 23, 0.25);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 20px 50px -15px rgba(0, 0, 0, 0.8);
+    --shadow-gold: 0 4px 20px rgba(154, 123, 10, 0.12);
+    --shadow-gold-hover: 0 10px 40px rgba(154, 123, 10, 0.2);
+    --shadow-gold-glow: 0 0 40px rgba(207, 181, 59, 0.08);
     
     --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -62,9 +67,9 @@ body {
     position: relative;
 }
 
-/* ===== LUXURY ORNAMENTAL BACKGROUND ===== */
+/* ===== LUXURY ORNAMENTAL BACKGROUNDS ===== */
 
-/* Subtle diamond pattern overlay */
+/* Layer 1: Diamond lattice pattern */
 body::before {
     content: '';
     position: fixed;
@@ -73,18 +78,23 @@ body::before {
     width: 100%;
     height: 100%;
     background-image:
-        /* Diamond grid pattern */
-        linear-gradient(45deg, rgba(212, 160, 23, 0.03) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(212, 160, 23, 0.03) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(212, 160, 23, 0.03) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(212, 160, 23, 0.03) 75%);
-    background-size: 60px 60px;
-    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        /* Fine diamond grid */
+        linear-gradient(45deg, rgba(154, 123, 10, 0.025) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(154, 123, 10, 0.025) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(154, 123, 10, 0.025) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(154, 123, 10, 0.025) 75%),
+        /* Larger accent diamonds */
+        linear-gradient(45deg, rgba(154, 123, 10, 0.012) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(154, 123, 10, 0.012) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(154, 123, 10, 0.012) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(154, 123, 10, 0.012) 75%);
+    background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, 120px 120px, 120px 120px, 120px 120px, 120px 120px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px, 0 0, 0 60px, 60px -60px, -60px 0px;
     pointer-events: none;
     z-index: 0;
 }
 
-/* Radial gold vignette glow */
+/* Layer 2: Mystic radial vignettes */
 body::after {
     content: '';
     position: fixed;
@@ -93,14 +103,18 @@ body::after {
     width: 100%;
     height: 100%;
     background:
-        radial-gradient(ellipse 900px 500px at 50% -5%, rgba(212, 160, 23, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 800px at 0% 50%, rgba(10, 22, 40, 0.8) 0%, transparent 70%),
-        radial-gradient(ellipse 400px 800px at 100% 50%, rgba(10, 22, 40, 0.8) 0%, transparent 70%);
+        /* Top center: faint gold halo */
+        radial-gradient(ellipse 700px 350px at 50% -3%, rgba(154, 123, 10, 0.06) 0%, transparent 70%),
+        /* Deep navy corners */
+        radial-gradient(ellipse 500px 900px at -5% 50%, rgba(4, 11, 24, 0.95) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 900px at 105% 50%, rgba(4, 11, 24, 0.95) 0%, transparent 70%),
+        /* Bottom subtle glow */
+        radial-gradient(ellipse 600px 300px at 50% 105%, rgba(154, 123, 10, 0.03) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Background Glowing Orbs (Deep navy + gold) */
+/* Floating orbs — deep & mysterious */
 .bg-orbs {
     position: absolute;
     top: 0;
@@ -115,45 +129,45 @@ body::after {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(150px);
-    opacity: 0.3;
+    filter: blur(160px);
+    opacity: 0.2;
 }
 
 .orb-1 {
     top: -20%;
-    left: -5%;
+    left: -10%;
     width: 700px;
     height: 700px;
-    background: #1e3a5f;
-    animation: float-1 25s infinite alternate ease-in-out;
+    background: #0d1f3c;
+    animation: float-1 28s infinite alternate ease-in-out;
 }
 
 .orb-2 {
-    top: 30%;
+    top: 35%;
     right: -15%;
     width: 500px;
     height: 500px;
-    background: rgba(212, 160, 23, 0.2);
-    animation: float-2 30s infinite alternate-reverse ease-in-out;
+    background: rgba(154, 123, 10, 0.12);
+    animation: float-2 32s infinite alternate-reverse ease-in-out;
 }
 
 .orb-3 {
     bottom: -15%;
-    left: 20%;
+    left: 25%;
     width: 450px;
     height: 450px;
-    background: #162d50;
-    animation: float-1 22s infinite alternate-reverse ease-in-out;
+    background: #091629;
+    animation: float-1 24s infinite alternate-reverse ease-in-out;
 }
 
 @keyframes float-1 {
-    0% { transform: translate(0px, 0px) scale(1); }
+    0% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(30px, 50px) scale(1.05); }
     100% { transform: translate(-20px, 20px) scale(0.95); }
 }
 
 @keyframes float-2 {
-    0% { transform: translate(0px, 0px) scale(1); }
+    0% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(-40px, -30px) scale(1.08); }
     100% { transform: translate(30px, 40px) scale(0.95); }
 }
@@ -170,12 +184,12 @@ body::after {
     z-index: 10;
 }
 
-/* ===== PROFILE CARD (Luxury Navy + Gold) ===== */
+/* ===== PROFILE CARD ===== */
 .profile-card {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(13, 31, 60, 0.85) 0%, rgba(19, 42, 74, 0.9) 50%, rgba(13, 31, 60, 0.8) 100%);
-    border: 1.5px solid rgba(212, 160, 23, 0.35);
+    background: linear-gradient(160deg, rgba(8, 18, 38, 0.88) 0%, rgba(12, 24, 48, 0.92) 50%, rgba(8, 18, 38, 0.85) 100%);
+    border: 1px solid rgba(154, 123, 10, 0.22);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border-radius: 32px;
@@ -188,33 +202,39 @@ body::after {
     gap: 24px;
     box-shadow:
         var(--shadow-lg),
-        inset 0 1px 0 rgba(212, 160, 23, 0.15),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-        0 0 60px rgba(212, 160, 23, 0.05);
+        inset 0 1px 0 rgba(154, 123, 10, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+        var(--shadow-gold-glow);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Ornamental corner decorations */
+/* Ornamental gold corner accents */
 .profile-card::before {
-    content: '✦';
+    content: '';
     position: absolute;
-    top: 16px;
-    left: 20px;
-    font-size: 0.7rem;
-    color: rgba(212, 160, 23, 0.3);
-    letter-spacing: 8px;
+    top: 12px;
+    left: 12px;
+    width: 40px;
+    height: 40px;
+    border-top: 1.5px solid rgba(154, 123, 10, 0.35);
+    border-left: 1.5px solid rgba(154, 123, 10, 0.35);
+    border-radius: 4px 0 0 0;
+    pointer-events: none;
 }
 
 .profile-card::after {
-    content: '✦';
+    content: '';
     position: absolute;
-    bottom: 16px;
-    right: 20px;
-    font-size: 0.7rem;
-    color: rgba(212, 160, 23, 0.3);
-    letter-spacing: 8px;
+    bottom: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-bottom: 1.5px solid rgba(154, 123, 10, 0.35);
+    border-right: 1.5px solid rgba(154, 123, 10, 0.35);
+    border-radius: 0 0 4px 0;
+    pointer-events: none;
 }
 
 /* ===== AVATAR ===== */
@@ -239,17 +259,17 @@ body::after {
 
 .glow-dot {
     transform-origin: center;
-    animation: pulse-dot 2s infinite ease-in-out;
+    animation: pulse-dot 2.5s infinite ease-in-out;
 }
 
 @keyframes pulse-dot {
     0%, 100% {
         r: 3px;
-        filter: drop-shadow(0 0 4px #f5d060);
+        filter: drop-shadow(0 0 3px #cfb53b);
     }
     50% {
         r: 5px;
-        filter: drop-shadow(0 0 12px #f5d060);
+        filter: drop-shadow(0 0 14px #cfb53b) drop-shadow(0 0 4px #e8cc6e);
     }
 }
 
@@ -257,20 +277,24 @@ body::after {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(135deg, #d4a017, #f5d060, #d4a017);
+    padding: 3px;
+    background: var(--gold-gradient);
     box-shadow:
-        0 8px 25px rgba(212, 160, 23, 0.25),
-        0 0 20px rgba(212, 160, 23, 0.1);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        0 0 0 4px rgba(4, 11, 24, 0.9),
+        0 0 0 5px rgba(154, 123, 10, 0.25),
+        0 8px 30px rgba(154, 123, 10, 0.2),
+        0 0 25px rgba(154, 123, 10, 0.06);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
     z-index: 2;
 }
 
 .avatar-wrapper:hover {
     transform: scale(1.05);
     box-shadow:
-        0 12px 35px rgba(212, 160, 23, 0.35),
-        0 0 30px rgba(212, 160, 23, 0.15);
+        0 0 0 4px rgba(4, 11, 24, 0.9),
+        0 0 0 5px rgba(154, 123, 10, 0.4),
+        0 12px 40px rgba(154, 123, 10, 0.3),
+        0 0 40px rgba(154, 123, 10, 0.1);
 }
 
 .avatar {
@@ -278,8 +302,8 @@ body::after {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #0d1f3c;
-    background: #132a4a;
+    border: 3px solid #060e1e;
+    background: #0a1628;
 }
 
 /* ===== PROFILE INFO ===== */
@@ -296,11 +320,11 @@ body::after {
     font-size: 2.6rem;
     font-weight: 800;
     letter-spacing: -1.2px;
-    background: linear-gradient(135deg, #f1f5f9 20%, #f5d060 60%, #d4a017 100%);
+    background: var(--gold-gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
-    text-shadow: none;
+    filter: drop-shadow(0 2px 4px rgba(154, 123, 10, 0.15));
 }
 
 .tagline-wrapper {
@@ -316,29 +340,30 @@ body::after {
     flex-grow: 1;
     max-width: 50px;
     height: 1px;
-    background: linear-gradient(to right, rgba(212, 160, 23, 0), rgba(212, 160, 23, 0.6), rgba(212, 160, 23, 0.8));
+    background: linear-gradient(to right, rgba(154, 123, 10, 0), rgba(154, 123, 10, 0.5), rgba(207, 181, 59, 0.7));
 }
 
 .tagline-wrapper .tagline-line:last-child {
-    background: linear-gradient(to left, rgba(212, 160, 23, 0), rgba(212, 160, 23, 0.6), rgba(212, 160, 23, 0.8));
+    background: linear-gradient(to left, rgba(154, 123, 10, 0), rgba(154, 123, 10, 0.5), rgba(207, 181, 59, 0.7));
 }
 
 .tagline {
     font-size: 0.9rem;
-    color: var(--text-gold);
+    color: var(--gold-300);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     white-space: nowrap;
+    text-shadow: 0 0 20px rgba(154, 123, 10, 0.2);
 }
 
 .badge-icon {
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: rgba(212, 160, 23, 0.1);
-    border: 1px solid rgba(212, 160, 23, 0.25);
-    color: var(--text-gold);
+    background: rgba(154, 123, 10, 0.08);
+    border: 1px solid rgba(154, 123, 10, 0.2);
+    color: var(--gold-400);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -352,10 +377,10 @@ body::after {
     max-width: 480px;
     margin: 12px auto 0 auto;
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* ===== LINK CARDS (Luxury Gold Border) ===== */
+/* ===== LINK CARDS ===== */
 .links-grid {
     width: 100%;
     display: flex;
@@ -367,7 +392,7 @@ body::after {
     position: relative;
     overflow: hidden;
     background: var(--glass-bg-card);
-    border: 1.5px solid var(--glass-border);
+    border: 1px solid var(--glass-border);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 24px;
@@ -377,25 +402,30 @@ body::after {
     justify-content: space-between;
     text-decoration: none;
     color: var(--text-primary);
-    box-shadow: var(--shadow-md), 0 0 30px rgba(212, 160, 23, 0.03);
+    box-shadow: var(--shadow-md), var(--shadow-gold-glow);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
     transform: translateY(20px);
 }
 
-/* Ornamental accent line at top of cards */
+/* Gold top-line accent */
 .link-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
+    width: 50%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 160, 23, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(154, 123, 10, 0.3), transparent);
+    transition: width 0.4s ease;
 }
 
-/* Subtle shimmer effect */
+.link-card:hover::before {
+    width: 80%;
+}
+
+/* Moving shimmer highlight on hover */
 .link-card::after {
     content: '';
     position: absolute;
@@ -403,15 +433,16 @@ body::after {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(212, 160, 23, 0.03) 50%, transparent 100%);
-    transition: left 0.6s ease;
+    background: var(--gold-shimmer);
+    transition: left 0.7s ease;
+    pointer-events: none;
 }
 
 .link-card:hover::after {
     left: 100%;
 }
 
-/* Animation Delays for cascade entry */
+/* Cascade animation delays */
 .link-card:nth-child(1) {
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
@@ -427,7 +458,7 @@ body::after {
 .link-card:hover {
     transform: translateY(-5px) scale(1.01);
     border-color: var(--glass-border-hover);
-    box-shadow: var(--shadow-gold-hover);
+    box-shadow: var(--shadow-gold-hover), 0 0 50px rgba(154, 123, 10, 0.05);
 }
 
 .link-content {
@@ -441,14 +472,14 @@ body::after {
     width: 52px;
     height: 52px;
     border-radius: 16px;
-    background: rgba(212, 160, 23, 0.08);
-    border: 1px solid rgba(212, 160, 23, 0.2);
+    background: rgba(154, 123, 10, 0.06);
+    border: 1px solid rgba(154, 123, 10, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.45rem;
-    color: var(--text-gold);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: var(--gold-300);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -477,115 +508,115 @@ body::after {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(212, 160, 23, 0.08);
-    border: 1px solid rgba(212, 160, 23, 0.2);
+    background: rgba(154, 123, 10, 0.06);
+    border: 1px solid rgba(154, 123, 10, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
-    color: var(--text-gold);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: var(--gold-400);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
     z-index: 2;
 }
 
-/* ===== SPECIAL CARD STYLES (Gold-themed hover) ===== */
+/* ===== CARD HOVER THEMES ===== */
 
-/* Hub.ĐàoTạo */
+/* Hub.ĐàoTạo — Royal Blue accent */
 .link-card.special-hub {
-    background: linear-gradient(135deg, rgba(13, 31, 60, 0.85), rgba(19, 42, 74, 0.9));
+    background: linear-gradient(135deg, rgba(8, 18, 40, 0.88), rgba(12, 25, 50, 0.92));
 }
 
 .link-card.special-hub .link-icon {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.1);
-    border-color: rgba(96, 165, 250, 0.25);
+    color: #5b9bf5;
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.2);
 }
 
 .link-card.special-hub:hover {
-    border-color: rgba(96, 165, 250, 0.5);
-    box-shadow: 0 15px 40px rgba(96, 165, 250, 0.12);
+    border-color: rgba(59, 130, 246, 0.45);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.1), var(--shadow-gold-glow);
 }
 
 .link-card.special-hub:hover .link-icon {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #ffffff;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: #fff;
     border-color: #3b82f6;
     transform: scale(1.08) rotate(-5deg);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
 }
 
 .link-card.special-hub:hover .link-title {
-    color: #93bbfc;
+    color: #93c5fd;
 }
 
 .link-card.special-hub:hover .arrow-btn {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #ffffff;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: #fff;
     border-color: #3b82f6;
-    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
     transform: scale(1.05);
 }
 
-/* TL Land CRM */
+/* TL Land CRM — True Gold */
 .link-card.special-crm {
-    background: linear-gradient(135deg, rgba(13, 31, 60, 0.85), rgba(25, 35, 55, 0.9));
+    background: linear-gradient(135deg, rgba(8, 18, 38, 0.88), rgba(15, 22, 38, 0.92));
 }
 
 .link-card.special-crm .link-icon {
-    color: var(--text-gold);
-    background: rgba(212, 160, 23, 0.1);
-    border-color: rgba(212, 160, 23, 0.25);
+    color: var(--gold-300);
+    background: rgba(154, 123, 10, 0.08);
+    border-color: rgba(154, 123, 10, 0.2);
 }
 
 .link-card.special-crm:hover {
-    border-color: rgba(212, 160, 23, 0.6);
-    box-shadow: var(--shadow-gold-hover);
+    border-color: rgba(207, 181, 59, 0.5);
+    box-shadow: var(--shadow-gold-hover), 0 0 50px rgba(154, 123, 10, 0.06);
 }
 
 .link-card.special-crm:hover .link-icon {
     background: var(--gold-gradient);
-    color: #0d1f3c;
-    border-color: #d4a017;
+    color: #060e1e;
+    border-color: var(--gold-500);
     transform: scale(1.08) rotate(5deg);
-    box-shadow: 0 8px 20px rgba(212, 160, 23, 0.35);
+    box-shadow: 0 8px 25px rgba(154, 123, 10, 0.35);
 }
 
 .link-card.special-crm:hover .link-title {
-    color: var(--text-gold);
+    color: var(--gold-200);
 }
 
 .link-card.special-crm:hover .arrow-btn {
     background: var(--gold-gradient);
-    color: #0d1f3c;
-    border-color: #d4a017;
-    box-shadow: 0 8px 16px rgba(212, 160, 23, 0.3);
+    color: #060e1e;
+    border-color: var(--gold-500);
+    box-shadow: 0 6px 18px rgba(154, 123, 10, 0.3);
     transform: scale(1.05);
 }
 
-/* Dành cho ỨNG VIÊN */
+/* Dành cho ỨNG VIÊN — Amber/Copper */
 .link-card.special-career {
-    background: linear-gradient(135deg, rgba(13, 31, 60, 0.85), rgba(20, 30, 55, 0.9));
+    background: linear-gradient(135deg, rgba(8, 18, 38, 0.88), rgba(14, 20, 40, 0.92));
 }
 
 .link-card.special-career .link-icon {
-    color: #fb923c;
-    background: rgba(251, 146, 60, 0.1);
-    border-color: rgba(251, 146, 60, 0.25);
+    color: #e68a3c;
+    background: rgba(230, 138, 60, 0.08);
+    border-color: rgba(230, 138, 60, 0.2);
 }
 
 .link-card.special-career:hover {
-    border-color: rgba(251, 146, 60, 0.5);
-    box-shadow: 0 15px 40px rgba(251, 146, 60, 0.12);
+    border-color: rgba(230, 138, 60, 0.45);
+    box-shadow: 0 12px 40px rgba(230, 138, 60, 0.1), var(--shadow-gold-glow);
 }
 
 .link-card.special-career:hover .link-icon {
-    background: linear-gradient(135deg, #ea580c, #fb923c);
-    color: #ffffff;
-    border-color: #fb923c;
+    background: linear-gradient(135deg, #c2410c, #ea580c);
+    color: #fff;
+    border-color: #ea580c;
     transform: scale(1.08) rotate(-5deg);
-    box-shadow: 0 8px 20px rgba(251, 146, 60, 0.35);
+    box-shadow: 0 8px 25px rgba(194, 65, 12, 0.35);
 }
 
 .link-card.special-career:hover .link-title {
@@ -593,10 +624,10 @@ body::after {
 }
 
 .link-card.special-career:hover .arrow-btn {
-    background: linear-gradient(135deg, #ea580c, #fb923c);
-    color: #ffffff;
-    border-color: #fb923c;
-    box-shadow: 0 8px 16px rgba(251, 146, 60, 0.3);
+    background: linear-gradient(135deg, #c2410c, #ea580c);
+    color: #fff;
+    border-color: #ea580c;
+    box-shadow: 0 6px 18px rgba(194, 65, 12, 0.3);
     transform: scale(1.05);
 }
 
@@ -612,13 +643,13 @@ body::after {
     }
 }
 
-/* ===== FOOTER (Luxury Dark) ===== */
+/* ===== FOOTER ===== */
 footer {
     padding: 40px 24px;
     text-align: center;
-    border-top: 1px solid rgba(212, 160, 23, 0.12);
+    border-top: 1px solid rgba(154, 123, 10, 0.1);
     width: 100%;
-    background: rgba(10, 22, 40, 0.7);
+    background: rgba(4, 11, 24, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 10;
@@ -634,7 +665,7 @@ footer {
     justify-content: center;
     gap: 16px;
     width: 100%;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-bottom: 4px;
 }
 
@@ -642,13 +673,13 @@ footer {
     flex-grow: 1;
     max-width: 40px;
     height: 1px;
-    background: rgba(212, 160, 23, 0.4);
+    background: rgba(154, 123, 10, 0.35);
 }
 
 .motto-text {
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--text-gold);
+    color: var(--gold-400);
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -660,14 +691,14 @@ footer {
 }
 
 footer a {
-    color: var(--text-gold);
+    color: var(--gold-300);
     text-decoration: none;
     font-weight: 700;
     transition: color 0.2s ease;
 }
 
 footer a:hover {
-    color: var(--gold-300);
+    color: var(--gold-200);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -690,7 +721,7 @@ footer a:hover {
     .avatar-wrapper {
         width: 90px;
         height: 90px;
-        padding: 3px;
+        padding: 2.5px;
     }
 
     .avatar {
