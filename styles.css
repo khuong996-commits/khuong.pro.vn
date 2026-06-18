@@ -43,7 +43,9 @@
     --shadow-gold-hover: 0 10px 40px rgba(154, 123, 10, 0.2);
     --shadow-gold-glow: 0 0 40px rgba(207, 181, 59, 0.08);
     
-    --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Playfair Display', 'Georgia', serif;
+    --font-accent: 'Cormorant Garamond', 'Georgia', serif;
 }
 
 * {
@@ -317,9 +319,10 @@ body::after {
 }
 
 .profile-info h1 {
-    font-size: 2.6rem;
-    font-weight: 800;
-    letter-spacing: -1.2px;
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     background: var(--gold-gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -348,11 +351,12 @@ body::after {
 }
 
 .tagline {
-    font-size: 0.9rem;
+    font-family: var(--font-accent);
+    font-size: 1rem;
     color: var(--gold-300);
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     white-space: nowrap;
     text-shadow: 0 0 20px rgba(154, 123, 10, 0.2);
 }
@@ -491,9 +495,11 @@ body::after {
 }
 
 .link-title {
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--text-primary);
+    letter-spacing: 0.3px;
     transition: color 0.3s ease;
 }
 
@@ -677,10 +683,11 @@ footer {
 }
 
 .motto-text {
-    font-size: 0.78rem;
-    font-weight: 700;
+    font-family: var(--font-accent);
+    font-size: 0.82rem;
+    font-weight: 600;
     color: var(--gold-400);
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     text-transform: uppercase;
 }
 
@@ -729,8 +736,7 @@ footer a:hover {
     }
 
     .profile-info h1 {
-        font-size: 2.1rem;
-        letter-spacing: -0.8px;
+        font-size: 2.2rem;
     }
     
     .tagline-wrapper {
