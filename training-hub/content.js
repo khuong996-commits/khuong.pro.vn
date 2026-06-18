@@ -188,6 +188,23 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
+    // PAGE: BẢNG HÀNG TỔNG HỢP
+    // ---------------------------------------------------------
+    'page-bang-hang': `
+        <div class="iframe-container-wrapper">
+            <div class="iframe-actions-bar">
+                <span class="iframe-doc-title"><i class="fa-solid fa-table-list"></i> Bảng Hàng Tổng Hợp</span>
+                <a href="/training-hub/BANG_HANG_TL_LAND.html" target="_blank" class="iframe-btn-open">
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
+                </a>
+            </div>
+            <div class="iframe-scroll-container">
+                <iframe src="/training-hub/BANG_HANG_TL_LAND.html" class="custom-iframe" loading="lazy"></iframe>
+            </div>
+        </div>
+    `,
+
+    // ---------------------------------------------------------
     // PAGE: ĐÀO TẠO KIẾN THỨC NỀN
     // ---------------------------------------------------------
     'page-kien-thuc-nen': `
@@ -2055,6 +2072,40 @@ const APP_CONTENT = {
                 </div>
             </div>
 
+        </div>
+    `,
+
+    // ---------------------------------------------------------
+    // PAGE: CHÂN DUNG NHÂN SỰ
+    // ---------------------------------------------------------
+    'page-chan-dung-nhan-su': `
+        <div class="iframe-container-wrapper">
+            <div class="iframe-actions-bar">
+                <span class="iframe-doc-title"><i class="fa-solid fa-user-tie"></i> Chân Dung Nhân Sự TL Land</span>
+                <a href="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" target="_blank" class="iframe-btn-open">
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
+                </a>
+            </div>
+            <div class="iframe-scroll-container">
+                <iframe src="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" class="custom-iframe" loading="lazy"></iframe>
+            </div>
+        </div>
+    `,
+
+    // ---------------------------------------------------------
+    // PAGE: LỘ TRÌNH DẪN KHÁCH
+    // ---------------------------------------------------------
+    'page-lo-trinh-dan-khach': `
+        <div class="iframe-container-wrapper">
+            <div class="iframe-actions-bar">
+                <span class="iframe-doc-title"><i class="fa-solid fa-route"></i> Lộ Trình Dẫn Khách — Lịch Trình 24h</span>
+                <a href="/training-hub/lich_trinh_24h_bds_nam.html" target="_blank" class="iframe-btn-open">
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
+                </a>
+            </div>
+            <div class="iframe-scroll-container">
+                <iframe src="/training-hub/lich_trinh_24h_bds_nam.html" class="custom-iframe" loading="lazy"></iframe>
+            </div>
         </div>
     `
 
