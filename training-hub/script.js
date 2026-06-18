@@ -98,16 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else {
                     appContent.innerHTML = APP_CONTENT[pageId];
-                    
-                    // Append completion card at the bottom if it's a roadmap module
-                    const isRoadmapPage = typeof TRAINING_ROADMAP !== 'undefined' && TRAINING_ROADMAP.some(step => step.modules.some(m => m.id === pageId));
-                    if (isRoadmapPage) {
-                        const compContainer = document.createElement('div');
+                }
+
+                // Append completion card at the bottom if it's a roadmap module
+                const isRoadmapPage = typeof TRAINING_ROADMAP !== 'undefined' && TRAINING_ROADMAP.some(step => step.modules.some(m => m.id === pageId));
+                if (isRoadmapPage) {
+                    let compContainer = document.getElementById('lesson-completion-container');
+                    if (!compContainer) {
+                        compContainer = document.createElement('div');
                         compContainer.id = 'lesson-completion-container';
                         appContent.appendChild(compContainer);
-                        if (typeof renderLessonCompletionCard === 'function') {
-                            renderLessonCompletionCard(pageId);
-                        }
+                    }
+                    if (typeof renderLessonCompletionCard === 'function') {
+                        renderLessonCompletionCard(pageId);
                     }
                 }
             }
