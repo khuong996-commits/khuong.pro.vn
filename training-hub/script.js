@@ -34,14 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'page-ly-do-tang-gia': 'ly-do-tang-gia-bds',
         'page-giai-doan-tang-gia': 'giai-doan-tang-gia-bds',
         'page-so-sanh-kenh-dau-tu': 'so-sanh-kenh-dau-tu-bds',
-        'page-bang-hang': 'bang-hang-tong-hop',
         'page-mau-dang-tin-ao': 'mau-dang-tin-ao',
         'page-tuyet-ky-lai-khach': 'tuyet-chieu-lai-khach',
         'page-admin-emails': 'admin-emails',
-        'page-profile': 'ho-so',
-        'page-kien-thuc-nen': 'kien-thuc-nen',
-        'page-thi-truong': 'thi-truong',
-        'page-mau-gui-thong-tin': 'mau-gui-thong-tin'
+        'page-profile': 'ho-so'
     };
     const pathMap = {};
     for (let k in routeMap) pathMap[routeMap[k]] = k;
@@ -65,8 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.appRoutes = {
         navigate: function(pageId, pushState = true) {
-            // Check if page exists in DB
-            if (!APP_CONTENT[pageId]) {
+            window.currentPageId = pageId;
+            // Check if page exists in DB (except dynamic page-profile)
+            if (pageId !== 'page-profile' && !APP_CONTENT[pageId]) {
                 console.error('Page not found:', pageId);
                 return;
             }
@@ -101,6 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else {
                     appContent.innerHTML = APP_CONTENT[pageId];
+                    
+                    // Append completion card at the bottom if it's a roadmap module
+                    const isRoadmapPage = typeof TRAINING_ROADMAP !== 'undefined' && TRAINING_ROADMAP.some(step => step.modules.some(m => m.id === pageId));
+                    if (isRoadmapPage) {
+                        const compContainer = document.createElement('div');
+                        compContainer.id = 'lesson-completion-container';
+                        appContent.appendChild(compContainer);
+                        if (typeof renderLessonCompletionCard === 'function') {
+                            renderLessonCompletionCard(pageId);
+                        }
+                    }
                 }
             }
 
@@ -179,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             const currentPath = window.location.pathname.replace(/^\/+/, '');
             const relativePath = currentPath.replace(/^training-hub\/?/, '').replace(/^\/+/, '');
-            const pageId = pathMap[relativePath] || 'page-tb-loi-noi-dau';
+            const pageId = pathMap[relativePath] || 'page-profile';
             window.appRoutes.navigate(pageId, false);
         }
     });
@@ -187,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load initial based on URL
     const initialPath = window.location.pathname.replace(/^\/+/, '');
     const relativePath = initialPath.replace(/^training-hub\/?/, '').replace(/^\/+/, '');
-    const initialPageId = pathMap[relativePath] || 'page-tb-loi-noi-dau';
+    const initialPageId = pathMap[relativePath] || 'page-profile';
     window.appRoutes.navigate(initialPageId, false);
 });
 
@@ -435,7 +443,7 @@ window.mauDangTinAo = {
             
             card.innerHTML = `
                 <div class="gallery-image-wrapper">
-                    <img src="/training-hub/assets/anh_khach_ao/${fileName}" loading="lazy" alt="Ảnh mẫu đăng tin">
+                    <img src="assets/anh_khach_ao/${fileName}" loading="lazy" alt="Ảnh mẫu đăng tin">
                 </div>
                 <div class="gallery-info">
                     <span class="gallery-number">Mẫu đăng tin số ${i + 1}</span>
@@ -469,7 +477,7 @@ window.mauDangTinAo = {
         const download = document.getElementById('lightbox-download');
         if (lightbox && img && caption && download) {
             const fileName = this.images[idx];
-            const src = '/training-hub/assets/anh_khach_ao/' + fileName;
+            const src = 'assets/anh_khach_ao/' + fileName;
             img.src = src;
             caption.innerText = `Mẫu số ${idx + 1} / ${this.images.length} (Tên ảnh gốc: ${fileName})`;
             download.href = src;

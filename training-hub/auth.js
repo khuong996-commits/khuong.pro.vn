@@ -77,11 +77,25 @@ function initAuth() {
             updateTopbarUser(user);
             updateAdminNav();
 
-            // Nếu người dùng truy cập trang chủ hoặc trang hồ sơ cũ -> vào thẳng Lời Nói Đầu & Nhập Môn
+            // Nạp profile của người dùng
+            await loadUserProfile();
+
+            // Tự động vẽ lại nút hoàn thành hoặc trang hồ sơ sau khi auth hoàn tất
+            if (window.currentPageId) {
+                const isRoadmapPage = typeof TRAINING_ROADMAP !== 'undefined' && TRAINING_ROADMAP.some(step => step.modules.some(m => m.id === window.currentPageId));
+                if (isRoadmapPage && typeof renderLessonCompletionCard === 'function') {
+                    renderLessonCompletionCard(window.currentPageId);
+                }
+                if (window.currentPageId === 'page-profile' && typeof renderProfilePage === 'function') {
+                    renderProfilePage();
+                }
+            }
+
+            // Nếu người dùng truy cập trang chủ hoặc trang hồ sơ cũ -> vào thẳng trang Hồ Sơ
             const currentPath = window.location.pathname.replace(/^\/+/, '');
             const relativePath = currentPath.replace(/^training-hub\/?/, '').replace(/^\/+/, '');
             if (relativePath === '' || relativePath === 'ho-so') {
-                if (window.appRoutes) window.appRoutes.navigate('page-tb-loi-noi-dau', false);
+                if (window.appRoutes) window.appRoutes.navigate('page-profile', false);
             }
         } else {
             currentUser = null;
@@ -2056,52 +2070,84 @@ function formatDate(date) {
 const TRAINING_ROADMAP = [
     {
         week: 1,
-        title: 'NHẬP MÔN',
-        subtitle: 'Hiểu rõ quy tắc, cơ chế, quy trình cơ bản',
-        icon: 'fa-flag-checkered',
+        title: 'THIẾT LẬP & LIÊN KẾT',
+        subtitle: 'Thiết lập nhóm hỗ trợ, sơ đồ tuyến trên, Zalo/Telegram',
+        icon: 'fa-handshake',
         color: '#38bdf8',
         modules: [
-            { id: 'page-tb-loi-noi-dau', name: 'Lời Nói Đầu & Nhập Môn', icon: 'fa-handshake', desc: 'Tổng quan về Team và triết lý làm việc' },
-            { id: 'page-tb-quy-che', name: 'Quy Chế & Cơ Chế', icon: 'fa-scale-balanced', desc: 'Hoa hồng, thăng tiến, quy định nội bộ, tuyến trên' },
-            { id: 'page-tb-quy-trinh', name: 'Quy Trình Bán Hàng', icon: 'fa-file-contract', desc: 'Các bước từ đặt cọc đến trả sổ' },
-            { id: 'page-bai-dang-dau-tien', name: 'Bài Đăng Đầu Tiên', icon: 'fa-seedling', desc: 'Công thức 5 lớp gieo hạt trên MXH' },
-            { id: 'page-tb-chon-kenh', name: 'Chọn Kênh Tìm Kiếm Khách Hàng', icon: 'fa-magnifying-glass', desc: 'Khai thác MQH thân quen, mất phí và miễn phí' },
+            { id: 'page-tb-loi-noi-dau', name: 'Lời Nói Đầu & Nhập Môn', icon: 'fa-handshake', desc: 'Tổng quan về Team và triết lý làm việc thực chiến' },
+            { id: 'page-tb-quy-che', name: 'Quy Chế & Cơ Chế', icon: 'fa-scale-balanced', desc: 'Cơ chế hoa hồng, thăng tiến và quy chế nội bộ' }
         ]
     },
     {
         week: 2,
-        title: 'VŨ KHÍ CƠ BẢN',
-        subtitle: 'Trang bị kiến thức nền tảng để ra trận',
-        icon: 'fa-shield-halved',
+        title: 'KIẾN THỨC NỀN TẢNG',
+        subtitle: 'Lý do tăng giá, Quy hoạch, so sánh kênh đầu tư',
+        icon: 'fa-book-open-reader',
         color: '#a78bfa',
         modules: [
-            { id: 'page-chan-dung-khach-hang', name: 'Chân Dung Khách Hàng', icon: 'fa-users-viewfinder', desc: 'Nhận diện và phân loại khách hàng' },
-            { id: 'page-bang-hang', name: 'Bảng Hàng Tổng Hợp', icon: 'fa-table-list', desc: 'Nắm rõ sản phẩm đang bán' },
+            { id: 'page-kien-thuc-nen', name: 'Đào Tạo Kiến Thức Nền', icon: 'fa-book-open-reader', desc: 'Quy hoạch BĐS, lý do tăng giá đất nền KCN' },
+            { id: 'page-thi-truong', name: 'Thị Trường Đang Triển Khai', icon: 'fa-map-location-dot', desc: 'Bản đồ, sơ đồ dự án và thị trường mục tiêu đang bán' },
+            { id: 'page-chan-dung-khach-hang', name: 'Chân Dung Khách Hàng', icon: 'fa-users-viewfinder', desc: 'Phân loại, nhận diện và đọc vị khách hàng tiềm năng' },
+            { id: 'page-bang-hang', name: 'Bảng Hàng Tổng Hợp', icon: 'fa-table-list', desc: 'Chi tiết sản phẩm, vị trí lô đất đang bán' }
         ]
     },
     {
         week: 3,
-        title: 'THỰC CHIẾN',
-        subtitle: 'Áp dụng kiến thức vào thực tế hàng ngày',
-        icon: 'fa-crosshairs',
+        title: 'KHẢO SÁT THỰC ĐỊA',
+        subtitle: 'Đi xem đất thực địa và nắm quy trình giao dịch',
+        icon: 'fa-route',
         color: '#34d399',
         modules: [
-            { id: 'page-telesale', name: 'TeleSale & Truy Vấn', icon: 'fa-headset', desc: '5 câu hỏi đọc vị khách hàng' },
-            { id: 'page-mau-gui-thong-tin', name: 'Mẫu gửi thông tin', icon: 'fa-paper-plane', desc: 'Các kịch bản và mẫu tin nhắn gửi thông tin cho khách' },
-            { id: 'page-chien-luoc-fb', name: 'Chiến Lược Facebook', icon: 'fa-thumbs-up', desc: 'Xây thương hiệu cá nhân, hack reach' },
-            { id: 'page-cac-khoa-hoc', name: 'Các Khóa Học Nâng Cao', icon: 'fa-graduation-cap', desc: 'Kiến thức chuyên sâu BĐS' },
+            { id: 'page-tb-quy-trinh', name: 'Quy Trình Bán Hàng', icon: 'fa-file-contract', desc: 'Quy trình thực địa và các bước đặt cọc, thanh toán' }
         ]
     },
     {
         week: 4,
-        title: 'CHỐT DEAL',
-        subtitle: 'Thực hành có người dẫn, chốt deal đầu tiên',
-        icon: 'fa-trophy',
+        title: 'THƯƠNG HIỆU & KÊNH BÁN',
+        subtitle: 'Đăng bài gieo hạt đầu tiên, xây dựng thương hiệu cá nhân',
+        icon: 'fa-seedling',
         color: '#f59e0b',
         modules: [
-            { id: 'page-cam-tay-chi-viec', name: 'Cầm Tay Chỉ Việc', icon: 'fa-hand-holding-hand', desc: 'Các kênh tìm kiếm khách hàng: TikTok, Facebook Ads, Đăng tin' },
+            { id: 'page-bai-dang-dau-tien', name: 'Bài Đăng Đầu Tiên', icon: 'fa-seedling', desc: 'Công thức 5 lớp bài đăng gieo hạt đầu tiên trên MXH' },
+            { id: 'page-tb-chon-kenh', name: 'Chọn Kênh Tìm Khách', icon: 'fa-magnifying-glass', desc: 'Chiến lược khai thác mối quan hệ, kênh mất phí và miễn phí' },
+            { id: 'page-chien-luoc-fb', name: 'Chiến Lược Thương Hiệu', icon: 'fa-thumbs-up', desc: 'Chuẩn hóa trang cá nhân chuyên nghiệp, hack reach chống bóp' }
         ]
     },
+    {
+        week: 5,
+        title: 'KỸ THUẬT ĐĂNG TIN',
+        subtitle: 'Phủ tin online Group, Marketplace, trang cá nhân',
+        icon: 'fa-images',
+        color: '#ec4899',
+        modules: [
+            { id: 'page-mau-dang-tin-ao', name: 'Bài Mẫu Đăng Tin Ảo', icon: 'fa-images', desc: 'Tổng hợp hình ảnh thực tế và các bài mẫu thu hút' },
+            { id: 'page-tuyet-ky-lai-khach', name: 'Tuyệt Chiêu Lái Khách', icon: 'fa-chess-knight', desc: 'Tuyệt kỹ điều hướng, lái khách quan tâm đến sản phẩm thật' },
+            { id: 'page-cam-tay-chi-viec', name: 'Cầm Tay Chỉ Việc', icon: 'fa-hand-holding-hand', desc: 'Thực hành đăng tin, hack tương tác phủ sóng online' }
+        ]
+    },
+    {
+        week: 6,
+        title: 'KỊCH BẢN CHĂM KHÁCH',
+        subtitle: 'Kịch bản gọi điện lọc nhu cầu, gửi thông tin chuyên nghiệp',
+        icon: 'fa-headset',
+        color: '#6366f1',
+        modules: [
+            { id: 'page-telesale', name: 'TeleSale & Lọc Khách', icon: 'fa-headset', desc: 'Kịch bản telesale lọc khách, cách lưu tên danh bạ và lưu thông tin' },
+            { id: 'page-mau-gui-thong-tin', name: 'Mẫu Gửi Thông Tin', icon: 'fa-paper-plane', desc: 'Các kịch bản nhắn tin và mẫu thông tin gửi dự án' },
+            { id: 'page-cac-khoa-hoc', name: 'Các Khóa Học Nâng Cao', icon: 'fa-graduation-cap', desc: 'Đào tạo kỹ năng chuyên sâu BĐS từ Sếp Khương' }
+        ]
+    },
+    {
+        week: 7,
+        title: 'TƯ VẤN & QUYẾT TOÁN',
+        subtitle: 'Quy trình tư vấn bản đồ trực tiếp và chốt deal',
+        icon: 'fa-calculator',
+        color: '#14b8a6',
+        modules: [
+            { id: 'page-tinh-hoa-hong', name: 'Tính Hoa Hồng Giao Dịch', icon: 'fa-calculator', desc: 'Cách tính hoa hồng doanh số và thủ tục quyết toán nhận tiền' }
+        ]
+    }
 ];
 
 let userProfile = null;
@@ -2111,12 +2157,53 @@ async function loadUserProfile() {
     if (!currentUser) return null;
     const email = currentUser.email.toLowerCase().trim();
 
+    // 1. Đọc cache dự phòng từ localStorage trước
+    const cacheKey = 'profile_' + email;
+    let cachedProfile = null;
+    try {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) cachedProfile = JSON.parse(cached);
+    } catch (e) {
+        console.warn('Lỗi đọc localStorage:', e);
+    }
+
+    // 2. Nếu là local mock user (không qua Firebase Auth), dùng luôn dữ liệu local
+    const isLocalMock = currentUser.displayName === 'Sếp Khương (Local)';
+    if (isLocalMock) {
+        if (cachedProfile) {
+            userProfile = cachedProfile;
+        } else {
+            userProfile = {
+                displayName: currentUser.displayName || '',
+                email: email,
+                birthday: '',
+                phone: '',
+                joinDate: '',
+                facebookUrl: '',
+                zaloPhone: '',
+                bio: '',
+                completedModules: [],
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+            } catch (e) {}
+        }
+        return userProfile;
+    }
+
+    // 3. Nếu là user thật (hoặc online), fetch từ Firestore
     try {
         const db = firebase.firestore();
         const doc = await db.collection('profiles').doc(email).get();
 
         if (doc.exists) {
             userProfile = doc.data();
+            // Lưu đè lại cache
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+            } catch (e) {}
         } else {
             // Tạo profile mặc định
             userProfile = {
@@ -2133,6 +2220,9 @@ async function loadUserProfile() {
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
             await db.collection('profiles').doc(email).set(userProfile);
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+            } catch (e) {}
         }
 
         // --- ĐỒNG BỘ TIẾN TRÌNH DUYỆT TỪ WHITELIST (Leader/Sếp duyệt) ---
@@ -2152,6 +2242,9 @@ async function loadUserProfile() {
                         completedModules: merged,
                         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
+                    try {
+                        localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+                    } catch (e) {}
                     console.log("Đã tự động đồng bộ tiến trình học từ Whitelist sang Profile cho:", email);
                 }
             }
@@ -2193,6 +2286,9 @@ async function loadUserProfile() {
                     photoURL: currentUser.photoURL || userProfile.photoURL || '',
                     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
+                try {
+                    localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+                } catch (e) {}
                 console.log("Đã ghi nhận lịch sử truy cập cho:", email);
             }
         } catch (logErr) {
@@ -2201,12 +2297,17 @@ async function loadUserProfile() {
 
         return userProfile;
     } catch (error) {
-        console.error('Lỗi load profile:', error);
-        userProfile = {
-            displayName: currentUser.displayName || '',
-            email: currentUser.email,
-            completedModules: []
-        };
+        console.error('Lỗi load profile từ Firestore, chuyển sang dùng cache:', error);
+        // Fallback sang cache nếu Firestore lỗi
+        if (cachedProfile) {
+            userProfile = cachedProfile;
+        } else {
+            userProfile = {
+                displayName: currentUser.displayName || '',
+                email: currentUser.email,
+                completedModules: []
+            };
+        }
         return userProfile;
     }
 }
@@ -2215,16 +2316,38 @@ async function loadUserProfile() {
 async function saveUserProfile(data) {
     if (!currentUser) return false;
     const email = currentUser.email.toLowerCase().trim();
+    const cacheKey = 'profile_' + email;
 
+    // Cập nhật state trong memory
+    if (userProfile) {
+        Object.assign(userProfile, data);
+    } else {
+        userProfile = { email: email, completedModules: [], ...data };
+    }
+
+    // 1. Luôn cập nhật localStorage trước để giữ trạng thái local tức thì
+    try {
+        localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+    } catch (e) {
+        console.warn('Lỗi ghi localStorage:', e);
+    }
+
+    // Nếu là mock user hoặc offline, trả về true luôn vì đã lưu local thành công
+    const isLocalMock = currentUser.displayName === 'Sếp Khương (Local)';
+    if (isLocalMock) {
+        return true;
+    }
+
+    // 2. Ghi lên Firestore
     try {
         const db = firebase.firestore();
         data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
         await db.collection('profiles').doc(email).set(data, { merge: true });
-        Object.assign(userProfile, data);
         return true;
     } catch (error) {
-        console.error('Lỗi lưu profile:', error);
-        return false;
+        console.error('Lỗi lưu profile lên Firestore, đã lưu tạm vào bộ nhớ máy:', error);
+        // Vẫn trả về true vì dữ liệu đã được lưu vào localStorage và state, giúp trải nghiệm không bị đứt quãng
+        return true; 
     }
 }
 
@@ -2247,6 +2370,48 @@ async function toggleModuleComplete(moduleId) {
     // Re-render lộ trình
     updateRoadmapUI();
     updateHeroLevel();
+
+    if (document.querySelector('.profile-wrapper')) {
+        renderProfilePage();
+    }
+}
+
+// ---- Toggle hoàn thành module từ trang bài học ----
+async function toggleModuleCompleteFromLesson(moduleId) {
+    await toggleModuleComplete(moduleId);
+    renderLessonCompletionCard(moduleId);
+}
+
+// ---- Render thẻ hoàn thành cuối bài học ----
+async function renderLessonCompletionCard(pageId) {
+    const container = document.getElementById('lesson-completion-container');
+    if (!container) return;
+
+    if (!userProfile) await loadUserProfile();
+
+    const completedModules = userProfile?.completedModules || [];
+    const isCompleted = completedModules.includes(pageId);
+
+    container.innerHTML = `
+        <div class="lesson-completion-card ${isCompleted ? 'completed' : ''}">
+            <div class="lesson-completion-info">
+                <div class="lesson-completion-icon">
+                    <i class="fa-solid ${isCompleted ? 'fa-circle-check' : 'fa-circle-question'}"></i>
+                </div>
+                <div class="lesson-completion-text">
+                    <h3>${isCompleted ? 'Bạn đã hoàn thành bài học này!' : 'Hoàn thành bài học này?'}</h3>
+                    <p>${isCompleted ? 'Tiến độ học tập của bạn đã được cập nhật.' : 'Đánh dấu đã học để ghi nhận tiến độ đào tạo.'}</p>
+                </div>
+            </div>
+            <button class="btn-toggle-lesson-complete ${isCompleted ? 'completed' : 'not-completed'}" 
+                onclick="toggleModuleCompleteFromLesson('${pageId}')">
+                ${isCompleted 
+                    ? '<i class="fa-solid fa-circle-check"></i> Đã Hoàn Thành' 
+                    : '<i class="fa-regular fa-circle"></i> Đánh Dấu Hoàn Thành'
+                }
+            </button>
+        </div>
+    `;
 }
 
 // ---- Navigate đến trang module ----
@@ -2283,9 +2448,30 @@ async function renderProfilePage() {
     const container = document.getElementById('app-content');
     if (!container) return;
 
-    container.innerHTML = `<div class="profile-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải hồ sơ...</div>`;
+    // 1. Nếu chưa có userProfile, show loading và đợi tải lần đầu
+    if (!userProfile) {
+        container.innerHTML = `<div class="profile-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải hồ sơ...</div>`;
+        await loadUserProfile();
+    }
 
-    await loadUserProfile();
+    // 2. Render ngay lập tức từ dữ liệu hiện tại (trong memory / cache)
+    renderProfileUI(container);
+
+    // 3. Chạy ngầm loadUserProfile() để revalidate từ Firestore (trừ khi là local mock)
+    const isLocalMock = currentUser && currentUser.displayName === 'Sếp Khương (Local)';
+    if (!isLocalMock && currentUser) {
+        loadUserProfile().then((freshProfile) => {
+            // Chỉ re-render nếu người dùng vẫn đang ở trang Hồ Sơ
+            if (freshProfile && document.querySelector('.profile-wrapper')) {
+                renderProfileUI(container);
+            }
+        }).catch(err => console.error("Lỗi cập nhật ngầm profile:", err));
+    }
+}
+
+// ---- Hàm render UI đồng bộ của trang Profile ----
+function renderProfileUI(container) {
+    if (!container) return;
 
     const profile = userProfile || {};
     const user = currentUser;
@@ -2295,11 +2481,32 @@ async function renderProfilePage() {
     const roleBadge = isAdmin() ? 'Admin' : isLeader() ? 'Trưởng Nhóm' : 'Nhân Viên';
     const roleClass = isAdmin() ? 'role-admin' : isLeader() ? 'role-leader' : 'role-member';
     const level = getCurrentLevel();
-    const isRegularStaff = !isAdmin() && !isLeader();
+    const completedModules = profile.completedModules || [];
+    const totalMods = getTotalModules();
+    const completedCount = completedModules.length;
+    const pct = totalMods > 0 ? Math.round((completedCount / totalMods) * 100) : 0;
+    const remaining = totalMods - completedCount;
+
+    // Find current step (first incomplete step)
+    let currentStepIdx = TRAINING_ROADMAP.length; // default: all done
+    for (let i = 0; i < TRAINING_ROADMAP.length; i++) {
+        const allDone = TRAINING_ROADMAP[i].modules.every(m => completedModules.includes(m.id));
+        if (!allDone) { currentStepIdx = i; break; }
+    }
+    const currentStepName = currentStepIdx < TRAINING_ROADMAP.length ? TRAINING_ROADMAP[currentStepIdx].title : 'Hoàn thành!';
+
+    // Progress ring SVG values
+    const radius = 44;
+    const circumference = 2 * Math.PI * radius;
+    const dashoffset = circumference - (circumference * pct) / 100;
+    const ringColor = pct >= 100 ? '#34d399' : pct >= 50 ? '#fbbf24' : '#38bdf8';
+
+    // Stepper labels
+    const stepperLabels = ['Thiết lập', 'Kiến thức', 'Thực địa', 'Thương hiệu', 'Đăng tin', 'Chăm khách', 'Chốt deal'];
 
     container.innerHTML = `
         <div class="profile-wrapper">
-            <!-- Hero Section -->
+            <!-- ===== HERO BANNER ===== -->
             <div class="profile-hero">
                 <div class="profile-hero-bg"></div>
                 <div class="profile-hero-content">
@@ -2308,53 +2515,186 @@ async function renderProfilePage() {
                             ? `<img class="profile-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
                             : `<div class="profile-avatar-placeholder"><i class="fa-solid fa-user"></i></div>`
                         }
-                        ${isRegularStaff 
-                            ? `<div class="profile-level-badge" id="profile-level-badge" style="background:${level.color}">
-                                   ${level.icon} ${level.name}
-                               </div>` 
-                            : ''
-                        }
+                        <div class="profile-level-badge" id="profile-level-badge" style="background:${level.color}">
+                            ${level.icon} ${level.name}
+                        </div>
                     </div>
                     <div class="profile-hero-info">
                         <h1 class="profile-name">${displayName}</h1>
                         <span class="profile-role ${roleClass}">${roleBadge}</span>
                         <span class="profile-email-display"><i class="fa-solid fa-envelope"></i> ${email}</span>
-                        <div class="profile-actions-row" style="margin-top: 15px; display: flex; gap: 10px;">
-                            <a href="/crm" class="profile-action-btn btn-crm" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; font-weight: 700; font-size: 0.9rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25); text-decoration: none; transition: all 0.3s ease; border: 1px solid rgba(245, 158, 11, 0.3);">
+                        <div class="profile-actions-row">
+                            <a href="/crm" class="profile-action-btn btn-crm">
                                 <i class="fa-solid fa-hotel"></i> Đi tới TL Land CRM
                             </a>
                         </div>
                     </div>
+                    <!-- Progress Ring -->
+                    <div class="profile-hero-progress">
+                        <div class="profile-progress-ring">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="ring-bg" cx="50" cy="50" r="${radius}"></circle>
+                                <circle class="ring-fill" cx="50" cy="50" r="${radius}"
+                                    stroke="${ringColor}"
+                                    stroke-dasharray="${circumference}"
+                                    stroke-dashoffset="${dashoffset}"></circle>
+                            </svg>
+                            <div class="profile-progress-center">
+                                <span class="profile-progress-num">${pct}%</span>
+                                <span class="profile-progress-label">Hoàn thành</span>
+                            </div>
+                        </div>
+                        <div class="profile-progress-step">Bước ${currentStepIdx + 1}/7 — ${currentStepName}</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tabs -->
-            ${isRegularStaff ? `
-            <div class="profile-tabs">
-                <button class="profile-tab ${window.defaultProfileTab === 'roadmap' ? '' : 'active'}" onclick="switchProfileTab('info', this)">
-                    <i class="fa-solid fa-user-pen"></i> Thông Tin
-                </button>
-                <button class="profile-tab ${window.defaultProfileTab === 'roadmap' ? 'active' : ''}" onclick="switchProfileTab('roadmap', this)">
-                    <i class="fa-solid fa-route"></i> Lộ trình tân binh
-                </button>
-            </div>
-            ` : ''}
-
-            <!-- Tab: Thông Tin Cá Nhân -->
-            <div class="profile-tab-panel ${(!isRegularStaff || window.defaultProfileTab !== 'roadmap') ? 'active' : ''}" id="tab-info">
-                ${renderProfileInfoTab(profile)}
+            <!-- ===== HORIZONTAL STEPPER ===== -->
+            <div class="profile-stepper">
+                ${TRAINING_ROADMAP.map((step, idx) => {
+                    const stepCompleted = step.modules.every(m => completedModules.includes(m.id));
+                    const isCurrent = idx === currentStepIdx;
+                    const cls = stepCompleted ? 'completed' : isCurrent ? 'current' : '';
+                    return `
+                        <div class="stepper-step ${cls}">
+                            <div class="stepper-dot">${stepCompleted ? '<i class="fa-solid fa-check" style="font-size:0.6rem"></i>' : (idx + 1)}</div>
+                            <div class="stepper-label">${stepperLabels[idx] || step.title}</div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
 
-            <!-- Tab: Lộ Trình Đào Tạo -->
-            ${isRegularStaff ? `
-            <div class="profile-tab-panel ${window.defaultProfileTab === 'roadmap' ? 'active' : ''}" id="tab-roadmap">
-                ${renderRoadmapTab(profile)}
+            <!-- ===== TWO-COLUMN MAIN ===== -->
+            <div class="profile-main">
+                <!-- LEFT: Roadmap -->
+                <div class="profile-col-left">
+                    <div class="profile-section-title">
+                        <i class="fa-solid fa-route"></i> Lộ Trình Đào Tạo 7 Bước
+                    </div>
+                    ${TRAINING_ROADMAP.map((step, idx) => {
+                        const stepDone = step.modules.every(m => completedModules.includes(m.id));
+                        const isCurrent = idx === currentStepIdx;
+                        const stepCompletedCount = step.modules.filter(m => completedModules.includes(m.id)).length;
+                        const statusCls = stepDone ? 'completed' : isCurrent ? 'current' : 'upcoming';
+                        const expanded = isCurrent || stepDone ? 'expanded' : '';
+                        const badgeBg = stepDone ? 'background:rgba(52,211,153,0.12);color:#34d399;' : isCurrent ? 'background:rgba(251,191,36,0.12);color:#f59e0b;' : 'background:rgba(0,0,0,0.04);color:var(--text-muted);';
+                        return `
+                            <div class="roadmap-step-card ${statusCls} ${expanded}" data-step-idx="${idx}">
+                                <div class="roadmap-step-header" onclick="toggleRoadmapStep(this)">
+                                    <div class="roadmap-step-num" style="background:${step.color}">${idx + 1}</div>
+                                    <div class="roadmap-step-info">
+                                        <h4>Bước ${idx + 1}: ${step.title}</h4>
+                                        <p>${step.subtitle}</p>
+                                    </div>
+                                    <span class="roadmap-step-progress-badge" style="${badgeBg}">${stepCompletedCount}/${step.modules.length}</span>
+                                    <i class="fa-solid fa-chevron-down roadmap-step-arrow"></i>
+                                </div>
+                                <div class="roadmap-step-modules">
+                                    ${step.modules.map(mod => {
+                                        const isCompleted = completedModules.includes(mod.id);
+                                        return `
+                                            <div class="roadmap-module ${isCompleted ? 'completed' : ''}">
+                                                <div class="roadmap-module-check" onclick="toggleModuleComplete('${mod.id}')">
+                                                    <i class="fa-solid ${isCompleted ? 'fa-circle-check' : 'fa-circle'}"></i>
+                                                </div>
+                                                <div class="roadmap-module-content" onclick="navigateToModule('${mod.id}')">
+                                                    <div class="roadmap-module-icon" style="color:${step.color}">
+                                                        <i class="fa-solid ${mod.icon}"></i>
+                                                    </div>
+                                                    <div class="roadmap-module-info">
+                                                        <h4>${mod.name}</h4>
+                                                        <p>${mod.desc}</p>
+                                                    </div>
+                                                    <div class="roadmap-module-arrow">
+                                                        <i class="fa-solid fa-arrow-right"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+
+                <!-- RIGHT: Info + Stats -->
+                <div class="profile-col-right">
+                    <!-- Quick Stats -->
+                    <div class="profile-card">
+                        <div class="profile-card-title"><i class="fa-solid fa-chart-pie"></i> Thống Kê Nhanh</div>
+                        <div class="profile-stats-grid">
+                            <div class="profile-stat-box">
+                                <div class="profile-stat-num" style="color:#38bdf8;">${totalMods}</div>
+                                <div class="profile-stat-label">Tổng bài học</div>
+                            </div>
+                            <div class="profile-stat-box">
+                                <div class="profile-stat-num" style="color:#34d399;">${completedCount}</div>
+                                <div class="profile-stat-label">Đã hoàn thành</div>
+                            </div>
+                            <div class="profile-stat-box">
+                                <div class="profile-stat-num" style="color:#f59e0b;">${remaining}</div>
+                                <div class="profile-stat-label">Còn lại</div>
+                            </div>
+                            <div class="profile-stat-box">
+                                <div class="profile-stat-num" style="color:#a78bfa;">7</div>
+                                <div class="profile-stat-label">Tổng bước</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Info -->
+                    <div class="profile-card">
+                        <div class="profile-card-title"><i class="fa-solid fa-user-pen"></i> Thông Tin Cá Nhân</div>
+                        <div class="profile-info-compact">
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-user"></i> Họ tên</label>
+                                <input type="text" id="pf-name" value="${profile.displayName || ''}" placeholder="Nhập họ tên..." class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-phone"></i> Số điện thoại</label>
+                                <input type="tel" id="pf-phone" value="${profile.phone || ''}" placeholder="0xxx xxx xxx" class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-cake-candles"></i> Ngày sinh</label>
+                                <input type="date" id="pf-birthday" value="${profile.birthday || ''}" class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-calendar-check"></i> Ngày vào Team</label>
+                                <input type="date" id="pf-joindate" value="${profile.joinDate || ''}" class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-brands fa-facebook"></i> Facebook</label>
+                                <input type="url" id="pf-facebook" value="${profile.facebookUrl || ''}" placeholder="https://facebook.com/..." class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-comment-dots"></i> Zalo</label>
+                                <input type="tel" id="pf-zalo" value="${profile.zaloPhone || ''}" placeholder="Số điện thoại Zalo" class="profile-input" />
+                            </div>
+                            <div class="profile-field-compact">
+                                <label><i class="fa-solid fa-pen-fancy"></i> Giới thiệu</label>
+                                <textarea id="pf-bio" placeholder="Vài dòng về bản thân..." class="profile-input profile-textarea">${profile.bio || ''}</textarea>
+                            </div>
+                            <div class="profile-save-bar">
+                                <button class="profile-save-btn" onclick="handleSaveProfile()">
+                                    <i class="fa-solid fa-floppy-disk"></i> Lưu Thông Tin
+                                </button>
+                                <span class="profile-save-status" id="profile-save-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            ` : ''}
         </div>
     `;
 
-    window.defaultProfileTab = null; // Reset
+    window.defaultProfileTab = null;
+}
+
+// ---- Toggle expand/collapse roadmap step card ----
+function toggleRoadmapStep(headerEl) {
+    const card = headerEl.closest('.roadmap-step-card');
+    if (card) card.classList.toggle('expanded');
 }
 
 // ---- Chuyển tab ----
@@ -2755,7 +3095,7 @@ function renderRoadmapTab(profile) {
                             <i class="fa-solid ${week.icon}"></i>
                         </div>
                         <div>
-                            <h3 class="roadmap-week-title">Tuần ${week.week}: ${week.title}</h3>
+                            <h3 class="roadmap-week-title">Bước ${week.week}: ${week.title}</h3>
                             <p class="roadmap-week-subtitle">${week.subtitle}</p>
                         </div>
                     </div>
