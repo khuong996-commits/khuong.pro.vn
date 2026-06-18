@@ -143,7 +143,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Lý Do Tăng Giá Của Bất Động Sản</span>
-                <a href="/training-hub/LY_DO_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
+                <a href="LY_DO_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -160,7 +160,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Những Giai Đoạn Tăng Giá Của Bất Động Sản</span>
-                <a href="/training-hub/GIAI_DOAN_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
+                <a href="GIAI_DOAN_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -177,7 +177,7 @@ const APP_CONTENT = {
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
                 <span class="iframe-doc-title"><i class="fa-solid fa-scale-balanced"></i> So Sánh Các Kênh Đầu Tư & Lợi Thế BĐS</span>
-                <a href="/training-hub/SO_SANH_KENH_DAU_TU.html" target="_blank" class="iframe-btn-open">
+                <a href="SO_SANH_KENH_DAU_TU.html" target="_blank" class="iframe-btn-open">
                     <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
@@ -440,6 +440,13 @@ const APP_CONTENT = {
                 <h3 style="margin-bottom: 12px;">Sơn Tây</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 15px;">Phát triển mạnh về bất động sản sinh thái, nghỉ dưỡng ngoại ô Hà Nội.</p>
                 
+                <!-- Nút tài liệu Sơn Tây -->
+                <div class="ql-resources-buttons" style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0 30px 0;">
+                    <a href="https://xuankhanh-sales-avcdjt.netlify.app/" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+                        <i class="fa-solid fa-globe"></i> toàn bộ thị trường Sơn Tây
+                    </a>
+                </div>
+
                 <!-- Grid Video Đào Tạo Bản Đồ Sơn Tây -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
@@ -523,6 +530,26 @@ const APP_CONTENT = {
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/E7S0jdGm9LY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 5 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 5)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/scD4CnTU7lc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 6 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 6)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/VwhYhCJVSt4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -695,7 +722,7 @@ const APP_CONTENT = {
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <a href="/training-hub/TU_VAN_BDS_TONG_QUAN.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                <a href="TU_VAN_BDS_TONG_QUAN.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
                     <i class="fa-solid fa-file-lines"></i> Bấm vào đây để xem văn bản
                 </a>
             </div>
@@ -797,7 +824,7 @@ const APP_CONTENT = {
                 <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary);">5 Lỗ Hổng Tâm Lý Khách Hàng</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px;">Tài liệu đào tạo chuyên sâu về tâm lý hành vi khách hàng, áp dụng thực chiến trong Telesale và Chăm sóc khách hàng.</p>
                 
-                <a href="/training-hub/5_lo_hong_tam_ly.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-emerald); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);">
+                <a href="5_lo_hong_tam_ly.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-emerald); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);">
                     Đọc tài liệu toàn màn hình <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
@@ -1063,16 +1090,16 @@ const APP_CONTENT = {
                     </div>
                 </div>
                 <div class="pdf-actions">
-                    <a href="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" target="_blank" class="btn-pdf btn-pdf-primary">
+                    <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" target="_blank" class="btn-pdf btn-pdf-primary">
                         <i class="fa-solid fa-book-open"></i> Đọc Cẩm Nang Online
                     </a>
-                    <a href="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" download="Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" class="btn-pdf btn-pdf-secondary">
+                    <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" download="Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" class="btn-pdf btn-pdf-secondary">
                         <i class="fa-solid fa-download"></i> Tải Về Máy
                     </a>
                 </div>
             </div>
             <div class="pdf-preview">
-                <iframe src="/training-hub/assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" style="width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
+                <iframe src="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" style="width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
             </div>
         </div>
 
@@ -1378,7 +1405,7 @@ const APP_CONTENT = {
             </p>
             
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="/training-hub/lich_trinh_24h_bds_nam.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color:var(--text-primary); text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);">
+                <a href="lich_trinh_24h_bds_nam.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color:var(--text-primary); text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);">
                     <i data-lucide="arrow-up-right" width="24"></i> Bấm Vào Đây Để Xem Kịch Bản Chi Tiết
                 </a>
             </div>
@@ -2028,57 +2055,6 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-        </div>
-    `,
-
-    // ---------------------------------------------------------
-    // PAGE: BẢNG HÀNG TỔNG HỢP
-    // ---------------------------------------------------------
-    'page-bang-hang': `
-        <div class="iframe-container-wrapper">
-            <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-table-list"></i> Bảng Hàng Tổng Hợp — TL Land</span>
-                <a href="/training-hub/BANG_HANG_TL_LAND.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
-                </a>
-            </div>
-            <div class="iframe-scroll-container">
-                <iframe src="/training-hub/BANG_HANG_TL_LAND.html" class="custom-iframe"></iframe>
-            </div>
-        </div>
-    `,
-
-    // ---------------------------------------------------------
-    // PAGE: CHÂN DUNG NHÂN SỰ
-    // ---------------------------------------------------------
-    'page-chan-dung-nhan-su': `
-        <div class="iframe-container-wrapper">
-            <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-user-tie"></i> Chân Dung Nhân Sự TL Land</span>
-                <a href="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
-                </a>
-            </div>
-            <div class="iframe-scroll-container">
-                <iframe src="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" class="custom-iframe"></iframe>
-            </div>
-        </div>
-    `,
-
-    // ---------------------------------------------------------
-    // PAGE: LỘ TRÌNH DẪN KHÁCH
-    // ---------------------------------------------------------
-    'page-lo-trinh-dan-khach': `
-        <div class="iframe-container-wrapper">
-            <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-route"></i> Lộ Trình Dẫn Khách — Tư Vấn BĐS Tổng Quan</span>
-                <a href="/training-hub/TU_VAN_BDS_TONG_QUAN.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
-                </a>
-            </div>
-            <div class="iframe-scroll-container">
-                <iframe src="/training-hub/TU_VAN_BDS_TONG_QUAN.html" class="custom-iframe"></iframe>
-            </div>
         </div>
     `
 
