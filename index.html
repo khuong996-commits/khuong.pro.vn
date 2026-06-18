@@ -11,7 +11,26 @@
     <!-- Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
+
+    <!-- SVG Defs dùng chung cho toàn trang -->
+    <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9a7b0a"/>
+                <stop offset="40%" stop-color="#cfb53b"/>
+                <stop offset="70%" stop-color="#e8cc6e"/>
+                <stop offset="100%" stop-color="#cfb53b"/>
+            </linearGradient>
+            <linearGradient id="gold-grad-h" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7c6208"/>
+                <stop offset="30%" stop-color="#cfb53b"/>
+                <stop offset="50%" stop-color="#e8cc6e"/>
+                <stop offset="70%" stop-color="#cfb53b"/>
+                <stop offset="100%" stop-color="#7c6208"/>
+            </linearGradient>
+        </defs>
+    </svg>
 </head>
 <body>
 
@@ -26,8 +45,43 @@
     <div class="container">
         <!-- Profile Card -->
         <header class="profile-card">
+            <!-- ===== 4 ORNAMENTAL CORNER FLOURISHES ===== -->
+            <svg class="corner-ornament corner-tl" viewBox="0 0 100 100" fill="none">
+                <path d="M5 95 L5 30 Q5 5 30 5 L95 5" stroke="url(#gold-grad)" stroke-width="1.5" fill="none"/>
+                <path d="M5 65 Q12 40 25 28 Q38 16 65 10" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.5"/>
+                <!-- Curlicue / lá uốn cong -->
+                <path d="M30 5 Q22 12 24 22 Q26 30 34 28 Q40 26 38 18 Q36 12 28 14" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <path d="M5 30 Q12 22 22 24 Q30 26 28 34 Q26 40 18 38 Q12 36 14 28" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <circle cx="5" cy="95" r="2.5" fill="#cfb53b" opacity="0.5"/>
+                <circle cx="95" cy="5" r="2.5" fill="#cfb53b" opacity="0.5"/>
+            </svg>
+
+            <svg class="corner-ornament corner-tr" viewBox="0 0 100 100" fill="none">
+                <path d="M95 95 L95 30 Q95 5 70 5 L5 5" stroke="url(#gold-grad)" stroke-width="1.5" fill="none"/>
+                <path d="M95 65 Q88 40 75 28 Q62 16 35 10" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.5"/>
+                <path d="M70 5 Q78 12 76 22 Q74 30 66 28 Q60 26 62 18 Q64 12 72 14" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <path d="M95 30 Q88 22 78 24 Q70 26 72 34 Q74 40 82 38 Q88 36 86 28" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <circle cx="95" cy="95" r="2.5" fill="#cfb53b" opacity="0.5"/>
+                <circle cx="5" cy="5" r="2.5" fill="#cfb53b" opacity="0.5"/>
+            </svg>
+
+            <svg class="corner-ornament corner-bl" viewBox="0 0 100 100" fill="none">
+                <path d="M5 5 L5 70 Q5 95 30 95 L95 95" stroke="url(#gold-grad)" stroke-width="1.5" fill="none"/>
+                <path d="M5 35 Q12 60 25 72 Q38 84 65 90" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.5"/>
+                <path d="M30 95 Q22 88 24 78 Q26 70 34 72 Q40 74 38 82 Q36 88 28 86" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <circle cx="5" cy="5" r="2.5" fill="#cfb53b" opacity="0.5"/>
+                <circle cx="95" cy="95" r="2.5" fill="#cfb53b" opacity="0.5"/>
+            </svg>
+
+            <svg class="corner-ornament corner-br" viewBox="0 0 100 100" fill="none">
+                <path d="M95 5 L95 70 Q95 95 70 95 L5 95" stroke="url(#gold-grad)" stroke-width="1.5" fill="none"/>
+                <path d="M95 35 Q88 60 75 72 Q62 84 35 90" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.5"/>
+                <path d="M70 95 Q78 88 76 78 Q74 70 66 72 Q60 74 62 82 Q64 88 72 86" stroke="url(#gold-grad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                <circle cx="95" cy="5" r="2.5" fill="#cfb53b" opacity="0.5"/>
+                <circle cx="5" cy="95" r="2.5" fill="#cfb53b" opacity="0.5"/>
+            </svg>
+
             <div class="avatar-container">
-                <!-- SVG Arc Border with gradient and glowing dot -->
                 <svg class="arc-svg" viewBox="0 0 100 100">
                     <defs>
                         <linearGradient id="arc-gradient" x1="0%" y1="100%" x2="100%" y2="100%">
@@ -40,7 +94,6 @@
                     <circle cx="88" cy="72.5" r="3" fill="#cfb53b" class="glow-dot" />
                 </svg>
                 <div class="avatar-wrapper">
-                    <!-- Avatar mặc định dạng ảnh chân dung sếp -->
                     <img class="avatar" src="avatar.jpg" alt="Khương Trịnh" id="user-avatar-main">
                 </div>
             </div>
@@ -59,10 +112,33 @@
             </div>
         </header>
 
+        <!-- ===== ORNAMENTAL GOLD DIVIDER (Scrollwork) ===== -->
+        <div class="ornament-divider">
+            <svg class="divider-svg" viewBox="0 0 300 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Nhánh trái -->
+                <path d="M150 20 Q130 8 110 14 Q92 18 80 10 Q70 4 55 8 Q42 12 30 8" stroke="url(#gold-grad-h)" stroke-width="1.2" fill="none"/>
+                <path d="M150 20 Q130 32 110 26 Q92 22 80 30 Q70 36 55 32 Q42 28 30 32" stroke="url(#gold-grad-h)" stroke-width="1.2" fill="none"/>
+                <!-- Cuộn xoắn trái -->
+                <path d="M30 8 Q20 4 15 10 Q10 18 18 22 Q24 24 28 18 Q30 14 26 10" stroke="url(#gold-grad-h)" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M30 32 Q20 36 15 30 Q10 22 18 18 Q24 16 28 22 Q30 26 26 30" stroke="url(#gold-grad-h)" stroke-width="1" fill="none" opacity="0.7"/>
+                <!-- Nhánh phải -->
+                <path d="M150 20 Q170 8 190 14 Q208 18 220 10 Q230 4 245 8 Q258 12 270 8" stroke="url(#gold-grad-h)" stroke-width="1.2" fill="none"/>
+                <path d="M150 20 Q170 32 190 26 Q208 22 220 30 Q230 36 245 32 Q258 28 270 32" stroke="url(#gold-grad-h)" stroke-width="1.2" fill="none"/>
+                <!-- Cuộn xoắn phải -->
+                <path d="M270 8 Q280 4 285 10 Q290 18 282 22 Q276 24 272 18 Q270 14 274 10" stroke="url(#gold-grad-h)" stroke-width="1" fill="none" opacity="0.7"/>
+                <path d="M270 32 Q280 36 285 30 Q290 22 282 18 Q276 16 272 22 Q270 26 274 30" stroke="url(#gold-grad-h)" stroke-width="1" fill="none" opacity="0.7"/>
+                <!-- Tâm kim cương -->
+                <rect x="146" y="16" width="8" height="8" rx="1" transform="rotate(45 150 20)" fill="#cfb53b" opacity="0.7"/>
+                <circle cx="150" cy="20" r="2" fill="#e8cc6e"/>
+            </svg>
+        </div>
+
         <!-- Links Grid -->
         <main class="links-grid">
             <!-- Training Hub -->
             <a href="/training-hub" class="link-card special-hub">
+                <span class="card-corner card-corner-tl"></span>
+                <span class="card-corner card-corner-br"></span>
                 <div class="link-content">
                     <div class="link-icon">
                         <i class="fa-solid fa-graduation-cap"></i>
@@ -79,13 +155,15 @@
 
             <!-- TL Land CRM -->
             <a href="/crm" class="link-card special-crm">
+                <span class="card-corner card-corner-tl"></span>
+                <span class="card-corner card-corner-br"></span>
                 <div class="link-content">
                     <div class="link-icon">
                         <i class="fa-solid fa-hotel"></i>
                     </div>
                     <div class="link-text">
                         <span class="link-title">TL Land CRM</span>
-                        <span class="link-desc">Hệ thống chăm sóc khách hàng<br>& hành trình khách hàng</span>
+                        <span class="link-desc">Hệ thống chăm sóc khách hàng<br>&amp; hành trình khách hàng</span>
                     </div>
                 </div>
                 <div class="arrow-btn">
@@ -95,13 +173,15 @@
 
             <!-- Dành cho ỨNG VIÊN -->
             <a href="/tuyendung" class="link-card special-career">
+                <span class="card-corner card-corner-tl"></span>
+                <span class="card-corner card-corner-br"></span>
                 <div class="link-content">
                     <div class="link-icon">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
                     <div class="link-text">
                         <span class="link-title">Dành cho ỨNG VIÊN</span>
-                        <span class="link-desc">Cơ hội bứt phá thu nhập<br>& đồng hành cùng team Khương Trịnh</span>
+                        <span class="link-desc">Cơ hội bứt phá thu nhập<br>&amp; đồng hành cùng team Khương Trịnh</span>
                     </div>
                 </div>
                 <div class="arrow-btn">
@@ -124,7 +204,6 @@
     </footer>
 
     <script>
-        // Tự động load avatar từ tài khoản Google của sếp nếu đã đăng nhập trước đó (UX tiện lợi)
         document.addEventListener('DOMContentLoaded', () => {
             const savedAvatar = localStorage.getItem('user-avatar-url');
             if (savedAvatar) {
