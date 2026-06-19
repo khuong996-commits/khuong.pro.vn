@@ -514,3 +514,18 @@
 - **Lưu ý quan trọng:**
   - Link cũ `https://t.me/CongDongDiaOcTL/2548` đã được thay thế hoàn toàn để đảm bảo nhân sự mới có thể truy cập đúng thư mục chat của nhóm.
 
+---
+
+## 🏢 TỔNG QUẢN & BAN HỆ THỐNG
+### 2026-06-19 16:50 - Cập nhật tên rổ hàng khu vực Sơn Tây sang Xuân Khanh
+- **Công việc đã hoàn thành:**
+  - Thay đổi tên 4 rổ hàng thuộc khu vực Sơn Tây trong file `BANG_HANG_TL_LAND.html` từ "phường Tùng Thiện" sang "Xuân Khanh" theo sơ đồ mới:
+    - 1. "63 lô phường Tùng Thiện, Sơn Tây" -> "63 LÔ XUÂN KHANH"
+    - 2. "55 thửa phường Tùng Thiện" -> "55 LÔ XUÂN KHANH"
+    - 3. "25 lô view hồ phường Tùng Thiện" -> "25 LÔ VIEW HỒ XUÂN KHANH"
+    - 4. "32 lô Phố Hữu Nghị (Tùng Thiện)" -> "114 LÔ XUÂN KHANH"
+  - Cập nhật thời gian cập nhật bảng hàng mới nhất (`lastUpdated: '19/06/2026 — 16:46'`).
+- **Lưu ý quan trọng:**
+  - Đồng bộ cấu trúc dữ liệu hiển thị trên trang Bảng Hàng Tổng Hợp của hệ thống.
+
+
