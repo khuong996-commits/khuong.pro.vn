@@ -504,3 +504,13 @@
   - **Điều hướng đăng nhập:** Thay đổi trang mặc định sau khi đăng nhập thành công từ `'page-profile'` (Hồ Sơ) sang thẳng `'page-tb-loi-noi-dau'` (Lời Nói Đầu & Nhập Môn) đúng theo yêu cầu của sếp.
 - **Lưu ý quan trọng:**
   - Toàn bộ trang chủ và trang Training Hub con đã hoạt động an toàn và đồng bộ hoàn hảo dưới địa chỉ chính thức [https://khuong.pro.vn](https://khuong.pro.vn).
+
+---
+
+## 🏢 TỔNG QUẢN & BAN HỆ THỐNG
+### 2026-06-19 16:21 - Cập nhật link thư mục nhóm Telegram Bảng Hàng Tổng
+- **Công việc đã hoàn thành:**
+  - Cập nhật link nhóm Telegram Bảng Hàng Tổng trong trang bài học "Lời Nói Đầu & Nhập Môn" ([TAN_BINH_LOI_NOI_DAU.html](file:///d:/file%20c%E1%BB%A7a%20th%E1%BA%AFng/l%C3%A0m%20vi%E1%BB%87c%20B%C4%90S/A-Z/khuong.pro.vn/training-hub/TAN_BINH_LOI_NOI_DAU.html#L170-L174)) thành link thư mục nhóm mới: `https://t.me/addlist/x0X31xFetQIyOWZl`.
+- **Lưu ý quan trọng:**
+  - Link cũ `https://t.me/CongDongDiaOcTL/2548` đã được thay thế hoàn toàn để đảm bảo nhân sự mới có thể truy cập đúng thư mục chat của nhóm.
+

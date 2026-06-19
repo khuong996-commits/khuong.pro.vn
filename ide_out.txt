@@ -1,0 +1,352 @@
+
+[main 2026-06-18T03:55:05.964Z] PolicyConfiguration#initialize
+[main 2026-06-18T03:55:05.967Z] PolicyConfiguration#updatePolicyDefinitions [
+  'update.mode',
+  'update.channel',
+  'update.enableWindowsBackgroundUpdates',
+  'antigravity.enableAgentMode',
+  'http.useLocalProxyConfiguration',
+  'http.electronFetch',
+  'http.proxy',
+  'http.proxyStrictSSL',
+  'http.proxyKerberosServicePrincipal',
+  'http.noProxy',
+  'http.proxyAuthorization',
+  'http.proxySupport',
+  'http.systemCertificates',
+  'http.systemCertificatesNode',
+  'http.experimental.systemCertificatesV2',
+  'http.fetchAdditionalSupport',
+  'http.experimental.networkInterfaceCheckInterval',
+  'telemetry.telemetryLevel',
+  'telemetry.feedback.enabled',
+  'telemetry.enableTelemetry',
+  'extensions.allowed'
+]
+[main 2026-06-18T03:55:05.970Z] NativePolicyService#_updatePolicyDefinitions - Found 4 policy definitions
+[main 2026-06-18T03:55:05.985Z] [File Watcher (node.js)] Request to start watching: c:\Users\ACER\AppData\Roaming\Antigravity IDE\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[main 2026-06-18T03:55:06.000Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\AppData\Roaming\Antigravity IDE\User'
+[main 2026-06-18T03:55:06.003Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\settings.json'
+[main 2026-06-18T03:55:06.145Z] NativePolicyService#_onDidPolicyChange - Updated policy values: {}
+[main 2026-06-18T03:55:06.146Z] PolicyConfiguration#update [
+  'update.mode',
+  'telemetry.telemetryLevel',
+  'telemetry.feedback.enabled',
+  'extensions.allowed'
+]
+[main 2026-06-18T03:55:06.146Z] PolicyConfiguration#updatePolicyDefinitions []
+[main 2026-06-18T03:55:06.147Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:06.152Z] Set default auto-select family attempt timeout to 1000ms
+[main 2026-06-18T03:55:06.155Z] Starting Antigravity
+[main 2026-06-18T03:55:06.156Z] from: d:\Antigravity\resources\app
+[main 2026-06-18T03:55:06.157Z] args: {
+  _: [ 'd:\\file của thắng\\làm việc BĐS\\A-Z\\khuong.pro.vn' ],
+  diff: false,
+  merge: false,
+  add: false,
+  remove: false,
+  goto: false,
+  'new-window': false,
+  'reuse-window': false,
+  wait: false,
+  help: false,
+  'list-extensions': false,
+  'show-versions': false,
+  'pre-release': false,
+  'update-extensions': false,
+  version: false,
+  verbose: true,
+  status: false,
+  'prof-startup': false,
+  'no-cached-data': false,
+  'prof-v8-extensions': false,
+  'disable-extensions': false,
+  'disable-lcd-text': false,
+  'disable-gpu': false,
+  'disable-chromium-sandbox': false,
+  sandbox: false,
+  telemetry: false,
+  debugRenderer: false,
+  'enable-smoke-test-driver': false,
+  logExtensionHostCommunication: false,
+  'skip-release-notes': false,
+  'skip-welcome': false,
+  'disable-telemetry': false,
+  'disable-updates': false,
+  transient: false,
+  'use-inmemory-secretstorage': false,
+  'disable-workspace-trust': false,
+  'disable-crash-reporter': false,
+  'skip-add-to-recently-opened': false,
+  'open-url': false,
+  'file-write': false,
+  'file-chmod': false,
+  force: false,
+  'do-not-sync': false,
+  'do-not-include-pack-dependencies': false,
+  trace: false,
+  'trace-memory-infra': false,
+  'preserve-env': false,
+  'force-user-env': false,
+  'force-disable-user-env': false,
+  'open-devtools': false,
+  'disable-gpu-sandbox': false,
+  '__enable-file-policy': false,
+  'enable-coi': false,
+  'enable-rdp-display-tracking': false,
+  'disable-layout-restore': false,
+  'disable-experiments': false,
+  'no-proxy-server': false,
+  'no-sandbox': false,
+  nolazy: false,
+  'force-renderer-accessibility': false,
+  'ignore-certificate-errors': false,
+  'allow-insecure-localhost': false,
+  'disable-dev-shm-usage': false,
+  'profile-temp': false,
+  'jetski-agent-window': false,
+  'enable-dev-mode': false,
+  logsPath: 'C:\\Users\\ACER\\AppData\\Roaming\\Antigravity IDE\\logs\\20260618T105505'
+}
+[main 2026-06-18T03:55:06.159Z] Resolving machine identifier...
+[main 2026-06-18T03:55:06.160Z] Resolving SQM identifier...
+[main 2026-06-18T03:55:06.160Z] Resolving devDevice identifier...
+[main 2026-06-18T03:55:06.161Z] Resolved machine identifier: aed2a4fff07f0548637411ff0f8509be373eab9d7b5e3be11a46130107b8e61f
+[main 2026-06-18T03:55:06.161Z] Resolved SQM identifier: {E7F814F5-842E-4A3F-91DE-FAC63840299E}
+[main 2026-06-18T03:55:06.161Z] Resolved devDevice identifier: 0fc810ca-7109-4b11-a563-df568c0a9335
+[main 2026-06-18T03:55:06.162Z] Main->SharedProcess#connect
+[main 2026-06-18T03:55:06.165Z] PolicyConfiguration#updatePolicyDefinitions [
+  'terminal.integrated.automationProfile.linux',
+  'terminal.integrated.automationProfile.osx',
+  'terminal.integrated.automationProfile.windows',
+  'terminal.integrated.profiles.windows',
+  'terminal.integrated.profiles.osx',
+  'terminal.integrated.profiles.linux',
+  'terminal.integrated.useWslProfiles',
+  'terminal.integrated.inheritEnv',
+  'terminal.integrated.persistentSessionScrollback',
+  'terminal.integrated.showLinkHover',
+  'terminal.integrated.ignoreProcessNames'
+]
+[main 2026-06-18T03:55:06.166Z] PolicyConfiguration#updatePolicyDefinitions [
+  'terminal.integrated.defaultProfile.linux',
+  'terminal.integrated.defaultProfile.osx',
+  'terminal.integrated.defaultProfile.windows'
+]
+[main 2026-06-18T03:55:06.172Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:06.173Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:06.177Z] StorageMainService: creating application storage
+[main 2026-06-18T03:55:06.197Z] ElectronURLListener: waiting for window to be ready to handle URLs...
+[main 2026-06-18T03:55:06.198Z] lifecycle (main): phase changed (value: 2)
+[main 2026-06-18T03:55:06.198Z] [BrowserOnboardingClientMainService] Starting browser onboarding server
+[main 2026-06-18T03:55:06.199Z] windowsManager#open
+[main 2026-06-18T03:55:06.208Z] [BrowserOnboardingClientServer] Browser onboarding server started on http://localhost:59902
+[main 2026-06-18T03:55:06.211Z] PolicyConfiguration#updatePolicyDefinitions [ 'jetski.showHiddenWindowsAfterDelay' ]
+[main 2026-06-18T03:55:06.211Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:06.213Z] Started scanning system extensions
+[main 2026-06-18T03:55:06.216Z] windowsManager#open pathsToOpen [
+  {
+    workspace: { id: 'ac46041e479134d96f40d1b7d9e39b8f', uri: [Kk] },
+    type: 2,
+    exists: true
+  }
+]
+[main 2026-06-18T03:55:06.218Z] windowsManager#doOpenFolderOrWorkspace {
+  folderOrWorkspace: {
+    workspace: { id: 'ac46041e479134d96f40d1b7d9e39b8f', uri: [Kk] },
+    type: 2,
+    exists: true
+  },
+  filesToOpen: undefined
+}
+[main 2026-06-18T03:55:06.222Z] IPC Object URL: Registered new channel vscode:965e5495-3318-4ec3-81c6-84b82fb92b57.
+[main 2026-06-18T03:55:06.223Z] window#validateWindowState: validating window state on 1 display(s) { mode: 1, x: 168, y: 32, width: 1200, height: 800 }
+[main 2026-06-18T03:55:06.223Z] window#validateWindowState: single monitor working area { x: 0, y: 0, width: 1536, height: 824 }
+[main 2026-06-18T03:55:06.223Z] window#ctor: using window state { mode: 1, x: 168, y: 32, width: 1200, height: 800 }
+[main 2026-06-18T03:55:06.256Z] window#load: attempt to load window (id: 1)
+[main 2026-06-18T03:55:06.270Z] StorageMainService: creating workspace storage (ac46041e479134d96f40d1b7d9e39b8f)
+[main 2026-06-18T03:55:06.276Z] windowsManager#open used window count 1 (workspacesToOpen: 0, foldersToOpen: 1, emptyToRestore: 0, maybeOpenEmptyWindow: false)
+[main 2026-06-18T03:55:06.278Z] lifecycle (main): phase changed (value: 3)
+[main 2026-06-18T03:55:06.279Z] resolveShellEnv(): skipped (Windows)
+[main 2026-06-18T03:55:06.558Z] Using cached extensions scan result system file:///d%3A/Antigravity/resources/app/extensions
+[main 2026-06-18T03:55:06.559Z] Scanned system extensions: 102
+[main 2026-06-18T03:55:06.560Z] ComputeTargetPlatform: win32-x64
+[main 2026-06-18T03:55:06.561Z] Started scanning user extensions Kk {
+  scheme: 'vscode-userdata',
+  authority: '',
+  path: '/c:/Users/ACER/.antigravity-ide/extensions/extensions.json',
+  query: '',
+  fragment: '',
+  _formatted: null,
+  _fsPath: null
+}
+[main 2026-06-18T03:55:06.839Z] update#setState disabled
+[main 2026-06-18T03:55:06.840Z] update#ctor - updates are disabled by user preference
+[main 2026-06-18T03:55:06.842Z] Scanned user extensions: 0
+[main 2026-06-18T03:55:06.851Z] resolveShellEnv(): skipped (Windows)
+[main 2026-06-18T03:55:06.933Z] IPC Object URL: Registered new channel vscode:04783a5f-da8d-48fb-81f2-21515cdcd217.
+[main 2026-06-18T03:55:06.979Z] resolveShellEnv(): skipped (Windows)
+[main 2026-06-18T03:55:06.998Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:06.999Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:07.003Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:07.005Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:07.090Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:07.093Z] User data changed
+[main 2026-06-18T03:55:07.151Z] resolveShellEnv(): skipped (Windows)
+[main 2026-06-18T03:55:08.810Z] lifecycle (main): phase changed (value: 4)
+[main 2026-06-18T03:55:11.092Z] NativePolicyService#_updatePolicyDefinitions - Found 10 policy definitions
+[main 2026-06-18T03:55:11.281Z] NativePolicyService#_onDidPolicyChange - Updated policy values: {}
+[main 2026-06-18T03:55:11.282Z] PolicyConfiguration#onDidChangePolicies []
+[main 2026-06-18T03:55:11.282Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:11.290Z] NativePolicyService#_updatePolicyDefinitions - Found 12 policy definitions
+[main 2026-06-18T03:55:11.345Z] NativePolicyService#_onDidPolicyChange - Updated policy values: {}
+[main 2026-06-18T03:55:11.346Z] PolicyConfiguration#onDidChangePolicies []
+[main 2026-06-18T03:55:11.347Z] PolicyConfiguration#update []
+[main 2026-06-18T03:55:12.525Z] window#load: window reported ready (id: 1)
+[main 2026-06-18T03:55:12.525Z] ElectronURLListener#flush(): flushing URLs
+[main 2026-06-18T03:55:13.019Z] [SharedProcess] onWindowConnection for: vscode:createSharedProcessChannelConnectionResult
+[main 2026-06-18T03:55:13.022Z] [UtilityProcess type: shared-process, pid: <none>]: creating new...
+[main 2026-06-18T03:55:13.027Z] [UtilityProcess type: shared-process, pid: <none>]: payload sent via postMessage()
+[main 2026-06-18T03:55:13.029Z] [UtilityProcessWorker]: createWorker(window: 1, moduleId: vs/platform/files/node/watcher/watcherMain)
+[main 2026-06-18T03:55:13.031Z] [UtilityProcess id: 1, type: fileWatcher, pid: <none>]: creating new...
+[main 2026-06-18T03:55:13.049Z] [UtilityProcess type: shared-process, pid: 21772]: successfully created
+[main 2026-06-18T03:55:13.074Z] [UtilityProcess id: 1, type: fileWatcher, pid: 20556]: successfully created
+[main 2026-06-18T03:55:13.354Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:13.354Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:13.357Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:13.358Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:13.367Z] [UtilityProcess id: 1, type: extensionHost, pid: <none>]: creating new...
+[main 2026-06-18T03:55:13.392Z] [UtilityProcess id: 1, type: extensionHost, pid: 15956]: successfully created
+[main 2026-06-18T03:55:13.444Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:13.445Z] User data changed
+[main 2026-06-18T03:55:14.436Z] [SharedProcess] IPC ready
+[main 2026-06-18T03:55:14.437Z] Main->SharedProcess#connect: connection established
+[main 2026-06-18T03:55:14.478Z] [File Watcher (node.js)] Request to start watching: c:\Users\ACER\AppData\Roaming\Antigravity IDE\User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[main 2026-06-18T03:55:14.484Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\AppData\Roaming\Antigravity IDE\User'
+[main 2026-06-18T03:55:14.486Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\settings.json'
+[main 2026-06-18T03:55:14.533Z] [SharedProcess] Overall ready
+[main 2026-06-18T03:55:14.570Z] [File Watcher (node.js)] Request to start watching: c:\Users\ACER\.antigravity-ide\extensions (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),c:\Users\ACER\.antigravity-ide\extensions\extensions.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[main 2026-06-18T03:55:14.575Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\.antigravity-ide\extensions'
+[main 2026-06-18T03:55:14.579Z] [File Watcher (node.js)] Started watching: 'c:\Users\ACER\.antigravity-ide\extensions\extensions.json'
+[main 2026-06-18T03:55:14.635Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.636Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.638Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.638Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.641Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.641Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.643Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.644Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.727Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.728Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.728Z] User data changed
+[main 2026-06-18T03:55:14.802Z] Terminal profile not validated bash (MSYS2) [ { path: 'C:\\msys64\\usr\\bin\\bash.exe', isUnsafe: true } ]
+[main 2026-06-18T03:55:14.805Z] Terminal profile not validated Cygwin [
+  { path: 'C:\\cygwin64\\bin\\bash.exe', isUnsafe: true },
+  { path: 'C:\\cygwin\\bin\\bash.exe', isUnsafe: true }
+]
+[main 2026-06-18T03:55:14.814Z] Terminal profile not validated Git Bash [
+  'D:\\\\Git\\bin\\bash.exe',
+  'D:\\\\Git\\usr\\bin\\bash.exe',
+  'D:\\\\usr\\bin\\bash.exe',
+  'C:\\Program Files\\Git\\bin\\bash.exe',
+  'C:\\Program Files\\Git\\usr\\bin\\bash.exe',
+  'C:\\Program Files\\usr\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\Git\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\Git\\usr\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\Git\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\Git\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\scoop\\apps\\git\\current\\bin\\bash.exe',
+  'C:\\Users\\ACER\\scoop\\apps\\git-with-openssh\\current\\bin\\bash.exe'
+]
+[main 2026-06-18T03:55:14.921Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.921Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.923Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.924Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.933Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.934Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:14.935Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:14.937Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.048Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.049Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.050Z] User data changed
+[main 2026-06-18T03:55:15.151Z] [File Watcher (node.js)] Request to start watching: c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[main 2026-06-18T03:55:15.152Z] [File Watcher (node.js)] ignoring a path for watching who's stat info failed to resolve: c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json (error: Error: ENOENT: no such file or directory, stat 'c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json')
+[main 2026-06-18T03:55:15.153Z] [File Watcher (node.js)] starting fs.watchFile() on c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json (correlationId: undefined)
+[main 2026-06-18T03:55:15.314Z] WSL is not installed, so could not detect WSL profiles
+[main 2026-06-18T03:55:15.317Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:15.318Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.319Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:15.320Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.323Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:15.324Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.325Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:15.326Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.393Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.397Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:15.398Z] User data changed
+[main 2026-06-18T03:55:15.492Z] Setting background throttling for window 1 to 'true'
+[main 2026-06-18T03:55:15.964Z] [File Watcher (node.js)] Request to stop watching: c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[main 2026-06-18T03:55:15.965Z] [File Watcher (node.js)] stopping file watcher (c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\mcp.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>))
+[main 2026-06-18T03:55:19.839Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:19.840Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.841Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:19.842Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.845Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:19.846Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.847Z] [File Watcher (node.js)] [raw] ["change"] globalStorage
+[main 2026-06-18T03:55:19.848Z] [File Watcher (node.js)] [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.928Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.929Z] [File Watcher (node.js)]  >> normalized [CHANGED] c:\Users\ACER\AppData\Roaming\Antigravity IDE\User\globalStorage
+[main 2026-06-18T03:55:19.930Z] User data changed
+[main 2026-06-18T03:55:22.189Z] Terminal profile not validated bash (MSYS2) [ { path: 'C:\\msys64\\usr\\bin\\bash.exe', isUnsafe: true } ]
+[main 2026-06-18T03:55:22.191Z] Terminal profile not validated Cygwin [
+  { path: 'C:\\cygwin64\\bin\\bash.exe', isUnsafe: true },
+  { path: 'C:\\cygwin\\bin\\bash.exe', isUnsafe: true }
+]
+[main 2026-06-18T03:55:22.215Z] Terminal profile not validated Git Bash [
+  'D:\\\\Git\\bin\\bash.exe',
+  'D:\\\\Git\\usr\\bin\\bash.exe',
+  'D:\\\\usr\\bin\\bash.exe',
+  'C:\\Program Files\\Git\\bin\\bash.exe',
+  'C:\\Program Files\\Git\\usr\\bin\\bash.exe',
+  'C:\\Program Files\\usr\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\Git\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\Git\\usr\\bin\\bash.exe',
+  'C:\\Program Files (x86)\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\Git\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\Git\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\AppData\\Local\\Program\\usr\\bin\\bash.exe',
+  'C:\\Users\\ACER\\scoop\\apps\\git\\current\\bin\\bash.exe',
+  'C:\\Users\\ACER\\scoop\\apps\\git-with-openssh\\current\\bin\\bash.exe'
+]
+[main 2026-06-18T03:55:22.264Z] [EncryptionMainService] Checking if encryption is available...
+[main 2026-06-18T03:55:22.265Z] [EncryptionMainService] Encryption is available:  true
+[main 2026-06-18T03:55:22.674Z] [UtilityProcess type: ptyHost, pid: <none>]: creating new...
+[main 2026-06-18T03:55:22.677Z] PtyHostService#_startPtyHost 
+    at TZe._startPtyHost (file:///D:/Antigravity/resources/app/out/main.js:4426:4648)
+    at TZe._ensurePtyHost (file:///D:/Antigravity/resources/app/out/main.js:4426:2014)
+    at get _proxy (file:///D:/Antigravity/resources/app/out/main.js:4426:1902)
+    at TZe.setTerminalLayoutInfo (file:///D:/Antigravity/resources/app/out/main.js:4426:8284)
+    at Object.call (file:///D:/Antigravity/resources/app/out/main.js:46:5425)
+    at Ynt.onPromise (file:///D:/Antigravity/resources/app/out/main.js:44:16261)
+    at Ynt.onRawMessage (file:///D:/Antigravity/resources/app/out/main.js:44:15676)
+    at Zre.value (file:///D:/Antigravity/resources/app/out/main.js:44:14955)
+    at En._deliver (file:///D:/Antigravity/resources/app/out/main.js:43:2918)
+    at En._deliverQueue (file:///D:/Antigravity/resources/app/out/main.js:43:3009)
+    at En.fire (file:///D:/Antigravity/resources/app/out/main.js:43:3346)
+    at Zre.value (file:///D:/Antigravity/resources/app/out/main.js:41:6097)
+    at En._deliver (file:///D:/Antigravity/resources/app/out/main.js:43:2918)
+    at En.fire (file:///D:/Antigravity/resources/app/out/main.js:43:3239)
+    at Zre.value (file:///D:/Antigravity/resources/app/out/main.js:41:6277)
+    at En._deliver (file:///D:/Antigravity/resources/app/out/main.js:43:2918)
+    at En.fire (file:///D:/Antigravity/resources/app/out/main.js:43:3239)
+    at Q (file:///D:/Antigravity/resources/app/out/main.js:41:8533)
+    at IpcMainImpl.r (file:///D:/Antigravity/resources/app/out/main.js:49:13215)
+    at IpcMainImpl.emit (node:events:531:35)
+    at Session.<anonymous> (node:electron/js2c/browser_init:2:106616)
+    at Session.emit (node:events:519:28)
+[main 2026-06-18T03:55:22.693Z] [UtilityProcess type: ptyHost, pid: 17088]: successfully created
+[main 2026-06-18T03:55:25.251Z] ProxyResolver#loadSystemCertificates count (177ms) 46
+[main 2026-06-18T03:55:25.256Z] ProxyResolver#loadSystemCertificates count filtered 35
