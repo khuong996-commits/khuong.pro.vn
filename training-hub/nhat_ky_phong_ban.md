@@ -523,7 +523,7 @@
     - 1. "63 lô phường Tùng Thiện, Sơn Tây" -> "63 LÔ XUÂN KHANH"
     - 2. "55 thửa phường Tùng Thiện" -> "55 LÔ XUÂN KHANH"
     - 3. "25 lô view hồ phường Tùng Thiện" -> "25 LÔ VIEW HỒ XUÂN KHANH"
-    - 4. "32 lô Phố Hữu Nghị (Tùng Thiện)" -> "114 LÔ XUÂN KHANH"
+    - 4. "32 lô Phố Hữu Nghị (Tùng Thiện)" -> "114 LÔ XUÂN KHANH" và cập nhật giá thành "1,6 tỷ – 2,4 tỷ" (giá cũ 1,37 tỷ – 2,51 tỷ).
   - Cập nhật thời gian cập nhật bảng hàng mới nhất (`lastUpdated: '19/06/2026 — 16:46'`).
 - **Lưu ý quan trọng:**
   - Đồng bộ cấu trúc dữ liệu hiển thị trên trang Bảng Hàng Tổng Hợp của hệ thống.
