@@ -1944,18 +1944,6 @@ const APP_CONTENT = {
                 box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
             }
 
-            /* Thumbnails grid */
-            .cdkh-thumbs-title {
-                font-size: 1rem; font-weight: 700;
-                color: var(--text-primary);
-                margin-bottom: 1rem;
-                display: flex; align-items: center; gap: 8px;
-            }
-            .cdkh-thumbs {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 12px;
-                margin-bottom: 2.5rem;
             /* Section index cards */
             .cdkh-index {
                 display: grid;
