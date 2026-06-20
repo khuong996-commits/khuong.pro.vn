@@ -1829,11 +1829,339 @@ const APP_CONTENT = {
     // PAGE: CHÂN DUNG KHÁCH HÀNG
     // ---------------------------------------------------------
     'page-chan-dung-khach-hang': `
-        <div class="iframe-container-wrapper">
-            <div class="iframe-scroll-container">
-                <iframe src="/training-hub/CHAN_DUNG_KHACH_HANG_V2_1.html" class="custom-iframe" loading="lazy"></iframe>
+        <style>
+            .cdkh-hero {
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(15, 23, 42, 0) 60%);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 20px;
+                padding: 2.5rem 2.5rem 2rem;
+                margin-bottom: 2.5rem;
+                display: flex;
+                align-items: center;
+                gap: 2.5rem;
+                flex-wrap: wrap;
+            }
+            .cdkh-hero-icon {
+                width: 80px; height: 80px;
+                background: linear-gradient(135deg, #d4af37, #f3e5ab);
+                border-radius: 20px;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 2.2rem;
+                flex-shrink: 0;
+                box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            }
+            .cdkh-hero-text h1 {
+                font-size: 2rem; font-weight: 800;
+                background: linear-gradient(to right, #d4af37, #f3e5ab);
+                -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                margin-bottom: 0.5rem;
+            }
+            .cdkh-hero-text p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+            .cdkh-stats {
+                display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;
+            }
+            .cdkh-stat {
+                background: rgba(212, 175, 55, 0.08);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 12px; padding: 0.7rem 1.2rem;
+                text-align: center;
+            }
+            .cdkh-stat .num { font-size: 1.6rem; font-weight: 800; color: #d4af37; }
+            .cdkh-stat .lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+            /* Slideshow */
+            .cdkh-slideshow {
+                position: relative;
+                background: rgba(0,0,0,0.04);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 20px;
+                overflow: hidden;
+                margin-bottom: 2rem;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            }
+            .cdkh-slides-track {
+                display: flex;
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .cdkh-slide {
+                min-width: 100%;
+                position: relative;
+            }
+            .cdkh-slide img {
+                width: 100%; display: block;
+                border-radius: 0;
+                aspect-ratio: 16/9;
+                object-fit: contain;
+                background: #0f172a;
+            }
+            .cdkh-slide-label {
+                position: absolute; bottom: 0; left: 0; right: 0;
+                background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+                padding: 1.5rem 1.5rem 1rem;
+                color: #fff;
+                font-size: 0.85rem; letter-spacing: 1px;
+                text-transform: uppercase; font-weight: 600;
+                opacity: 0.8;
+            }
+            .cdkh-btn {
+                position: absolute; top: 50%; transform: translateY(-50%);
+                background: rgba(212, 175, 55, 0.85); border: none; border-radius: 50%;
+                width: 48px; height: 48px; cursor: pointer;
+                font-size: 1.2rem; color: #000; font-weight: 700;
+                display: flex; align-items: center; justify-content: center;
+                z-index: 10; transition: all 0.2s ease;
+                backdrop-filter: blur(4px);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }
+            .cdkh-btn:hover { background: #d4af37; transform: translateY(-50%) scale(1.1); }
+            .cdkh-btn-prev { left: 16px; }
+            .cdkh-btn-next { right: 16px; }
+            .cdkh-counter {
+                position: absolute; bottom: 16px; right: 20px;
+                background: rgba(0,0,0,0.5); color: #d4af37;
+                padding: 4px 12px; border-radius: 20px;
+                font-size: 0.85rem; font-weight: 700;
+                backdrop-filter: blur(4px);
+                z-index: 10;
+            }
+
+            /* Dots */
+            .cdkh-dots {
+                display: flex; justify-content: center; gap: 8px;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+            }
+            .cdkh-dot {
+                width: 10px; height: 10px; border-radius: 50%;
+                background: rgba(212, 175, 55, 0.25);
+                border: 1px solid rgba(212, 175, 55, 0.4);
+                cursor: pointer; transition: all 0.3s ease;
+                padding: 0;
+            }
+            .cdkh-dot.active {
+                background: #d4af37;
+                transform: scale(1.3);
+                box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            }
+
+            /* Thumbnails grid */
+            .cdkh-thumbs-title {
+                font-size: 1rem; font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 1rem;
+                display: flex; align-items: center; gap: 8px;
+            }
+            .cdkh-thumbs {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+                margin-bottom: 2.5rem;
+            }
+            .cdkh-thumb {
+                border-radius: 12px;
+                overflow: hidden;
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                position: relative;
+                background: #0f172a;
+            }
+            .cdkh-thumb img {
+                width: 100%; aspect-ratio: 16/9;
+                object-fit: contain; display: block;
+            }
+            .cdkh-thumb:hover { border-color: rgba(212, 175, 55, 0.6); transform: translateY(-2px); }
+            .cdkh-thumb.active { border-color: #d4af37; box-shadow: 0 0 16px rgba(212, 175, 55, 0.4); }
+            .cdkh-thumb-num {
+                position: absolute; top: 6px; left: 8px;
+                background: rgba(212, 175, 55, 0.85);
+                color: #000; font-size: 0.7rem; font-weight: 800;
+                padding: 2px 7px; border-radius: 6px;
+            }
+
+            /* Section index cards */
+            .cdkh-index {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 14px;
+                margin-bottom: 2rem;
+            }
+            .cdkh-index-card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-glass);
+                border-radius: 14px;
+                padding: 1rem 1.2rem;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                display: flex; align-items: flex-start; gap: 12px;
+            }
+            .cdkh-index-card:hover {
+                border-color: rgba(212, 175, 55, 0.5);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.1);
+            }
+            .cdkh-index-num {
+                width: 32px; height: 32px; border-radius: 8px;
+                background: linear-gradient(135deg, #d4af37, #f3e5ab);
+                color: #000; font-weight: 800; font-size: 0.85rem;
+                display: flex; align-items: center; justify-content: center;
+                flex-shrink: 0;
+            }
+            .cdkh-index-info .title { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+            .cdkh-index-info .sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+            .cdkh-tip-box {
+                background: rgba(212, 175, 55, 0.06);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-left: 4px solid #d4af37;
+                border-radius: 0 14px 14px 0;
+                padding: 1.2rem 1.5rem;
+                margin-bottom: 2rem;
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+            .cdkh-tip-box strong { color: #d4af37; }
+            @media (max-width: 600px) {
+                .cdkh-hero { flex-direction: column; gap: 1.2rem; padding: 1.5rem; }
+                .cdkh-thumbs { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+                .cdkh-index { grid-template-columns: 1fr 1fr; }
+                .cdkh-btn { width: 36px; height: 36px; font-size: 1rem; }
+            }
+        </style>
+
+        <!-- HERO HEADER -->
+        <div class="cdkh-hero">
+            <div class="cdkh-hero-icon">🎯</div>
+            <div class="cdkh-hero-text">
+                <h1>Chân Dung Khách Hàng Mục Tiêu</h1>
+                <p>Album đào tạo nội bộ TL Land · Nhận diện đúng khách – đi xem đúng người – chốt nhanh hơn</p>
+                <div class="cdkh-stats">
+                    <div class="cdkh-stat"><div class="num">11</div><div class="lbl">Nhóm khách</div></div>
+                    <div class="cdkh-stat"><div class="num">7</div><div class="lbl">Câu hỏi lọc</div></div>
+                    <div class="cdkh-stat"><div class="num">5</div><div class="lbl">Mức độ nét</div></div>
+                    <div class="cdkh-stat"><div class="num">12</div><div class="lbl">Slides</div></div>
+                </div>
             </div>
         </div>
+
+        <!-- TIP -->
+        <div class="cdkh-tip-box">
+            💡 <strong>Cách dùng:</strong> Xem từng slide để nắm vững chân dung từng nhóm khách. Click vào thumbnail bên dưới để nhảy nhanh đến slide cần xem. Áp dụng bộ <strong>7 câu hỏi lọc</strong> trước khi mời khách đi xem thực địa.
+        </div>
+
+        <!-- SLIDESHOW CHÍNH -->
+        <div class="cdkh-slideshow" id="cdkhSlideshow">
+            <div class="cdkh-slides-track" id="cdkhTrack">
+                <div class="cdkh-slide"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="Slide 01 - Tổng quan" loading="eager"/><div class="cdkh-slide-label">Tổng Quan · Chân Dung Khách Hàng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="Slide 02 - Tư duy lọc khách" loading="lazy"/><div class="cdkh-slide-label">01 · Tư Duy Lọc Khách</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="Slide 03 - Nhóm cốt lõi" loading="lazy"/><div class="cdkh-slide-label">02 · Nhóm Cốt Lõi</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="Slide 04 - Nhóm tiềm năng" loading="lazy"/><div class="cdkh-slide-label">03 · Nhóm Tiềm Năng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="Slide 05 - Nhóm cần chiến thuật" loading="lazy"/><div class="cdkh-slide-label">04 · Nhóm Cần Chiến Thuật</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="Slide 06 - Loại / Kiểm chứng" loading="lazy"/><div class="cdkh-slide-label">05 · Loại / Kiểm Chứng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="Slide 07 - Dấu hiệu nhận diện" loading="lazy"/><div class="cdkh-slide-label">06 · Dấu Hiệu Nhận Diện Avatar & Thiết Bị</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="Slide 08 - Tín hiệu qua chat" loading="lazy"/><div class="cdkh-slide-label">07 · Tín Hiệu Qua Chat</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="Slide 09 - Bộ câu hỏi vàng" loading="lazy"/><div class="cdkh-slide-label">08 · Bộ Câu Hỏi Vàng – 7 Câu Lọc Khách</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="Slide 10 - Flow lọc khách" loading="lazy"/><div class="cdkh-slide-label">09 · Flow Lọc Khách – Quy Trình 7 Bước</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="Slide 11 - Bảng điểm" loading="lazy"/><div class="cdkh-slide-label">10 · Bảng Điểm – Chọn Chiến Thuật Chăm Sóc</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="Slide 12 - Sau khi cọc" loading="lazy"/><div class="cdkh-slide-label">11 · Sau Khi Cọc – Giữ Niềm Tin & Tạo Giới Thiệu</div></div>
+            </div>
+            <button class="cdkh-btn cdkh-btn-prev" onclick="cdkhPrev()" title="Slide trước">&#8592;</button>
+            <button class="cdkh-btn cdkh-btn-next" onclick="cdkhNext()" title="Slide tiếp theo">&#8594;</button>
+            <div class="cdkh-counter" id="cdkhCounter">1 / 12</div>
+        </div>
+
+        <!-- DOTS -->
+        <div class="cdkh-dots" id="cdkhDots">
+            <button class="cdkh-dot active" onclick="cdkhGoTo(0)" title="Slide 1"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(1)" title="Slide 2"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(2)" title="Slide 3"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(3)" title="Slide 4"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(4)" title="Slide 5"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(5)" title="Slide 6"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(6)" title="Slide 7"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(7)" title="Slide 8"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(8)" title="Slide 9"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(9)" title="Slide 10"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(10)" title="Slide 11"></button>
+            <button class="cdkh-dot" onclick="cdkhGoTo(11)" title="Slide 12"></button>
+        </div>
+
+        <!-- MỤC LỤC NHANH -->
+        <div style="margin-bottom:1.2rem;">
+            <div class="cdkh-thumbs-title">
+                <span style="color:#d4af37;">📋</span> Mục Lục Nhanh — Bấm để nhảy đến slide
+            </div>
+            <div class="cdkh-index">
+                <div class="cdkh-index-card" onclick="cdkhGoTo(0)"><div class="cdkh-index-num">00</div><div class="cdkh-index-info"><div class="title">Tổng Quan</div><div class="sub">11 nhóm · 7 câu hỏi · 5 mức nét</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(1)"><div class="cdkh-index-num">01</div><div class="cdkh-index-info"><div class="title">Tư Duy Lọc Khách</div><div class="sub">5 nguyên tắc lõi khi xử lý khách</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(2)"><div class="cdkh-index-num">02</div><div class="cdkh-index-info"><div class="title">4 Nhóm Cốt Lõi</div><div class="sub">VP · KOL · Tiểu thương · Giáo viên</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(3)"><div class="cdkh-index-num">03</div><div class="cdkh-index-info"><div class="title">4 Nhóm Tiềm Năng</div><div class="sub">Quân đội · GPMB · Sốt đất · Nội thành</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(4)"><div class="cdkh-index-num">04</div><div class="cdkh-index-info"><div class="title">3 Nhóm Cần Chiến Thuật</div><div class="sub">F1 đầu tư · Freelance nhỏ · F0 ít vốn</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(5)"><div class="cdkh-index-num">05</div><div class="cdkh-index-info"><div class="title">Loại & Kiểm Chứng</div><div class="sub">Ai nên loại sớm · Ai cần kiểm tra thêm</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(6)"><div class="cdkh-index-num">06</div><div class="cdkh-index-info"><div class="title">Dấu Hiệu Avatar & Thiết Bị</div><div class="sub">Tín hiệu tốt vs cảnh báo qua ảnh đại diện</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(7)"><div class="cdkh-index-num">07</div><div class="cdkh-index-info"><div class="title">Tín Hiệu Qua Chat</div><div class="sub">Phân biệt khách thật vs khách ảo</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(8)"><div class="cdkh-index-num">08</div><div class="cdkh-index-info"><div class="title">7 Câu Hỏi Vàng</div><div class="sub">Lọc trước khi mời đi xem thực địa</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(9)"><div class="cdkh-index-num">09</div><div class="cdkh-index-info"><div class="title">Flow 7 Bước Nhận Diện</div><div class="sub">Checklist trước khi chốt lịch đi thực địa</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(10)"><div class="cdkh-index-num">10</div><div class="cdkh-index-info"><div class="title">Bảng Điểm</div><div class="sub">Lửa ≥80 · Cam 50-79 · Vàng 20-49 · Lá 0-19</div></div></div>
+                <div class="cdkh-index-card" onclick="cdkhGoTo(11)"><div class="cdkh-index-num">11</div><div class="cdkh-index-info"><div class="title">Chăm Sau Cọc</div><div class="sub">Ngày 1 · 3 · 7 · 30 để giữ niềm tin & referral</div></div></div>
+            </div>
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="cdkh-thumbs-title">
+            <span style="color:#d4af37;">🖼️</span> Tất Cả Slides — Bấm để xem nhanh
+        </div>
+        <div class="cdkh-thumbs" id="cdkhThumbs">
+            <div class="cdkh-thumb active" onclick="cdkhGoTo(0)"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="01" loading="lazy"/><span class="cdkh-thumb-num">01</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(1)"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="02" loading="lazy"/><span class="cdkh-thumb-num">02</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(2)"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="03" loading="lazy"/><span class="cdkh-thumb-num">03</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(3)"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="04" loading="lazy"/><span class="cdkh-thumb-num">04</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(4)"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="05" loading="lazy"/><span class="cdkh-thumb-num">05</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(5)"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="06" loading="lazy"/><span class="cdkh-thumb-num">06</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(6)"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="07" loading="lazy"/><span class="cdkh-thumb-num">07</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(7)"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="08" loading="lazy"/><span class="cdkh-thumb-num">08</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(8)"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="09" loading="lazy"/><span class="cdkh-thumb-num">09</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(9)"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="10" loading="lazy"/><span class="cdkh-thumb-num">10</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(10)"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="11" loading="lazy"/><span class="cdkh-thumb-num">11</span></div>
+            <div class="cdkh-thumb" onclick="cdkhGoTo(11)"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="12" loading="lazy"/><span class="cdkh-thumb-num">12</span></div>
+        </div>
+
+        <script>
+            (function() {
+                var current = 0;
+                var total = 12;
+                function update(idx) {
+                    current = ((idx % total) + total) % total;
+                    document.getElementById('cdkhTrack').style.transform = 'translateX(-' + (current * 100) + '%)';
+                    document.getElementById('cdkhCounter').textContent = (current + 1) + ' / ' + total;
+                    var dots = document.querySelectorAll('.cdkh-dot');
+                    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+                    var thumbs = document.querySelectorAll('#cdkhThumbs .cdkh-thumb');
+                    thumbs.forEach(function(t, i) { t.classList.toggle('active', i === current); });
+                }
+                window.cdkhGoTo = function(idx) { update(idx); };
+                window.cdkhPrev = function() { update(current - 1); };
+                window.cdkhNext = function() { update(current + 1); };
+
+                // Keyboard navigation
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowRight') window.cdkhNext();
+                    if (e.key === 'ArrowLeft') window.cdkhPrev();
+                });
+
+                // Swipe support
+                var startX = 0;
+                var track = document.getElementById('cdkhTrack');
+                if (track) {
+                    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+                    track.addEventListener('touchend', function(e) {
+                        var diff = startX - e.changedTouches[0].clientX;
+                        if (Math.abs(diff) > 40) { diff > 0 ? window.cdkhNext() : window.cdkhPrev(); }
+                    }, {passive: true});
+                }
+            })();
+        </script>
     `,
 
     // ---------------------------------------------------------
