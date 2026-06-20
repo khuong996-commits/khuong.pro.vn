@@ -1,9 +1,9 @@
-﻿// Database Ná»™i Dung cÃ¡c KhÃ³a ÄÃ o Táº¡o (HTML Format)
-// Giao diá»‡n giá»‘ng DAO_TAO_CHIEN_THUAT_LAI_KHACH.html (card grid + badge + upgrade-box)
+// Database Nội Dung các Khóa Đào Tạo (HTML Format)
+// Giao diện giống DAO_TAO_CHIEN_THUAT_LAI_KHACH.html (card grid + badge + upgrade-box)
 const APP_CONTENT = {
 
     // ---------------------------------------------------------
-    // PAGE: QUY TRÃŒNH TÃ‚N BINH (3 PHáº¦N)
+    // PAGE: QUY TRÌNH TÂN BINH (3 PHẦN)
     // ---------------------------------------------------------
     'page-tb-loi-noi-dau': `
         <div class="iframe-container-wrapper">
@@ -35,30 +35,30 @@ const APP_CONTENT = {
     `,
     'page-tb-chon-kenh': `
         <div class="page-title-bar">
-            <h1>Chá»n KÃªnh TÃ¬m Kiáº¿m KhÃ¡ch HÃ ng</h1>
-            <p class="page-subtitle">XÃ¡c Ä‘á»‹nh vÃ  khai thÃ¡c tá»‘i Æ°u cÃ¡c kÃªnh truyá»n thÃ´ng thu hÃºt khÃ¡ch hÃ ng tiá»m nÄƒng</p>
+            <h1>Chọn Kênh Tìm Kiếm Khách Hàng</h1>
+            <p class="page-subtitle">Xác định và khai thác tối ưu các kênh truyền thông thu hút khách hàng tiềm năng</p>
         </div>
 
         <!-- Tab control -->
         <div class="profile-tabs" style="margin-bottom: 2rem;">
             <button class="profile-tab active" onclick="switchChonKenhTab('than-quen', this)">
-                <i class="fa-solid fa-users-between-lines"></i> 1. KÃªnh ngÆ°á»i thÃ¢n quen
+                <i class="fa-solid fa-users-between-lines"></i> 1. Kênh người thân quen
             </button>
             <button class="profile-tab" onclick="switchChonKenhTab('mat-phi', this)">
-                <i class="fa-solid fa-credit-card"></i> 2. KÃªnh máº¥t phÃ­
+                <i class="fa-solid fa-credit-card"></i> 2. Kênh mất phí
             </button>
             <button class="profile-tab" onclick="switchChonKenhTab('mien-phi', this)">
-                <i class="fa-solid fa-gift"></i> 3. KÃªnh miá»…n phÃ­
+                <i class="fa-solid fa-gift"></i> 3. Kênh miễn phí
             </button>
         </div>
 
         <!-- Tab Panels -->
-        <!-- Tab 1: KÃªnh ngÆ°á»i thÃ¢n quen -->
+        <!-- Tab 1: Kênh người thân quen -->
         <div class="profile-tab-panel active" id="tab-kenh-than-quen">
             <div style="margin-bottom: 1.5rem; background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: 12px; padding: 1rem;">
                 <p style="color: var(--text-primary); margin: 0; font-size: 0.95rem; line-height: 1.5;">
                     <i class="fa-solid fa-circle-info" style="color: #2563eb; margin-right: 8px;"></i>
-                    <strong>Lá»i khuyÃªn tá»« Sáº¿p KhÆ°Æ¡ng:</strong> Khai thÃ¡c má»‘i quan há»‡ sáºµn cÃ³ (áº¥m vÃ  nÃ³ng) lÃ  kÃªnh cÃ³ tá»‰ lá»‡ chá»‘t giao dá»‹ch cao nháº¥t vÃ  chi phÃ­ tháº¥p nháº¥t dÃ nh cho tÃ¢n binh. HÃ£y Ä‘á»c ká»¹ cáº©m nang dÆ°á»›i Ä‘Ã¢y Ä‘á»ƒ thá»±c hiá»‡n Ä‘Ãºng quy trÃ¬nh sÃ²ng pháº³ng, tinh táº¿.
+                    <strong>Lời khuyên từ Sếp Khương:</strong> Khai thác mối quan hệ sẵn có (ấm và nóng) là kênh có tỉ lệ chốt giao dịch cao nhất và chi phí thấp nhất dành cho tân binh. Hãy đọc kỹ cẩm nang dưới đây để thực hiện đúng quy trình sòng phẳng, tinh tế.
                 </p>
             </div>
             <div class="iframe-container-wrapper">
@@ -68,67 +68,67 @@ const APP_CONTENT = {
             </div>
         </div>
 
-        <!-- Tab 2: KÃªnh máº¥t phÃ­ -->
+        <!-- Tab 2: Kênh mất phí -->
         <div class="profile-tab-panel" id="tab-kenh-mat-phi">
             <div class="card-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; gap: 24px;">
                 <div class="strategy-card vip" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#3b82f6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">KÃªnh Quáº£ng CÃ¡o Facebook (FB Ads)</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Cháº¡y quáº£ng cÃ¡o tin nháº¯n / tÃ¬m kiáº¿m khÃ¡ch hÃ ng tiá»m nÄƒng</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Tiáº¿p cáº­n hÃ ng chá»¥c ngÃ n khÃ¡ch hÃ ng tiá»m nÄƒng xung quanh khu vá»±c má»¥c tiÃªu hoáº·c cÃ³ sá»Ÿ thÃ­ch Ä‘áº§u tÆ° BÄS báº±ng ngÃ¢n sÃ¡ch hÃ ng ngÃ y. ÄÃ¢y lÃ  kÃªnh chá»§ lá»±c giÃºp táº¡o ra lÆ°á»£ng khÃ¡ch hÃ ng quan tÃ¢m Ä‘á»u Ä‘áº·n.</p>
+                    <div class="card-badge" style="background:#3b82f6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Kênh Quảng Cáo Facebook (FB Ads)</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Chạy quảng cáo tin nhắn / tìm kiếm khách hàng tiềm năng</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Tiếp cận hàng chục ngàn khách hàng tiềm năng xung quanh khu vực mục tiêu hoặc có sở thích đầu tư BĐS bằng ngân sách hàng ngày. Đây là kênh chủ lực giúp tạo ra lượng khách hàng quan tâm đều đặn.</p>
                     <div class="upgrade-box" style="margin-top: 15px; background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.15); color: #2563eb; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                         <i class="fa-solid fa-circle-play" style="font-size: 1.2rem;"></i>
-                        <span>Xem chi tiáº¿t video hÆ°á»›ng dáº«n cháº¡y quáº£ng cÃ¡o thá»±c táº¿ táº¡i má»¥c <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#2563eb; text-decoration:underline;">Cáº§m Tay Chá»‰ Viá»‡c</a></span>
+                        <span>Xem chi tiết video hướng dẫn chạy quảng cáo thực tế tại mục <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#2563eb; text-decoration:underline;">Cầm Tay Chỉ Việc</a></span>
                     </div>
                 </div>
 
                 <div class="strategy-card safe" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#10b981; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">ÄÄƒng tin VIP cÃ³ phÃ­ trÃªn cá»•ng thÃ´ng tin</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Sá»­ dá»¥ng Batdongsan.com.vn, Chotot.com</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">ÄÄƒng táº£i tin rao bÃ¡n Ä‘áº¥t trá»±c tiáº¿p lÃªn cÃ¡c cá»•ng thÃ´ng tin lá»›n cá»§a Viá»‡t Nam. Cáº§n chuáº©n bá»‹ bÃ i viáº¿t chuáº©n SEO, tiÃªu Ä‘á» giáº­t tÃ­t kÃ­ch thÃ­ch tÃ² mÃ² vÃ  hÃ¬nh áº£nh thá»±c táº¿ báº¯t máº¯t Ä‘á»ƒ tá»‘i Æ°u hÃ³a lÆ°á»£ng click.</p>
+                    <div class="card-badge" style="background:#10b981; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Đăng tin VIP có phí trên cổng thông tin</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Sử dụng Batdongsan.com.vn, Chotot.com</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Đăng tải tin rao bán đất trực tiếp lên các cổng thông tin lớn của Việt Nam. Cần chuẩn bị bài viết chuẩn SEO, tiêu đề giật tít kích thích tò mò và hình ảnh thực tế bắt mắt để tối ưu hóa lượng click.</p>
                 </div>
 
                 <div class="strategy-card warn" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#f59e0b; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Khai thÃ¡c Data / TeleSale trá»±c tiáº¿p</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Gom tá»‡p sá»‘ Ä‘iá»‡n thoáº¡i khÃ¡ch hÃ ng tiá»m nÄƒng</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Gá»i Ä‘iá»‡n trá»±c tiáº¿p giá»›i thiá»‡u dá»± Ã¡n dá»±a trÃªn danh sÃ¡ch sá»‘ Ä‘iá»‡n thoáº¡i tiá»m nÄƒng cÃ³ sáºµn. ÄÃ¢y lÃ  kÃªnh Ä‘Ã²i há»i sá»± kiÃªn trÃ¬ cao, giá»ng nÃ³i truyá»n cáº£m vÃ  ká»‹ch báº£n xá»­ lÃ½ tá»« chá»‘i sáº¯c bÃ©n.</p>
+                    <div class="card-badge" style="background:#f59e0b; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Khai thác Data / TeleSale trực tiếp</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Gom tệp số điện thoại khách hàng tiềm năng</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Gọi điện trực tiếp giới thiệu dự án dựa trên danh sách số điện thoại tiềm năng có sẵn. Đây là kênh đòi hỏi sự kiên trì cao, giọng nói truyền cảm và kịch bản xử lý từ chối sắc bén.</p>
                     <div class="upgrade-box" style="margin-top: 15px; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); color: #d97706; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                         <i class="fa-solid fa-phone-volume" style="font-size: 1.2rem;"></i>
-                        <span>Xem ká»‹ch báº£n gá»i Ä‘iá»‡n chá»‘t khÃ¡ch táº¡i má»¥c <a href="#" onclick="window.appRoutes.navigate('page-telesale'); return false;" style="font-weight:700; color:#d97706; text-decoration:underline;">TeleSale</a></span>
+                        <span>Xem kịch bản gọi điện chốt khách tại mục <a href="#" onclick="window.appRoutes.navigate('page-telesale'); return false;" style="font-weight:700; color:#d97706; text-decoration:underline;">TeleSale</a></span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab 3: KÃªnh miá»…n phÃ­ -->
+        <!-- Tab 3: Kênh miễn phí -->
         <div class="profile-tab-panel" id="tab-kenh-mien-phi">
             <div class="card-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; gap: 24px;">
                 <div class="strategy-card safe" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#10b981; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">KÃªnh Video Ngáº¯n (TikTok / FB Reels / YT Shorts)</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Táº¡o video thá»±c Ä‘á»‹a, chia sáº» kiáº¿n thá»©c Ä‘áº§u tÆ°</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">XÃ¢y dá»±ng kÃªnh cÃ¡ nhÃ¢n chia sáº» hÃ¬nh áº£nh Ä‘áº¥t Ä‘ai thá»±c táº¿, nháº­n Ä‘á»‹nh thá»‹ trÆ°á»ng hoáº·c cÃ¡c máº¹o Ä‘áº§u tÆ°. Video ngáº¯n cÃ³ kháº£ nÄƒng phÃ¢n phá»‘i lan truyá»n cá»±c máº¡nh mÃ  khÃ´ng tá»‘n chi phÃ­ quáº£ng cÃ¡o.</p>
+                    <div class="card-badge" style="background:#10b981; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Kênh Video Ngắn (TikTok / FB Reels / YT Shorts)</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Tạo video thực địa, chia sẻ kiến thức đầu tư</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Xây dựng kênh cá nhân chia sẻ hình ảnh đất đai thực tế, nhận định thị trường hoặc các mẹo đầu tư. Video ngắn có khả năng phân phối lan truyền cực mạnh mà không tốn chi phí quảng cáo.</p>
                     <div class="upgrade-box" style="margin-top: 15px; background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); color: #059669; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                         <i class="fa-solid fa-circle-play" style="font-size: 1.2rem;"></i>
-                        <span>Xem video hÆ°á»›ng dáº«n xÃ¢y kÃªnh vÃ  Ä‘Äƒng TikTok táº¡i má»¥c <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#059669; text-decoration:underline;">Cáº§m Tay Chá»‰ Viá»‡c</a></span>
+                        <span>Xem video hướng dẫn xây kênh và đăng TikTok tại mục <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#059669; text-decoration:underline;">Cầm Tay Chỉ Việc</a></span>
                     </div>
                 </div>
 
                 <div class="strategy-card vip" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#3b82f6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">ÄÄƒng tin tháº£o luáº­n / ÄÄƒng tin lÃ¡i khÃ¡ch trong Group Facebook</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Táº­n dá»¥ng cÃ¡c há»™i nhÃ³m cá»™ng Ä‘á»“ng hÃ ng trÄƒm ngÃ n thÃ nh viÃªn</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">ÄÄƒng cÃ¡c bÃ i tháº£o luáº­n, bÃ i chia sáº» áº£o thu hÃºt tÆ°Æ¡ng tÃ¡c cá»§a cÃ¡c nhÃ  Ä‘áº§u tÆ° trong cÃ¡c Group BÄS lá»›n Ä‘á»ƒ kÃ©o káº¿t báº¡n Zalo vÃ  lÃ¡i sang dá»± Ã¡n chÃ­nh.</p>
+                    <div class="card-badge" style="background:#3b82f6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Đăng tin thảo luận / Đăng tin lái khách trong Group Facebook</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Tận dụng các hội nhóm cộng đồng hàng trăm ngàn thành viên</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Đăng các bài thảo luận, bài chia sẻ ảo thu hút tương tác của các nhà đầu tư trong các Group BĐS lớn để kéo kết bạn Zalo và lái sang dự án chính.</p>
                     <div class="upgrade-box" style="margin-top: 15px; background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.15); color: #2563eb; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                         <i class="fa-solid fa-book-open" style="font-size: 1.2rem;"></i>
-                        <span>Äá»c bÃ­ quyáº¿t ÄÄƒng Tin LÃ¡i KhÃ¡ch táº¡i má»¥c <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#2563eb; text-decoration:underline;">Cáº§m Tay Chá»‰ Viá»‡c</a></span>
+                        <span>Đọc bí quyết Đăng Tin Lái Khách tại mục <a href="#" onclick="window.appRoutes.navigate('page-cam-tay-chi-viec'); return false;" style="font-weight:700; color:#2563eb; text-decoration:underline;">Cầm Tay Chỉ Việc</a></span>
                     </div>
                 </div>
 
                 <div class="strategy-card warn" style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border-glass); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-sm);">
-                    <div class="card-badge" style="background:#8b5cf6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">XÃ¢y dá»±ng ThÆ°Æ¡ng hiá»‡u cÃ¡ nhÃ¢n (Facebook / Zalo cÃ¡ nhÃ¢n)</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">ÄÄƒng bÃ i gieo háº¡t, tÆ°Æ¡ng tÃ¡c káº¿t ná»‘i</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">ÄÄƒng táº£i cÃ¡c cÃ¢u chuyá»‡n chá»‘t Ä‘áº¥t thá»±c chiáº¿n, chia sáº» kiáº¿n thá»©c Ä‘áº§u tÆ° lÃªn trang cÃ¡ nhÃ¢n nháº±m xÃ¢y dá»±ng lÃ²ng tin lÃ¢u dÃ i vá»›i báº¡n bÃ¨ vÃ  Ä‘á»‘i tÃ¡c cÅ©.</p>
+                    <div class="card-badge" style="background:#8b5cf6; color:#fff; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; width: max-content; margin-bottom: 15px;">Xây dựng Thương hiệu cá nhân (Facebook / Zalo cá nhân)</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary); margin-bottom: 10px;">Đăng bài gieo hạt, tương tác kết nối</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Đăng tải các câu chuyện chốt đất thực chiến, chia sẻ kiến thức đầu tư lên trang cá nhân nhằm xây dựng lòng tin lâu dài với bạn bè và đối tác cũ.</p>
                     <div class="upgrade-box" style="margin-top: 15px; background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.15); color: #7c3aed; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                         <i class="fa-solid fa-graduation-cap" style="font-size: 1.2rem;"></i>
-                        <span>Xem bÃ i há»c xÃ¢y thÆ°Æ¡ng hiá»‡u táº¡i má»¥c <a href="#" onclick="window.appRoutes.navigate('page-chien-luoc-fb'); return false;" style="font-weight:700; color:#7c3aed; text-decoration:underline;">Chiáº¿n lÆ°á»£c FB, Zalo</a></span>
+                        <span>Xem bài học xây thương hiệu tại mục <a href="#" onclick="window.appRoutes.navigate('page-chien-luoc-fb'); return false;" style="font-weight:700; color:#7c3aed; text-decoration:underline;">Chiến lược FB, Zalo</a></span>
                     </div>
                 </div>
             </div>
@@ -137,14 +137,14 @@ const APP_CONTENT = {
 
 
     // ---------------------------------------------------------
-    // PAGE: LÃ DO TÄ‚NG GIÃ BÄS (Chi tiáº¿t)
+    // PAGE: LÝ DO TĂNG GIÁ BĐS (Chi tiết)
     // ---------------------------------------------------------
     'page-ly-do-tang-gia': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> LÃ½ Do TÄƒng GiÃ¡ Cá»§a Báº¥t Äá»™ng Sáº£n</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Lý Do Tăng Giá Của Bất Động Sản</span>
                 <a href="LY_DO_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -154,14 +154,14 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: GIAI ÄOáº N TÄ‚NG GIÃ BÄS (Chi tiáº¿t)
+    // PAGE: GIAI ĐOẠN TĂNG GIÁ BĐS (Chi tiết)
     // ---------------------------------------------------------
     'page-giai-doan-tang-gia': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Nhá»¯ng Giai Äoáº¡n TÄƒng GiÃ¡ Cá»§a Báº¥t Äá»™ng Sáº£n</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-chart-line"></i> Những Giai Đoạn Tăng Giá Của Bất Động Sản</span>
                 <a href="GIAI_DOAN_TANG_GIA_BDS.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -171,14 +171,14 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: SO SÃNH CÃC KÃŠNH Äáº¦U TÆ¯ (Chi tiáº¿t)
+    // PAGE: SO SÁNH CÁC KÊNH ĐẦU TƯ (Chi tiết)
     // ---------------------------------------------------------
     'page-so-sanh-kenh-dau-tu': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-scale-balanced"></i> So SÃ¡nh CÃ¡c KÃªnh Äáº§u TÆ° & Lá»£i Tháº¿ BÄS</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-scale-balanced"></i> So Sánh Các Kênh Đầu Tư & Lợi Thế BĐS</span>
                 <a href="SO_SANH_KENH_DAU_TU.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -188,14 +188,14 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: Báº¢NG HÃ€NG Tá»”NG Há»¢P
+    // PAGE: BẢNG HÀNG TỔNG HỢP
     // ---------------------------------------------------------
     'page-bang-hang': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-table-list"></i> Báº£ng HÃ ng Tá»•ng Há»£p</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-table-list"></i> Bảng Hàng Tổng Hợp</span>
                 <a href="/training-hub/BANG_HANG_TL_LAND.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -205,45 +205,45 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: ÄÃ€O Táº O KIáº¾N THá»¨C Ná»€N
+    // PAGE: ĐÀO TẠO KIẾN THỨC NỀN
     // ---------------------------------------------------------
     'page-kien-thuc-nen': `
         <div class="page-title-bar">
-            <h1>ÄÃ o Táº¡o Kiáº¿n Thá»©c Ná»n</h1>
-            <p class="page-subtitle">Hiá»ƒu báº£n cháº¥t thá»‹ trÆ°á»ng â€” Ná»n táº£ng vá»¯ng cháº¯c trÆ°á»›c khi ra tráº­n</p>
+            <h1>Đào Tạo Kiến Thức Nền</h1>
+            <p class="page-subtitle">Hiểu bản chất thị trường — Nền tảng vững chắc trước khi ra trận</p>
         </div>
 
         <div class="card-grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
 
             <div class="strategy-card safe" onclick="window.appRoutes.navigate('page-ly-do-tang-gia', true)" style="cursor: pointer; transition: all 0.3s ease;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(56,189,248,0.15)'" onmouseleave="this.style.transform=''; this.style.boxShadow=''">
-                <div class="card-badge">ðŸ“ˆ Chá»§ Ä‘á» 1</div>
-                <h3>LÃ½ Do TÄƒng GiÃ¡ Cá»§a Báº¥t Äá»™ng Sáº£n</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">PhÃ¢n tÃ­ch sÃ¢u qua tÆ° duy "DÃ²ng Tiá»n" â€” Hiá»ƒu báº£n cháº¥t tháº­t sá»± Ä‘áº±ng sau má»—i Ä‘á»£t tÄƒng giÃ¡ BÄS.</p>
+                <div class="card-badge">📈 Chủ đề 1</div>
+                <h3>Lý Do Tăng Giá Của Bất Động Sản</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Phân tích sâu qua tư duy "Dòng Tiền" — Hiểu bản chất thật sự đằng sau mỗi đợt tăng giá BĐS.</p>
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 12px 18px; background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(167,139,250,0.1)); border-radius: 12px; font-weight: 600; color: var(--accent-blue, #38bdf8); font-size: 0.95rem;">
                     <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Báº¥m vÃ o Ä‘á»ƒ xem bÃ i phÃ¢n tÃ­ch chi tiáº¿t</span>
+                    <span>Bấm vào để xem bài phân tích chi tiết</span>
                     <i class="fa-solid fa-arrow-right" style="margin-left: auto;"></i>
                 </div>
             </div>
 
             <div class="strategy-card vip" onclick="window.appRoutes.navigate('page-giai-doan-tang-gia', true)" style="cursor: pointer; transition: all 0.3s ease;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(167,139,250,0.15)'" onmouseleave="this.style.transform=''; this.style.boxShadow=''">
-                <div class="card-badge">ðŸ“Š Chá»§ Ä‘á» 2</div>
-                <h3>Nhá»¯ng Giai Äoáº¡n TÄƒng GiÃ¡ Cá»§a Báº¥t Äá»™ng Sáº£n</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">4 giai Ä‘oáº¡n tÄƒng giÃ¡ â€” tá»« thÃ´ng tin quy hoáº¡ch Ä‘áº¿n dÃ¢n cÆ° láº¥p Ä‘áº§y. Nháº­n diá»‡n rá»§i ro & cÆ¡ há»™i á»Ÿ tá»«ng giai Ä‘oáº¡n.</p>
+                <div class="card-badge">📊 Chủ đề 2</div>
+                <h3>Những Giai Đoạn Tăng Giá Của Bất Động Sản</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">4 giai đoạn tăng giá — từ thông tin quy hoạch đến dân cư lấp đầy. Nhận diện rủi ro & cơ hội ở từng giai đoạn.</p>
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 12px 18px; background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(244,114,182,0.1)); border-radius: 12px; font-weight: 600; color: var(--accent-purple, #a78bfa); font-size: 0.95rem;">
                     <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Báº¥m vÃ o Ä‘á»ƒ xem bÃ i phÃ¢n tÃ­ch chi tiáº¿t</span>
+                    <span>Bấm vào để xem bài phân tích chi tiết</span>
                     <i class="fa-solid fa-arrow-right" style="margin-left: auto;"></i>
                 </div>
             </div>
 
             <div class="strategy-card warn" onclick="window.appRoutes.navigate('page-so-sanh-kenh-dau-tu', true)" style="cursor: pointer; transition: all 0.3s ease;" onmouseenter="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(244,114,182,0.15)'" onmouseleave="this.style.transform=''; this.style.boxShadow=''">
-                <div class="card-badge">âš–ï¸ Chá»§ Ä‘á» 3</div>
-                <h3>So SÃ¡nh CÃ¡c KÃªnh Äáº§u TÆ° & Lá»£i Tháº¿ BÄS</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 20px;">Chá»©ng khoÃ¡n, vÃ ng, tiáº¿t kiá»‡m, crypto... â€” Báº¥t Ä‘á»™ng sáº£n vÆ°á»£t trá»™i á»Ÿ Ä‘iá»ƒm nÃ o? PhÃ¢n tÃ­ch Æ°u nhÆ°á»£c tá»«ng loáº¡i.</p>
+                <div class="card-badge">⚖️ Chủ đề 3</div>
+                <h3>So Sánh Các Kênh Đầu Tư & Lợi Thế BĐS</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Chứng khoán, vàng, tiết kiệm, crypto... — Bất động sản vượt trội ở điểm nào? Phân tích ưu nhược từng loại.</p>
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 12px 18px; background: linear-gradient(135deg, rgba(244,114,182,0.1), rgba(245,158,11,0.1)); border-radius: 12px; font-weight: 600; color: var(--accent-orange, #f59e0b); font-size: 0.95rem;">
                     <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Báº¥m vÃ o Ä‘á»ƒ xem bÃ i phÃ¢n tÃ­ch chi tiáº¿t</span>
+                    <span>Bấm vào để xem bài phân tích chi tiết</span>
                     <i class="fa-solid fa-arrow-right" style="margin-left: auto;"></i>
                 </div>
             </div>
@@ -252,43 +252,43 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: THá»Š TRÆ¯á»œNG ÄANG TRIá»‚N KHAI
+    // PAGE: THỊ TRƯỜNG ĐANG TRIỂN KHAI
     // ---------------------------------------------------------
     
     // ---------------------------------------------------------
-    // PAGE: CÃC BÃ€I MáºªU ÄÄ‚NG TIN áº¢O & NGUYÃŠN LÃ áº¨N (Má»›i)
+    // PAGE: CÁC BÀI MẪU ĐĂNG TIN ẢO & NGUYÊN LÝ ẨN (Mới)
     // ---------------------------------------------------------
     'page-mau-dang-tin-ao': `
         <div class="page-title-bar">
             <h1>
-                ThÆ° Viá»‡n BÃ i Máº«u ÄÄƒng Tin áº¢o 
-                <span class="principle-trigger-btn" onclick="window.mauDangTinAo.togglePrinciple()" title="Báº¥m vÃ o Ä‘á»ƒ xem NguyÃªn lÃ½ & Chiáº¿n thuáº­t Ä‘Äƒng tin áº©n">
+                Thư Viện Bài Mẫu Đăng Tin Ảo 
+                <span class="principle-trigger-btn" onclick="window.mauDangTinAo.togglePrinciple()" title="Bấm vào để xem Nguyên lý & Chiến thuật đăng tin ẩn">
                     <i class="fa-solid fa-key"></i>
                 </span>
             </h1>
-            <p class="page-subtitle">NhÃ¢n sá»± tá»± nghiÃªn cá»©u, phÃ¢n tÃ­ch hÃ¬nh áº£nh vÃ  Ä‘Ãºc rÃºt lÃ½ do vÃ¬ sao cÃ¡c bÃ i Ä‘Äƒng nÃ y láº¡i hiá»‡u quáº£</p>
+            <p class="page-subtitle">Nhân sự tự nghiên cứu, phân tích hình ảnh và đúc rút lý do vì sao các bài đăng này lại hiệu quả</p>
         </div>
 
         <div class="gallery-container">
             <div class="gallery-count-row">
-                <span id="gallery-count-text">Äang hiá»ƒn thá»‹ 0 / 0 bÃ i máº«u</span>
+                <span id="gallery-count-text">Đang hiển thị 0 / 0 bài mẫu</span>
                 <span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; display: flex; align-items: center; gap: 5px;">
-                    <i class="fa-solid fa-circle-info"></i> Báº¥m vÃ o áº£nh Ä‘á»ƒ phÃ³ng to xem chi tiáº¿t ná»™i dung Ä‘Äƒng tin
+                    <i class="fa-solid fa-circle-info"></i> Bấm vào ảnh để phóng to xem chi tiết nội dung đăng tin
                 </span>
             </div>
             
             <div class="gallery-grid" id="gallery-grid">
-                <!-- Sáº½ Ä‘Æ°á»£c fill Ä‘á»™ng bá»Ÿi JS -->
+                <!-- Sẽ được fill động bởi JS -->
             </div>
 
             <div class="gallery-actions" style="text-align: center; margin-top: 30px; margin-bottom: 50px;">
                 <button class="load-more-btn" id="load-more-btn" onclick="window.mauDangTinAo.loadMore()">
-                    <i class="fa-solid fa-arrows-spin"></i> Xem ThÃªm áº¢nh Máº«u ÄÄƒng Tin
+                    <i class="fa-solid fa-arrows-spin"></i> Xem Thêm Ảnh Mẫu Đăng Tin
                 </button>
             </div>
         </div>
 
-        <!-- MODAL NGUYÃŠN LÃ ÄÄ‚NG TIN áº¨N (Chá»‰ hiá»‡n khi báº¥m vÃ o icon ChÃ¬a KhÃ³a) -->
+        <!-- MODAL NGUYÊN LÝ ĐĂNG TIN ẨN (Chỉ hiện khi bấm vào icon Chìa Khóa) -->
         <div class="principle-modal" id="principle-modal">
             <div class="principle-modal-content">
                 <span class="principle-modal-close" onclick="window.mauDangTinAo.togglePrinciple()">&times;</span>
@@ -297,121 +297,121 @@ const APP_CONTENT = {
                     <div class="principle-icon-wrapper">
                         <i class="fa-solid fa-lightbulb"></i>
                     </div>
-                    <h2>NguyÃªn LÃ½ & Chiáº¿n Thuáº­t ÄÄƒng Tin áº¢o Thá»±c Chiáº¿n</h2>
-                    <p>TÃ i liá»‡u máº­t dÃ nh riÃªng cho Chiáº¿n binh Sales - Tuyá»‡t Ä‘á»‘i khÃ´ng chia sáº» ra ngoÃ i</p>
+                    <h2>Nguyên Lý & Chiến Thuật Đăng Tin Ảo Thực Chiến</h2>
+                    <p>Tài liệu mật dành riêng cho Chiến binh Sales - Tuyệt đối không chia sẻ ra ngoài</p>
                 </div>
 
                 <div class="principle-scroll-body">
                     
-                    <!-- Pháº§n 1: Má»¥c tiÃªu cá»‘t lÃµi -->
+                    <!-- Phần 1: Mục tiêu cốt lõi -->
                     <div class="principle-card goal">
-                        <h3><i class="fa-solid fa-bullseye"></i> Má»¥c TiÃªu Cá»‘t LÃµi Cá»§a Tin ÄÄƒng áº¢o</h3>
-                        <p>Má»¥c tiÃªu duy nháº¥t cá»§a tin áº£o lÃ  <strong>Láº¤Y Báº°NG ÄÆ¯á»¢C LEAD (Há» tÃªn, SÄT/Zalo cá»§a khÃ¡ch hÃ ng cÃ³ tiá»n, cÃ³ nhu cáº§u Ä‘áº§u tÆ° tháº­t)</strong>. Tin áº£o chá»‰ lÃ  "má»“i cÃ¢u". Sau khi cÃ³ sá»‘ khÃ¡ch, Sale dÃ¹ng ká»¹ nÄƒng vÃ  sá»± chÃ¢n thÃ nh Ä‘á»ƒ "báº» lÃ¡i" nhu cáº§u vá» Ä‘Ãºng thá»‹ trÆ°á»ng/sáº£n pháº©m mÃ  cÃ´ng ty Ä‘ang bÃ¡n.</p>
+                        <h3><i class="fa-solid fa-bullseye"></i> Mục Tiêu Cốt Lõi Của Tin Đăng Ảo</h3>
+                        <p>Mục tiêu duy nhất của tin ảo là <strong>LẤY BẰNG ĐƯỢC LEAD (Họ tên, SĐT/Zalo của khách hàng có tiền, có nhu cầu đầu tư thật)</strong>. Tin ảo chỉ là "mồi câu". Sau khi có số khách, Sale dùng kỹ năng và sự chân thành để "bẻ lái" nhu cầu về đúng thị trường/sản phẩm mà công ty đang bán.</p>
                     </div>
 
-                    <!-- Pháº§n 2: 5 NguyÃªn lÃ½ áº£nh Ä‘Äƒng áº£o -->
-                    <div class="principle-section-title">5 NguyÃªn LÃ½ Thiáº¿t Káº¿ áº¢nh ÄÄƒng áº¢o</div>
+                    <!-- Phần 2: 5 Nguyên lý ảnh đăng ảo -->
+                    <div class="principle-section-title">5 Nguyên Lý Thiết Kế Ảnh Đăng Ảo</div>
                     <div class="principle-grid">
                         <div class="principle-mini-card">
                             <span class="p-num">1</span>
-                            <h4>ThÃ´ nhÆ° ngÆ°á»i thÆ°á»ng chá»¥p</h4>
-                            <p>áº¢nh pháº£i trÃ´ng giá»‘ng ngÆ°á»i dÃ¢n bÃ¬nh thÆ°á»ng cáº§m Ä‘iá»‡n thoáº¡i chá»¥p máº£nh Ä‘áº¥t. Cáº¥m dÃ¹ng áº£nh flycam quÃ¡ Ä‘áº¹p, áº£nh render 3D hay cÃ³ logo cÃ´ng ty. Pháº£i tá»± nhiÃªn, thÃ´ tháº­t.</p>
+                            <h4>Thô như người thường chụp</h4>
+                            <p>Ảnh phải trông giống người dân bình thường cầm điện thoại chụp mảnh đất. Cấm dùng ảnh flycam quá đẹp, ảnh render 3D hay có logo công ty. Phải tự nhiên, thô thật.</p>
                         </div>
                         <div class="principle-mini-card">
                             <span class="p-num">2</span>
-                            <h4>Káº¹p Ä‘áº¥t giá»¯a sá»± sáº§m uáº¥t</h4>
-                            <p>Äáº¥t trong áº£nh báº¯t buá»™c pháº£i cÃ³ bá»‘i cáº£nh kinh doanh 2 bÃªn: bÃªn quÃ¡n Äƒn Ä‘Ã´ng, bÃªn khÃ¡ch sáº¡n/nhÃ  nghá»‰, táº¡o cáº£m giÃ¡c khu sáº§m uáº¥t kinh doanh Ä‘Æ°á»£c ngay.</p>
+                            <h4>Kẹp đất giữa sự sầm uất</h4>
+                            <p>Đất trong ảnh bắt buộc phải có bối cảnh kinh doanh 2 bên: bên quán ăn đông, bên khách sạn/nhà nghỉ, tạo cảm giác khu sầm uất kinh doanh được ngay.</p>
                         </div>
                         <div class="principle-mini-card">
                             <span class="p-num">3</span>
-                            <h4>Chá»¯ trÃªn áº£nh = BÃ¡o lÃ¡ cáº£i</h4>
-                            <p>ChÃ¨n chá»¯ to, mÃ u Äá» hoáº·c VÃ ng ná»n Ä‘á» Ä‘á»ƒ giáº­t máº¯t khi khÃ¡ch lÆ°á»›t nhanh Facebook. GÃ¢y tÃ² mÃ² cá»±c Ä‘á»™ nhÆ°ng áº©n vá»‹ trÃ­ chÃ­nh xÃ¡c (vÃ­ dá»¥: "Äáº¤T BIá»‚N Cáº®T Lá»– SÃ‚U").</p>
+                            <h4>Chữ trên ảnh = Báo lá cải</h4>
+                            <p>Chèn chữ to, màu Đỏ hoặc Vàng nền đỏ để giật mắt khi khách lướt nhanh Facebook. Gây tò mò cực độ nhưng ẩn vị trí chính xác (ví dụ: "ĐẤT BIỂN CẮT LỖ SÂU").</p>
                         </div>
                         <div class="principle-mini-card">
                             <span class="p-num">4</span>
-                            <h4>MÅ©i tÃªn Ä‘á» dáº«n lá»‘i</h4>
-                            <p>Váº½ mÅ©i tÃªn chá»‰ hÆ°á»›ng Ä‘i ra cÃ¡c tiá»‡n Ã­ch (nhÆ° bÃ£i táº¯m, KCN, chá»£) kÃ¨m khoáº£ng cÃ¡ch cá»¥ thá»ƒ "âž¡ 200m ra biá»ƒn". Tuyá»‡t Ä‘á»‘i khÃ´ng ghi tÃªn xÃ£/huyá»‡n/tá»‰nh cá»¥ thá»ƒ.</p>
+                            <h4>Mũi tên đỏ dẫn lối</h4>
+                            <p>Vẽ mũi tên chỉ hướng đi ra các tiện ích (như bãi tắm, KCN, chợ) kèm khoảng cách cụ thể "➡ 200m ra biển". Tuyệt đối không ghi tên xã/huyện/tỉnh cụ thể.</p>
                         </div>
                         <div class="principle-mini-card">
                             <span class="p-num">5</span>
-                            <h4>KÃ­ch thÆ°á»›c = Báº±ng chá»©ng tháº­t</h4>
-                            <p>Váº½ váº¡ch Ä‘o Ä‘á» ghi kÃ­ch thÆ°á»›c rÃµ rÃ ng (vÃ­ dá»¥: "â†” 6m x 15m (90mÂ²)") Ä‘á»ƒ táº¡o cáº£m giÃ¡c chá»§ nhÃ  Ä‘Ã£ Ä‘o sáºµn Ä‘áº¥t, táº¡o niá»m tin máº£nh Ä‘áº¥t cÃ³ thá»±c.</p>
+                            <h4>Kích thước = Bằng chứng thật</h4>
+                            <p>Vẽ vạch đo đỏ ghi kích thước rõ ràng (ví dụ: "↔ 6m x 15m (90m²)") để tạo cảm giác chủ nhà đã đo sẵn đất, tạo niềm tin mảnh đất có thực.</p>
                         </div>
                     </div>
 
                     <div class="principle-card rule-box">
-                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Quy Táº¯c VÃ ng áº¨n Äá»‹a Danh</h4>
-                        <p><strong>Tuyá»‡t Ä‘á»‘i khÃ´ng bao giá»</strong> ghi tÃªn cÃ¡c Ä‘á»‹a danh cá»¥ thá»ƒ (nhÆ° Ninh CÆ¡, Háº£i XuÃ¢n, Háº£i Háº­u, Nam Äá»‹nh) trÃªn áº£nh Ä‘Äƒng áº£o. Thay tháº¿ báº±ng cÃ¡c tá»« khÃ³a chung chung kÃ­ch thÃ­ch nhu cáº§u:</p>
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Quy Tắc Vàng Ẩn Địa Danh</h4>
+                        <p><strong>Tuyệt đối không bao giờ</strong> ghi tên các địa danh cụ thể (như Ninh Cơ, Hải Xuân, Hải Hậu, Nam Định) trên ảnh đăng ảo. Thay thế bằng các từ khóa chung chung kích thích nhu cầu:</p>
                         <table class="principle-table">
                             <thead>
                                 <tr>
-                                    <th>KHÃ”NG ghi Ä‘á»‹a danh cá»¥ thá»ƒ âœ—</th>
-                                    <th>GHI tá»« khÃ³a thay tháº¿ âœ“</th>
+                                    <th>KHÔNG ghi địa danh cụ thể ✗</th>
+                                    <th>GHI từ khóa thay thế ✓</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Äáº¥t Háº£i XuÃ¢n, Háº£i Háº­u</td>
-                                    <td><strong>Äáº¤T DU Lá»ŠCH BIá»‚N</strong></td>
+                                    <td>Đất Hải Xuân, Hải Hậu</td>
+                                    <td><strong>ĐẤT DU LỊCH BIỂN</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Ninh CÆ¡, Nam Äá»‹nh</td>
-                                    <td><strong>SÃT KHU KINH Táº¾ BIá»‚N TRá»ŒNG ÄIá»‚M</strong></td>
+                                    <td>Ninh Cơ, Nam Định</td>
+                                    <td><strong>SÁT KHU KINH TẾ BIỂN TRỌNG ĐIỂM</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>XÃ£ Háº£i XuÃ¢n</td>
-                                    <td><strong>KINH DOANH KHÃCH Sáº N VEN BIá»‚N</strong></td>
+                                    <td>Xã Hải Xuân</td>
+                                    <td><strong>KINH DOANH KHÁCH SẠN VEN BIỂN</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Gáº§n bÃ£i táº¯m Háº£i Háº­u</td>
-                                    <td><strong>VÃ€I BÆ¯á»šC CHÃ‚N RA BIá»‚N</strong></td>
+                                    <td>Gần bãi tắm Hải Hậu</td>
+                                    <td><strong>VÀI BƯỚC CHÂN RA BIỂN</strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Cáº¡nh KCN Ráº¡ng ÄÃ´ng</td>
-                                    <td><strong>SÃT KCN Lá»šN ÄANG TRIá»‚N KHAI</strong></td>
+                                    <td>Cạnh KCN Rạng Đông</td>
+                                    <td><strong>SÁT KCN LỚN ĐANG TRIỂN KHAI</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Pháº§n 3: Chiáº¿n thuáº­t lÃ¡i khÃ¡ch -->
-                    <div class="principle-section-title">Chiáº¿n Thuáº­t Báº» LÃ¡i KhÃ¡ch HÃ ng (Táº­p Trung)</div>
+                    <!-- Phần 3: Chiến thuật lái khách -->
+                    <div class="principle-section-title">Chiến Thuật Bẻ Lái Khách Hàng (Tập Trung)</div>
                     
                     <div class="strategy-list">
                         <div class="strategy-item priority">
-                            <div class="strat-badge">NÃ©t Nháº¥t</div>
-                            <h5>Chiáº¿n thuáº­t "Táº­p tuyá»ƒn táº­p Lead" & Telesale gá»i láº¡i</h5>
-                            <p>ÄÄƒng tin áº£o ná»™i Ä‘Ã´ cá»±c ráº». KhÃ¡ch nháº¯n tin/gá»i Ä‘iá»‡n há»i -> Xin sá»‘ Ä‘iá»‡n thoáº¡i Zalo -> Bá» lÆ¡ vÃ i ngÃ y. Sau Ä‘Ã³, Telesale gá»i láº¡i chÃ o má»i bÃ i báº£n: <em>"Dáº¡ em tháº¥y anh Ä‘ang quan tÃ¢m Ä‘áº§u tÆ°, lÃ´ ná»™i Ä‘Ã´ Ä‘Ã³ táº¡m ngÆ°ng giao dá»‹ch nhÆ°ng bÃªn em Ä‘ang cÃ³ sÃ³ng ráº¥t tá»‘t á»Ÿ thá»‹ trÆ°á»ng Ä‘áº¥t biá»ƒn tiá»m nÄƒng..."</em></p>
+                            <div class="strat-badge">Nét Nhất</div>
+                            <h5>Chiến thuật "Tập tuyển tập Lead" & Telesale gọi lại</h5>
+                            <p>Đăng tin ảo nội đô cực rẻ. Khách nhắn tin/gọi điện hỏi -> Xin số điện thoại Zalo -> Bỏ lơ vài ngày. Sau đó, Telesale gọi lại chào mời bài bản: <em>"Dạ em thấy anh đang quan tâm đầu tư, lô nội đô đó tạm ngưng giao dịch nhưng bên em đang có sóng rất tốt ở thị trường đất biển tiềm năng..."</em></p>
                         </div>
 
                         <div class="strategy-item priority">
-                            <div class="strat-badge">NÃ©t Nháº¥t</div>
-                            <h5>Chiáº¿n thuáº­t "Marketing Ä‘Äƒng nháº§m"</h5>
-                            <p>Khi khÃ¡ch há»i vá» lÃ´ Ä‘áº¥t áº£o, nÃ³i tháº³ng tháº­t thÃ : <em>"Dáº¡ em xin lá»—i anh, báº¡n thá»±c táº­p lá»¡ tay up nháº§m áº£nh ná»™i Ä‘Ã´. NhÆ°ng thÃ´ng tin lÃ´ Ä‘áº¥t/dÃ²ng tiá»n ráº» lÃ  tháº­t 100%. Em má»i anh ly cÃ  phÃª em tÆ° váº¥n ká»¹ hÆ¡n vá» cÆ¡ há»™i Ä‘áº§u tÆ° nÃ y..."</em></p>
+                            <div class="strat-badge">Nét Nhất</div>
+                            <h5>Chiến thuật "Marketing đăng nhầm"</h5>
+                            <p>Khi khách hỏi về lô đất ảo, nói thẳng thật thà: <em>"Dạ em xin lỗi anh, bạn thực tập lỡ tay up nhầm ảnh nội đô. Nhưng thông tin lô đất/dòng tiền rẻ là thật 100%. Em mời anh ly cà phê em tư vấn kỹ hơn về cơ hội đầu tư này..."</em></p>
                         </div>
 
                         <div class="strategy-item priority">
-                            <div class="strat-badge">NÃ©t Nháº¥t</div>
-                            <h5>Chiáº¿n thuáº­t "Giá»ng Ä‘iá»‡u ChuyÃªn Gia Cáº£nh BÃ¡o"</h5>
-                            <p>XÃ¡c nháº­n lÃ  cÃ³ lÃ´ Ä‘áº¥t Ä‘Ã³, nhÆ°ng khuyÃªn ngÄƒn khÃ¡ch mua vÃ¬ lÃ½ do xáº¥u: <em>"LÃ´ nÃ y ráº» tháº­t nhÆ°ng Ä‘áº¥t cÃ¢y lÃ¢u nÄƒm/dÃ­nh quy hoáº¡ch nháº¹ anh áº¡. Em khuyÃªn tháº­t khÃ´ng nÃªn Ä‘áº§u tÆ°. CÃ¹ng táº§m tiá»n Ä‘Ã³ anh láº¥y sang con nÃ y phÃ¡p lÃ½ an toÃ n hÆ¡n..."</em> -> XÃ¢y dá»±ng uy tÃ­n Sale cÃ³ tÃ¢m rá»“i lÃ¡i sang hÃ ng tháº­t.</p>
+                            <div class="strat-badge">Nét Nhất</div>
+                            <h5>Chiến thuật "Giọng điệu Chuyên Gia Cảnh Báo"</h5>
+                            <p>Xác nhận là có lô đất đó, nhưng khuyên ngăn khách mua vì lý do xấu: <em>"Lô này rẻ thật nhưng đất cây lâu năm/dính quy hoạch nhẹ anh ạ. Em khuyên thật không nên đầu tư. Cùng tầm tiền đó anh lấy sang con này pháp lý an toàn hơn..."</em> -> Xây dựng uy tín Sale có tâm rồi lái sang hàng thật.</p>
                         </div>
 
                         <div class="strategy-item info">
-                            <div class="strat-badge warning">An ToÃ n</div>
-                            <h5>Chiáº¿n thuáº­t "Báº£ng hÃ ng quÃ¡ khá»©" lÃ m má»“i</h5>
-                            <p>ÄÄƒng dá»± Ã¡n cÅ© cá»±c Ä‘áº¹p, giÃ¡ cá»±c tá»‘t (Ä‘Ã£ bÃ¡n háº¿t). KhÃ¡ch há»i -> Gá»­i báº£ng hÃ ng gáº¡ch Ä‘á» Ä‘Ã£ bÃ¡n sáº¡ch, chá»‰ chá»«a 1-2 lÃ´ xáº¥u/tÃ¬ váº¿t. Má»i khÃ¡ch Ä‘i xem lÃ´ xáº¥u Ä‘Ã³. Äáº¿n ngÃ y Ä‘i xem thÃ¬ bÃ¡o lÃ´ Ä‘Ã³ vá»«a cá»c máº¥t, tiá»‡n Ä‘Æ°á»ng lÃ¡i sang dá»± Ã¡n tháº­t cá»§a cÃ´ng ty cÃ³ cÃ¹ng táº§m giÃ¡.</p>
+                            <div class="strat-badge warning">An Toàn</div>
+                            <h5>Chiến thuật "Bảng hàng quá khứ" làm mồi</h5>
+                            <p>Đăng dự án cũ cực đẹp, giá cực tốt (đã bán hết). Khách hỏi -> Gửi bảng hàng gạch đỏ đã bán sạch, chỉ chừa 1-2 lô xấu/tì vết. Mời khách đi xem lô xấu đó. Đến ngày đi xem thì báo lô đó vừa cọc mất, tiện đường lái sang dự án thật của công ty có cùng tầm giá.</p>
                         </div>
 
                         <div class="strategy-item info">
-                            <div class="strat-badge warning">An ToÃ n</div>
-                            <h5>Chiáº¿n thuáº­t "Báº«y SÆ°Æ¡ng MÃ¹ Vá»‹ TrÃ­"</h5>
-                            <p>Viáº¿t mÃ´ táº£ tiá»‡n Ã­ch ráº¥t chi tiáº¿t nhÆ°ng tuyá»‡t Ä‘á»‘i giáº¥u Ä‘á»‹a danh cá»¥ thá»ƒ (chá»‰ ghi 200m ra biá»ƒn, cáº¡nh KCN), tháº£ vÃ o group Ä‘á»‹a phÆ°Æ¡ng. Sá»± cá»¥t thÃ´ng tin báº¯t buá»™c khÃ¡ch pháº£i comment/inbox há»i vá»‹ trÃ­ -> Thu tháº­p lead tá»± nhiÃªn.</p>
+                            <div class="strat-badge warning">An Toàn</div>
+                            <h5>Chiến thuật "Bẫy Sương Mù Vị Trí"</h5>
+                            <p>Viết mô tả tiện ích rất chi tiết nhưng tuyệt đối giấu địa danh cụ thể (chỉ ghi 200m ra biển, cạnh KCN), thả vào group địa phương. Sự cụt thông tin bắt buộc khách phải comment/inbox hỏi vị trí -> Thu thập lead tự nhiên.</p>
                         </div>
                     </div>
 
                     <div class="principle-card warning-box-dark">
-                        <h4><i class="fa-solid fa-circle-exclamation"></i> Lá»i khuyÃªn cuá»‘i cÃ¹ng tá»« Sáº¿p KhÆ°Æ¡ng</h4>
-                        <p><em>"Nhá»› ká»¹: áº¢nh chá»‰ lÃ  má»“i nhá»­. KhÃ´ng cáº§n áº£nh Ä‘áº¹p lung linh, cáº§n áº£nh táº¡o sá»± tÃ² mÃ² vÃ  cáº£m giÃ¡c THáº¬T Ä‘á»ƒ khÃ¡ch pháº£i báº¥m nÃºt nháº¯n tin há»i thÄƒm. Sá»± kiÃªn trÃ¬ bÃ¡m Ä‘uá»•i vÃ  báº» lÃ¡i khÃ©o lÃ©o sau Ä‘Ã³ má»›i quyáº¿t Ä‘á»‹nh 90% sá»± thÃ nh báº¡i."</em></p>
+                        <h4><i class="fa-solid fa-circle-exclamation"></i> Lời khuyên cuối cùng từ Sếp Khương</h4>
+                        <p><em>"Nhớ kỹ: Ảnh chỉ là mồi nhử. Không cần ảnh đẹp lung linh, cần ảnh tạo sự tò mò và cảm giác THẬT để khách phải bấm nút nhắn tin hỏi thăm. Sự kiên trì bám đuổi và bẻ lái khéo léo sau đó mới quyết định 90% sự thành bại."</em></p>
                     </div>
 
                 </div>
@@ -421,27 +421,27 @@ const APP_CONTENT = {
 
 'page-thi-truong': `
         <div class="page-title-bar">
-            <h1>Thá»‹ TrÆ°á»ng CÃ´ng Ty Äang Triá»ƒn Khai</h1>
-            <p class="page-subtitle">Tá»•ng há»£p tÃ i liá»‡u, báº£n Ä‘á»“ vÃ  video Ä‘Ã o táº¡o theo tá»«ng thá»‹ trÆ°á»ng</p>
+            <h1>Thị Trường Công Ty Đang Triển Khai</h1>
+            <p class="page-subtitle">Tổng hợp tài liệu, bản đồ và video đào tạo theo từng thị trường</p>
         </div>
 
         <div class="card-grid" style="grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto; gap: 28px;">
 
-            <!-- HÃ²a Láº¡c -->
+            <!-- Hòa Lạc -->
             <div class="strategy-card vip">
-                <div class="card-badge">ðŸ”ï¸ Thá»‹ trÆ°á»ng 1</div>
-                <h3 style="margin-bottom: 12px;">HoÃ  Láº¡c</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">Äáº¥t ná»n cÃ´ng nghá»‡ cao, Ä‘Ã³n sÃ³ng háº¡ táº§ng vÃ  Ä‘áº¡i há»c quá»‘c gia.</p>
+                <div class="card-badge">🏔️ Thị trường 1</div>
+                <h3 style="margin-bottom: 12px;">Hoà Lạc</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Đất nền công nghệ cao, đón sóng hạ tầng và đại học quốc gia.</p>
                 
-                <!-- Grid Video ÄÃ o Táº¡o Báº£n Äá»“ HÃ²a Láº¡c -->
+                <!-- Grid Video Đào Tạo Bản Đồ Hòa Lạc -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sáº» báº£n Ä‘á»“ HoÃ  Láº¡c
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Hoà Lạc
                     </h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ HoÃ  Láº¡c
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Hoà Lạc
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/jStHU1-FzpQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -451,28 +451,28 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <!-- SÆ¡n TÃ¢y -->
+            <!-- Sơn Tây -->
             <div class="strategy-card safe">
-                <div class="card-badge">ðŸ¯ Thá»‹ trÆ°á»ng 2</div>
-                <h3 style="margin-bottom: 12px;">SÆ¡n TÃ¢y</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">PhÃ¡t triá»ƒn máº¡nh vá» báº¥t Ä‘á»™ng sáº£n sinh thÃ¡i, nghá»‰ dÆ°á»¡ng ngoáº¡i Ã´ HÃ  Ná»™i.</p>
+                <div class="card-badge">🏯 Thị trường 2</div>
+                <h3 style="margin-bottom: 12px;">Sơn Tây</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Phát triển mạnh về bất động sản sinh thái, nghỉ dưỡng ngoại ô Hà Nội.</p>
                 
-                <!-- NÃºt tÃ i liá»‡u SÆ¡n TÃ¢y -->
+                <!-- Nút tài liệu Sơn Tây -->
                 <div class="ql-resources-buttons" style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0 30px 0;">
                     <a href="https://xuankhanh-sales-avcdjt.netlify.app/" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
-                        <i class="fa-solid fa-globe"></i> toÃ n bá»™ thá»‹ trÆ°á»ng SÆ¡n TÃ¢y
+                        <i class="fa-solid fa-globe"></i> toàn bộ thị trường Sơn Tây
                     </a>
                 </div>
 
-                <!-- Grid Video ÄÃ o Táº¡o Báº£n Äá»“ SÆ¡n TÃ¢y -->
+                <!-- Grid Video Đào Tạo Bản Đồ Sơn Tây -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sáº» báº£n Ä‘á»“ SÆ¡n TÃ¢y
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Sơn Tây
                     </h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ SÆ¡n TÃ¢y
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Sơn Tây
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/ScBckm2pBlU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -482,38 +482,38 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <!-- Quáº¥t LÃ¢m -->
+            <!-- Quất Lâm -->
             <div class="strategy-card warn">
-                <div class="card-badge">ðŸ–ï¸ Thá»‹ trÆ°á»ng 3</div>
-                <h3 style="margin-bottom: 12px;">Quáº¥t LÃ¢m</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">ÄÃ³n Ä‘áº§u quy hoáº¡ch phÃ¡t triá»ƒn du lá»‹ch biá»ƒn, báº¥t Ä‘á»™ng sáº£n nghá»‰ dÆ°á»¡ng tiá»m nÄƒng.</p>
-                <!-- 4 NÃºt TÃ i Liá»‡u sáº¿p gá»­i -->
+                <div class="card-badge">🏖️ Thị trường 3</div>
+                <h3 style="margin-bottom: 12px;">Quất Lâm</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Đón đầu quy hoạch phát triển du lịch biển, bất động sản nghỉ dưỡng tiềm năng.</p>
+                <!-- 4 Nút Tài Liệu sếp gửi -->
                 <div class="ql-resources-buttons" style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0 30px 0;">
                     <a href="https://zalo.me/g/lzmqxo830" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
-                        <i class="fa-solid fa-image"></i> HÃ¬nh áº£nh â€“ TÃ i liá»‡u â€“ Video Quáº¥t LÃ¢m
+                        <i class="fa-solid fa-image"></i> Hình ảnh – Tài liệu – Video Quất Lâm
                     </a>
                     <a href="https://docs.google.com/document/d/1SctCIsFawNmHt6_REmsonsYbDoZPrK_18dt-aB2o2NU/edit?tab=t.0" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
-                        <i class="fa-solid fa-file-contract"></i> Táº¡i sao nÃªn Ä‘áº§u tÆ° Quáº¥t LÃ¢m
+                        <i class="fa-solid fa-file-contract"></i> Tại sao nên đầu tư Quất Lâm
                     </a>
                     <a href="https://bom.so/zolvMS" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
-                        <i class="fa-solid fa-person-chalkboard"></i> Slide Ä‘Ã o táº¡o Quáº¥t LÃ¢m
+                        <i class="fa-solid fa-person-chalkboard"></i> Slide đào tạo Quất Lâm
                     </a>
                     <a href="https://bom.so/OV5YDG" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
-                        <i class="fa-solid fa-camera"></i> áº¢nh tháº­t Quáº¥t LÃ¢m
+                        <i class="fa-solid fa-camera"></i> Ảnh thật Quất Lâm
                     </a>
                 </div>
 
-                <!-- Grid Video ÄÃ o Táº¡o Báº£n Äá»“ -->
+                <!-- Grid Video Đào Tạo Bản Đồ -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Quất Lâm
                     </h4>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                         <!-- Video 1 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 1)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 1)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/YE-BbQ0xqnY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -523,7 +523,7 @@ const APP_CONTENT = {
                         <!-- Video 2 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 2)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 2)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/alBjvqprOOc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -533,7 +533,7 @@ const APP_CONTENT = {
                         <!-- Video 3 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 3)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 3)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/mTdfic4HPFs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -543,7 +543,7 @@ const APP_CONTENT = {
                         <!-- Video 4 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 4)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 4)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/E7S0jdGm9LY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -553,7 +553,7 @@ const APP_CONTENT = {
                         <!-- Video 5 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 5)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 5)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/scD4CnTU7lc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -563,7 +563,7 @@ const APP_CONTENT = {
                         <!-- Video 6 -->
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Quáº¥t LÃ¢m (Pháº§n 6)
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 6)
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/VwhYhCJVSt4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -573,28 +573,28 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <!-- Ninh CÆ¡ -->
+            <!-- Ninh Cơ -->
             <div class="strategy-card danger">
-                <div class="card-badge">ðŸ“ Thá»‹ trÆ°á»ng 4</div>
-                <h3 style="margin-bottom: 10px;">Ninh CÆ¡</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 24px;">Há»‡ thá»‘ng bÃ i giáº£ng báº£n Ä‘á»“ chuyÃªn sÃ¢u, video thá»±c táº¿ vÃ  tÃ i liá»‡u há»— trá»£ bÃ¡n hÃ ng Ninh CÆ¡.</p>
+                <div class="card-badge">📍 Thị trường 4</div>
+                <h3 style="margin-bottom: 10px;">Ninh Cơ</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Hệ thống bài giảng bản đồ chuyên sâu, video thực tế và tài liệu hỗ trợ bán hàng Ninh Cơ.</p>
 
-                <!-- Grid Video 1: 2 Video Ä‘Ã o táº¡o báº£n Ä‘á»“ chÃ­nh -->
+                <!-- Grid Video 1: 2 Video đào tạo bản đồ chính -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 30px;">
-                    <!-- Video Sáº¿p Huy -->
+                    <!-- Video Sếp Huy -->
                     <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                         <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-circle-play" style="font-size: 1.1rem;"></i> ÄÃ o táº¡o báº£n Ä‘á»“ Ninh CÆ¡ â€” Sáº¿p Huy Otis
+                            <i class="fa-solid fa-circle-play" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ — Sếp Huy Otis
                         </div>
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                             <iframe src="https://www.youtube.com/embed/bfqJ0uO8l-I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                         </div>
                     </div>
 
-                    <!-- Video Báº£n Ä‘á»“ -->
+                    <!-- Video Bản đồ -->
                     <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                         <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-map" style="font-size: 1.1rem;"></i> ÄÃ o táº¡o báº£n Ä‘á»“ Ninh CÆ¡ (Chi tiáº¿t)
+                            <i class="fa-solid fa-map" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ (Chi tiết)
                         </div>
                         <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                             <iframe src="https://www.youtube.com/embed/WKd_SORPVfQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -602,37 +602,37 @@ const APP_CONTENT = {
                     </div>
                 </div>
 
-                <!-- Grid Video 2: Chuá»—i video Tráº§n TuyÃªn -->
+                <!-- Grid Video 2: Chuỗi video Trần Tuyên -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 30px;">
                     <h4 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-film" style="color: #6366f1;"></i> Chuá»—i bÃ i giáº£ng Báº£n Ä‘á»“ Ninh CÆ¡ â€” Tráº§n TuyÃªn
+                        <i class="fa-solid fa-film" style="color: #6366f1;"></i> Chuỗi bài giảng Bản đồ Ninh Cơ — Trần Tuyên
                     </h4>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <!-- Táº­p 1 -->
+                        <!-- Tập 1 -->
                         <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
                             <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
-                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Pháº§n 1</span> Báº£n Ä‘á»“
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 1</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
                                 <iframe src="https://www.youtube.com/embed/ikyEAwAYxqk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
-                        <!-- Táº­p 2 -->
+                        <!-- Tập 2 -->
                         <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
                             <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
-                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Pháº§n 2</span> Báº£n Ä‘á»“
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 2</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
                                 <iframe src="https://www.youtube.com/embed/vHy-sbt1HsA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                             </div>
                         </div>
 
-                        <!-- Táº­p 3 -->
+                        <!-- Tập 3 -->
                         <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
                             <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
-                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Pháº§n 3</span> Báº£n Ä‘á»“
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 3</span> Bản đồ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
                                 <iframe src="https://www.youtube.com/embed/U6w3ezwo4mQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -642,7 +642,7 @@ const APP_CONTENT = {
                         <!-- Short -->
                         <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
                             <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
-                                <span style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Short</span> Video ngáº¯n
+                                <span style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Short</span> Video ngắn
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
                                 <iframe src="https://www.youtube.com/embed/Kwq8WG9lTys" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -651,14 +651,14 @@ const APP_CONTENT = {
                     </div>
                 </div>
 
-                <!-- Banner NhÃ³m Zalo Ninh CÆ¡ Ä‘á»™c láº­p -->
+                <!-- Banner Nhóm Zalo Ninh Cơ độc lập -->
                 <a href="https://zalo.me/g/aouere171" target="_blank" style="display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02)); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 16px; padding: 16px 20px; text-decoration: none; color: inherit; transition: all 0.2s ease; box-shadow: var(--shadow-sm); cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='rgba(14, 165, 233, 0.4)';" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='rgba(14, 165, 233, 0.25)';">
                     <div style="background: #0ea5e9; color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(14, 165, 233, 0.2);">
                         <i class="fa-solid fa-people-group" style="font-size: 1.25rem;"></i>
                     </div>
                     <div style="flex-grow: 1;">
-                        <strong style="color: #0369a1; font-size: 1rem; display: block; margin-bottom: 4px;">NhÃ³m tÃ i liá»‡u Zalo â€” Thá»‹ trÆ°á»ng Ninh CÆ¡</strong>
-                        <span style="font-size: 0.85rem; color: #64748b;">NÆ¡i cáº­p nháº­t thÃ´ng tin dá»± Ã¡n, phÃ¡p lÃ½ vÃ  báº£n Ä‘á»“ quy hoáº¡ch Ninh CÆ¡ má»›i nháº¥t. Báº¥m Ä‘á»ƒ tham gia!</span>
+                        <strong style="color: #0369a1; font-size: 1rem; display: block; margin-bottom: 4px;">Nhóm tài liệu Zalo — Thị trường Ninh Cơ</strong>
+                        <span style="font-size: 0.85rem; color: #64748b;">Nơi cập nhật thông tin dự án, pháp lý và bản đồ quy hoạch Ninh Cơ mới nhất. Bấm để tham gia!</span>
                     </div>
                     <div style="color: #0ea5e9; font-size: 1.1rem; padding-left: 8px;">
                         <i class="fa-solid fa-chevron-right"></i>
@@ -666,21 +666,21 @@ const APP_CONTENT = {
                 </a>
             </div>
 
-            <!-- PhÃº Thá» -->
+            <!-- Phú Thọ -->
             <div class="strategy-card safe">
-                <div class="card-badge">ðŸ”ï¸ Thá»‹ trÆ°á»ng 5</div>
-                <h3 style="margin-bottom: 12px;">PhÃº Thá»</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">Äáº¥t ná»n khu cÃ´ng nghiá»‡p, tiá»m nÄƒng tÄƒng trÆ°á»Ÿng vÃ¹ng trung du.</p>
+                <div class="card-badge">🏔️ Thị trường 5</div>
+                <h3 style="margin-bottom: 12px;">Phú Thọ</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Đất nền khu công nghiệp, tiềm năng tăng trưởng vùng trung du.</p>
                 
-                <!-- Grid Video ÄÃ o Táº¡o Báº£n Äá»“ PhÃº Thá» -->
+                <!-- Grid Video Đào Tạo Bản Đồ Phú Thọ -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sáº» báº£n Ä‘á»“ PhÃº Thá»
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Phú Thọ
                     </h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ PhÃº Thá»
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Phú Thọ
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/w-Jw2ObEIx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -690,21 +690,21 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <!-- Háº£i PhÃ²ng -->
+            <!-- Hải Phòng -->
             <div class="strategy-card vip">
-                <div class="card-badge">âš“ Thá»‹ trÆ°á»ng 6</div>
-                <h3 style="margin-bottom: 12px;">Háº£i PhÃ²ng</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 15px;">ThÃ nh phá»‘ cáº£ng cÃ´ng nghiá»‡p, báº¥t Ä‘á»™ng sáº£n ven Ä‘Ã´ vÃ  khu cÃ´ng nghiá»‡p lá»›n.</p>
+                <div class="card-badge">⚓ Thị trường 6</div>
+                <h3 style="margin-bottom: 12px;">Hải Phòng</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Thành phố cảng công nghiệp, bất động sản ven đô và khu công nghiệp lớn.</p>
                 
-                <!-- Grid Video ÄÃ o Táº¡o Báº£n Äá»“ Háº£i PhÃ²ng -->
+                <!-- Grid Video Đào Tạo Bản Đồ Hải Phòng -->
                 <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
                     <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sáº» báº£n Ä‘á»“ Háº£i PhÃ²ng
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Hải Phòng
                     </h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                         <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
                             <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sáº» báº£n Ä‘á»“ Háº£i PhÃ²ng
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Hải Phòng
                             </div>
                             <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                                 <iframe src="https://www.youtube.com/embed/kmqUoGOmXAI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
@@ -719,16 +719,16 @@ const APP_CONTENT = {
 
 
     // ---------------------------------------------------------
-    // PAGE: CÃ‚U Há»ŽI TRUY Váº¤N
+    // PAGE: CÂU HỎI TRUY VẤN
     // ---------------------------------------------------------
     'page-telesale': `
         <div class="page-title-bar">
             <h1>TeleSale</h1>
-            <p class="page-subtitle">Ká»¹ nÄƒng gá»i Ä‘iá»‡n vÃ  xá»­ lÃ½ tá»« chá»‘i Ä‘á»‰nh cao</p>
+            <p class="page-subtitle">Kỹ năng gọi điện và xử lý từ chối đỉnh cao</p>
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-blue); margin-top: 2rem;">
-            <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">1. BÃ i tÆ° váº¥n BÄS tá»•ng quan</h2>
+            <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">1. Bài tư vấn BĐS tổng quan</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
@@ -740,90 +740,90 @@ const APP_CONTENT = {
             
             <div style="text-align: center; margin-top: 20px;">
                 <a href="TU_VAN_BDS_TONG_QUAN.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-blue); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
-                    <i class="fa-solid fa-file-lines"></i> Báº¥m vÃ o Ä‘Ã¢y Ä‘á»ƒ xem vÄƒn báº£n
+                    <i class="fa-solid fa-file-lines"></i> Bấm vào đây để xem văn bản
                 </a>
             </div>
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-pink); margin-top: 2rem;">
-            <h2 style="color: var(--accent-pink); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">2. 05 CÃ¢u Há»i Truy Váº¥n</h2>
+            <h2 style="color: var(--accent-pink); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">2. 05 Câu Hỏi Truy Vấn</h2>
             
             <details style="margin-bottom: 2rem; background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); overflow: hidden;">
                 <summary style="padding: 1.2rem 1.5rem; font-weight: 700; font-size: 1.2rem; cursor: pointer; color: var(--text-primary); outline: none; list-style: none;">
-                    <i class="fa-solid fa-headset" style="color: var(--accent-pink); margin-right: 10px;"></i> Äá»c vá»‹ lÃµi khÃ¡ch hÃ ng (Báº¥m Ä‘á»ƒ xem)
+                    <i class="fa-solid fa-headset" style="color: var(--accent-pink); margin-right: 10px;"></i> Đọc vị lõi khách hàng (Bấm để xem)
                 </summary>
                 <div style="padding: 1.5rem; border-top: 1px solid var(--border-glass); background: var(--bg-primary);">
                     <div class="core-principle" style="border-left-color: #f472b6;">
-                        <h2 style="color: #f472b6;">ðŸ”Ž KhÃ´ng CÃ³ CÃ¢u Há»i Thá»«a</h2>
-                        <p>Há»i khÃ´ng pháº£i Ä‘á»ƒ nghe tráº£ lá»i cho vui. Há»i Ä‘á»ƒ <strong>QuÃ©t vÃ­ tiá»n</strong>, <strong>Nháº­n diá»‡n táº¥m chiáº¿u má»›i</strong> vÃ  <strong>ÄÃ³ng khung ká»‹ch báº£n lÃ¡i khÃ¡ch</strong>.</p>
+                        <h2 style="color: #f472b6;">🔎 Không Có Câu Hỏi Thừa</h2>
+                        <p>Hỏi không phải để nghe trả lời cho vui. Hỏi để <strong>Quét ví tiền</strong>, <strong>Nhận diện tấm chiếu mới</strong> và <strong>Đóng khung kịch bản lái khách</strong>.</p>
                     </div>
 
                     <div class="grid-container single-col" style="margin-top: 1rem;">
-                        <!-- CÃ¢u 1 -->
+                        <!-- Câu 1 -->
                         <div class="card vip">
-                            <div class="badge">CÃ¢u 1: Äo LÆ°á»ng Nhu Cáº§u</div>
-                            <h3>"Äá»£t nÃ y anh mua Ä‘á»ƒ sá»­ dá»¥ng luÃ´n hay Ä‘áº§u tÆ°?"</h3>
+                            <div class="badge">Câu 1: Đo Lường Nhu Cầu</div>
+                            <h3>"Đợt này anh mua để sử dụng luôn hay đầu tư?"</h3>
                             <div class="content-group">
-                                <strong>Äá»c vá»‹</strong>
-                                <p><b>Mua Äá»ƒ á»ž (An cÆ°):</b> CÆ¡ báº£n lÃ  cá»±c khÃ³ bÃ¡n Ä‘áº¥t dá»± Ã¡n vÃ¹ng ven. Trá»« phi Sale Ä‘á»§ Ä‘áº³ng cáº¥p báº» lÃ¡i tÆ° duy khÃ¡ch sang "Äáº§u tÆ° sinh lá»i trÆ°á»›c - mai má»‘t dÆ° tiá»n mua máº£nh to Ä‘áº¹p mÃ  á»ž".</p>
+                                <strong>Đọc vị</strong>
+                                <p><b>Mua Để Ở (An cư):</b> Cơ bản là cực khó bán đất dự án vùng ven. Trừ phi Sale đủ đẳng cấp bẻ lái tư duy khách sang "Đầu tư sinh lời trước - mai mốt dư tiền mua mảnh to đẹp mà Ở".</p>
                             </div>
                             <div class="content-group">
-                                <p><b>Mua Äáº§u TÆ°:</b> Táº­p trung nhá»“i nhÃ©t quy hoáº¡ch, biÃªn Ä‘á»™ tÄƒng lÃ£i. Bá» qua cÃ¡c váº¥n Ä‘á» vá»¥n váº·t trÆ°á»ng máº§m non, chá»£ bÃºa.</p>
+                                <p><b>Mua Đầu Tư:</b> Tập trung nhồi nhét quy hoạch, biên độ tăng lãi. Bỏ qua các vấn đề vụn vặt trường mầm non, chợ búa.</p>
                             </div>
                         </div>
 
-                        <!-- CÃ¢u 2 -->
+                        <!-- Câu 2 -->
                         <div class="card safe">
-                            <div class="badge">CÃ¢u 2: Khoanh VÃ¹ng Vá»‹ TrÃ­ & ÄÃ²n Báº©y</div>
-                            <h3>"TÃ i chÃ­nh hiá»‡n táº¡i anh Ä‘ang cÃ³ sáºµn khoáº£ng bao nhiÃªu?"</h3>
+                            <div class="badge">Câu 2: Khoanh Vùng Vị Trí & Đòn Bẩy</div>
+                            <h3>"Tài chính hiện tại anh đang có sẵn khoảng bao nhiêu?"</h3>
                             <div class="content-group">
-                                <strong>Äá»c vá»‹</strong>
-                                <p><b>VÃ­ má»ng vÃ i trÄƒm triá»‡u:</b> LÃ¡i tháº³ng hÆ°á»›ng vá» PhÃº Thá», Ba VÃ¬...</p>
+                                <strong>Đọc vị</strong>
+                                <p><b>Ví mỏng vài trăm triệu:</b> Lái thẳng hướng về Phú Thọ, Ba Vì...</p>
                             </div>
                             <div class="content-group">
-                                <p><b>BÃ i kÃ­ch Bank Ä‘Ã²n báº©y:</b> KhÃ©o lÃ©o gá»£i Ã½ khÃ¡ch vay thÃªm Bank Ä‘á»ƒ "vá»›i" tá»›i lÃ´ siÃªu pháº©m á»Ÿ Ninh CÆ¡/Quá»‘c Lá»™. Náº¿u KhÃ´ng Vay â†’ Ã‰p hÆ°á»›ng rá»• ráº». Náº¿u chá»‹u Vay â†’ Dáº«n khu Ä‘áº¯t tiá»n quy hoáº¡ch má»›i.</p>
+                                <p><b>Bài kích Bank đòn bẩy:</b> Khéo léo gợi ý khách vay thêm Bank để "với" tới lô siêu phẩm ở Ninh Cơ/Quốc Lộ. Nếu Không Vay → Ép hướng rổ rẻ. Nếu chịu Vay → Dẫn khu đắt tiền quy hoạch mới.</p>
                             </div>
                         </div>
 
-                        <!-- CÃ¢u 3 -->
+                        <!-- Câu 3 -->
                         <div class="card warn">
-                            <div class="badge">CÃ¢u 3: Äá»‹nh HÃ¬nh Thá»£ Check GiÃ¡</div>
-                            <h3>"Anh Ä‘Ã£ biáº¿t vá» thá»‹ trÆ°á»ng em Ä‘á»‹nh chia sáº» chÆ°a?"</h3>
+                            <div class="badge">Câu 3: Định Hình Thợ Check Giá</div>
+                            <h3>"Anh đã biết về thị trường em định chia sẻ chưa?"</h3>
                             <div class="content-group">
-                                <strong>Äá»c vá»‹</strong>
-                                <p><b>KhÃ¡ch ÄÃ£ Biáº¿t:</b> Äi rÃ o quanh tham kháº£o (Check giÃ¡). Cháº¯c cháº¯n Ä‘Ã£ cÃ³ sale khÃ¡c bÆ¡m vÃ o rá»“i nhÆ°ng chÆ°a Æ°ng nÃªn lÃ¹ng thÃªm.</p>
+                                <strong>Đọc vị</strong>
+                                <p><b>Khách Đã Biết:</b> Đi rào quanh tham khảo (Check giá). Chắc chắn đã có sale khác bơm vào rồi nhưng chưa ưng nên lùng thêm.</p>
                             </div>
                             <div class="content-group">
-                                <p><b>KhÃ¡ch ChÆ°a Biáº¿t:</b> Máº£nh Ä‘áº¥t trá»‘ng cho Sale quáº©y. Váº½ tiá»m nÄƒng quy mÃ´ vÄ© mÃ´ Ä‘á»ƒ táº©y nÃ£o.</p>
+                                <p><b>Khách Chưa Biết:</b> Mảnh đất trống cho Sale quẩy. Vẽ tiềm năng quy mô vĩ mô để tẩy não.</p>
                             </div>
                         </div>
 
-                        <!-- CÃ¢u 4 -->
+                        <!-- Câu 4 -->
                         <div class="card danger">
-                            <div class="badge">CÃ¢u 4: Bá»™ Lá»c VÃ¹ng Miá»n (Quan Trá»ng)</div>
-                            <h3>"Hiá»‡n nhÃ  anh Ä‘ang sinh sá»‘ng á»Ÿ khu vá»±c nÃ o?"</h3>
+                            <div class="badge">Câu 4: Bộ Lọc Vùng Miền (Quan Trọng)</div>
+                            <h3>"Hiện nhà anh đang sinh sống ở khu vực nào?"</h3>
                             <div class="content-group">
-                                <strong>Äá»c vá»‹</strong>
-                                <p style="color: #f87171;"><b>âŒ [Táº CH] KhÃ¡ch Äá»‹a PhÆ°Æ¡ng:</b> NhÃ  á»Ÿ Ä‘Ã³ khÃ´ng bao giá» thÃ­ch báº­p vÃ o Ä‘áº¥t dá»± Ã¡n phÃ¢n lÃ´ cháº» nhá». TÆ° duy há» thÃ­ch mua hÃ ng xÃ³m ngá»™p, dáº¯t tá»›i dá»± Ã¡n chá»‰ Ä‘á»ƒ ngáº¯m, cÆ¡ báº£n táº¡ch.</p>
+                                <strong>Đọc vị</strong>
+                                <p style="color: #f87171;"><b>❌ [TẠCH] Khách Địa Phương:</b> Nhà ở đó không bao giờ thích bập vào đất dự án phân lô chẻ nhỏ. Tư duy họ thích mua hàng xóm ngộp, dắt tới dự án chỉ để ngắm, cơ bản tạch.</p>
                             </div>
                             <div class="content-group">
-                                <p style="color: #34d399;"><b>âœ… [SIÃŠU NÃ‰T] DÃ¢n VÃ¹ng Sá»‘t PhÃ¬nh (VD: HÃ²a Láº¡c):</b> ÄÃ£ chá»©ng kiáº¿n nhÃ¢n chá»©ng sá»‘ng giÃ¡ Ä‘áº¥t x10. Báº¯t trend cá»±c gáº¯t, niá»m tin ráº¥t dá»… xuá»‘ng tiá»n á»Ÿ khu má»›i.</p>
+                                <p style="color: #34d399;"><b>✅ [SIÊU NÉT] Dân Vùng Sốt Phình (VD: Hòa Lạc):</b> Đã chứng kiến nhân chứng sống giá đất x10. Bắt trend cực gắt, niềm tin rất dễ xuống tiền ở khu mới.</p>
                             </div>
                             <div class="content-group">
-                                <p style="color: #34d399;"><b>âœ… [NÃ‰T] KhÃ¡ch HÃ  Ná»™i Phá»‘:</b> á»ž cháº­t chá»™i quen rá»“i, tháº¥y Ä‘áº¥t quy hoáº¡ch phÃ¢n lÃ´ thoÃ¡ng rá»™ng lÃ  Æ°ng cÃ¡i bá»¥ng chá»‘t láº¹.</p>
+                                <p style="color: #34d399;"><b>✅ [NÉT] Khách Hà Nội Phố:</b> Ở chật chội quen rồi, thấy đất quy hoạch phân lô thoáng rộng là ưng cái bụng chốt lẹ.</p>
                             </div>
                             <div class="content-group">
-                                <p style="color: #f87171;"><b>âŒ [Táº CH] Tá»‰nh Xa / XÃ£ NghÃ¨o Äáº¥t Rá»™ng:</b> á»ž quen 1 nhÃ  máº¥y sÃ o báº¡t ngÃ n. Chia lÃ´ 100m2 há» chÃª á»Žng chÃª Eo nhÆ° lá»— mÅ©i khÃ´ng thÃ¨m mua.</p>
+                                <p style="color: #f87171;"><b>❌ [TẠCH] Tỉnh Xa / Xã Nghèo Đất Rộng:</b> Ở quen 1 nhà mấy sào bạt ngàn. Chia lô 100m2 họ chê Ỏng chê Eo như lỗ mũi không thèm mua.</p>
                             </div>
                         </div>
 
-                        <!-- CÃ¢u 5 -->
+                        <!-- Câu 5 -->
                         <div class="card vip">
-                            <div class="badge">CÃ¢u 5: Soi VÃ­ Tiá»n áº¨n</div>
-                            <h3>"Há»i thÃªm: Anh lÃ m hÃ nh chÃ­nh hay tá»± do?"</h3>
+                            <div class="badge">Câu 5: Soi Ví Tiền Ẩn</div>
+                            <h3>"Hỏi thêm: Anh làm hành chính hay tự do?"</h3>
                             <div class="content-group">
-                                <strong>Äá»c vá»‹</strong>
-                                <p>KhÃ´ng pháº£i quan tÃ¢m lá»‹ch ráº£nh rá»—i. Quan trá»ng lÃ  Ä‘o lÆ°á»ng má»©c Ä‘á»™ <b>thu nháº­p á»•n Ä‘á»‹nh vÃ  dÃ²ng tiá»n dÆ° ra</b> hÃ ng thÃ¡ng, xem cÃ³ thá»ƒ bá»c lÃ³t Bank há»— trá»£ thanh khoáº£n khÃ´ng!</p>
+                                <strong>Đọc vị</strong>
+                                <p>Không phải quan tâm lịch rảnh rỗi. Quan trọng là đo lường mức độ <b>thu nhập ổn định và dòng tiền dư ra</b> hàng tháng, xem có thể bọc lót Bank hỗ trợ thanh khoản không!</p>
                             </div>
                         </div>
                     </div>
@@ -832,154 +832,154 @@ const APP_CONTENT = {
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-emerald); margin-top: 2rem;">
-            <h2 style="color: var(--accent-emerald); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">3. CÃ¡ch telesale vÃ  chÄƒm khÃ¡ch nÃ©t cÄƒng</h2>
+            <h2 style="color: var(--accent-emerald); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">3. Cách telesale và chăm khách nét căng</h2>
             
             <div style="background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); padding: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
                 <div style="width: 80px; height: 80px; background: rgba(52, 211, 153, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
                     <i class="fa-solid fa-book-open-reader" style="font-size: 2rem; color: var(--accent-emerald);"></i>
                 </div>
-                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary);">5 Lá»— Há»•ng TÃ¢m LÃ½ KhÃ¡ch HÃ ng</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px;">TÃ i liá»‡u Ä‘Ã o táº¡o chuyÃªn sÃ¢u vá» tÃ¢m lÃ½ hÃ nh vi khÃ¡ch hÃ ng, Ã¡p dá»¥ng thá»±c chiáº¿n trong Telesale vÃ  ChÄƒm sÃ³c khÃ¡ch hÃ ng.</p>
+                <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-primary);">5 Lỗ Hổng Tâm Lý Khách Hàng</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 400px;">Tài liệu đào tạo chuyên sâu về tâm lý hành vi khách hàng, áp dụng thực chiến trong Telesale và Chăm sóc khách hàng.</p>
                 
                 <a href="5_lo_hong_tam_ly.html" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-emerald); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);">
-                    Äá»c tÃ i liá»‡u toÃ n mÃ n hÃ¬nh <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Đọc tài liệu toàn màn hình <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-orange); margin-top: 2rem;">
-            <h2 style="color: var(--accent-orange); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">4. Tuyá»‡t ChiÃªu LÃ¡i KhÃ¡ch (7 Chiáº¿n Thuáº­t)</h2>
+            <h2 style="color: var(--accent-orange); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">4. Tuyệt Chiêu Lái Khách (7 Chiến Thuật)</h2>
             
             <details style="margin-bottom: 2rem; background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); overflow: hidden;">
                 <summary style="padding: 1.2rem 1.5rem; font-weight: 700; font-size: 1.2rem; cursor: pointer; color: var(--text-primary); outline: none; list-style: none;">
-                    <i class="fa-solid fa-chess-knight" style="color: var(--accent-orange); margin-right: 10px;"></i> Báº» lÃ¡i khÃ¡ch hÃ ng tá»« ká»‹ch báº£n tin Ä‘Äƒng áº£o (Báº¥m Ä‘á»ƒ xem)
+                    <i class="fa-solid fa-chess-knight" style="color: var(--accent-orange); margin-right: 10px;"></i> Bẻ lái khách hàng từ kịch bản tin đăng ảo (Bấm để xem)
                 </summary>
                 <div style="padding: 1.5rem; border-top: 1px solid var(--border-glass); background: var(--bg-primary);">
                     <div class="core-principle" style="border-left-color: var(--accent-orange);">
-                        <h2 style="color: var(--accent-orange);">ðŸŽ¯ NguyÃªn LÃ½ "Sá»± Tháº­t Ná»­a Vá»i" (Half-Truths)</h2>
+                        <h2 style="color: var(--accent-orange);">🎯 Nguyên Lý "Sự Thật Nửa Vời" (Half-Truths)</h2>
                         <p>
-                            Má»¥c tiÃªu tá»‘i thÆ°á»£ng cá»§a tin Ä‘Äƒng áº£o <strong>KHÃ”NG PHáº¢I Äá»‚ BÃN LÃ” Äáº¤T ÄÃ“</strong>, mÃ  lÃ  Ä‘á»ƒ <strong>Láº¤Y LEAD (KhÃ¡ch cÃ³ tiá»n vÃ  mÃ¡u Ä‘áº§u tÆ°)</strong>. 
-                            Tuyá»‡t chiÃªu Ä‘á»‰nh cao lÃ  giÄƒng má»™t cÃ¡i báº«y hoÃ n háº£o, thu hÃºt khÃ¡ch vÃ o, sau Ä‘Ã³ tá»± tay <em>"Ä‘áº­p vá»¡"</em> báº«y Ä‘á»ƒ nháº­p vai <strong>NgÆ°á»i báº£o vá»‡/ChuyÃªn gia</strong> nháº±m xÃ¢y dá»±ng lÃ²ng tin tuyá»‡t Ä‘á»‘i. Tá»« Ä‘Ã³ dáº¯t khÃ¡ch sang thá»‹ trÆ°á»ng má»¥c tiÃªu.
+                            Mục tiêu tối thượng của tin đăng ảo <strong>KHÔNG PHẢI ĐỂ BÁN LÔ ĐẤT ĐÓ</strong>, mà là để <strong>LẤY LEAD (Khách có tiền và máu đầu tư)</strong>. 
+                            Tuyệt chiêu đỉnh cao là giăng một cái bẫy hoàn hảo, thu hút khách vào, sau đó tự tay <em>"đập vỡ"</em> bẫy để nhập vai <strong>Người bảo vệ/Chuyên gia</strong> nhằm xây dựng lòng tin tuyệt đối. Từ đó dắt khách sang thị trường mục tiêu.
                         </p>
                     </div>
 
                     <div class="grid-container" style="margin-top: 1.5rem;">
-                        <!-- Chiáº¿n thuáº­t 1 -->
+                        <!-- Chiến thuật 1 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>1. TÆ° duy "Tuyá»ƒn Táº­p Lead" & Telesale Gá»i Láº¡i</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>1. Tư duy "Tuyển Tập Lead" & Telesale Gọi Lại</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>ÄÄƒng áº£o 100% (VÃ­ dá»¥: NhÃ  lá»t khe siÃªu Ä‘áº¹p HN). Thu lead vá» CRM vÃ  BÆ  KHÃCH vÃ i ngÃ y.</p>
+                                <strong>Cách làm</strong>
+                                <p>Đăng ảo 100% (Ví dụ: Nhà lọt khe siêu đẹp HN). Thu lead về CRM và BƠ KHÁCH vài ngày.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>ÄÃ³ng vai Telesale gá»i láº¡i sáº£ng khoÃ¡i: "Alo anh Æ¡i em tháº¥y anh Ä‘ang quan tÃ¢m Ä‘áº§u tÆ°... BÃªn em Ä‘ang cÃ³ sÃ³ng tá»‘t á»Ÿ khu cÃ´ng nghiá»‡p..."</p>
+                                <strong>Xử lý</strong>
+                                <p>Đóng vai Telesale gọi lại sảng khoái: "Alo anh ơi em thấy anh đang quan tâm đầu tư... Bên em đang có sóng tốt ở khu công nghiệp..."</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>CÃº Báº¯c Cáº§u:</strong> "Anh thÃ­ch lá»t khe ná»™i Ä‘Ã´ vÃ¬ thanh khoáº£n Ä‘Ãºng khÃ´ng? NhÆ°ng giá» giÃ¡ ká»‹ch tráº§n rá»“i, tá»‡p khÃ¡ch HN cá»§a em Ä‘ang rÃºt vá»‘n phÃ¢n bá»• vá» Ä‘áº¥t Tá»‰nh biÃªn Ä‘á»™ cao hÆ¡n nhiá»u. Anh xem cÆ¡ cáº¥u dÃ²ng tiá»n nhá»‹p nÃ y khÃ´ng em ráº½ sÃ³ng?"</p>
+                                <p><strong>Cú Bắc Cầu:</strong> "Anh thích lọt khe nội đô vì thanh khoản đúng không? Nhưng giờ giá kịch trần rồi, tệp khách HN của em đang rút vốn phân bổ về đất Tỉnh biên độ cao hơn nhiều. Anh xem cơ cấu dòng tiền nhịp này không em rẽ sóng?"</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 3 -->
+                        <!-- Chiến thuật 3 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>3. BÃ i ngá»­a "Marketing ÄÄƒng Nháº§m"</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>3. Bài ngửa "Marketing Đăng Nhầm"</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>Cá»‘ tÃ¬nh ghÃ©p áº£nh ná»™i Ä‘Ã´ ráº¥t mÆ°á»£t vÃ o bÃ i Tá»‰nh. Láº¥y Ä‘Æ°á»£c sá»‘ cá»§a khÃ¡ch xong ngá»­a bÃ i luÃ´n.</p>
+                                <strong>Cách làm</strong>
+                                <p>Cố tình ghép ảnh nội đô rất mượt vào bài Tỉnh. Lấy được số của khách xong ngửa bài luôn.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>"Em xin lá»—i anh, bÃ© thá»±c táº­p bÃªn em Ãºp lá»™n bá»™ áº£nh. NhÆ°ng cÃ¡i ná»™i dung bÃ i tiá»m nÄƒng x2 lÃ  cÃ³ tháº­t. Em má»i anh ly cafe Ä‘á»ƒ em tÆ° váº¥n phÃ¢n tÃ­ch rÃ nh rá»t khu nÃ y."</p>
+                                <strong>Xử lý</strong>
+                                <p>"Em xin lỗi anh, bé thực tập bên em úp lộn bộ ảnh. Nhưng cái nội dung bài tiềm năng x2 là có thật. Em mời anh ly cafe để em tư vấn phân tích rành rọt khu này."</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>Äá»n BÃ¹ Tá»™i Lá»—i:</strong> Biáº¿n lá»—i láº§m thÃ nh "Ä‘áº·c quyá»n". "Pháº¡t em cafe nhÃ©, Ä‘á»ƒ Ä‘á»n bÃ¹ em add anh vÃ o Group kÃ­n/gá»­i list ná»™i bá»™ hÃ ng ngá»™p chÆ°a tung cho truyá»n thÃ´ng, anh lÆ°á»›t xem nháº·t Ä‘Æ°á»£c cÄƒn nÃ o khÃ´ng."</p>
+                                <p><strong>Đền Bù Tội Lỗi:</strong> Biến lỗi lầm thành "đặc quyền". "Phạt em cafe nhé, để đền bù em add anh vào Group kín/gửi list nội bộ hàng ngộp chưa tung cho truyền thông, anh lướt xem nhặt được căn nào không."</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 6 -->
+                        <!-- Chiến thuật 6 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>6. Nháº­p vai "ChuyÃªn Gia Cáº£nh BÃ¡o"</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>6. Nhập vai "Chuyên Gia Cảnh Báo"</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>Nháº­n CÃ“ lÃ´ Ä‘áº¥t giÃ¡ ráº» Ä‘Ã³ tháº­t. NhÆ°ng khi khÃ¡ch há»i sÃ¢u thÃ¬ háº¡ giá»ng.</p>
+                                <strong>Cách làm</strong>
+                                <p>Nhận CÓ lô đất giá rẻ đó thật. Nhưng khi khách hỏi sâu thì hạ giọng.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>"LÃ´ Ä‘Ã³ ráº» tháº­t anh áº¡, nhÆ°ng em nÃ³i chÃ¢n tÃ¬nh: nÃ³ dÃ­nh nháº¹ quy hoáº¡ch cÃ¢y xanh / Ä‘áº¥t vi báº±ng. Em khuyÃªn anh nÃ© ra. Táº§m tiá»n anh rÃ¡ng nhá»‰nh xÃ­u, láº¥y sang mÃ£ nÃ y cá»§a em sá»• cáº¥t kÃ©t ngá»§ cho ngon."</p>
+                                <strong>Xử lý</strong>
+                                <p>"Lô đó rẻ thật anh ạ, nhưng em nói chân tình: nó dính nhẹ quy hoạch cây xanh / đất vi bằng. Em khuyên anh né ra. Tầm tiền anh ráng nhỉnh xíu, lấy sang mã này của em sổ cất két ngủ cho ngon."</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>Táº¡o Vá»‹ Tháº¿:</strong> Sáºµn sÃ ng chÃª nguá»“n hÃ ng phá»…u Ä‘á»ƒ tÃ´n vinh sá»± tháº­t thÃ  cá»§a báº£n thÃ¢n. KhÃ¡ch thÃ  tin má»™t ngÆ°á»i dÃ¡m chÃª lÃ´ ráº», cÃ²n hÆ¡n tin Ä‘á»©a khen lÃ´ Ä‘Ã³ lÃªn mÃ¢y.</p>
+                                <p><strong>Tạo Vị Thế:</strong> Sẵn sàng chê nguồn hàng phễu để tôn vinh sự thật thà của bản thân. Khách thà tin một người dám chê lô rẻ, còn hơn tin đứa khen lô đó lên mây.</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 5 -->
+                        <!-- Chiến thuật 5 -->
                         <div class="card safe">
-                            <div class="badge">An ToÃ n - Thá»±c Táº¿</div>
-                            <h3>5. MÆ°u MÆ°á»£n hÃ ng Ä‘áº¹p lÃ m "Chim Má»“i Háº¡ Táº§ng"</h3>
+                            <div class="badge">An Toàn - Thực Tế</div>
+                            <h3>5. Mưu Mượn hàng đẹp làm "Chim Mồi Hạ Tầng"</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>ÄÄƒng khu háº¡ táº§ng cá»±c Ä‘áº¹p, sÃ¡t dá»± Ã¡n cÃ´ng ty Ä‘ang Ä‘Ã¡nh. BÃ¡o Ä‘Ãºng giÃ¡ thá»‹ trÆ°á»ng bÃ¬nh thÆ°á»ng.</p>
+                                <strong>Cách làm</strong>
+                                <p>Đăng khu hạ tầng cực đẹp, sát dự án công ty đang đánh. Báo đúng giá thị trường bình thường.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>Dáº¯t khÃ¡ch Ä‘i thá»±c Ä‘á»‹a khu Ä‘Ã³ tháº­t, cá»‘ tÃ¬nh Ä‘Æ°a vÃ o cÃ¡c máº£nh dÃ­nh lá»—i: ÄÆ°á»ng Ä‘Ã¢m, gáº§n má»™, thÃ³p háº­u... KhÃ¡ch chÃª -> Ráº½ vÃ´ lÄƒng: "Tiá»‡n Ä‘Ã¢y qua xem dá»± Ã¡n tá»¥i em, sáº¡ch tÆ°ng khÃ´ng tÃ¬ váº¿t."</p>
+                                <strong>Xử lý</strong>
+                                <p>Dắt khách đi thực địa khu đó thật, cố tình đưa vào các mảnh dính lỗi: Đường đâm, gần mộ, thóp hậu... Khách chê -> Rẽ vô lăng: "Tiện đây qua xem dự án tụi em, sạch tưng không tì vết."</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>Má» Neo KÃ©p:</strong> ÄÆ°a xem lÃ´ Lá»–I NHáº¤T Ä‘á»ƒ táº¡o Ä‘Ã¡y giÃ¡. Xong Ä‘Æ°a lÃ´ Äáº¸P NHáº¤T giÃ¡ trÃªn trá»i. Cuá»‘i cÃ¹ng má»›i chá»‘t lÃ´ CÃ”NG TY (Äáº¹p ngang lÃ´ 2 mÃ  giÃ¡ nhá»‰nh hÆ¡n lÃ´ 1). KhÃ¡ch tháº¥y há»i, chá»‘t!</p>
+                                <p><strong>Mỏ Neo Kép:</strong> Đưa xem lô LỖI NHẤT để tạo đáy giá. Xong đưa lô ĐẸP NHẤT giá trên trời. Cuối cùng mới chốt lô CÔNG TY (Đẹp ngang lô 2 mà giá nhỉnh hơn lô 1). Khách thấy hời, chốt!</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 7 -->
+                        <!-- Chiến thuật 7 -->
                         <div class="card safe">
-                            <div class="badge">An ToÃ n - Thá»±c Táº¿</div>
-                            <h3>7. Má»“i Nhá»­ "Báº£ng HÃ ng QuÃ¡ Khá»©" (Tuyá»‡t chiÃªu KhiÃªm)</h3>
+                            <div class="badge">An Toàn - Thực Tế</div>
+                            <h3>7. Mồi Nhử "Bảng Hàng Quá Khứ" (Tuyệt chiêu Khiêm)</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>ÄÄƒng khu cá»±c Ä‘áº¹p, giÃ¡ siÃªu tá»‘t. KhÃ¡ch há»i -> Check láº¡i vÃ  gá»­i Báº£ng hÃ ng cÅ© (Ä‘Ã£ gáº¡ch Ä‘á» bÃ¡n 99%).</p>
+                                <strong>Cách làm</strong>
+                                <p>Đăng khu cực đẹp, giá siêu tốt. Khách hỏi -> Check lại và gửi Bảng hàng cũ (đã gạch đỏ bán 99%).</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>Chá»‰ cÃ²n sÃ³t láº¡i 1, 2 lÃ´ xáº¥u quáº¯c (trá»i sinh). Má»i khÃ¡ch Ä‘i xem con cuá»‘i cÃ¹ng nÃ y. Äáº¿n nÆ¡i khÃ¡ch láº¯c Ä‘áº§u -> Tiá»‡n tay dáº«n luÃ´n sang dá»± Ã¡n cÃ¹ng tá»‡p tÃ i chÃ­nh cá»§a há»‡ thá»‘ng cÃ´ng ty.</p>
+                                <strong>Xử lý</strong>
+                                <p>Chỉ còn sót lại 1, 2 lô xấu quắc (trời sinh). Mời khách đi xem con cuối cùng này. Đến nơi khách lắc đầu -> Tiện tay dẫn luôn sang dự án cùng tệp tài chính của hệ thống công ty.</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>Hiá»‡u á»©ng Fomo:</strong> Cho khÃ¡ch tháº¥y "hÃ ng ráº» Ä‘áº¹p bay trong ná»‘t nháº¡c". KÃ­ch thÃ­ch sá»± nuá»‘i tiáº¿c Ä‘á»ƒ khi Ä‘Æ°a sang hÃ ng tháº­t cá»§a cÃ´ng ty, há» sáº½ ra quyáº¿t Ä‘á»‹nh nhanh hÆ¡n.</p>
+                                <p><strong>Hiệu ứng Fomo:</strong> Cho khách thấy "hàng rẻ đẹp bay trong nốt nhạc". Kích thích sự nuối tiếc để khi đưa sang hàng thật của công ty, họ sẽ ra quyết định nhanh hơn.</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 2 -->
+                        <!-- Chiến thuật 2 -->
                         <div class="card warn">
-                            <div class="badge">HÃªn Xui - Phá»¥ Thuá»™c NÄƒng Lá»±c</div>
-                            <h3>2. LÃ´ vá»«a nháº­n cá»c & LÃ¡i báº» ngoáº·t</h3>
+                            <div class="badge">Hên Xui - Phụ Thuộc Năng Lực</div>
+                            <h3>2. Lô vừa nhận cọc & Lái bẻ ngoặt</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>KhÃ¡ch há»i, bÃ¡o ngay: "LÃ´ Ä‘Ã³ vá»«a nháº­n cá»c rá»“i anh áº¡. NhÆ°ng em Ä‘ang cÃ²n 3 mÃ£ y há»‡t chÆ°a up..."</p>
+                                <strong>Cách làm</strong>
+                                <p>Khách hỏi, báo ngay: "Lô đó vừa nhận cọc rồi anh ạ. Nhưng em đang còn 3 mã y hệt chưa up..."</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>"Anh quÄƒng sá»‘ Zalo em nÃ©m sá»• qua luÃ´n, FB bÃ³p tÆ°Æ¡ng tÃ¡c load khÃ´ng ná»•i file." Xin Ä‘Æ°á»£c Zalo lÃ  tháº¯ng bÆ°á»›c 1.</p>
+                                <strong>Xử lý</strong>
+                                <p>"Anh quăng số Zalo em ném sổ qua luôn, FB bóp tương tác load không nổi file." Xin được Zalo là thắng bước 1.</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>Giao Lá»™ Äá»‹nh Má»‡nh:</strong> Láº¥y Zalo xong mÃ  tiáº¿p tá»¥c gá»­i áº¢O thÃ¬ khÃ¡ch block tá»· lá»‡ cao (Trá»Ÿ thÃ nh chiáº¿n thuáº­t sá»‘ 4). Láº¥y xong gá»­i THáº¬T vÃ  gá»i Ä‘iá»‡n báº» tÆ° duy thÃ¬ má»›i cÃ³ tá»‰ lá»‡ sá»‘ng sÃ³t.</p>
+                                <p><strong>Giao Lộ Định Mệnh:</strong> Lấy Zalo xong mà tiếp tục gửi ẢO thì khách block tỷ lệ cao (Trở thành chiến thuật số 4). Lấy xong gửi THẬT và gọi điện bẻ tư duy thì mới có tỉ lệ sống sót.</p>
                             </div>
                         </div>
 
-                        <!-- Chiáº¿n thuáº­t 4 -->
+                        <!-- Chiến thuật 4 -->
                         <div class="card danger">
-                            <div class="badge">KÃ©m Nháº¥t - Cáº£nh BÃ¡o</div>
-                            <h3>4. Nháº­n CÃ³ Tháº­t TrÄƒm Pháº§n TrÆ¡n GÃ³i</h3>
+                            <div class="badge">Kém Nhất - Cảnh Báo</div>
+                            <h3>4. Nhận Có Thật Trăm Phần Trơn Gói</h3>
                             <div class="content-group">
-                                <strong>CÃ¡ch lÃ m</strong>
-                                <p>Tráº£ lá»i CÃ“ CÃ“ CÃ“ háº¿t. Äáº¥t cÃ³, ráº» cÃ³, Ä‘áº¹p cÃ³. Cá»‘t lÃµi lÃ´i cá»• khÃ¡ch lÃªn xe Ä‘i thá»±c Ä‘á»‹a cho báº±ng Ä‘Æ°á»£c.</p>
+                                <strong>Cách làm</strong>
+                                <p>Trả lời CÓ CÓ CÓ hết. Đất có, rẻ có, đẹp có. Cốt lõi lôi cổ khách lên xe đi thực địa cho bằng được.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>Tá»›i nÆ¡i thÃ¬ báº» lÃ¡i nÃ³i chá»§ quay xe, bÃ¡o giÃ¡ thÃ¡ch lÃªn trÃªn trá»i, hoáº·c dáº¯t tháº³ng tá»›i má»™t cá»¥c má»“i khÃ¡c biá»‡t hoÃ n toÃ n.</p>
+                                <strong>Xử lý</strong>
+                                <p>Tới nơi thì bẻ lái nói chủ quay xe, báo giá thách lên trên trời, hoặc dắt thẳng tới một cục mồi khác biệt hoàn toàn.</p>
                             </div>
                             <div class="upgrade-box">
-                                <p><strong>TrÃ¡nh Xa Tuyá»‡t Äá»‘i:</strong> Máº¥t tÆ° cÃ¡ch, Äƒn chá»­i táº¡i tráº­n. Chá»‰ cÃ³ thá»ƒ dá»±a dáº«m vÃ o Ä‘Ã¡m Ä‘Ã´ng SÃ³ng cá»§a cÃ´ng ty buff vÃ o Ä‘á»ƒ Ã©p khÃ¡ch ngá»™p, chá»‘t vá»™i. Quáº£n lÃ½/Sáº¿p siÃªu ghÃ©t support thá»ƒ loáº¡i lead lá»«a Ä‘áº£o nÃ y.</p>
+                                <p><strong>Tránh Xa Tuyệt Đối:</strong> Mất tư cách, ăn chửi tại trận. Chỉ có thể dựa dẫm vào đám đông Sóng của công ty buff vào để ép khách ngộp, chốt vội. Quản lý/Sếp siêu ghét support thể loại lead lừa đảo này.</p>
                             </div>
                         </div>
                     </div>
@@ -989,12 +989,12 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: MáºªU Gá»¬I THÃ”NG TIN
+    // PAGE: MẪU GỬI THÔNG TIN
     // ---------------------------------------------------------
     'page-mau-gui-thong-tin': `
         <div class="page-title-bar">
-            <h1>Máº«u Gá»­i ThÃ´ng Tin</h1>
-            <p class="page-subtitle">Tuyá»ƒn táº­p cÃ¡c ká»‹ch báº£n, máº«u tin nháº¯n gá»­i thÃ´ng tin dá»± Ã¡n chuyÃªn nghiá»‡p cho khÃ¡ch hÃ ng vÃ  cáº©m nang thá»±c chiáº¿n</p>
+            <h1>Mẫu Gửi Thông Tin</h1>
+            <p class="page-subtitle">Tuyển tập các kịch bản, mẫu tin nhắn gửi thông tin dự án chuyên nghiệp cho khách hàng và cẩm nang thực chiến</p>
         </div>
 
         <style>
@@ -1077,41 +1077,41 @@ const APP_CONTENT = {
                     flex-direction: column;
                 }
                 .pdf-preview {
-                    display: none; /* áº¨n iframe preview trÃªn mobile/tablet */
+                    display: none; /* Ẩn iframe preview trên mobile/tablet */
                 }
             }
         </style>
 
-        <!-- Pháº§n Cáº©m nang PDF -->
+        <!-- Phần Cẩm nang PDF -->
         <div class="pdf-container">
             <div class="pdf-info">
                 <div>
                     <span style="display: inline-block; background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; border: 1px solid rgba(59, 130, 246, 0.2);">
-                        TÃ€I LIá»†U Ná»”I Báº¬T
+                        TÀI LIỆU NỔI BẬT
                     </span>
-                    <h2 class="pdf-title">Cáº©m Nang: Chiáº¿n Tháº§n Gen Z - BÃ­ Máº­t BÃ¡n Báº¥t Äá»™ng Sáº£n</h2>
+                    <h2 class="pdf-title">Cẩm Nang: Chiến Thần Gen Z - Bí Mật Bán Bất Động Sản</h2>
                     <p class="pdf-description">
-                        Cuá»‘n cáº©m nang thá»±c chiáº¿n gá»‘i Ä‘áº§u giÆ°á»ng dÃ nh cho cÃ¡c chiáº¿n binh mÃ´i giá»›i báº¥t Ä‘á»™ng sáº£n tháº¿ há»‡ má»›i. 
-                        TÃ i liá»‡u tá»•ng há»£p cÃ¡c chiáº¿n thuáº­t tiáº¿p cáº­n, ká»¹ nÄƒng xá»­ lÃ½ tá»« chá»‘i, ká»‹ch báº£n gá»­i tin nháº¯n 
-                        khiáº¿n khÃ¡ch hÃ ng khÃ´ng thá»ƒ ngÃ³ lÆ¡ vÃ  cÃ¡c bÆ°á»›c chá»‘t deal tháº§n tá»‘c.
+                        Cuốn cẩm nang thực chiến gối đầu giường dành cho các chiến binh môi giới bất động sản thế hệ mới. 
+                        Tài liệu tổng hợp các chiến thuật tiếp cận, kỹ năng xử lý từ chối, kịch bản gửi tin nhắn 
+                        khiến khách hàng không thể ngó lơ và các bước chốt deal thần tốc.
                     </p>
                     <div style="margin-bottom: 2rem;">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.9rem;">
                             <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                            <span>Äá»‹nh dáº¡ng: PDF cháº¥t lÆ°á»£ng cao</span>
+                            <span>Định dạng: PDF chất lượng cao</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 0.9rem;">
                             <i class="fa-solid fa-weight-hanging" style="color: var(--accent-blue);"></i>
-                            <span>Dung lÆ°á»£ng: ~11.4 MB</span>
+                            <span>Dung lượng: ~11.4 MB</span>
                         </div>
                     </div>
                 </div>
                 <div class="pdf-actions">
                     <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" target="_blank" class="btn-pdf btn-pdf-primary">
-                        <i class="fa-solid fa-book-open"></i> Äá»c Cáº©m Nang Online
+                        <i class="fa-solid fa-book-open"></i> Đọc Cẩm Nang Online
                     </a>
                     <a href="assets/pdf/Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" download="Chien_Than_Gen_Z_Bi_Mat_Ban_BDS.pdf" class="btn-pdf btn-pdf-secondary">
-                        <i class="fa-solid fa-download"></i> Táº£i Vá» MÃ¡y
+                        <i class="fa-solid fa-download"></i> Tải Về Máy
                     </a>
                 </div>
             </div>
@@ -1120,12 +1120,12 @@ const APP_CONTENT = {
             </div>
         </div>
 
-        <!-- Pháº§n Video Thá»±c Chiáº¿n -->
+        <!-- Phần Video Thực Chiến -->
         <div class="core-principle" style="border-left-color: var(--accent-blue); margin-top: 2.5rem;">
             <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;">
-                <i class="fa-solid fa-video" style="margin-right: 8px;"></i> Video HÆ°á»›ng Dáº«n Thá»±c Chiáº¿n
+                <i class="fa-solid fa-video" style="margin-right: 8px;"></i> Video Hướng Dẫn Thực Chiến
             </h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">HÃ£y xem ká»¹ cÃ¡c video ngáº¯n dÆ°á»›i Ä‘Ã¢y Ä‘á»ƒ náº¯m Ä‘Æ°á»£c tÆ° duy vÃ  cÃ¡ch soáº¡n tin nháº¯n gá»­i thÃ´ng tin dá»± Ã¡n khiáº¿n khÃ¡ch hÃ ng khÃ´ng thá»ƒ ngÃ³ lÆ¡.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Hãy xem kỹ các video ngắn dưới đây để nắm được tư duy và cách soạn tin nhắn gửi thông tin dự án khiến khách hàng không thể ngó lơ.</p>
             
             <div class="shorts-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
                 <!-- Video 1 -->
@@ -1134,7 +1134,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/UUn45Eg1xwQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
-                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 1: Ká»¹ thuáº­t gÃ¢y tÃ² mÃ²</h3>
+                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 1: Kỹ thuật gây tò mò</h3>
                     </div>
                 </div>
                 <!-- Video 2 -->
@@ -1143,7 +1143,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/0-8mZ2ONq4k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
-                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 2: Bá»‘ cá»¥c tin nháº¯n chuáº©n</h3>
+                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 2: Bố cục tin nhắn chuẩn</h3>
                     </div>
                 </div>
                 <!-- Video 3 -->
@@ -1152,7 +1152,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/XwFPXIULMMU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
-                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 3: Nghá»‡ thuáº­t lÃ¡i khÃ¡ch</h3>
+                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 3: Nghệ thuật lái khách</h3>
                     </div>
                 </div>
                 <!-- Video 4 -->
@@ -1161,14 +1161,14 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/qC4dU8ISSlM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 1.2rem; text-align: center; background: rgba(255,255,255,0.03);">
-                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 4: TÄƒng tá»‰ lá»‡ pháº£n há»“i</h3>
+                        <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">Video 4: Tăng tỉ lệ phản hồi</h3>
                     </div>
                 </div>
             </div>
         </div>
     `,
     // ---------------------------------------------------------
-    // PAGE: CHIáº¾N LÆ¯á»¢C FACEBOOK
+    // PAGE: CHIẾN LƯỢC FACEBOOK
     // ---------------------------------------------------------
     'page-chien-luoc-fb': `
         <style>
@@ -1257,7 +1257,7 @@ const APP_CONTENT = {
         .fb-strategy-wrapper .phase-title span { background: var(--accent-1); padding: 2px 10px; border-radius: 20px; font-size: 0.9rem; }
         .fb-strategy-wrapper .phase-list { list-style: none; padding-left: 20px; }
         .fb-strategy-wrapper .phase-list li { margin-bottom: 10px; position: relative; }
-        .fb-strategy-wrapper .phase-list li::before { content: 'â†’'; position: absolute; left: -20px; color: var(--accent-2); }
+        .fb-strategy-wrapper .phase-list li::before { content: '→'; position: absolute; left: -20px; color: var(--accent-2); }
 
         .fb-strategy-wrapper .highlight-text { color:var(--text-primary); font-weight: 500; }
         .fb-strategy-wrapper .important-note { background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: 1rem; margin-top: 1rem; color: #fbbf24; border-radius: 4px; }
@@ -1268,162 +1268,162 @@ const APP_CONTENT = {
         <!-- Hero Section -->
         <div class="hero">
             <div class="hero-alert">
-                <i data-lucide="shield-alert" width="18"></i> ThoÃ¡t Cáº£nh "ÄÄƒng BÃ¡n Äáº¥t ToÃ n Táº­p" - Tuyá»‡t Máº­t Internal
+                <i data-lucide="shield-alert" width="18"></i> Thoát Cảnh "Đăng Bán Đất Toàn Tập" - Tuyệt Mật Internal
             </div>
-            <h1>Báº£n Äá»“ "Chiáº¿m SÃ³ng"<br>Facebook Báº¥t Äá»™ng Sáº£n</h1>
-            <p>TrÃ­ch xuáº¥t 100% tá»« dá»¯ liá»‡u thá»±c chiáº¿n Ä‘á»‰nh cao cá»§a mÃ´ hÃ¬nh "Máº¹ MÃ­t Xinh". KhÃ´ng bÃ¡n Ä‘áº¥t cá»©ng nháº¯c, chÃºng ta sáº½ bÃ¡n <b>"Phong cÃ¡ch sá»‘ng", "Sá»± váº¥t váº£ Ä‘Ã¡ng ngÆ°á»¡ng má»™"</b> vÃ  <b>"NÄƒng lá»±c chuyÃªn gia"</b>.</p>
+            <h1>Bản Đồ "Chiếm Sóng"<br>Facebook Bất Động Sản</h1>
+            <p>Trích xuất 100% từ dữ liệu thực chiến đỉnh cao của mô hình "Mẹ Mít Xinh". Không bán đất cứng nhắc, chúng ta sẽ bán <b>"Phong cách sống", "Sự vất vả đáng ngưỡng mộ"</b> và <b>"Năng lực chuyên gia"</b>.</p>
         </div>
 
-        <!-- Section 1: Thuáº­t toÃ¡n & TÆ° duy -->
+        <!-- Section 1: Thuật toán & Tư duy -->
         <div class="glass-panel">
             <div class="section-header">
                 <i data-lucide="cpu" width="32" height="32"></i>
-                <h2>1. Giáº£i MÃ£ Thuáº­t ToÃ¡n & "Hack" Reach</h2>
+                <h2>1. Giải Mã Thuật Toán & "Hack" Reach</h2>
             </div>
             
             <div class="grid-2">
                 <div class="hack-box">
-                    <h4><i data-lucide="zap"></i> Chiáº¿n thuáº­t "BÆ¡m Reach" XuyÃªn Tuáº§n</h4>
-                    <p><b>ÄÄƒng bÃ i má»“i buá»•i sÃ¡ng (8h-9h):</b> Má»™t táº¥m áº£nh cÃ¡ nhÃ¢n (thá»ƒ thao, cafe) hoáº·c gia Ä‘Ã¬nh Ä‘á»ƒ láº¥y Reach khá»§ng Ä‘áº§u ngÃ y. <br><br>
-                    <b>Chá»‘t háº¡ buá»•i chiá»u (14h-15h):</b> Má»›i báº¯t Ä‘áº§u Ä‘Äƒng bÃ i chuyÃªn mÃ´n/bÃ¡n hÃ ng. KhÃ¡ch hÃ ng Ä‘Ã£ tÆ°Æ¡ng tÃ¡c bÃ i sÃ¡ng sáº½ cháº¯c cháº¯n tháº¥y bÃ i buá»•i chiá»u trÃªn Feed cá»§a há».</p>
+                    <h4><i data-lucide="zap"></i> Chiến thuật "Bơm Reach" Xuyên Tuần</h4>
+                    <p><b>Đăng bài mồi buổi sáng (8h-9h):</b> Một tấm ảnh cá nhân (thể thao, cafe) hoặc gia đình để lấy Reach khủng đầu ngày. <br><br>
+                    <b>Chốt hạ buổi chiều (14h-15h):</b> Mới bắt đầu đăng bài chuyên môn/bán hàng. Khách hàng đã tương tác bài sáng sẽ chắc chắn thấy bài buổi chiều trên Feed của họ.</p>
                 </div>
                 
                 <div class="hack-box" style="border-left-color: var(--accent-1);">
-                    <h4><i data-lucide="scan-face"></i> Äá»‹nh Luáº­t Máº·t NgÆ°á»i (>300% Reach)</h4>
-                    <p>áº¢nh má»™c máº¡c cÃ³ GÆ°Æ¡ng máº·t nhÃ¢n sá»±/KhÃ¡ch hÃ ng <b>luÃ´n Ä‘áº¡t reach cao gáº¥p 3 láº§n</b> áº£nh phá»‘i cáº£nh dá»± Ã¡n hay báº£n Ä‘á»“ vá»‡t mÃ u. Tá»« nay cáº¥m Ä‘Äƒng chá»‰ má»—i cÃ¡i báº£n Ä‘á»“ quy hoáº¡ch trÆ¡ trá»i.</p>
+                    <h4><i data-lucide="scan-face"></i> Định Luật Mặt Người (>300% Reach)</h4>
+                    <p>Ảnh mộc mạc có Gương mặt nhân sự/Khách hàng <b>luôn đạt reach cao gấp 3 lần</b> ảnh phối cảnh dự án hay bản đồ vệt màu. Từ nay cấm đăng chỉ mỗi cái bản đồ quy hoạch trơ trọi.</p>
                 </div>
 
                 <div class="hack-box" style="border-left-color: var(--accent-3);">
-                    <h4><i data-lucide="repeat"></i> Engagement Loop (Rep Ráº£i RÃ¡c)</h4>
-                    <p>Äá»«ng bao giá» rep comment ngay láº­p tá»©c má»™t lÃºc. HÃ£y Ã¡p dá»¥ng chiáº¿n thuáº­t <b>rep ráº£i rÃ¡c má»—i láº§n 1-2 comment trong ngÃ y</b>. Má»—i láº§n báº¡n rep, bÃ i viáº¿t láº¡i Ä‘Æ°á»£c thuáº­t toÃ¡n Ä‘áº©y "nháº£y" lÃªn Ä‘á»‰nh Newsfeed cá»§a ngÆ°á»i khÃ¡c má»™t láº§n ná»¯a.</p>
+                    <h4><i data-lucide="repeat"></i> Engagement Loop (Rep Rải Rác)</h4>
+                    <p>Đừng bao giờ rep comment ngay lập tức một lúc. Hãy áp dụng chiến thuật <b>rep rải rác mỗi lần 1-2 comment trong ngày</b>. Mỗi lần bạn rep, bài viết lại được thuật toán đẩy "nhảy" lên đỉnh Newsfeed của người khác một lần nữa.</p>
                 </div>
 
                 <div class="hack-box" style="border-left-color: #f59e0b;">
-                    <h4><i data-lucide="pen-tool"></i> Nghá»‡ Thuáº­t "Má»m HÃ³a" Tá»« KhÃ³a</h4>
-                    <p>Thuáº­t toÃ¡n tá»± Ä‘á»™ng "bÃ³p" tÆ°Æ¡ng tÃ¡c cÃ¡c bÃ i cÃ³ mÃ¹i Sale. TrÃ¡nh dÃ¹ng: <del>BÃ¡n, GiÃ¡ ráº», Chá»‘t lÃ´, Má»Ÿ bÃ¡n</del>. Thay vÃ o Ä‘Ã³ hÃ£y dÃ¹ng: <b>Gá»­i gáº¯m, CÆ¡ cáº¥u tÃ i sáº£n, Há»— trá»£ em, HÃ nh trÃ¬nh tÃ¬m nhÃ , CÆ¡ há»™i há»¯u duyÃªn.</b></p>
+                    <h4><i data-lucide="pen-tool"></i> Nghệ Thuật "Mềm Hóa" Từ Khóa</h4>
+                    <p>Thuật toán tự động "bóp" tương tác các bài có mùi Sale. Tránh dùng: <del>Bán, Giá rẻ, Chốt lô, Mở bán</del>. Thay vào đó hãy dùng: <b>Gửi gắm, Cơ cấu tài sản, Hỗ trợ em, Hành trình tìm nhà, Cơ hội hữu duyên.</b></p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: CÃ´ng Thá»©c 5-3-2 & "Má» Ã TÆ°á»Ÿng" -->
+        <!-- Section 2: Công Thức 5-3-2 & "Mỏ Ý Tưởng" -->
         <div class="glass-panel">
             <div class="section-header">
                 <i data-lucide="pie-chart" width="32" height="32"></i>
-                <h2>2. CÃ´ng Thá»©c Content 5-3-2 (BÃ¡n NhÆ° KhÃ´ng BÃ¡n)</h2>
+                <h2>2. Công Thức Content 5-3-2 (Bán Như Không Bán)</h2>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">HÃ£y trá»Ÿ thÃ nh <i>"NgÆ°á»i ká»ƒ chuyá»‡n cá»§a vÃ¹ng Ä‘áº¥t Ä‘Ã³"</i> thay vÃ¬ má»™t tay cÃ² Ä‘áº¥t vÃ´ há»“n.</p>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Hãy trở thành <i>"Người kể chuyện của vùng đất đó"</i> thay vì một tay cò đất vô hồn.</p>
 
             <div class="grid-3" style="margin-bottom: 3rem;">
                 <div class="mix-card">
                     <div class="percent-badge">50%</div>
-                    <h3>Äá»i Sá»‘ng & NhÆ°á»£c Äiá»ƒm</h3>
-                    <p>Chia sáº» sá»± tháº­t tráº§n trá»¥i, sá»± váº­t vÃ£ cá»§a nghá», khoe gia Ä‘Ã¬nh hoáº·c lá»‘i sá»‘ng healthy.<br><br><i>Má»¥c Ä‘Ã­ch: XÃ³a bá» Ä‘á»‹nh kiáº¿n "Sale chá»‰ lÄƒm lÄƒm chá»‘t tiá»n". GÃ¢y thiá»‡n cáº£m sÃ¢u sáº¯c.</i></p>
+                    <h3>Đời Sống & Nhược Điểm</h3>
+                    <p>Chia sẻ sự thật trần trụi, sự vật vã của nghề, khoe gia đình hoặc lối sống healthy.<br><br><i>Mục đích: Xóa bỏ định kiến "Sale chỉ lăm lăm chốt tiền". Gây thiện cảm sâu sắc.</i></p>
                 </div>
                 <div class="mix-card">
                     <div class="percent-badge">30%</div>
-                    <h3>ChuyÃªn MÃ´n Cá»©ng</h3>
-                    <p>Giáº£i thÃ­ch cÃ¡c thuáº­t ngá»¯ LUR, ONT, cÃ¡ch check quy hoáº¡ch ngay táº¡i lÃ´ Ä‘áº¥t báº±ng 30s video báº¥m Ä‘t.<br><br><i>Má»¥c Ä‘Ã­ch: Thá»ƒ hiá»‡n vá»‹ tháº¿ chuyÃªn mÃ´n "Tao cÃ³ nhá»¯ng thá»© mÃ y khÃ´ng biáº¿t".</i></p>
+                    <h3>Chuyên Môn Cứng</h3>
+                    <p>Giải thích các thuật ngữ LUR, ONT, cách check quy hoạch ngay tại lô đất bằng 30s video bấm đt.<br><br><i>Mục đích: Thể hiện vị thế chuyên môn "Tao có những thứ mày không biết".</i></p>
                 </div>
                 <div class="mix-card">
                     <div class="percent-badge">20%</div>
-                    <h3>Báº±ng Chá»©ng (Uy TÃ­n)</h3>
-                    <p>Tin nháº¯n khÃ¡ch cÃ¡m Æ¡n, áº£nh review quÃ¡n bÃºn cÃ¡ sÃ¡t dá»± Ã¡n, hoáº·c gom mua chung lÃ´ Ä‘áº¹p.<br><br><i>Má»¥c Ä‘Ã­ch: Táº¡o láº­p báº±ng chá»©ng thÃ©p, buff FOMO cá»±c gáº¯t.</i></p>
+                    <h3>Bằng Chứng (Uy Tín)</h3>
+                    <p>Tin nhắn khách cám ơn, ảnh review quán bún cá sát dự án, hoặc gom mua chung lô đẹp.<br><br><i>Mục đích: Tạo lập bằng chứng thép, buff FOMO cực gắt.</i></p>
                 </div>
             </div>
 
-            <h3 style="color:var(--text-primary); margin-bottom: 1.5rem;"><i data-lucide="lightbulb" width="24" style="color: var(--accent-3); vertical-align: middle;"></i> Ã TÆ°á»Ÿng ÄÄƒng Báº±ng Chuyá»‡n Äá»i Thá»±c</h3>
+            <h3 style="color:var(--text-primary); margin-bottom: 1.5rem;"><i data-lucide="lightbulb" width="24" style="color: var(--accent-3); vertical-align: middle;"></i> Ý Tưởng Đăng Bằng Chuyện Đời Thực</h3>
             <div class="grid-2">
-                <div class="idea-card"><span>Sá»± váº­t váº£ (Hustle)</span>"áº¢nh lá»™i bÃ¹n ruá»™ng check ranh má»‘c cho khÃ¡ch táº­n HÃ  Ná»™i. Sale Ä‘áº¥t ná»n lÃ  pháº£i biáº¿t lá»™i bÃ¹n, khÃ´ng pháº£i chá»‰ máº·c vest uá»‘ng nÆ°á»›c chÃ¨."</div>
-                <div class="idea-card"><span>Lá»—i sai (Vulnerability)</span>"QuÃªn vÃ¡c theo chÃ¬a khÃ³a má»Ÿ cá»•ng Ä‘áº¥t khu biá»‡t láº­p. May cÃ¡c bÃ¡c khÃ¡ch dá»… tÃ­nh báº£o 'Äáº¹p tháº¿ nÃ y quÃªn anh cÅ©ng tha'. Nhá»› check tÃºi 3 láº§n nhÃ© anh em!"</div>
-                <div class="idea-card"><span>Sá»± tháº¥u cáº£m</span>"ThÆ°Æ¡ng Ã´ng anh dá»“n tÃ­ch cÃ³p cáº£ Ä‘á»i Ä‘i mua lÃ´ Ä‘áº¥t Ä‘áº§u tiÃªn, cá»© há»i quy hoáº¡ch mÃ£i báº£i cáº£ ngÆ°á»i. MÃ¬nh báº£o 'ChÃº cá»© an tÃ¢m, chÃ¡u check 3 lá»›p má»™c má»›i dÃ¡m gá»i'."</div>
-                <div class="idea-card"><span>Local Brand</span>"Dáº«n khÃ¡ch xem Ä‘áº¥t xong pháº£i ráº½ ngang lÃ m bÃ¡t bÃºn cÃ¡ [TÃªn QuÃ¡n] Ä‘á»‰nh chÃ³p. KhÃ¡ch Äƒn xong gáº­t gÃ¹ khen Ä‘áº¥t ngon bÃºn cÅ©ng xá»‹n!"</div>
+                <div class="idea-card"><span>Sự vật vả (Hustle)</span>"Ảnh lội bùn ruộng check ranh mốc cho khách tận Hà Nội. Sale đất nền là phải biết lội bùn, không phải chỉ mặc vest uống nước chè."</div>
+                <div class="idea-card"><span>Lỗi sai (Vulnerability)</span>"Quên vác theo chìa khóa mở cổng đất khu biệt lập. May các bác khách dễ tính bảo 'Đẹp thế này quên anh cũng tha'. Nhớ check túi 3 lần nhé anh em!"</div>
+                <div class="idea-card"><span>Sự thấu cảm</span>"Thương ông anh dồn tích cóp cả đời đi mua lô đất đầu tiên, cứ hỏi quy hoạch mãi bải cả người. Mình bảo 'Chú cứ an tâm, cháu check 3 lớp mộc mới dám gọi'."</div>
+                <div class="idea-card"><span>Local Brand</span>"Dẫn khách xem đất xong phải rẽ ngang làm bát bún cá [Tên Quán] đỉnh chóp. Khách ăn xong gật gù khen đất ngon bún cũng xịn!"</div>
             </div>
         </div>
 
-        <!-- Section 3: Tráº­n ÄÃ¡nh Timeline 9 Khung Giá» -->
+        <!-- Section 3: Trận Đánh Timeline 9 Khung Giờ -->
         <div class="glass-panel" style="border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);">
             <div class="section-header">
                 <i data-lucide="clock-9" width="32" height="32" style="color: #60a5fa;"></i>
-                <h2>3. Lá»‹ch TrÃ¬nh 9 Khung Giá» "Domination" (5-10 BÃ i/NgÃ y)</h2>
+                <h2>3. Lịch Trình 9 Khung Giờ "Domination" (5-10 Bài/Ngày)</h2>
             </div>
-            <p style="color: var(--text-muted);">Sáº£n xuáº¥t siÃªu tá»‘c (Snap & Post): Äá»«ng cáº§u ká»³! Tháº¥y biá»ƒn bÃ¡o má»›i Ä‘áº¹p, xe cáº©u Ä‘Ã´ng -> Chá»¥p post Story ngay kÃ¨m 1 dÃ²ng cáº£m xÃºc. 1 Ná»™i dung Feed cÃ³ thá»ƒ báº» ra 4 Story Ä‘á»ƒ duy trÃ¬ hiá»ƒn thá»‹.</p>
+            <p style="color: var(--text-muted);">Sản xuất siêu tốc (Snap & Post): Đừng cầu kỳ! Thấy biển báo mới đẹp, xe cẩu đông -> Chụp post Story ngay kèm 1 dòng cảm xúc. 1 Nội dung Feed có thể bẻ ra 4 Story để duy trì hiển thị.</p>
             
             <table class="timeline-table">
                 <thead>
                     <tr>
-                        <th>Khung Giá»</th>
-                        <th>KÃªnh ÄÄƒng</th>
-                        <th>Ná»™i Dung Chi Tiáº¿t</th>
-                        <th>Má»¥c TiÃªu Äáº¡t ÄÆ°á»£c</th>
+                        <th>Khung Giờ</th>
+                        <th>Kênh Đăng</th>
+                        <th>Nội Dung Chi Tiết</th>
+                        <th>Mục Tiêu Đạt Được</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>07:30</td><td><span class="badge-feed">Feed</span> + <span class="badge-story">Story</span></td><td>áº¢nh cÃ³ máº·t chÃ­nh chá»§/NÄƒng lÆ°á»£ng thá»ƒ thao/TrÃ  sÃ¡ng.</td><td><span class="highlight-text">BÆ¡m Reach tá»•ng lá»±c</span> cho ngÃ y.</td></tr>
-                    <tr><td>09:30</td><td><span class="badge-story">Story</span></td><td>Tin váº¯n thá»i sá»± BÄS / Chá»¥p vá»™i áº£nh báº£n Ä‘á»“ QH.</td><td>Pháº©y danh hiá»‡u "ChuyÃªn gia".</td></tr>
-                    <tr><td>11:00</td><td><span class="badge-story">Story</span></td><td>15s Video check tá»a Ä‘á»™ Ä‘á»‹a bÃ n thá»±c táº¿ náº¯ng nÃ´i.</td><td>Kháº³ng Ä‘á»‹nh tÃ­nh "Thá»±c chiáº¿n".</td></tr>
-                    <tr><td>13:30</td><td><span class="badge-feed">Feed (ChuyÃªn sÃ¢u)</span></td><td>PhÃ¢n tÃ­ch phÃ¡p lÃ½ lÃ´ X, cÆ¡ há»™i Ä‘áº§u tÆ° sÃ¢u sáº¯c.</td><td><b>Ghim uy tÃ­n sÃ¢u vÃ o lÃ²ng khÃ¡ch.</b></td></tr>
-                    <tr><td>15:30</td><td><span class="badge-feed">Feed (Social Proof)</span></td><td>Che tÃªn Ä‘Äƒng Bill cá»c, hoáº·c áº£nh tin nháº¯n Feedback.</td><td>Chá»‘t cháº·n niá»m tin an toÃ n.</td></tr>
-                    <tr><td>17:30</td><td><span class="badge-story">Story</span></td><td>CÃ¢u chuyá»‡n háº­u trÆ°á»ng Ä‘á»• nÃ¡t, Ä‘Ã³i meo chá» khÃ¡ch.</td><td>KÃ­ch hoáº¡t Sá»± Äá»“ng Cáº£m.</td></tr>
-                    <tr><td>19:30</td><td><span class="badge-feed">Feed (Game)</span></td><td>TrÃ² chÆ¡i há»i Ä‘Ã¡p A/B (Chá»n máº£nh vuÃ´ng hay máº£nh xÃ©o?).</td><td><span class="highlight-text">KÃ©o TÆ°Æ¡ng TÃ¡c Cá»±c Äiá»ƒm.</span></td></tr>
-                    <tr><td>21:00</td><td><span class="badge-story">Story</span></td><td>GÃ³c khuáº¥t, chiÃªm nghiá»‡m Ä‘á»i sá»‘ng, Ä‘áº¡o Ä‘á»©c sá»‘ng.</td><td>Trá»Ÿ thÃ nh báº¡n bÃ¨ cá»§a khÃ¡ch.</td></tr>
-                    <tr><td>22:30</td><td><span class="badge-story">Story</span></td><td>Ãšp má»Ÿ: "Mai cÃ³ 1 lÃ´ hoa háº­u ngá»™p nÃ­n thá»Ÿ, chá» em!".</td><td>Giá»¯ chÃ¢n sá»± hÃ¡o há»©c vÃ o ngÃ y mai.</td></tr>
+                    <tr><td>07:30</td><td><span class="badge-feed">Feed</span> + <span class="badge-story">Story</span></td><td>Ảnh có mặt chính chủ/Năng lượng thể thao/Trà sáng.</td><td><span class="highlight-text">Bơm Reach tổng lực</span> cho ngày.</td></tr>
+                    <tr><td>09:30</td><td><span class="badge-story">Story</span></td><td>Tin vắn thời sự BĐS / Chụp vội ảnh bản đồ QH.</td><td>Phẩy danh hiệu "Chuyên gia".</td></tr>
+                    <tr><td>11:00</td><td><span class="badge-story">Story</span></td><td>15s Video check tọa độ địa bàn thực tế nắng nôi.</td><td>Khẳng định tính "Thực chiến".</td></tr>
+                    <tr><td>13:30</td><td><span class="badge-feed">Feed (Chuyên sâu)</span></td><td>Phân tích pháp lý lô X, cơ hội đầu tư sâu sắc.</td><td><b>Ghim uy tín sâu vào lòng khách.</b></td></tr>
+                    <tr><td>15:30</td><td><span class="badge-feed">Feed (Social Proof)</span></td><td>Che tên đăng Bill cọc, hoặc ảnh tin nhắn Feedback.</td><td>Chốt chặn niềm tin an toàn.</td></tr>
+                    <tr><td>17:30</td><td><span class="badge-story">Story</span></td><td>Câu chuyện hậu trường đổ nát, đói meo chờ khách.</td><td>Kích hoạt Sự Đồng Cảm.</td></tr>
+                    <tr><td>19:30</td><td><span class="badge-feed">Feed (Game)</span></td><td>Trò chơi hỏi đáp A/B (Chọn mảnh vuông hay mảnh xéo?).</td><td><span class="highlight-text">Kéo Tương Tác Cực Điểm.</span></td></tr>
+                    <tr><td>21:00</td><td><span class="badge-story">Story</span></td><td>Góc khuất, chiêm nghiệm đời sống, đạo đức sống.</td><td>Trở thành bạn bè của khách.</td></tr>
+                    <tr><td>22:30</td><td><span class="badge-story">Story</span></td><td>Úp mở: "Mai có 1 lô hoa hậu ngộp nín thở, chờ em!".</td><td>Giữ chân sự háo hức vào ngày mai.</td></tr>
                 </tbody>
             </table>
             <div class="important-note">
-                <i data-lucide="siren" width="18" style="vertical-align: middle;"></i> <b>KPI Nháº¯c nhá»Ÿ Team TL Land:</b> ÄÄƒng 5-10 bÃ i khÃ´ng pháº£i lÃ  lÃ m phiá»n khÃ¡ch, mÃ  Ä‘á»ƒ Ã©p khÃ¡ch hÃ ng <i>"KHÃ”NG TÃ€I NÃ€O QUÃŠN ÄÆ¯á»¢C CHÃšNG TA"</i> ngay khi há» náº£y máº§m nhu cáº§u mua Ä‘áº¥t!
+                <i data-lucide="siren" width="18" style="vertical-align: middle;"></i> <b>KPI Nhắc nhở Team TL Land:</b> Đăng 5-10 bài không phải là làm phiền khách, mà để ép khách hàng <i>"KHÔNG TÀI NÀO QUÊN ĐƯỢC CHÚNG TA"</i> ngay khi họ nảy mầm nhu cầu mua đất!
             </div>
         </div>
 
-        <!-- Section 4: Lá»™ TrÃ¬nh Ãp Dá»¥ng 30 NgÃ y (Action Plan) -->
+        <!-- Section 4: Lộ Trình Áp Dụng 30 Ngày (Action Plan) -->
         <div class="glass-panel">
             <div class="section-header">
                 <i data-lucide="map" width="32" height="32"></i>
-                <h2>4. Lá»™ TrÃ¬nh Chuyá»ƒn Äá»•i 30 NgÃ y "SÃ¡t Thá»§ Äáº¥t Ná»n"</h2>
+                <h2>4. Lộ Trình Chuyển Đổi 30 Ngày "Sát Thủ Đất Nền"</h2>
             </div>
             
             <div class="roadmap">
                 <div class="phase-card">
-                    <div class="phase-title"><span>NgÃ y 1 - 10</span> PhÃ¡ BÄƒng & Hiá»‡n Diá»‡n Sá»‘ng Äá»™ng</div>
+                    <div class="phase-title"><span>Ngày 1 - 10</span> Phá Băng & Hiện Diện Sống Động</div>
                     <ul class="phase-list">
-                        <li><b>Má»¥c tiÃªu:</b> Cho khÃ¡ch tháº¥y báº¡n lÃ  con ngÆ°á»i báº±ng xÆ°Æ¡ng báº±ng thá»‹t, khÃ´ng pháº£i cÃ¡i loa rao váº·t.</li>
-                        <li><b>HÃ nh Ä‘á»™ng:</b> ÄÄƒng bÃ i chia sáº» trá»Ÿ ngáº¡i nghá», sá»Ÿ thÃ­ch. Má»Ÿ Ä‘áº§u báº±ng CÃ¢u Há»i Má»Ÿ ("CÃ¡c bÃ¡c nghÄ© vÃ¹ng ven giá» cÃ³ nÃªn xuá»‘ng tiá»n khÃ´ mÃ¡u?").</li>
-                        <li><b>Nhiá»‡m vá»¥:</b> Äi comment dáº¡o "cá»±c ká»³ cÃ³ tÃ¢m" vÃ o tÆ°á»ng cá»§a 20 Data KhÃ¡ch hÃ ng Tiá»m nÄƒng má»—i ngÃ y.</li>
+                        <li><b>Mục tiêu:</b> Cho khách thấy bạn là con người bằng xương bằng thịt, không phải cái loa rao vặt.</li>
+                        <li><b>Hành động:</b> Đăng bài chia sẻ trở ngại nghề, sở thích. Mở đầu bằng Câu Hỏi Mở ("Các bác nghĩ vùng ven giờ có nên xuống tiền khô máu?").</li>
+                        <li><b>Nhiệm vụ:</b> Đi comment dạo "cực kỳ có tâm" vào tường của 20 Data Khách hàng Tiềm năng mỗi ngày.</li>
                     </ul>
                 </div>
 
                 <div class="phase-card">
-                    <div class="phase-title"><span>NgÃ y 11 - 20</span> Äá»‹nh Vá»‹ "CÃ¡i Äáº§u Sá»i ChuyÃªn Gia"</div>
+                    <div class="phase-title"><span>Ngày 11 - 20</span> Định Vị "Cái Đầu Sỏi Chuyên Gia"</div>
                     <ul class="phase-list">
-                        <li><b>Má»¥c tiÃªu:</b> KhÃ¡ch hÃ ng pháº£i gáº­t gÃ¹: "Tháº±ng nÃ y biáº¿t nhiá»u thá»© Ä‘áº¥t Ä‘ai mÃ  mÃ¬nh khÃ´ng rÃ nh".</li>
-                        <li><b>HÃ nh Ä‘á»™ng:</b> LÃªn seri video 30s giáº£i thÃ­ch sá»± khÃ¡c biá»‡t giá»¯a sá»• Ä‘á» tháº­t giáº£, 3 dáº¥u hiá»‡u Ä‘áº¥t "ngá»£p tá»± táº¡o", check app mÃ£nh Ä‘áº¥t ngay hiá»‡n trÆ°á»ng.</li>
-                        <li><b>Visual:</b> Háº¡n cháº¿ Ä‘Äƒng Ä‘áº¥t khÃ´ng ngÆ°á»i. YÃªu cáº§u Selfie kÃ¨m báº£n Ä‘á»“, Ã´m giáº¥y tá» sá»• há»“ng má»“ hÃ´i nhá»… nháº¡i.</li>
+                        <li><b>Mục tiêu:</b> Khách hàng phải gật gù: "Thằng này biết nhiều thứ đất đai mà mình không rành".</li>
+                        <li><b>Hành động:</b> Lên seri video 30s giải thích sự khác biệt giữa sổ đỏ thật giả, 3 dấu hiệu đất "ngợp tự tạo", check app mãnh đất ngay hiện trường.</li>
+                        <li><b>Visual:</b> Hạn chế đăng đất không người. Yêu cầu Selfie kèm bản đồ, ôm giấy tờ sổ hồng mồ hôi nhễ nhại.</li>
                     </ul>
                 </div>
 
                 <div class="phase-card">
-                    <div class="phase-title"><span>NgÃ y 21 - 30</span> KÃ©o LÆ°á»›i, Khoe Báº±ng Chá»©ng ThÃ©p</div>
+                    <div class="phase-title"><span>Ngày 21 - 30</span> Kéo Lưới, Khoe Bằng Chứng Thép</div>
                     <ul class="phase-list">
-                        <li><b>Má»¥c tiÃªu:</b> Gom khÃ¡ch hÃ ng Ä‘ang ngáº§n ngáº¡i pháº£i nháº£y xuá»‘ng thuyá»n. FOMO hÃ³a.</li>
-                        <li><b>HÃ nh Ä‘á»™ng:</b> Share tin nháº¯n khÃ¡ch chá»‘t Ä‘Æ¡n qua Ä‘iá»‡n thoáº¡i. áº¢nh dáº¯t khÃ¡ch Ä‘i cÃ´ng chá»©ng (ká»ƒ láº¡i nhu cáº§u thá»±c táº¿ cá»§a khÃ¡ch).</li>
-                        <li><b>ChiÃªu cuá»‘i:</b> Khá»Ÿi táº¡o phong trÃ o "Gom mua chung máº£nh hoa háº­u gÃ£y ná»£ ngÃ¢n hÃ ng" Ä‘á»ƒ gom phá»…u inbox tá»± nhiÃªn 10-15 leads.</li>
+                        <li><b>Mục tiêu:</b> Gom khách hàng đang ngần ngại phải nhảy xuống thuyền. FOMO hóa.</li>
+                        <li><b>Hành động:</b> Share tin nhắn khách chốt đơn qua điện thoại. Ảnh dắt khách đi công chứng (kể lại nhu cầu thực tế của khách).</li>
+                        <li><b>Chiêu cuối:</b> Khởi tạo phong trào "Gom mua chung mảnh hoa hậu gãy nợ ngân hàng" để gom phễu inbox tự nhiên 10-15 leads.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Section 5: Báº£n Lá»‹ch TrÃ¬nh VÃ­ Dá»¥ Thá»±c Táº¿ -->
+        <!-- Section 5: Bản Lịch Trình Ví Dụ Thực Tế -->
         <div class="glass-panel" style="border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 40px rgba(16, 185, 129, 0.05);">
             <div class="section-header">
                 <i data-lucide="book-open-check" width="32" height="32" style="color: var(--accent-3);"></i>
-                <h2>5. Lá»‹ch TrÃ¬nh Khung 24H (Hai Báº£n VÃ­ Dá»¥)</h2>
+                <h2>5. Lịch Trình Khung 24H (Hai Bản Ví Dụ)</h2>
             </div>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; max-width: 800px;">
-                DÆ°á»›i Ä‘Ã¢y lÃ  2 báº£n vÃ­ dá»¥ thá»±c táº¿ vá» ká»‹ch báº£n Ä‘Äƒng bÃ i (Nam Thá»±c Chiáº¿n vÃ  Ná»¯ Sáº¯c Sáº£o). Há»‡ thá»‘ng yÃªu cáº§u <b>truy cáº­p trá»±c tiáº¿p</b> Ä‘á»ƒ xem há»‡ thá»‘ng giao diá»‡n chuáº©n cá»§a lá»‹ch trÃ¬nh tÃ¡c chiáº¿n 24h.
+                Dưới đây là 2 bản ví dụ thực tế về kịch bản đăng bài (Nam Thực Chiến và Nữ Sắc Sảo). Hệ thống yêu cầu <b>truy cập trực tiếp</b> để xem hệ thống giao diện chuẩn của lịch trình tác chiến 24h.
             </p>
             
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="lich_trinh_24h_bds_nam.html" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color:var(--text-primary); text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);">
-                    <i data-lucide="arrow-up-right" width="24"></i> Báº¥m VÃ o ÄÃ¢y Äá»ƒ Xem Ká»‹ch Báº£n Chi Tiáº¿t
+                    <i data-lucide="arrow-up-right" width="24"></i> Bấm Vào Đây Để Xem Kịch Bản Chi Tiết
                 </a>
             </div>
         </div>
@@ -1433,18 +1433,18 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: BÃ€I ÄÄ‚NG Äáº¦U TIÃŠN (CÃ´ng Thá»©c 5 Lá»›p)
+    // PAGE: BÀI ĐĂNG ĐẦU TIÊN (Công Thức 5 Lớp)
     // ---------------------------------------------------------
     'page-bai-dang-dau-tien': `
         <div class="page-title-bar">
-            <h1>CÃ´ng Thá»©c 5 Lá»›p</h1>
-            <p class="page-subtitle">Blueprint bÃ i Ä‘Äƒng giá»›i thiá»‡u BÄS Ä‘áº§u tiÃªn cho nhÃ¢n sá»± má»›i â€” gieo háº¡t tá»± nhiÃªn, khÃ´ng giá»‘ng quáº£ng cÃ¡o.</p>
+            <h1>Công Thức 5 Lớp</h1>
+            <p class="page-subtitle">Blueprint bài đăng giới thiệu BĐS đầu tiên cho nhân sự mới — gieo hạt tự nhiên, không giống quảng cáo.</p>
         </div>
 
         <div class="core-principle" style="border-left-color: #34d399;">
-            <h2 style="color: #34d399;">ðŸŒ± Má»¥c TiÃªu BÃ i ÄÄƒng Äáº§u TiÃªn</h2>
+            <h2 style="color: #34d399;">🌱 Mục Tiêu Bài Đăng Đầu Tiên</h2>
             <p>
-                BÃ i Ä‘Äƒng Ä‘áº§u tiÃªn <strong>KHÃ”NG PHáº¢I Äá»‚ BÃN HÃ€NG</strong>. Má»¥c tiÃªu duy nháº¥t lÃ  <strong>"GIEO Háº T"</strong> â€” cho báº¡n bÃ¨ trÃªn MXH biáº¿t mÃ¬nh Ä‘Ã£ chuyá»ƒn sang lÃ m BÄS. Khi há» cÃ³ nhu cáº§u, há» sáº½ nhá»› Ä‘áº¿n mÃ¬nh Ä‘áº§u tiÃªn.
+                Bài đăng đầu tiên <strong>KHÔNG PHẢI ĐỂ BÁN HÀNG</strong>. Mục tiêu duy nhất là <strong>"GIEO HẠT"</strong> — cho bạn bè trên MXH biết mình đã chuyển sang làm BĐS. Khi họ có nhu cầu, họ sẽ nhớ đến mình đầu tiên.
             </p>
         </div>
 
@@ -1452,35 +1452,35 @@ const APP_CONTENT = {
         <div class="glass-panel" style="border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 40px rgba(56, 189, 248, 0.08);">
             <div class="section-header">
                 <i data-lucide="layers" width="32" height="32"></i>
-                <h2>SÆ¡ Äá»“ 5 Lá»›p Chiáº¿n LÆ°á»£c</h2>
+                <h2>Sơ Đồ 5 Lớp Chiến Lược</h2>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Má»—i lá»›p cÃ³ má»™t nhiá»‡m vá»¥ tÃ¢m lÃ½ riÃªng. <strong style="color:var(--text-primary);">Thá»© tá»± KHÃ”NG Ä‘Æ°á»£c Ä‘áº£o</strong> â€” náº¿u Ä‘áº£o sáº½ thÃ nh quáº£ng cÃ¡o, báº¡n bÃ¨ lÆ°á»›t qua ngay.</p>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Mỗi lớp có một nhiệm vụ tâm lý riêng. <strong style="color:var(--text-primary);">Thứ tự KHÔNG được đảo</strong> — nếu đảo sẽ thành quảng cáo, bạn bè lướt qua ngay.</p>
 
             <div style="display:flex; flex-direction:column; gap:12px; padding-left: 20px; border-left: 3px solid rgba(56,189,248,0.3);">
                 <div style="padding:12px 20px; background:rgba(56,189,248,0.06); border-radius:12px; border-left:4px solid #38bdf8;">
                     <span style="color:#38bdf8; font-weight:800; font-size:1.1rem;">01</span>
                     <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Background</span>
-                    <span style="color:var(--text-muted); margin-left:8px;">â†’ NgÆ°á»i Ä‘á»c: "Ã€ báº¡n nÃ y giá»i mÃ "</span>
+                    <span style="color:var(--text-muted); margin-left:8px;">→ Người đọc: "À bạn này giỏi mà"</span>
                 </div>
                 <div style="padding:12px 20px; background:rgba(167,139,250,0.06); border-radius:12px; border-left:4px solid #a78bfa;">
                     <span style="color:#a78bfa; font-weight:800; font-size:1.1rem;">02</span>
-                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">LÃ½ Do Chuyá»ƒn NgÃ nh</span>
-                    <span style="color:var(--text-muted); margin-left:8px;">â†’ "á»ª BÄS cÅ©ng hay, mÃ¬nh cÅ©ng cáº§n"</span>
+                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Lý Do Chuyển Ngành</span>
+                    <span style="color:var(--text-muted); margin-left:8px;">→ "Ừ BĐS cũng hay, mình cũng cần"</span>
                 </div>
                 <div style="padding:12px 20px; background:rgba(52,211,153,0.06); border-radius:12px; border-left:4px solid #34d399;">
                     <span style="color:#34d399; font-weight:800; font-size:1.1rem;">03</span>
-                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Báº±ng Chá»©ng CÃ¡ NhÃ¢n</span>
-                    <span style="color:var(--text-muted); margin-left:8px;">â†’ "Báº¡n nÃ y Ä‘Ã£ Ä‘áº§u tÆ° rá»“i Ã "</span>
+                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Bằng Chứng Cá Nhân</span>
+                    <span style="color:var(--text-muted); margin-left:8px;">→ "Bạn này đã đầu tư rồi à"</span>
                 </div>
                 <div style="padding:12px 20px; background:rgba(248,113,113,0.1); border-radius:12px; border-left:4px solid #f87171; box-shadow: 0 0 20px rgba(248,113,113,0.08);">
                     <span style="color:#f87171; font-weight:800; font-size:1.1rem;">04</span>
-                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">â­ Äá»©ng TrÃªn Vai NgÆ°á»i Khá»•ng Lá»“</span>
-                    <span style="color:var(--text-muted); margin-left:8px;">â†’ "CÃ³ sáº¿p giá»i Ä‘á»©ng sau, yÃªn tÃ¢m"</span>
+                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">⭐ Đứng Trên Vai Người Khổng Lồ</span>
+                    <span style="color:var(--text-muted); margin-left:8px;">→ "Có sếp giỏi đứng sau, yên tâm"</span>
                 </div>
                 <div style="padding:12px 20px; background:rgba(251,191,36,0.06); border-radius:12px; border-left:4px solid #fbbf24;">
                     <span style="color:#fbbf24; font-weight:800; font-size:1.1rem;">05</span>
-                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Sáº£n Pháº©m + CTA Má»m</span>
-                    <span style="color:var(--text-muted); margin-left:8px;">â†’ "OK, khi nÃ o cáº§n mÃ¬nh sáº½ há»i"</span>
+                    <span style="color:var(--text-primary); font-weight:600; margin-left:12px;">Sản Phẩm + CTA Mềm</span>
+                    <span style="color:var(--text-muted); margin-left:8px;">→ "OK, khi nào cần mình sẽ hỏi"</span>
                 </div>
             </div>
         </div>
@@ -1490,81 +1490,81 @@ const APP_CONTENT = {
 
             <!-- Layer 1 -->
             <div class="card vip">
-                <div class="badge">Lá»›p 1: Táº¡o Uy TÃ­n Ban Äáº§u</div>
-                <h3>ðŸ‘¤ Background â€” "MÃ¬nh lÃ  ai, mÃ¬nh tá»«ng lÃ m gÃ¬"</h3>
+                <div class="badge">Lớp 1: Tạo Uy Tín Ban Đầu</div>
+                <h3>👤 Background — "Mình là ai, mình từng làm gì"</h3>
                 <div class="content-group">
-                    <strong>Nhiá»‡m vá»¥ tÃ¢m lÃ½</strong>
-                    <p>Chá»©ng minh mÃ¬nh lÃ  ngÆ°á»i <b>cÃ³ nÄƒng lá»±c</b>, khÃ´ng pháº£i vÃ¬ tháº¥t báº¡i má»›i Ä‘i bÃ¡n Ä‘áº¥t. ThÃ nh tÃ­ch cÅ© cho tháº¥y mÃ¬nh chá»§ Ä‘á»™ng chuyá»ƒn vÃ¬ <b>tham vá»ng</b>.</p>
+                    <strong>Nhiệm vụ tâm lý</strong>
+                    <p>Chứng minh mình là người <b>có năng lực</b>, không phải vì thất bại mới đi bán đất. Thành tích cũ cho thấy mình chủ động chuyển vì <b>tham vọng</b>.</p>
                 </div>
                 <div class="content-group">
-                    <strong>CÃ´ng thá»©c</strong>
-                    <p><em>"Em chÃ o má»i ngÆ°á»i áº¡. TrÆ°á»›c Ä‘Ã¢y em lÃ m bÃªn [NGÃ€NH CÅ¨] Ä‘Æ°á»£c [Sá» NÄ‚M], cÅ©ng [THÃ€NH TÃCH]. NhÆ°ng em cáº£m tháº¥y [LÃ DO MUá»N THAY Äá»”I]."</em></p>
+                    <strong>Công thức</strong>
+                    <p><em>"Em chào mọi người ạ. Trước đây em làm bên [NGÀNH CŨ] được [SỐ NĂM], cũng [THÀNH TÍCH]. Nhưng em cảm thấy [LÝ DO MUỐN THAY ĐỔI]."</em></p>
                 </div>
                 <div class="upgrade-box">
-                    <p><b>VÃ­ dá»¥:</b> "TrÆ°á»›c em lÃ m káº¿ toÃ¡n 5 nÄƒm, thu nháº­p á»•n nhÆ°ng tháº¥y khÃ´ng cÃ³ cÆ¡ há»™i tÄƒng trÆ°á»Ÿng" â€¢ "Em vá»«a tá»‘t nghiá»‡p ÄH quáº£n trá»‹, muá»‘n tÃ¬m hÆ°á»›ng Ä‘i tiá»m nÄƒng hÆ¡n" â€¢ "Em lÃ  giÃ¡o viÃªn dáº¡y ToÃ¡n 3 nÄƒm, muá»‘n thá»­ sá»©c lÄ©nh vá»±c má»›i"</p>
+                    <p><b>Ví dụ:</b> "Trước em làm kế toán 5 năm, thu nhập ổn nhưng thấy không có cơ hội tăng trưởng" • "Em vừa tốt nghiệp ĐH quản trị, muốn tìm hướng đi tiềm năng hơn" • "Em là giáo viên dạy Toán 3 năm, muốn thử sức lĩnh vực mới"</p>
                 </div>
             </div>
 
             <!-- Layer 2 -->
             <div class="card safe">
-                <div class="badge">Lá»›p 2: Táº¡o Sá»± Há»£p LÃ½ + Gieo Háº¡t</div>
-                <h3>ðŸ”„ LÃ½ Do Chuyá»ƒn NgÃ nh â€” "Táº¡i sao BÄS?"</h3>
+                <div class="badge">Lớp 2: Tạo Sự Hợp Lý + Gieo Hạt</div>
+                <h3>🔄 Lý Do Chuyển Ngành — "Tại sao BĐS?"</h3>
                 <div class="content-group">
-                    <strong>Nhiá»‡m vá»¥ tÃ¢m lÃ½</strong>
-                    <p>Thá»ƒ hiá»‡n sá»± há»©ng thÃº <b>chÃ¢n tháº­t</b> (khÃ´ng pháº£i bá»‹ Ã©p bÃ¡n). Ngáº§m nháº¯c ngÆ°á»i Ä‘á»c: <b>"Báº¡n cÅ©ng sáº½ cáº§n BÄS Ä‘áº¥y"</b> â€” mua nhÃ , Ä‘áº§u tÆ°, thá»«a káº¿, kinh doanh...</p>
+                    <strong>Nhiệm vụ tâm lý</strong>
+                    <p>Thể hiện sự hứng thú <b>chân thật</b> (không phải bị ép bán). Ngầm nhắc người đọc: <b>"Bạn cũng sẽ cần BĐS đấy"</b> — mua nhà, đầu tư, thừa kế, kinh doanh...</p>
                 </div>
                 <div class="content-group">
-                    <strong>CÃ´ng thá»©c</strong>
-                    <p><em>"Sau khi tÃ¬m hiá»ƒu vá» BÄS thÃ¬ em tháº¥y [Cáº¢M NHáº¬N TÃCH Cá»°C]. Em nháº­n ra ráº±ng ai rá»“i cÅ©ng cáº§n Ä‘áº¿n BÄS â€” dÃ¹ lÃ  [NHU Cáº¦U 1], [NHU Cáº¦U 2], hay [NHU Cáº¦U 3]."</em></p>
+                    <strong>Công thức</strong>
+                    <p><em>"Sau khi tìm hiểu về BĐS thì em thấy [CẢM NHẬN TÍCH CỰC]. Em nhận ra rằng ai rồi cũng cần đến BĐS — dù là [NHU CẦU 1], [NHU CẦU 2], hay [NHU CẦU 3]."</em></p>
                 </div>
             </div>
 
             <!-- Layer 3 -->
             <div class="card warn">
-                <div class="badge">Lá»›p 3: Social Proof CÃ¡ NhÃ¢n</div>
-                <h3>ðŸ“ˆ Báº±ng Chá»©ng CÃ¡ NhÃ¢n â€” "MÃ¬nh Ä‘Ã£ lÃ m vÃ  thÃ nh cÃ´ng"</h3>
+                <div class="badge">Lớp 3: Social Proof Cá Nhân</div>
+                <h3>📈 Bằng Chứng Cá Nhân — "Mình đã làm và thành công"</h3>
                 <div class="content-group">
-                    <strong>Nhiá»‡m vá»¥ tÃ¢m lÃ½</strong>
-                    <p>MÃ¬nh khÃ´ng chá»‰ "nÃ³i suÃ´ng" â€” mÃ¬nh Ä‘Ã£ <b>bá» tiá»n tháº­t</b> hoáº·c cÃ³ tráº£i nghiá»‡m thá»±c táº¿. 2 keyword vÃ ng: <b style="color:#34d399;">Lá»¢I NHUáº¬N Tá»T</b> + <b style="color:#34d399;">AN TOÃ€N</b>.</p>
+                    <strong>Nhiệm vụ tâm lý</strong>
+                    <p>Mình không chỉ "nói suông" — mình đã <b>bỏ tiền thật</b> hoặc có trải nghiệm thực tế. 2 keyword vàng: <b style="color:#34d399;">LỢI NHUẬN TỐT</b> + <b style="color:#34d399;">AN TOÀN</b>.</p>
                 </div>
                 <div class="content-group">
-                    <strong>CÃ´ng thá»©c</strong>
-                    <p><em>"Báº£n thÃ¢n em cÅ©ng Ä‘Ã£ [HÃ€NH Äá»˜NG THá»°C Táº¾] vÃ  tháº¥y [Káº¾T QUáº¢]. ÄÃ³ chÃ­nh lÃ  Ä‘á»™ng lá»±c Ä‘á»ƒ em quyáº¿t Ä‘á»‹nh [CAM Káº¾T Vá»šI NGÃ€NH]."</em></p>
+                    <strong>Công thức</strong>
+                    <p><em>"Bản thân em cũng đã [HÀNH ĐỘNG THỰC TẾ] và thấy [KẾT QUẢ]. Đó chính là động lực để em quyết định [CAM KẾT VỚI NGÀNH]."</em></p>
                 </div>
                 <div class="upgrade-box">
-                    <p><b>Náº¿u chÆ°a tá»«ng Ä‘áº§u tÆ°?</b> Chuyá»ƒn thÃ nh: "Em chá»©ng kiáº¿n ngÆ°á»i thÃ¢n Ä‘áº§u tÆ° thÃ nh cÃ´ng" hoáº·c "Em Ä‘i xem thá»±c táº¿ vÃ  nháº­n ra tiá»m nÄƒng". Quan trá»ng lÃ  pháº£i cÃ³ <b>TRáº¢I NGHIá»†M THáº¬T</b>, dÃ¹ nhá».</p>
+                    <p><b>Nếu chưa từng đầu tư?</b> Chuyển thành: "Em chứng kiến người thân đầu tư thành công" hoặc "Em đi xem thực tế và nhận ra tiềm năng". Quan trọng là phải có <b>TRẢI NGHIỆM THẬT</b>, dù nhỏ.</p>
                 </div>
             </div>
 
             <!-- Layer 4 (Critical) -->
             <div class="card danger">
-                <div class="badge">â­ Lá»›p 4: Quan Trá»ng Nháº¥t</div>
-                <h3>ðŸ”ï¸ Äá»©ng TrÃªn Vai NgÆ°á»i Khá»•ng Lá»“</h3>
+                <div class="badge">⭐ Lớp 4: Quan Trọng Nhất</div>
+                <h3>🏔️ Đứng Trên Vai Người Khổng Lồ</h3>
                 <div class="content-group">
-                    <strong>Nhiá»‡m vá»¥ tÃ¢m lÃ½</strong>
-                    <p style="color: #f87171;">Giáº£i quyáº¿t ná»—i lo lá»›n nháº¥t: <b>"Báº¡n nÃ y má»›i vÃ o ngÃ nh, cÃ³ Ä‘Ã¡ng tin khÃ´ng?"</b></p>
-                    <p>â†’ CÃ¢u tráº£ lá»i: <b style="color:#34d399;">"MÃ¬nh má»›i, nhÆ°ng mÃ¬nh cÃ³ ngÆ°á»i GIá»ŽI dáº«n dáº¯t."</b> Uy tÃ­n Ä‘Æ°á»£c "vay mÆ°á»£n" tá»« sáº¿p/mentor â†’ khÃ¡ch yÃªn tÃ¢m ngay láº­p tá»©c.</p>
+                    <strong>Nhiệm vụ tâm lý</strong>
+                    <p style="color: #f87171;">Giải quyết nỗi lo lớn nhất: <b>"Bạn này mới vào ngành, có đáng tin không?"</b></p>
+                    <p>→ Câu trả lời: <b style="color:#34d399;">"Mình mới, nhưng mình có người GIỎI dẫn dắt."</b> Uy tín được "vay mượn" từ sếp/mentor → khách yên tâm ngay lập tức.</p>
                 </div>
                 <div class="content-group">
-                    <strong>CÃ´ng thá»©c</strong>
-                    <p><em>"May máº¯n lÃ  em cÃ³ [Má»I QUAN Há»†] â€” hiá»‡n Ä‘ang lÃ  [Vá»Š TRÃ UY TÃN], cÃ³ [Sá» NÄ‚M] kinh nghiá»‡m. ÄÃ¢y lÃ  lá»£i tháº¿ Ä‘á»ƒ em [Lá»¢I ÃCH CHO KHÃCH HÃ€NG]."</em></p>
+                    <strong>Công thức</strong>
+                    <p><em>"May mắn là em có [MỐI QUAN HỆ] — hiện đang là [VỊ TRÍ UY TÍN], có [SỐ NĂM] kinh nghiệm. Đây là lợi thế để em [LỢI ÍCH CHO KHÁCH HÀNG]."</em></p>
                 </div>
                 <div class="upgrade-box">
-                    <p><b>"NgÆ°á»i khá»•ng lá»“" cÃ³ thá»ƒ lÃ :</b> TrÆ°á»Ÿng nhÃ³m, sáº¿p trá»±c tiáº¿p, cÃ´ng ty, mentor â€” khÃ´ng nháº¥t thiáº¿t pháº£i lÃ  ngÆ°á»i thÃ¢n. Quan trá»ng lÃ  <b>NGÆ¯á»œI THáº¬T, UY TÃN THáº¬T</b> Ä‘á»ƒ khi khÃ¡ch há»i sÃ¢u, cÃ³ ngÆ°á»i backup.</p>
+                    <p><b>"Người khổng lồ" có thể là:</b> Trưởng nhóm, sếp trực tiếp, công ty, mentor — không nhất thiết phải là người thân. Quan trọng là <b>NGƯỜI THẬT, UY TÍN THẬT</b> để khi khách hỏi sâu, có người backup.</p>
                 </div>
             </div>
 
             <!-- Layer 5 -->
             <div class="card vip">
-                <div class="badge">Lá»›p 5: Gieo Háº¡t ThÃ nh CÃ´ng</div>
-                <h3>ðŸ¤ Sáº£n Pháº©m + CTA Má»m â€” "LiÃªn há»‡ khi cáº§n"</h3>
+                <div class="badge">Lớp 5: Gieo Hạt Thành Công</div>
+                <h3>🤝 Sản Phẩm + CTA Mềm — "Liên hệ khi cần"</h3>
                 <div class="content-group">
-                    <strong>Nhiá»‡m vá»¥ tÃ¢m lÃ½</strong>
-                    <p>Äá»‹nh vá»‹ báº£n thÃ¢n lÃ  <b>"ngÆ°á»i tÆ° váº¥n"</b>, sáºµn sÃ ng giáº£i Ä‘Ã¡p chá»© khÃ´ng Ã©p mua. CTA bÃ i Ä‘áº§u <b>Cá» TÃŒNH pháº£i má»m</b> â€” chá»‰ cáº§n gieo háº¡t, bÃ¡n hÃ ng á»Ÿ nhá»¯ng bÃ i tiáº¿p theo.</p>
+                    <strong>Nhiệm vụ tâm lý</strong>
+                    <p>Định vị bản thân là <b>"người tư vấn"</b>, sẵn sàng giải đáp chứ không ép mua. CTA bài đầu <b>CỐ TÌNH phải mềm</b> — chỉ cần gieo hạt, bán hàng ở những bài tiếp theo.</p>
                 </div>
                 <div class="content-group">
-                    <strong>CÃ´ng thá»©c</strong>
-                    <p><em>"NÃªn náº¿u má»i ngÆ°á»i cÃ³ nhu cáº§u hay tháº¯c máº¯c gÃ¬ vá» BÄS, cá»© inbox em nhÃ©! Em sáºµn sÃ ng [GIÃ TRá»Š CHIA Sáºº]."</em></p>
+                    <strong>Công thức</strong>
+                    <p><em>"Nên nếu mọi người có nhu cầu hay thắc mắc gì về BĐS, cứ inbox em nhé! Em sẵn sàng [GIÁ TRỊ CHIA SẺ]."</em></p>
                 </div>
             </div>
         </div>
@@ -1573,22 +1573,22 @@ const APP_CONTENT = {
         <div class="glass-panel" style="margin-top: 50px; border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 0 40px rgba(52, 211, 153, 0.08);">
             <div class="section-header">
                 <i data-lucide="file-text" width="32" height="32" style="color: var(--accent-emerald);"></i>
-                <h2 style="color:var(--text-primary);">Template Äiá»n Nhanh</h2>
+                <h2 style="color:var(--text-primary);">Template Điền Nhanh</h2>
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">NhÃ¢n sá»± má»›i chá»‰ cáº§n Ä‘iá»n thÃ´ng tin <b style="color:var(--text-primary);">THáº¬T</b> cá»§a mÃ¬nh vÃ o cÃ¡c chá»— trá»‘ng (mÃ u vÃ ng).</p>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Nhân sự mới chỉ cần điền thông tin <b style="color:var(--text-primary);">THẬT</b> của mình vào các chỗ trống (màu vàng).</p>
 
             <div style="background: rgba(0,0,0,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 30px; font-size: 1rem; line-height: 2; color:var(--text-secondary);">
-                <p>Em chÃ o má»i ngÆ°á»i áº¡ â¤ï¸</p>
+                <p>Em chào mọi người ạ ❤️</p>
                 <br>
-                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">Lá»šP 1</span> TrÆ°á»›c Ä‘Ã¢y em lÃ m bÃªn <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NGÃ€NH CÅ¨]</span> Ä‘Æ°á»£c <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Sá» NÄ‚M]</span>, cÅ©ng <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[THÃ€NH TÃCH]</span>. NhÆ°ng em cáº£m tháº¥y <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[LÃ DO THAY Äá»”I]</span>.</p>
+                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">LỚP 1</span> Trước đây em làm bên <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NGÀNH CŨ]</span> được <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[SỐ NĂM]</span>, cũng <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[THÀNH TÍCH]</span>. Nhưng em cảm thấy <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[LÝ DO THAY ĐỔI]</span>.</p>
                 <br>
-                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">Lá»šP 2</span> Sau khi tÃ¬m hiá»ƒu vá» BÄS thÃ¬ em tháº¥y <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Cáº¢M NHáº¬N]</span>. Em nháº­n ra ráº±ng ai rá»“i cÅ©ng cáº§n Ä‘áº¿n BÄS â€” dÃ¹ lÃ  <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU Cáº¦U 1]</span>, <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU Cáº¦U 2]</span>, hay <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU Cáº¦U 3]</span>.</p>
+                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">LỚP 2</span> Sau khi tìm hiểu về BĐS thì em thấy <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[CẢM NHẬN]</span>. Em nhận ra rằng ai rồi cũng cần đến BĐS — dù là <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU CẦU 1]</span>, <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU CẦU 2]</span>, hay <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[NHU CẦU 3]</span>.</p>
                 <br>
-                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">Lá»šP 3</span> Báº£n thÃ¢n em cÅ©ng Ä‘Ã£ <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[TRáº¢I NGHIá»†M Vá»šI BÄS]</span> vÃ  tháº¥y <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Káº¾T QUáº¢]</span>. ÄÃ³ chÃ­nh lÃ  Ä‘á»™ng lá»±c Ä‘á»ƒ em quyáº¿t Ä‘á»‹nh <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[CAM Káº¾T]</span>.</p>
+                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">LỚP 3</span> Bản thân em cũng đã <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[TRẢI NGHIỆM VỚI BĐS]</span> và thấy <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[KẾT QUẢ]</span>. Đó chính là động lực để em quyết định <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[CAM KẾT]</span>.</p>
                 <br>
-                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">Lá»šP 4</span> May máº¯n lÃ  em Ä‘Æ°á»£c <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[AI ÄÃ“]</span> â€” hiá»‡n Ä‘ang lÃ  <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Vá»Š TRÃ]</span>, cÃ³ <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Sá» NÄ‚M]</span> kinh nghiá»‡m â€” há»— trá»£ vÃ  dáº«n dáº¯t. ÄÃ¢y lÃ  lá»£i tháº¿ Ä‘á»ƒ em <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[Lá»¢I ÃCH CHO KHÃCH]</span>.</p>
+                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">LỚP 4</span> May mắn là em được <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[AI ĐÓ]</span> — hiện đang là <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[VỊ TRÍ]</span>, có <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[SỐ NĂM]</span> kinh nghiệm — hỗ trợ và dẫn dắt. Đây là lợi thế để em <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[LỢI ÍCH CHO KHÁCH]</span>.</p>
                 <br>
-                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">Lá»šP 5</span> NÃªn náº¿u má»i ngÆ°á»i cÃ³ nhu cáº§u hay tháº¯c máº¯c gÃ¬ vá» BÄS, cá»© inbox em nhÃ©! Em sáºµn sÃ ng <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[GIÃ TRá»Š TÆ¯ Váº¤N]</span> ðŸ¡</p>
+                <p><span style="background:rgba(248,113,113,0.2); color:#f87171; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700;">LỚP 5</span> Nên nếu mọi người có nhu cầu hay thắc mắc gì về BĐS, cứ inbox em nhé! Em sẵn sàng <span style="color:#fbbf24; border-bottom:1px dashed #fbbf24;">[GIÁ TRỊ TƯ VẤN]</span> 🏡</p>
             </div>
         </div>
 
@@ -1596,37 +1596,37 @@ const APP_CONTENT = {
         <div class="glass-panel" style="margin-top: 30px; border-color: rgba(248, 113, 113, 0.3);">
             <div class="section-header">
                 <i data-lucide="alert-triangle" width="32" height="32" style="color: #f87171;"></i>
-                <h2 style="color: #f87171;">LÆ°u Ã Quan Trá»ng</h2>
+                <h2 style="color: #f87171;">Lưu Ý Quan Trọng</h2>
             </div>
             <div style="display:flex; flex-direction:column; gap:16px;">
                 <div style="padding:16px; background:rgba(248,113,113,0.06); border-radius:12px; border-left:3px solid #f87171;">
-                    <p style="color:#fca5a5;"><b>âŒ KhÃ´ng copy y nguyÃªn:</b> Má»—i nhÃ¢n sá»± PHáº¢I customize theo background tháº­t. Náº¿u nhiá»u ngÆ°á»i Ä‘Äƒng giá»‘ng nhau â†’ báº¡n bÃ¨ chung nháº­n ra â†’ máº¥t uy tÃ­n.</p>
+                    <p style="color:#fca5a5;"><b>❌ Không copy y nguyên:</b> Mỗi nhân sự PHẢI customize theo background thật. Nếu nhiều người đăng giống nhau → bạn bè chung nhận ra → mất uy tín.</p>
                 </div>
                 <div style="padding:16px; background:rgba(251,191,36,0.06); border-radius:12px; border-left:3px solid #fbbf24;">
-                    <p style="color:#fde68a;"><b>â° KhÃ´ng Ä‘Äƒng cÃ¹ng lÃºc:</b> KhÃ´ng Ä‘Äƒng cÃ¹ng ngÃ y/giá» náº¿u nhÃ¢n sá»± cÃ³ báº¡n chung trÃªn MXH.</p>
+                    <p style="color:#fde68a;"><b>⏰ Không đăng cùng lúc:</b> Không đăng cùng ngày/giờ nếu nhân sự có bạn chung trên MXH.</p>
                 </div>
                 <div style="padding:16px; background:rgba(52,211,153,0.06); border-radius:12px; border-left:3px solid #34d399;">
-                    <p style="color:#6ee7b7;"><b>âœï¸ YÃªu cáº§u viáº¿t tay:</b> NhÃ¢n sá»± tá»± viáº¿t, trÆ°á»Ÿng nhÃ³m sá»­a â€” bÃ i sáº½ tá»± nhiÃªn hÆ¡n ráº¥t nhiá»u so vá»›i copy paste.</p>
+                    <p style="color:#6ee7b7;"><b>✍️ Yêu cầu viết tay:</b> Nhân sự tự viết, trưởng nhóm sửa — bài sẽ tự nhiên hơn rất nhiều so với copy paste.</p>
                 </div>
                 <div style="padding:16px; background:rgba(56,189,248,0.06); border-radius:12px; border-left:3px solid #38bdf8;">
-                    <p style="color:#7dd3fc;"><b>ðŸ“¸ KÃ¨m hÃ¬nh áº£nh:</b> áº¢nh cÃ¡ nhÃ¢n chuyÃªn nghiá»‡p (chá»‰nh AI) hoáº·c áº£nh check-in táº¡i dá»± Ã¡n. Text-only bá»‹ thuáº­t toÃ¡n Facebook ghÃ¬m reach.</p>
+                    <p style="color:#7dd3fc;"><b>📸 Kèm hình ảnh:</b> Ảnh cá nhân chuyên nghiệp (chỉnh AI) hoặc ảnh check-in tại dự án. Text-only bị thuật toán Facebook ghìm reach.</p>
                 </div>
             </div>
         </div>
     `,
 
     // ---------------------------------------------------------
-    // PAGE: Cáº¦M TAY CHá»ˆ VIá»†C
+    // PAGE: CẦM TAY CHỈ VIỆC
     // ---------------------------------------------------------
     'page-cam-tay-chi-viec': `
         <div class="page-title-bar">
-            <h1>Cáº§m Tay Chá»‰ Viá»‡c</h1>
-            <p class="page-subtitle">Há»‡ thá»‘ng video hÆ°á»›ng dáº«n thao tÃ¡c chi tiáº¿t</p>
+            <h1>Cầm Tay Chỉ Việc</h1>
+            <p class="page-subtitle">Hệ thống video hướng dẫn thao tác chi tiết</p>
         </div>
 
-        <!-- PHáº¦N I: CÃ¡ch Ä‘Äƒng TikTok -->
+        <!-- PHẦN I: Cách đăng TikTok -->
         <div class="core-principle" style="border-left-color: var(--accent-orange); margin-top: 2rem;">
-            <h2 style="color: var(--accent-orange); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-brands fa-tiktok" style="margin-right: 8px;"></i> I. CÃ¡ch Ä‘Äƒng TikTok</h2>
+            <h2 style="color: var(--accent-orange); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-brands fa-tiktok" style="margin-right: 8px;"></i> I. Cách đăng TikTok</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <!-- Video 1 -->
@@ -1644,9 +1644,9 @@ const APP_CONTENT = {
             </div>
         </div>
 
-        <!-- PHáº¦N II: HÆ°á»›ng dáº«n cháº¡y QC FB -->
+        <!-- PHẦN II: Hướng dẫn chạy QC FB -->
         <div class="core-principle" style="border-left-color: var(--accent-blue); margin-top: 2rem;">
-            <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-brands fa-facebook" style="margin-right: 8px;"></i> II. HÆ°á»›ng dáº«n cháº¡y quáº£ng cÃ¡o Facebook</h2>
+            <h2 style="color: var(--accent-blue); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-brands fa-facebook" style="margin-right: 8px;"></i> II. Hướng dẫn chạy quảng cáo Facebook</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <!-- Video 1 -->
@@ -1664,109 +1664,109 @@ const APP_CONTENT = {
             </div>
         </div>
 
-        <!-- PHáº¦N III: ÄÄƒng tin -->
+        <!-- PHẦN III: Đăng tin -->
         <div class="core-principle" style="border-left-color: var(--accent-emerald); margin-top: 2rem;">
-            <h2 style="color: var(--accent-emerald); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-solid fa-bullhorn" style="margin-right: 8px;"></i> III. ÄÄƒng tin</h2>
+            <h2 style="color: var(--accent-emerald); font-size: 1.6rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase;"><i class="fa-solid fa-bullhorn" style="margin-right: 8px;"></i> III. Đăng tin</h2>
             
-            <!-- Accordion ÄÄƒng Tin LÃ¡i KhÃ¡ch -->
+            <!-- Accordion Đăng Tin Lái Khách -->
             <details style="margin-bottom: 2rem; background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); overflow: hidden;">
                 <summary style="padding: 1.2rem 1.5rem; font-weight: 700; font-size: 1.2rem; cursor: pointer; color: var(--text-primary); outline: none; list-style: none;">
-                    <i class="fa-solid fa-chess-knight" style="color: var(--accent-blue); margin-right: 10px;"></i> ÄÄƒng Tin LÃ¡i KhÃ¡ch (Báº¥m Ä‘á»ƒ xem Tuyá»‡t Ká»¹)
+                    <i class="fa-solid fa-chess-knight" style="color: var(--accent-blue); margin-right: 10px;"></i> Đăng Tin Lái Khách (Bấm để xem Tuyệt Kỹ)
                 </summary>
                 <div style="padding: 1.5rem; border-top: 1px solid var(--border-glass); background: var(--bg-primary);">
                     <div class="core-principle">
-                        <h2>ðŸŽ¯ NguyÃªn LÃ½ "Sá»± Tháº­t Ná»­a Vá»i" (Half-Truths)</h2>
+                        <h2>🎯 Nguyên Lý "Sự Thật Nửa Vời" (Half-Truths)</h2>
                         <p>
-                            Má»¥c tiÃªu tá»‘i thÆ°á»£ng cá»§a tin Ä‘Äƒng áº£o <strong>KHÃ”NG PHáº¢I Äá»‚ BÃN LÃ” Äáº¤T ÄÃ“</strong>, mÃ  lÃ  Ä‘á»ƒ <strong>Láº¤Y LEAD (KhÃ¡ch cÃ³ tiá»n vÃ  mÃ¡u Ä‘áº§u tÆ°)</strong>. 
-                            Tuyá»‡t chiÃªu Ä‘á»‰nh cao lÃ  giÄƒng má»™t cÃ¡i báº«y hoÃ n háº£o, thu hÃºt khÃ¡ch vÃ o, sau Ä‘Ã³ tá»± tay <em>"Ä‘áº­p vá»¡"</em> báº«y Ä‘á»ƒ xÃ¢y dá»±ng lÃ²ng tin tuyá»‡t Ä‘á»‘i. Tá»« Ä‘Ã³ dáº¯t khÃ¡ch sang thá»‹ trÆ°á»ng má»¥c tiÃªu.
+                            Mục tiêu tối thượng của tin đăng ảo <strong>KHÔNG PHẢI ĐỂ BÁN LÔ ĐẤT ĐÓ</strong>, mà là để <strong>LẤY LEAD (Khách có tiền và máu đầu tư)</strong>. 
+                            Tuyệt chiêu đỉnh cao là giăng một cái bẫy hoàn hảo, thu hút khách vào, sau đó tự tay <em>"đập vỡ"</em> bẫy để xây dựng lòng tin tuyệt đối. Từ đó dắt khách sang thị trường mục tiêu.
                         </p>
                     </div>
 
                     <div class="grid-container" style="margin-top: 1rem;">
                         <!-- Card 1 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>ÄÄƒng áº£o 100% cáº£ ná»™i dung, cáº£ hÃ¬nh áº£nh</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>Đăng ảo 100% cả nội dung, cả hình ảnh</h3>
                             <div class="content-group">
-                                <strong>TÆ° duy</strong>
-                                <p>Thu Ä‘Æ°á»£c nhiá»u lead Ä‘á»ƒ chÄƒm, nhá»¯ng lead nÃ y cÃ³ tiá»n vÃ  cÃ³ nhu cáº§u Ä‘áº§u tÆ°.</p>
+                                <strong>Tư duy</strong>
+                                <p>Thu được nhiều lead để chăm, những lead này có tiền và có nhu cầu đầu tư.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>ChÃ o má»›i vá» thá»‹ trÆ°á»ng: "Anh Æ¡i em tháº¥y anh Ä‘ang cÃ³ nhu cáº§u Ä‘áº§u tÆ°, bÃªn em Ä‘ang cÃ³ khu vá»±c sÃ¡t biá»ƒn vÃ  gáº§n khu cÃ´ng nghiá»‡p Ä‘áº¹p láº¯m anh áº¡ mÃ  cÃ³ HÆ¡n tá»· thÃ´i..."</p>
+                                <strong>Xử lý</strong>
+                                <p>Chào mới về thị trường: "Anh ơi em thấy anh đang có nhu cầu đầu tư, bên em đang có khu vực sát biển và gần khu công nghiệp đẹp lắm anh ạ mà có Hơn tỷ thôi..."</p>
                             </div>
                         </div>
 
                         <!-- Card 2 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>ÄÄƒng áº£o, ná»™i dung tháº­t</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>Đăng ảo, nội dung thật</h3>
                             <div class="content-group">
-                                <strong>TÆ° duy</strong>
-                                <p>Äá»ƒ kiáº¿m ra khÃ¡ch cÃ³ nhu cáº§u Ä‘áº§u tÆ° vÃ  mÃ¬nh sáº½ lÃ¡i khÃ¡ch.</p>
+                                <strong>Tư duy</strong>
+                                <p>Để kiếm ra khách có nhu cầu đầu tư và mình sẽ lái khách.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>- "Em xin lá»—i anh, bÃ© nhÃ¢n viÃªn em báº¡n Ã½ Ä‘Äƒng nháº§m áº£nh. NhÆ°ng cÃ¡i ná»™i dung bÃ i tiá»m nÄƒng x2 lÃ  cÃ³ tháº­t 100% anh áº¡, á»Ÿ Ä‘Ã¢y tiá»m nÄƒng Ä‘áº¹p láº¯m. Em má»i anh ly cafe Ä‘á»ƒ em mang báº£n Ä‘á»“, máº·t báº±ng, sá»• Ä‘á» qua tÆ° váº¥n cho anh vá» tiá»m nÄƒng cá»§a khu nÃ y."</p>
-                                <p>- Hoáº·c khi trao Ä‘á»•i vá»›i khÃ¡ch thÃ¬ sáº½ báº£o lÃ  bÃ¡n rá»“i, nhÆ°ng em cÃ²n má»™t vÃ i lÃ´ cÅ©ng á»Ÿ vá»‹ trÃ­ nÃ y ráº¥t lÃ  Ä‘áº¹p luÃ´n Ä‘á»ƒ em káº¿t báº¡n vá»›i anh thÃ´ng tin, sau Ä‘áº¥y láº¡i chÄƒm sÃ³c vÃ  má»i Ä‘i nhÆ° bÃ¬nh thÆ°á»ng.</p>
+                                <strong>Xử lý</strong>
+                                <p>- "Em xin lỗi anh, bé nhân viên em bạn ý đăng nhầm ảnh. Nhưng cái nội dung bài tiềm năng x2 là có thật 100% anh ạ, ở đây tiềm năng đẹp lắm. Em mời anh ly cafe để em mang bản đồ, mặt bằng, sổ đỏ qua tư vấn cho anh về tiềm năng của khu này."</p>
+                                <p>- Hoặc khi trao đổi với khách thì sẽ bảo là bán rồi, nhưng em còn một vài lô cũng ở vị trí này rất là đẹp luôn để em kết bạn với anh thông tin, sau đấy lại chăm sóc và mời đi như bình thường.</p>
                             </div>
                         </div>
 
                         <!-- Card 3 -->
                         <div class="card vip">
-                            <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                            <h3>ÄÄƒng áº£o, ná»™i dung áº£o</h3>
+                            <div class="badge">Nét Nhất - Chốt Cao</div>
+                            <h3>Đăng ảo, nội dung ảo</h3>
                             <div class="content-group">
-                                <strong>TÆ° duy</strong>
-                                <p>Äá»ƒ kiáº¿m ra khÃ¡ch cÃ³ nhu cáº§u Ä‘áº§u tÆ° vÃ  mÃ¬nh sáº½ lÃ¡i khÃ¡ch.</p>
+                                <strong>Tư duy</strong>
+                                <p>Để kiếm ra khách có nhu cầu đầu tư và mình sẽ lái khách.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>"Em cÃ³ máº£nh nÃ y tháº­t anh áº¡, nhÆ°ng em chia sáº» tháº­t: nÃ³ dÃ­nh nháº¹ quy hoáº¡ch cÃ¢y xanh / Ä‘áº¥t vi báº±ng. NÃªn náº¿u anh lÃ  Ä‘áº§u tÆ° chuyÃªn nghiá»‡p thÃ¬ khu vá»±c nÃ y Ä‘áº§u tÆ° ráº¥t ok, nhÆ°ng náº¿u anh sá»£ quy hoáº¡ch vá» sau ngÆ°á»i ta lÃ m thÃ¬ em cÃ²n nhiá»u máº£nh cÃ³ sáºµn sá»• Ä‘á», á»Ÿ khu vá»±c cá»±c ká»³ tiá»m nÄƒng, em má»i anh Ä‘i cÃ  phÃª em qua chia sáº» thÃ´ng tin."</p>
+                                <strong>Xử lý</strong>
+                                <p>"Em có mảnh này thật anh ạ, nhưng em chia sẻ thật: nó dính nhẹ quy hoạch cây xanh / đất vi bằng. Nên nếu anh là đầu tư chuyên nghiệp thì khu vực này đầu tư rất ok, nhưng nếu anh sợ quy hoạch về sau người ta làm thì em còn nhiều mảnh có sẵn sổ đỏ, ở khu vực cực kỳ tiềm năng, em mời anh đi cà phê em qua chia sẻ thông tin."</p>
                             </div>
                         </div>
 
                         <!-- Card 4 -->
                         <div class="card safe">
-                            <div class="badge">An ToÃ n - Thá»±c Táº¿</div>
-                            <h3>ÄÄƒng tháº­t, ná»™i dung tháº­t</h3>
+                            <div class="badge">An Toàn - Thực Tế</div>
+                            <h3>Đăng thật, nội dung thật</h3>
                             <div class="content-group">
-                                <strong>TÆ° duy</strong>
-                                <p>MÆ°á»£n hÃ ng Ä‘áº¹p lÃ m "Chim Má»“i Háº¡ Táº§ng", khÃ´ng lá»«a dá»‘i khÃ¡ch hÃ ng, Ä‘Æ°a khÃ¡ch Ä‘i xem tháº­t nhÆ°ng sáº½ chÃª vÃ  hÆ°á»›ng vá» sáº£n pháº©m cá»§a mÃ¬nh.</p>
+                                <strong>Tư duy</strong>
+                                <p>Mượn hàng đẹp làm "Chim Mồi Hạ Tầng", không lừa dối khách hàng, đưa khách đi xem thật nhưng sẽ chê và hướng về sản phẩm của mình.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>Khi káº¿t báº¡n Zalo gá»­i thÃ´ng tin thÃ¬ gá»­i khu Ä‘Ã³ tháº­t vÃ  gá»­i cáº£ cÃ¡c sáº£n pháº©m bÃªn mÃ¬nh Ä‘ang cÃ³. Äáº¿n khi dáº¯t khÃ¡ch Ä‘i thá»±c Ä‘á»‹a khu Ä‘Ã³ tháº­t, cá»‘ tÃ¬nh Ä‘Æ°a vÃ o cÃ¡c máº£nh dÃ­nh lá»—i: ÄÆ°á»ng Ä‘Ã¢m, gáº§n má»™, thÃ³p háº­u... KhÃ¡ch chÃª -> ÄÆ°a sang khu bÃªn mÃ¬nh rá»“i bÃ¡n.</p>
+                                <strong>Xử lý</strong>
+                                <p>Khi kết bạn Zalo gửi thông tin thì gửi khu đó thật và gửi cả các sản phẩm bên mình đang có. Đến khi dắt khách đi thực địa khu đó thật, cố tình đưa vào các mảnh dính lỗi: Đường đâm, gần mộ, thóp hậu... Khách chê -> Đưa sang khu bên mình rồi bán.</p>
                             </div>
                         </div>
 
                         <!-- Card 5 -->
                         <div class="card danger">
-                            <div class="badge">Khá»‘i lÆ°á»£ng lá»›n - Tá»‰ lá»‡ tháº¥p</div>
-                            <h3>áº¢o toÃ n bá»™</h3>
+                            <div class="badge">Khối lượng lớn - Tỉ lệ thấp</div>
+                            <h3>Ảo toàn bộ</h3>
                             <div class="content-group">
-                                <strong>TÆ° duy</strong>
-                                <p>Má»¥c tiÃªu cá»§a khÃ¡ch Ä‘i lÃ  Ä‘Æ°á»£c, Ä‘á»ƒ táº­n dá»¥ng sÃ³ng cá»§a cÃ´ng ty Ä‘Ã´ng khÃ¡ch Ä‘á»ƒ bÃ¡n.</p>
+                                <strong>Tư duy</strong>
+                                <p>Mục tiêu của khách đi là được, để tận dụng sóng của công ty đông khách để bán.</p>
                             </div>
                             <div class="content-group">
-                                <strong>Xá»­ lÃ½</strong>
-                                <p>Tá»›i nÆ¡i thÃ¬ báº» lÃ¡i nÃ³i chá»§ quay xe, bÃ¡o giÃ¡ thÃ¡ch lÃªn trÃªn trá»i, hoáº·c dáº¯t tháº³ng tá»›i má»™t cá»¥c má»“i khÃ¡c biá»‡t hoÃ n toÃ n. Hoáº·c khÃ´ng nÃ³i gÃ¬ Ä‘áº¿n lÃ´ Ä‘Äƒng áº£o. (CÃ¡ch nÃ y thÃ¬ khÃ¡ch ráº¥t nhiá»u nhÆ°ng tá»‰ lá»‡ chá»‘t tháº¥p).</p>
+                                <strong>Xử lý</strong>
+                                <p>Tới nơi thì bẻ lái nói chủ quay xe, báo giá thách lên trên trời, hoặc dắt thẳng tới một cục mồi khác biệt hoàn toàn. Hoặc không nói gì đến lô đăng ảo. (Cách này thì khách rất nhiều nhưng tỉ lệ chốt thấp).</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </details>
             
-            <!-- III.A: ÄÄƒng tháº£o luáº­n -->
-            <h3 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-users" style="color: var(--accent-emerald); margin-right: 8px;"></i> A. ÄÄƒng tháº£o luáº­n</h3>
+            <!-- III.A: Đăng thảo luận -->
+            <h3 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-users" style="color: var(--accent-emerald); margin-right: 8px;"></i> A. Đăng thảo luận</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 2rem;">
-                <!-- Video Sáº¿p KhÆ°Æ¡ng -->
+                <!-- Video Sếp Khương -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
                         <iframe src="https://drive.google.com/file/d/10wmmWCAqNkOhLb1jJ47nN8Ulj7hChNye/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        Sáº¿p KhÆ°Æ¡ng hÆ°á»›ng dáº«n Ä‘Äƒng áº£o Group Ä‘Æ¡n giáº£n
+                        Sếp Khương hướng dẫn đăng ảo Group đơn giản
                     </div>
                 </div>
                 <!-- Video 1 -->
@@ -1789,10 +1789,10 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <!-- III.B: ÄÄƒng market -->
-            <h3 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-store" style="color: var(--accent-emerald); margin-right: 8px;"></i> B. ÄÄƒng market</h3>
+            <!-- III.B: Đăng market -->
+            <h3 style="color: var(--text-primary); font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-store" style="color: var(--accent-emerald); margin-right: 8px;"></i> B. Đăng market</h3>
             
-            <h4 style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem;">1. Cháº¡y bÆ¡m tiá»n</h4>
+            <h4 style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem;">1. Chạy bơm tiền</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-bottom: 2rem;">
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
@@ -1801,7 +1801,7 @@ const APP_CONTENT = {
                 </div>
             </div>
 
-            <h4 style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem;">2. ÄÄƒng free</h4>
+            <h4 style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem;">2. Đăng free</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
                 <!-- Video 1 -->
                 <div style="background: var(--bg-secondary); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-glass); box-shadow: var(--shadow-sm); transition: transform 0.3s ease;">
@@ -1826,7 +1826,7 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: CHÃ‚N DUNG KHÃCH HÃ€NG
+    // PAGE: CHÂN DUNG KHÁCH HÀNG
     // ---------------------------------------------------------
     'page-chan-dung-khach-hang': `
         <style>
@@ -1956,29 +1956,6 @@ const APP_CONTENT = {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 12px;
                 margin-bottom: 2.5rem;
-            }
-            .cdkh-thumb {
-                border-radius: 12px;
-                overflow: hidden;
-                border: 2px solid transparent;
-                cursor: pointer;
-                transition: all 0.25s ease;
-                position: relative;
-                background: #0f172a;
-            }
-            .cdkh-thumb img {
-                width: 100%; aspect-ratio: 16/9;
-                object-fit: contain; display: block;
-            }
-            .cdkh-thumb:hover { border-color: rgba(212, 175, 55, 0.6); transform: translateY(-2px); }
-            .cdkh-thumb.active { border-color: #d4af37; box-shadow: 0 0 16px rgba(212, 175, 55, 0.4); }
-            .cdkh-thumb-num {
-                position: absolute; top: 6px; left: 8px;
-                background: rgba(212, 175, 55, 0.85);
-                color: #000; font-size: 0.7rem; font-weight: 800;
-                padding: 2px 7px; border-radius: 6px;
-            }
-
             /* Section index cards */
             .cdkh-index {
                 display: grid;
@@ -2024,7 +2001,6 @@ const APP_CONTENT = {
             .cdkh-tip-box strong { color: #d4af37; }
             @media (max-width: 600px) {
                 .cdkh-hero { flex-direction: column; gap: 1.2rem; padding: 1.5rem; }
-                .cdkh-thumbs { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
                 .cdkh-index { grid-template-columns: 1fr 1fr; }
                 .cdkh-btn { width: 36px; height: 36px; font-size: 1rem; }
             }
@@ -2032,14 +2008,14 @@ const APP_CONTENT = {
 
         <!-- HERO HEADER -->
         <div class="cdkh-hero">
-            <div class="cdkh-hero-icon">ðŸŽ¯</div>
+            <div class="cdkh-hero-icon">🎯</div>
             <div class="cdkh-hero-text">
-                <h1>ChÃ¢n Dung KhÃ¡ch HÃ ng Má»¥c TiÃªu</h1>
-                <p>Album Ä‘Ã o táº¡o ná»™i bá»™ TL Land Â· Nháº­n diá»‡n Ä‘Ãºng khÃ¡ch â€“ Ä‘i xem Ä‘Ãºng ngÆ°á»i â€“ chá»‘t nhanh hÆ¡n</p>
+                <h1>Chân Dung Khách Hàng Mục Tiêu</h1>
+                <p>Album đào tạo nội bộ TL Land · Nhận diện đúng khách – đi xem đúng người – chốt nhanh hơn</p>
                 <div class="cdkh-stats">
-                    <div class="cdkh-stat"><div class="num">11</div><div class="lbl">NhÃ³m khÃ¡ch</div></div>
-                    <div class="cdkh-stat"><div class="num">7</div><div class="lbl">CÃ¢u há»i lá»c</div></div>
-                    <div class="cdkh-stat"><div class="num">5</div><div class="lbl">Má»©c Ä‘á»™ nÃ©t</div></div>
+                    <div class="cdkh-stat"><div class="num">11</div><div class="lbl">Nhóm khách</div></div>
+                    <div class="cdkh-stat"><div class="num">7</div><div class="lbl">Câu hỏi lọc</div></div>
+                    <div class="cdkh-stat"><div class="num">5</div><div class="lbl">Mức độ nét</div></div>
                     <div class="cdkh-stat"><div class="num">12</div><div class="lbl">Slides</div></div>
                 </div>
             </div>
@@ -2047,27 +2023,27 @@ const APP_CONTENT = {
 
         <!-- TIP -->
         <div class="cdkh-tip-box">
-            ðŸ’¡ <strong>CÃ¡ch dÃ¹ng:</strong> Xem tá»«ng slide Ä‘á»ƒ náº¯m vá»¯ng chÃ¢n dung tá»«ng nhÃ³m khÃ¡ch. Click vÃ o thumbnail bÃªn dÆ°á»›i Ä‘á»ƒ nháº£y nhanh Ä‘áº¿n slide cáº§n xem. Ãp dá»¥ng bá»™ <strong>7 cÃ¢u há»i lá»c</strong> trÆ°á»›c khi má»i khÃ¡ch Ä‘i xem thá»±c Ä‘á»‹a.
+            💡 <strong>Cách dùng:</strong> Xem từng slide để nắm vững chân dung từng nhóm khách. Click vào mục lục bên dưới để nhảy nhanh đến slide cần xem. Áp dụng bộ <strong>7 câu hỏi lọc</strong> trước khi mời khách đi xem thực địa.
         </div>
 
-        <!-- SLIDESHOW CHÃNH -->
+        <!-- SLIDESHOW CHÍNH -->
         <div class="cdkh-slideshow" id="cdkhSlideshow">
             <div class="cdkh-slides-track" id="cdkhTrack">
-                <div class="cdkh-slide"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="Slide 01 - Tá»•ng quan" loading="eager"/><div class="cdkh-slide-label">Tá»•ng Quan Â· ChÃ¢n Dung KhÃ¡ch HÃ ng</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="Slide 02 - TÆ° duy lá»c khÃ¡ch" loading="lazy"/><div class="cdkh-slide-label">01 Â· TÆ° Duy Lá»c KhÃ¡ch</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="Slide 03 - NhÃ³m cá»‘t lÃµi" loading="lazy"/><div class="cdkh-slide-label">02 Â· NhÃ³m Cá»‘t LÃµi</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="Slide 04 - NhÃ³m tiá»m nÄƒng" loading="lazy"/><div class="cdkh-slide-label">03 Â· NhÃ³m Tiá»m NÄƒng</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="Slide 05 - NhÃ³m cáº§n chiáº¿n thuáº­t" loading="lazy"/><div class="cdkh-slide-label">04 Â· NhÃ³m Cáº§n Chiáº¿n Thuáº­t</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="Slide 06 - Loáº¡i / Kiá»ƒm chá»©ng" loading="lazy"/><div class="cdkh-slide-label">05 Â· Loáº¡i / Kiá»ƒm Chá»©ng</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="Slide 07 - Dáº¥u hiá»‡u nháº­n diá»‡n" loading="lazy"/><div class="cdkh-slide-label">06 Â· Dáº¥u Hiá»‡u Nháº­n Diá»‡n Avatar & Thiáº¿t Bá»‹</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="Slide 08 - TÃ­n hiá»‡u qua chat" loading="lazy"/><div class="cdkh-slide-label">07 Â· TÃ­n Hiá»‡u Qua Chat</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="Slide 09 - Bá»™ cÃ¢u há»i vÃ ng" loading="lazy"/><div class="cdkh-slide-label">08 Â· Bá»™ CÃ¢u Há»i VÃ ng â€“ 7 CÃ¢u Lá»c KhÃ¡ch</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="Slide 10 - Flow lá»c khÃ¡ch" loading="lazy"/><div class="cdkh-slide-label">09 Â· Flow Lá»c KhÃ¡ch â€“ Quy TrÃ¬nh 7 BÆ°á»›c</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="Slide 11 - Báº£ng Ä‘iá»ƒm" loading="lazy"/><div class="cdkh-slide-label">10 Â· Báº£ng Äiá»ƒm â€“ Chá»n Chiáº¿n Thuáº­t ChÄƒm SÃ³c</div></div>
-                <div class="cdkh-slide"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="Slide 12 - Sau khi cá»c" loading="lazy"/><div class="cdkh-slide-label">11 Â· Sau Khi Cá»c â€“ Giá»¯ Niá»m Tin & Táº¡o Giá»›i Thiá»‡u</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="Slide 01 - Tổng quan" loading="eager"/><div class="cdkh-slide-label">Tổng Quan · Chân Dung Khách Hàng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="Slide 02 - Tư duy lọc khách" loading="lazy"/><div class="cdkh-slide-label">01 · Tư Duy Lọc Khách</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="Slide 03 - Nhóm cốt lõi" loading="lazy"/><div class="cdkh-slide-label">02 · Nhóm Cốt Lõi</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="Slide 04 - Nhóm tiềm năng" loading="lazy"/><div class="cdkh-slide-label">03 · Nhóm Tiềm Năng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="Slide 05 - Nhóm cần chiến thuật" loading="lazy"/><div class="cdkh-slide-label">04 · Nhóm Cần Chiến Thuật</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="Slide 06 - Loại / Kiểm chứng" loading="lazy"/><div class="cdkh-slide-label">05 · Loại / Kiểm Chứng</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="Slide 07 - Dấu hiệu nhận diện" loading="lazy"/><div class="cdkh-slide-label">06 · Dấu Hiệu Nhận Diện Avatar & Thiết Bị</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="Slide 08 - Tín hiệu qua chat" loading="lazy"/><div class="cdkh-slide-label">07 · Tín Hiệu Qua Chat</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="Slide 09 - Bộ câu hỏi vàng" loading="lazy"/><div class="cdkh-slide-label">08 · Bộ Câu Hỏi Vàng – 7 Câu Lọc Khách</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="Slide 10 - Flow lọc khách" loading="lazy"/><div class="cdkh-slide-label">09 · Flow Lọc Khách – Quy Trình 7 Bước</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="Slide 11 - Bảng điểm" loading="lazy"/><div class="cdkh-slide-label">10 · Bảng Điểm – Chọn Chiến Thuật Chăm Sóc</div></div>
+                <div class="cdkh-slide"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="Slide 12 - Sau khi cọc" loading="lazy"/><div class="cdkh-slide-label">11 · Sau Khi Cọc – Giữ Niềm Tin & Tạo Giới Thiệu</div></div>
             </div>
-            <button class="cdkh-btn cdkh-btn-prev" onclick="window.cdkhSlideshow.prev()" title="Slide trÆ°á»›c">&#8592;</button>
-            <button class="cdkh-btn cdkh-btn-next" onclick="window.cdkhSlideshow.next()" title="Slide tiáº¿p theo">&#8594;</button>
+            <button class="cdkh-btn cdkh-btn-prev" onclick="window.cdkhSlideshow.prev()" title="Slide trước">&#8592;</button>
+            <button class="cdkh-btn cdkh-btn-next" onclick="window.cdkhSlideshow.next()" title="Slide tiếp theo">&#8594;</button>
             <div class="cdkh-counter" id="cdkhCounter">1 / 12</div>
         </div>
 
@@ -2087,58 +2063,39 @@ const APP_CONTENT = {
             <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(11)" title="Slide 12"></button>
         </div>
 
-        <!-- Má»¤C Lá»¤C NHANH -->
+        <!-- MỤC LỤC NHANH -->
         <div style="margin-bottom:1.2rem;">
             <div class="cdkh-thumbs-title">
-                <span style="color:#d4af37;">ðŸ“‹</span> Má»¥c Lá»¥c Nhanh â€” Báº¥m Ä‘á»ƒ nháº£y Ä‘áº¿n slide
+                <span style="color:#d4af37;">📋</span> Mục Lục Nhanh — Bấm để nhảy đến slide
             </div>
             <div class="cdkh-index">
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(0)"><div class="cdkh-index-num">00</div><div class="cdkh-index-info"><div class="title">Tá»•ng Quan</div><div class="sub">11 nhÃ³m Â· 7 cÃ¢u há»i Â· 5 má»©c nÃ©t</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(1)"><div class="cdkh-index-num">01</div><div class="cdkh-index-info"><div class="title">TÆ° Duy Lá»c KhÃ¡ch</div><div class="sub">5 nguyÃªn táº¯c lÃµi khi xá»­ lÃ½ khÃ¡ch</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(2)"><div class="cdkh-index-num">02</div><div class="cdkh-index-info"><div class="title">4 NhÃ³m Cá»‘t LÃµi</div><div class="sub">VP Â· KOL Â· Tiá»ƒu thÆ°Æ¡ng Â· GiÃ¡o viÃªn</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(3)"><div class="cdkh-index-num">03</div><div class="cdkh-index-info"><div class="title">4 NhÃ³m Tiá»m NÄƒng</div><div class="sub">QuÃ¢n Ä‘á»™i Â· GPMB Â· Sá»‘t Ä‘áº¥t Â· Ná»™i thÃ nh</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(4)"><div class="cdkh-index-num">04</div><div class="cdkh-index-info"><div class="title">3 NhÃ³m Cáº§n Chiáº¿n Thuáº­t</div><div class="sub">F1 Ä‘áº§u tÆ° Â· Freelance nhá» Â· F0 Ã­t vá»‘n</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(5)"><div class="cdkh-index-num">05</div><div class="cdkh-index-info"><div class="title">Loáº¡i & Kiá»ƒm Chá»©ng</div><div class="sub">Ai nÃªn loáº¡i sá»›m Â· Ai cáº§n kiá»ƒm tra thÃªm</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(6)"><div class="cdkh-index-num">06</div><div class="cdkh-index-info"><div class="title">Dáº¥u Hiá»‡u Avatar & Thiáº¿t Bá»‹</div><div class="sub">TÃ­n hiá»‡u tá»‘t vs cáº£nh bÃ¡o qua áº£nh Ä‘áº¡i diá»‡n</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(7)"><div class="cdkh-index-num">07</div><div class="cdkh-index-info"><div class="title">TÃ­n Hiá»‡u Qua Chat</div><div class="sub">PhÃ¢n biá»‡t khÃ¡ch tháº­t vs khÃ¡ch áº£o</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(8)"><div class="cdkh-index-num">08</div><div class="cdkh-index-info"><div class="title">7 CÃ¢u Há»i VÃ ng</div><div class="sub">Lá»c trÆ°á»›c khi má»i Ä‘i xem thá»±c Ä‘á»‹a</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(9)"><div class="cdkh-index-num">09</div><div class="cdkh-index-info"><div class="title">Flow 7 BÆ°á»›c Nháº­n Diá»‡n</div><div class="sub">Checklist trÆ°á»›c khi chá»‘t lá»‹ch Ä‘i thá»±c Ä‘á»‹a</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(10)"><div class="cdkh-index-num">10</div><div class="cdkh-index-info"><div class="title">Báº£ng Äiá»ƒm</div><div class="sub">Lá»­a â‰¥80 Â· Cam 50-79 Â· VÃ ng 20-49 Â· LÃ¡ 0-19</div></div></div>
-                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(11)"><div class="cdkh-index-num">11</div><div class="cdkh-index-info"><div class="title">ChÄƒm Sau Cá»c</div><div class="sub">NgÃ y 1 Â· 3 Â· 7 Â· 30 Ä‘á»ƒ giá»¯ niá»m tin & referral</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(0)"><div class="cdkh-index-num">00</div><div class="cdkh-index-info"><div class="title">Tổng Quan</div><div class="sub">11 nhóm · 7 câu hỏi · 5 mức nét</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(1)"><div class="cdkh-index-num">01</div><div class="cdkh-index-info"><div class="title">Tư Duy Lọc Khách</div><div class="sub">5 nguyên tắc lõi khi xử lý khách</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(2)"><div class="cdkh-index-num">02</div><div class="cdkh-index-info"><div class="title">4 Nhóm Cốt Lõi</div><div class="sub">VP · KOL · Tiểu thương · Giáo viên</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(3)"><div class="cdkh-index-num">03</div><div class="cdkh-index-info"><div class="title">4 Nhóm Tiềm Năng</div><div class="sub">Quân đội · GPMB · Sốt đất · Nội thành</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(4)"><div class="cdkh-index-num">04</div><div class="cdkh-index-info"><div class="title">3 Nhóm Cần Chiến Thuật</div><div class="sub">F1 đầu tư · Freelance nhỏ · F0 ít vốn</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(5)"><div class="cdkh-index-num">05</div><div class="cdkh-index-info"><div class="title">Loại & Kiểm Chứng</div><div class="sub">Ai nên loại sớm · Ai cần kiểm tra thêm</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(6)"><div class="cdkh-index-num">06</div><div class="cdkh-index-info"><div class="title">Dấu Hiệu Avatar & Thiết Bị</div><div class="sub">Tín hiệu tốt vs cảnh báo qua ảnh đại diện</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(7)"><div class="cdkh-index-num">07</div><div class="cdkh-index-info"><div class="title">Tín Hiệu Qua Chat</div><div class="sub">Phân biệt khách thật vs khách ảo</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(8)"><div class="cdkh-index-num">08</div><div class="cdkh-index-info"><div class="title">7 Câu Hỏi Vàng</div><div class="sub">Lọc trước khi mời đi xem thực địa</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(9)"><div class="cdkh-index-num">09</div><div class="cdkh-index-info"><div class="title">Flow 7 Bước Nhận Diện</div><div class="sub">Checklist trước khi chốt lịch đi thực địa</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(10)"><div class="cdkh-index-num">10</div><div class="cdkh-index-info"><div class="title">Bảng Điểm</div><div class="sub">Lửa ≥80 · Cam 50-79 · Vàng 20-49 · Lá 0-19</div></div></div>
+                <div class="cdkh-index-card" onclick="window.cdkhSlideshow.goTo(11)"><div class="cdkh-index-num">11</div><div class="cdkh-index-info"><div class="title">Chăm Sau Cọc</div><div class="sub">Ngày 1 · 3 · 7 · 30 để giữ niềm tin & referral</div></div></div>
             </div>
-        </div>
-
-        <!-- THUMBNAILS -->
-        <div class="cdkh-thumbs-title">
-            <span style="color:#d4af37;">ðŸ–¼ï¸</span> Táº¥t Cáº£ Slides â€” Báº¥m Ä‘á»ƒ xem nhanh
-        </div>
-        <div class="cdkh-thumbs" id="cdkhThumbs">
-            <div class="cdkh-thumb active" onclick="window.cdkhSlideshow.goTo(0)"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="01" loading="lazy"/><span class="cdkh-thumb-num">01</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(1)"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="02" loading="lazy"/><span class="cdkh-thumb-num">02</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(2)"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="03" loading="lazy"/><span class="cdkh-thumb-num">03</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(3)"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="04" loading="lazy"/><span class="cdkh-thumb-num">04</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(4)"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="05" loading="lazy"/><span class="cdkh-thumb-num">05</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(5)"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="06" loading="lazy"/><span class="cdkh-thumb-num">06</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(6)"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="07" loading="lazy"/><span class="cdkh-thumb-num">07</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(7)"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="08" loading="lazy"/><span class="cdkh-thumb-num">08</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(8)"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="09" loading="lazy"/><span class="cdkh-thumb-num">09</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(9)"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="10" loading="lazy"/><span class="cdkh-thumb-num">10</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(10)"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="11" loading="lazy"/><span class="cdkh-thumb-num">11</span></div>
-            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(11)"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="12" loading="lazy"/><span class="cdkh-thumb-num">12</span></div>
         </div>
     `,
 
     // ---------------------------------------------------------
-    // PAGE: CÃC KHÃ“A Há»ŒC
+    // PAGE: CÁC KHÓA HỌC
     // ---------------------------------------------------------
     'page-cac-khoa-hoc': `
         <div class="page-title-bar">
-            <h1>CÃ¡c KhÃ³a Há»c</h1>
-            <p class="page-subtitle">Há»‡ thá»‘ng Ä‘Ã o táº¡o qua video</p>
+            <h1>Các Khóa Học</h1>
+            <p class="page-subtitle">Hệ thống đào tạo qua video</p>
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-blue); margin-top: 2rem;">
-            <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-play" style="color: var(--accent-blue); margin-right: 8px;"></i> 1. TÆ° duy cháº¡y marketing: HÆ°á»›ng dáº«n lÃ m khÃ¡ch cá»§a sáº¿p Doanh</h2>
+            <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-play" style="color: var(--accent-blue); margin-right: 8px;"></i> 1. Tư duy chạy marketing: Hướng dẫn làm khách của sếp Doanh</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <!-- Video 1 -->
@@ -2147,7 +2104,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/kuStPMgUD8w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        TÆ° duy MKT
+                        Tư duy MKT
                     </div>
                 </div>
 
@@ -2157,7 +2114,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/vr24eW0RfcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        TÆ° duy MKT
+                        Tư duy MKT
                     </div>
                 </div>
 
@@ -2167,7 +2124,7 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/rJW527JbOxI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        TÆ° duy MKT
+                        Tư duy MKT
                     </div>
                 </div>
 
@@ -2177,14 +2134,14 @@ const APP_CONTENT = {
                         <iframe src="https://www.youtube.com/embed/DTdYGlZFTAw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        TÆ° duy MKT
+                        Tư duy MKT
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="core-principle" style="border-left-color: var(--accent-purple); margin-top: 2rem;">
-            <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-robot" style="color: var(--accent-purple); margin-right: 8px;"></i> 2. Sá»­ dá»¥ng AI vÃ o cÃ´ng viá»‡c</h2>
+            <h2 style="color: var(--text-primary); font-size: 1.3rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-robot" style="color: var(--accent-purple); margin-right: 8px;"></i> 2. Sử dụng AI vào công việc</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 20px;">
                 <!-- Video 2.1 -->
@@ -2193,7 +2150,7 @@ const APP_CONTENT = {
                         <iframe src="https://drive.google.com/file/d/13rPLIQBTaelvQBn4miZiCU7GX-YI-6p-/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        2.1: Chá»‰nh vÃ  lÃ m Ä‘áº¹p máº·t báº±ng
+                        2.1: Chỉnh và làm đẹp mặt bằng
                     </div>
                 </div>
 
@@ -2203,7 +2160,7 @@ const APP_CONTENT = {
                         <iframe src="https://drive.google.com/file/d/10wmmWCAqNkOhLb1jJ47nN8Ulj7hChNye/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 16px; text-align: center; font-weight: 600; color: var(--text-primary); font-size: 1.1rem; border-top: 1px solid var(--border-glass);">
-                        2.2: Chá»‰nh sá»• Ä‘á»
+                        2.2: Chỉnh sổ đỏ
                     </div>
                 </div>
             </div>
@@ -2211,156 +2168,156 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: ADMIN - QUáº¢N LÃ TRUY Cáº¬P (render bá»Ÿi auth.js)
+    // PAGE: ADMIN - QUẢN LÝ TRUY CẬP (render bởi auth.js)
     // ---------------------------------------------------------
     'page-admin-emails': `
         <div class="admin-loading">
-            <i class="fa-solid fa-spinner fa-spin"></i> Äang táº£i trang quáº£n lÃ½...
+            <i class="fa-solid fa-spinner fa-spin"></i> Đang tải trang quản lý...
         </div>
     `,
 
     // ---------------------------------------------------------
-    // PAGE: TUYá»†T Ká»¸ LÃI KHÃCH THá»°C CHIáº¾N
+    // PAGE: TUYỆT KỸ LÁI KHÁCH THỰC CHIẾN
     // ---------------------------------------------------------
     'page-tuyet-ky-lai-khach': `
         <div class="page-title-bar">
-            <h1>Tuyá»‡t ChiÃªu LÃ¡i KhÃ¡ch</h1>
-            <p class="page-subtitle">GiÃ¡o trÃ¬nh Ä‘Ã o táº¡o Sale BÄS: Äá»‹nh vá»‹ tá»‡p khÃ¡ch tiá»m nÄƒng tá»« ká»‹ch báº£n tin Ä‘Äƒng áº£o.</p>
+            <h1>Tuyệt Chiêu Lái Khách</h1>
+            <p class="page-subtitle">Giáo trình đào tạo Sale BĐS: Định vị tệp khách tiềm năng từ kịch bản tin đăng ảo.</p>
         </div>
 
         <div class="core-principle">
-            <h2>ðŸŽ¯ NguyÃªn LÃ½ "Sá»± Tháº­t Ná»­a Vá»i" (Half-Truths)</h2>
+            <h2>🎯 Nguyên Lý "Sự Thật Nửa Vời" (Half-Truths)</h2>
             <p>
-                Má»¥c tiÃªu tá»‘i thÆ°á»£ng cá»§a tin Ä‘Äƒng áº£o <strong>KHÃ”NG PHáº¢I Äá»‚ BÃN LÃ” Äáº¤T ÄÃ“</strong>, mÃ  lÃ  Ä‘á»ƒ <strong>Láº¤Y LEAD (KhÃ¡ch cÃ³ tiá»n vÃ  mÃ¡u Ä‘áº§u tÆ°)</strong>. 
-                Tuyá»‡t chiÃªu Ä‘á»‰nh cao lÃ  giÄƒng má»™t cÃ¡i báº«y hoÃ n háº£o, thu hÃºt khÃ¡ch vÃ o, sau Ä‘Ã³ tá»± tay <em>"Ä‘áº­p vá»¡"</em> báº«y Ä‘á»ƒ nháº­p vai <strong>NgÆ°á»i báº£o vá»‡/ChuyÃªn gia</strong> nháº±m xÃ¢y dá»±ng lÃ²ng tin tuyá»‡t Ä‘á»‘i. Tá»« Ä‘Ã³ dáº¯t khÃ¡ch sang thá»‹ trÆ°á»ng má»¥c tiÃªu.
+                Mục tiêu tối thượng của tin đăng ảo <strong>KHÔNG PHẢI ĐỂ BÁN LÔ ĐẤT ĐÓ</strong>, mà là để <strong>LẤY LEAD (Khách có tiền và máu đầu tư)</strong>. 
+                Tuyệt chiêu đỉnh cao là giăng một cái bẫy hoàn hảo, thu hút khách vào, sau đó tự tay <em>"đập vỡ"</em> bẫy để nhập vai <strong>Người bảo vệ/Chuyên gia</strong> nhằm xây dựng lòng tin tuyệt đối. Từ đó dắt khách sang thị trường mục tiêu.
             </p>
         </div>
 
         <div class="grid-container">
 
-            <!-- Chiáº¿n thuáº­t 1 -->
+            <!-- Chiến thuật 1 -->
             <div class="card vip">
-                <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                <h3>1. TÆ° duy "Tuyá»ƒn Táº­p Lead" & Telesale Gá»i Láº¡i</h3>
+                <div class="badge">Nét Nhất - Chốt Cao</div>
+                <h3>1. Tư duy "Tuyển Tập Lead" & Telesale Gọi Lại</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>ÄÄƒng áº£o 100% (VÃ­ dá»¥: NhÃ  lá»t khe siÃªu Ä‘áº¹p HN). Thu lead vá» CRM vÃ  BÆ  KHÃCH vÃ i ngÃ y.</p>
+                    <strong>Cách làm</strong>
+                    <p>Đăng ảo 100% (Ví dụ: Nhà lọt khe siêu đẹp HN). Thu lead về CRM và BƠ KHÁCH vài ngày.</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>ÄÃ³ng vai Telesale gá»i láº¡i sáº£ng khoÃ¡i: "Alo anh Æ¡i em tháº¥y anh Ä‘ang quan tÃ¢m Ä‘áº§u tÆ°... BÃªn em Ä‘ang cÃ³ sÃ³ng tá»‘t á»Ÿ khu cÃ´ng nghiá»‡p..."</p>
+                    <strong>Xử lý</strong>
+                    <p>Đóng vai Telesale gọi lại sảng khoái: "Alo anh ơi em thấy anh đang quan tâm đầu tư... Bên em đang có sóng tốt ở khu công nghiệp..."</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>CÃº Báº¯c Cáº§u:</strong> "Anh thÃ­ch lá»t khe ná»™i Ä‘Ã´ vÃ¬ thanh khoáº£n Ä‘Ãºng khÃ´ng? NhÆ°ng giá» giÃ¡ ká»‹ch tráº§n rá»“i, tá»‡p khÃ¡ch HN cá»§a em Ä‘ang rÃºt vá»‘n phÃ¢n bá»• vá» Ä‘áº¥t Tá»‰nh biÃªn Ä‘á»™ cao hÆ¡n nhiá»u. Anh xem cÆ¡ cáº¥u dÃ²ng tiá»n nhá»‹p nÃ y khÃ´ng em ráº½ sÃ³ng?"</p>
+                    <p><strong>Cú Bắc Cầu:</strong> "Anh thích lọt khe nội đô vì thanh khoản đúng không? Nhưng giờ giá kịch trần rồi, tệp khách HN của em đang rút vốn phân bổ về đất Tỉnh biên độ cao hơn nhiều. Anh xem cơ cấu dòng tiền nhịp này không em rẽ sóng?"</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 3 -->
+            <!-- Chiến thuật 3 -->
             <div class="card vip">
-                <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                <h3>3. BÃ i ngá»­a "Marketing ÄÄƒng Nháº§m"</h3>
+                <div class="badge">Nét Nhất - Chốt Cao</div>
+                <h3>3. Bài ngửa "Marketing Đăng Nhầm"</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>Cá»‘ tÃ¬nh ghÃ©p áº£nh ná»™i Ä‘Ã´ ráº¥t mÆ°á»£t vÃ o bÃ i Tá»‰nh. Láº¥y Ä‘Æ°á»£c sá»‘ cá»§a khÃ¡ch xong ngá»­a bÃ i luÃ´n.</p>
+                    <strong>Cách làm</strong>
+                    <p>Cố tình ghép ảnh nội đô rất mượt vào bài Tỉnh. Lấy được số của khách xong ngửa bài luôn.</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>"Em xin lá»—i anh, bÃ© thá»±c táº­p bÃªn em Ãºp lá»™n bá»™ áº£nh. NhÆ°ng cÃ¡i ná»™i dung bÃ i tiá»m nÄƒng x2 lÃ  cÃ³ tháº­t. Em má»i anh ly cafe Ä‘á»ƒ em tÆ° váº¥n phÃ¢n tÃ­ch rÃ nh rá»t khu nÃ y."</p>
+                    <strong>Xử lý</strong>
+                    <p>"Em xin lỗi anh, bé thực tập bên em úp lộn bộ ảnh. Nhưng cái nội dung bài tiềm năng x2 là có thật. Em mời anh ly cafe để em tư vấn phân tích rành rọt khu này."</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>Äá»n BÃ¹ Tá»™i Lá»—i:</strong> Biáº¿n lá»—i láº§m thÃ nh "Ä‘áº·c quyá»n". "Pháº¡t em cafe nhÃ©, Ä‘á»ƒ Ä‘á»n bÃ¹ em add anh vÃ o Group kÃ­n/gá»­i list ná»™i bá»™ hÃ ng ngá»™p chÆ°a tung cho truyá»n thÃ´ng, anh lÆ°á»›t xem nháº·t Ä‘Æ°á»£c cÄƒn nÃ o khÃ´ng."</p>
+                    <p><strong>Đền Bù Tội Lỗi:</strong> Biến lỗi lầm thành "đặc quyền". "Phạt em cafe nhé, để đền bù em add anh vào Group kín/gửi list nội bộ hàng ngộp chưa tung cho truyền thông, anh lướt xem nhặt được căn nào không."</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 6 -->
+            <!-- Chiến thuật 6 -->
             <div class="card vip">
-                <div class="badge">NÃ©t Nháº¥t - Chá»‘t Cao</div>
-                <h3>6. Nháº­p vai "ChuyÃªn Gia Cáº£nh BÃ¡o"</h3>
+                <div class="badge">Nét Nhất - Chốt Cao</div>
+                <h3>6. Nhập vai "Chuyên Gia Cảnh Báo"</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>Nháº­n CÃ“ lÃ´ Ä‘áº¥t giÃ¡ ráº» Ä‘Ã³ tháº­t. NhÆ°ng khi khÃ¡ch há»i sÃ¢u thÃ¬ háº¡ giá»ng.</p>
+                    <strong>Cách làm</strong>
+                    <p>Nhận CÓ lô đất giá rẻ đó thật. Nhưng khi khách hỏi sâu thì hạ giọng.</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>"LÃ´ Ä‘Ã³ ráº» tháº­t anh áº¡, nhÆ°ng em nÃ³i chÃ¢n tÃ¬nh: nÃ³ dÃ­nh nháº¹ quy hoáº¡ch cÃ¢y xanh / Ä‘áº¥t vi báº±ng. Em khuyÃªn anh nÃ© ra. Táº§m tiá»n anh rÃ¡ng nhá»‰nh xÃ­u, láº¥y sang mÃ£ nÃ y cá»§a em sá»• cáº¥t kÃ©t ngá»§ cho ngon."</p>
+                    <strong>Xử lý</strong>
+                    <p>"Lô đó rẻ thật anh ạ, nhưng em nói chân tình: nó dính nhẹ quy hoạch cây xanh / đất vi bằng. Em khuyên anh né ra. Tầm tiền anh ráng nhỉnh xíu, lấy sang mã này của em sổ cất két ngủ cho ngon."</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>Táº¡o Vá»‹ Tháº¿:</strong> Sáºµn sÃ ng chÃª nguá»“n hÃ ng phá»…u Ä‘á»ƒ tÃ´n vinh sá»± tháº­t thÃ  cá»§a báº£n thÃ¢n. KhÃ¡ch thÃ  tin má»™t ngÆ°á»i dÃ¡m chÃª lÃ´ ráº», cÃ²n hÆ¡n tin Ä‘á»©a khen lÃ´ Ä‘Ã³ lÃªn mÃ¢y.</p>
+                    <p><strong>Tạo Vị Thế:</strong> Sẵn sàng chê nguồn hàng phễu để tôn vinh sự thật thà của bản thân. Khách thà tin một người dám chê lô rẻ, còn hơn tin đứa khen lô đó lên mây.</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 5 -->
+            <!-- Chiến thuật 5 -->
             <div class="card safe">
-                <div class="badge">An ToÃ n - Thá»±c Táº¿</div>
-                <h3>5. MÆ°u MÆ°á»£n hÃ ng Ä‘áº¹p lÃ m "Chim Má»“i Háº¡ Táº§ng"</h3>
+                <div class="badge">An Toàn - Thực Tế</div>
+                <h3>5. Mưu Mượn hàng đẹp làm "Chim Mồi Hạ Tầng"</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>ÄÄƒng khu háº¡ táº§ng cá»±c Ä‘áº¹p, sÃ¡t dá»± Ã¡n cÃ´ng ty Ä‘ang Ä‘Ã¡nh. BÃ¡o Ä‘Ãºng giÃ¡ thá»‹ trÆ°á»ng bÃ¬nh thÆ°á»ng.</p>
+                    <strong>Cách làm</strong>
+                    <p>Đăng khu hạ tầng cực đẹp, sát dự án công ty đang đánh. Báo đúng giá thị trường bình thường.</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>Dáº¯t khÃ¡ch Ä‘i thá»±c Ä‘á»‹a khu Ä‘Ã³ tháº­t, cá»‘ tÃ¬nh Ä‘Æ°a vÃ o cÃ¡c máº£nh dÃ­nh lá»—i: ÄÆ°á»ng Ä‘Ã¢m, gáº§n má»™, thÃ³p háº­u... KhÃ¡ch chÃª -> Ráº½ vÃ´ lÄƒng: "Tiá»‡n Ä‘Ã¢y qua xem dá»± Ã¡n tá»¥i em, sáº¡ch tÆ°ng khÃ´ng tÃ¬ váº¿t."</p>
+                    <strong>Xử lý</strong>
+                    <p>Dắt khách đi thực địa khu đó thật, cố tình đưa vào các mảnh dính lỗi: Đường đâm, gần mộ, thóp hậu... Khách chê -> Rẽ vô lăng: "Tiện đây qua xem dự án tụi em, sạch tưng không tì vết."</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>Má» Neo KÃ©p:</strong> ÄÆ°a xem lÃ´ Lá»–I NHáº¤T Ä‘á»ƒ táº¡o Ä‘Ã¡y giÃ¡. Xong Ä‘Æ°a lÃ´ Äáº¸P NHáº¤T giÃ¡ trÃªn trá»i. Cuá»‘i cÃ¹ng má»›i chá»‘t lÃ´ CÃ”NG TY (Äáº¹p ngang lÃ´ 2 mÃ  giÃ¡ nhá»‰nh hÆ¡n lÃ´ 1). KhÃ¡ch tháº¥y há»i, chá»‘t!</p>
+                    <p><strong>Mỏ Neo Kép:</strong> Đưa xem lô LỖI NHẤT để tạo đáy giá. Xong đưa lô ĐẸP NHẤT giá trên trời. Cuối cùng mới chốt lô CÔNG TY (Đẹp ngang lô 2 mà giá nhỉnh hơn lô 1). Khách thấy hời, chốt!</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 7 -->
+            <!-- Chiến thuật 7 -->
             <div class="card safe">
-                <div class="badge">An ToÃ n - Thá»±c Táº¿</div>
-                <h3>7. Má»“i Nhá»­ "Báº£ng HÃ ng QuÃ¡ Khá»©" (Tuyá»‡t chiÃªu KhiÃªm)</h3>
+                <div class="badge">An Toàn - Thực Tế</div>
+                <h3>7. Mồi Nhử "Bảng Hàng Quá Khứ" (Tuyệt chiêu Khiêm)</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>ÄÄƒng khu cá»±c Ä‘áº¹p, giÃ¡ siÃªu tá»‘t. KhÃ¡ch há»i -> Check láº¡i vÃ  gá»­i Báº£ng hÃ ng cÅ© (Ä‘Ã£ gáº¡ch Ä‘á» bÃ¡n 99%).</p>
+                    <strong>Cách làm</strong>
+                    <p>Đăng khu cực đẹp, giá siêu tốt. Khách hỏi -> Check lại và gửi Bảng hàng cũ (đã gạch đỏ bán 99%).</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>Chá»‰ cÃ²n sÃ³t láº¡i 1, 2 lÃ´ xáº¥u quáº¯c (trá»i sinh). Má»i khÃ¡ch Ä‘i xem con cuá»‘i cÃ¹ng nÃ y. Äáº¿n nÆ¡i khÃ¡ch láº¯c Ä‘áº§u -> Tiá»‡n tay dáº«n luÃ´n sang dá»± Ã¡n cÃ¹ng tá»‡p tÃ i chÃ­nh cá»§a há»‡ thá»‘ng cÃ´ng ty.</p>
+                    <strong>Xử lý</strong>
+                    <p>Chỉ còn sót lại 1, 2 lô xấu quắc (trời sinh). Mời khách đi xem con cuối cùng này. Đến nơi khách lắc đầu -> Tiện tay dẫn luôn sang dự án cùng tệp tài chính của hệ thống công ty.</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>Hiá»‡u á»©ng Fomo:</strong> Cho khÃ¡ch tháº¥y "hÃ ng ráº» Ä‘áº¹p bay trong ná»‘t nháº¡c". KÃ­ch thÃ­ch sá»± nuá»‘i tiáº¿c Ä‘á»ƒ khi Ä‘Æ°a sang hÃ ng tháº­t cá»§a cÃ´ng ty, há» sáº½ ra quyáº¿t Ä‘á»‹nh nhanh hÆ¡n.</p>
+                    <p><strong>Hiệu ứng Fomo:</strong> Cho khách thấy "hàng rẻ đẹp bay trong nốt nhạc". Kích thích sự nuối tiếc để khi đưa sang hàng thật của công ty, họ sẽ ra quyết định nhanh hơn.</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 2 -->
+            <!-- Chiến thuật 2 -->
             <div class="card warn">
-                <div class="badge">HÃªn Xui - Phá»¥ Thuá»™c NÄƒng Lá»±c</div>
-                <h3>2. LÃ´ vá»«a nháº­n cá»c & LÃ¡i báº» ngoáº·t</h3>
+                <div class="badge">Hên Xui - Phụ Thuộc Năng Lực</div>
+                <h3>2. Lô vừa nhận cọc & Lái bẻ ngoặt</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>KhÃ¡ch há»i, bÃ¡o ngay: "LÃ´ Ä‘Ã³ vá»«a nháº­n cá»c rá»“i anh áº¡. NhÆ°ng em Ä‘ang cÃ²n 3 mÃ£ y há»‡t chÆ°a up..."</p>
+                    <strong>Cách làm</strong>
+                    <p>Khách hỏi, báo ngay: "Lô đó vừa nhận cọc rồi anh ạ. Nhưng em đang còn 3 mã y hệt chưa up..."</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>"Anh quÄƒng sá»‘ Zalo em nÃ©m sá»• qua luÃ´n, FB bÃ³p tÆ°Æ¡ng tÃ¡c load khÃ´ng ná»•i file." Xin Ä‘Æ°á»£c Zalo lÃ  tháº¯ng bÆ°á»›c 1.</p>
+                    <strong>Xử lý</strong>
+                    <p>"Anh quăng số Zalo em ném sổ qua luôn, FB bóp tương tác load không nổi file." Xin được Zalo là thắng bước 1.</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>Giao Lá»™ Äá»‹nh Má»‡nh:</strong> Láº¥y Zalo xong mÃ  tiáº¿p tá»¥c gá»­i áº¢O thÃ¬ khÃ¡ch block tá»· lá»‡ cao (Trá»Ÿ thÃ nh chiáº¿n thuáº­t sá»‘ 4). Láº¥y xong gá»­i THáº¬T vÃ  gá»i Ä‘iá»‡n báº» tÆ° duy thÃ¬ má»›i cÃ³ tá»‰ lá»‡ sá»‘ng sÃ³t.</p>
+                    <p><strong>Giao Lộ Định Mệnh:</strong> Lấy Zalo xong mà tiếp tục gửi ẢO thì khách block tỷ lệ cao (Trở thành chiến thuật số 4). Lấy xong gửi THẬT và gọi điện bẻ tư duy thì mới có tỉ lệ sống sót.</p>
                 </div>
             </div>
 
-            <!-- Chiáº¿n thuáº­t 4 -->
+            <!-- Chiến thuật 4 -->
             <div class="card danger">
-                <div class="badge">KÃ©m Nháº¥t - Cáº£nh BÃ¡o</div>
-                <h3>4. Nháº­n CÃ³ Tháº­t TrÄƒm Pháº§n TrÄƒm Trá»n GÃ³i</h3>
+                <div class="badge">Kém Nhất - Cảnh Báo</div>
+                <h3>4. Nhận Có Thật Trăm Phần Trăm Trọn Gói</h3>
                 
                 <div class="content-group">
-                    <strong>CÃ¡ch lÃ m</strong>
-                    <p>Tráº£ lá»i CÃ“ CÃ“ CÃ“ háº¿t. Äáº¥t cÃ³, ráº» cÃ³, Ä‘áº¹p cÃ³. Cá»‘t lÃµi lÃ´i cá»• khÃ¡ch lÃªn xe Ä‘i thá»±c Ä‘á»‹a cho báº±ng Ä‘Æ°á»£c.</p>
+                    <strong>Cách làm</strong>
+                    <p>Trả lời CÓ CÓ CÓ hết. Đất có, rẻ có, đẹp có. Cốt lõi lôi cổ khách lên xe đi thực địa cho bằng được.</p>
                 </div>
                 <div class="content-group">
-                    <strong>Xá»­ lÃ½</strong>
-                    <p>Tá»›i nÆ¡i thÃ¬ báº» lÃ¡i nÃ³i chá»§ quay xe, bÃ¡o giÃ¡ thÃ¡ch lÃªn trÃªn trá»i, hoáº·c dáº¯t tháº³ng tá»›i má»™t cá»¥c má»“i khÃ¡c biá»‡t hoÃ n toÃ n.</p>
+                    <strong>Xử lý</strong>
+                    <p>Tới nơi thì bẻ lái nói chủ quay xe, báo giá thách lên trên trời, hoặc dắt thẳng tới một cục mồi khác biệt hoàn toàn.</p>
                 </div>
                 <div class="upgrade-box">
-                    <p><strong>TrÃ¡nh Xa Tuyá»‡t Äá»‘i:</strong> Máº¥t tÆ° cÃ¡ch, Äƒn chá»­i táº¡i tráº­n. Chá»‰ cÃ³ thá»ƒ dá»±a dáº«m vÃ o Ä‘Ã¡m Ä‘Ã´ng SÃ³ng cá»§a cÃ´ng ty buff vÃ o Ä‘á»ƒ Ã©p khÃ¡ch ngá»™p, chá»‘t vá»™i. Quáº£n lÃ½/Sáº¿p siÃªu ghÃ©t support thá»ƒ loáº¡i lead lá»«a Ä‘áº£o nÃ y.</p>
+                    <p><strong>Tránh Xa Tuyệt Đối:</strong> Mất tư cách, ăn chửi tại trận. Chỉ có thể dựa dẫm vào đám đông Sóng của công ty buff vào để ép khách ngộp, chốt vội. Quản lý/Sếp siêu ghét support thể loại lead lừa đảo này.</p>
                 </div>
             </div>
 
@@ -2368,14 +2325,14 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: CHÃ‚N DUNG NHÃ‚N Sá»°
+    // PAGE: CHÂN DUNG NHÂN SỰ
     // ---------------------------------------------------------
     'page-chan-dung-nhan-su': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-user-tie"></i> ChÃ¢n Dung NhÃ¢n Sá»± TL Land</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-user-tie"></i> Chân Dung Nhân Sự TL Land</span>
                 <a href="/training-hub/CHAN_DUNG_NHAN_SU_TLLAND_ULTIMATE.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -2385,14 +2342,14 @@ const APP_CONTENT = {
     `,
 
     // ---------------------------------------------------------
-    // PAGE: Lá»˜ TRÃŒNH DáºªN KHÃCH
+    // PAGE: LỘ TRÌNH DẪN KHÁCH
     // ---------------------------------------------------------
     'page-lo-trinh-dan-khach': `
         <div class="iframe-container-wrapper">
             <div class="iframe-actions-bar">
-                <span class="iframe-doc-title"><i class="fa-solid fa-route"></i> Lá»™ TrÃ¬nh Dáº«n KhÃ¡ch â€” Lá»‹ch TrÃ¬nh 24h</span>
+                <span class="iframe-doc-title"><i class="fa-solid fa-route"></i> Lộ Trình Dẫn Khách — Lịch Trình 24h</span>
                 <a href="/training-hub/lich_trinh_24h_bds_nam.html" target="_blank" class="iframe-btn-open">
-                    <i class="fa-solid fa-up-right-from-square"></i> Má»Ÿ toÃ n mÃ n hÃ¬nh
+                    <i class="fa-solid fa-up-right-from-square"></i> Mở toàn màn hình
                 </a>
             </div>
             <div class="iframe-scroll-container">
@@ -2402,4 +2359,3 @@ const APP_CONTENT = {
     `
 
 };
-
