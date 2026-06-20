@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest" async></script>
     <!-- Style -->
-    <link rel="stylesheet" href="/training-hub/styles.css?v=20260618-8">
+    <link rel="stylesheet" href="/training-hub/styles.css?v=20260620-1">
 </head>
 <body>
 
@@ -155,10 +155,10 @@
                 </div>
                 <div class="sidebar-divider" style="height: 1px; background: var(--border-glass, rgba(0,0,0,0.08)); margin: 10px 12px 15px 12px;"></div>
 
-                <!-- Bước 1 -->
+                <!-- Quy Trình Tân Binh -->
                 <div class="nav-section">
                     <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 1: THIẾT LẬP & LIÊN KẾT</span>
+                        <span>Quy Trình Tân Binh</span>
                         <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
                     </div>
                     <div class="nav-section-items">
@@ -170,125 +170,92 @@
                             <div class="nav-icon"><i class="fa-solid fa-scale-balanced"></i></div>
                             Quy Chế & Cơ Chế
                         </div>
+                        <div class="nav-item" data-target="page-tb-quy-trinh">
+                            <div class="nav-icon"><i class="fa-solid fa-file-contract"></i></div>
+                            Quy Trình Bán Hàng
+                        </div>
+                        <div class="nav-item" data-target="page-bai-dang-dau-tien">
+                            <div class="nav-icon"><i class="fa-solid fa-seedling"></i></div>
+                            Bài Đăng Đầu Tiên
+                            <span class="nav-badge badge-new">NEW</span>
+                        </div>
+                        <div class="nav-item" data-target="page-tinh-hoa-hong">
+                            <div class="nav-icon"><i class="fa-solid fa-calculator"></i></div>
+                            Tính Hoa Hồng
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
+                        </div>
+                        <div class="nav-item" data-target="page-tb-chon-kenh">
+                            <div class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            Chọn kênh tìm kiếm khách hàng
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Bước 2 -->
+                <!-- Danh Mục Bảng Hàng -->
                 <div class="nav-section">
                     <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 2: KIẾN THỨC NỀN TẢNG</span>
+                        <span>Danh Mục Bảng Hàng</span>
+                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
+                    </div>
+                    <div class="nav-section-items">
+                        <div class="nav-item" data-target="page-bang-hang">
+                            <div class="nav-icon"><i class="fa-solid fa-table-list"></i></div>
+                            Bảng Hàng Tổng Hợp
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh Mục Đào Tạo -->
+                <div class="nav-section">
+                    <div class="nav-section-title" onclick="toggleNavSection(this)">
+                        <span>Danh Mục Đào Tạo</span>
                         <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
                     </div>
                     <div class="nav-section-items">
                         <div class="nav-item" data-target="page-kien-thuc-nen">
                             <div class="nav-icon"><i class="fa-solid fa-book-open-reader"></i></div>
                             Đào Tạo Kiến Thức Nền
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
                         </div>
                         <div class="nav-item" data-target="page-thi-truong">
                             <div class="nav-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                             Thị Trường Đang Triển Khai
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
                         </div>
-                        <div class="nav-item" data-target="page-chan-dung-khach-hang">
-                            <div class="nav-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
-                            Chân Dung Khách Hàng
-                        </div>
-                        <div class="nav-item" data-target="page-bang-hang">
-                            <div class="nav-icon"><i class="fa-solid fa-table-list"></i></div>
-                            Bảng Hàng Tổng Hợp
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bước 3 -->
-                <div class="nav-section">
-                    <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 3: KHẢO SÁT THỰC ĐỊA</span>
-                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
-                    </div>
-                    <div class="nav-section-items">
-                        <div class="nav-item" data-target="page-tb-quy-trinh">
-                            <div class="nav-icon"><i class="fa-solid fa-file-contract"></i></div>
-                            Quy Trình Bán Hàng
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bước 4 -->
-                <div class="nav-section">
-                    <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 4: THƯƠNG HIỆU & KÊNH BÁN</span>
-                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
-                    </div>
-                    <div class="nav-section-items">
-                        <div class="nav-item" data-target="page-bai-dang-dau-tien">
-                            <div class="nav-icon"><i class="fa-solid fa-seedling"></i></div>
-                            Bài Đăng Đầu Tiên
-                        </div>
-                        <div class="nav-item" data-target="page-tb-chon-kenh">
-                            <div class="nav-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                            Chọn Kênh Tìm Khách
-                        </div>
-                        <div class="nav-item" data-target="page-chien-luoc-fb">
-                            <div class="nav-icon"><i class="fa-solid fa-thumbs-up"></i></div>
-                            Chiến Lược Thương Hiệu
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bước 5 -->
-                <div class="nav-section">
-                    <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 5: KỸ THUẬT ĐĂNG TIN</span>
-                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
-                    </div>
-                    <div class="nav-section-items">
                         <div class="nav-item" data-target="page-mau-dang-tin-ao">
                             <div class="nav-icon"><i class="fa-solid fa-images"></i></div>
                             Bài Mẫu Đăng Tin Ảo
+                            <span class="nav-badge badge-new" style="background:var(--accent-emerald, #34d399); color: white;">NEW</span>
                         </div>
                         <div class="nav-item" data-target="page-tuyet-ky-lai-khach">
                             <div class="nav-icon"><i class="fa-solid fa-chess-knight"></i></div>
                             Tuyệt Chiêu Lái Khách
                         </div>
-                        <div class="nav-item" data-target="page-cam-tay-chi-viec">
-                            <div class="nav-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
-                            Cầm Tay Chỉ Việc
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bước 6 -->
-                <div class="nav-section">
-                    <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 6: KỊCH BẢN CHĂM KHÁCH</span>
-                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
-                    </div>
-                    <div class="nav-section-items">
-                        <div class="nav-item" data-target="page-telesale">
-                            <div class="nav-icon"><i class="fa-solid fa-headset"></i></div>
-                            TeleSale & Lọc Khách
-                        </div>
-                        <div class="nav-item" data-target="page-mau-gui-thong-tin">
-                            <div class="nav-icon"><i class="fa-solid fa-paper-plane"></i></div>
-                            Mẫu Gửi Thông Tin
+                        <div class="nav-item" data-target="page-chan-dung-khach-hang">
+                            <div class="nav-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            Chân Dung Khách Hàng
                         </div>
                         <div class="nav-item" data-target="page-cac-khoa-hoc">
                             <div class="nav-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            Các Khóa Học Nâng Cao
+                            Các Khóa Học
                         </div>
-                    </div>
-                </div>
-
-                <!-- Bước 7 -->
-                <div class="nav-section">
-                    <div class="nav-section-title" onclick="toggleNavSection(this)">
-                        <span>BƯỚC 7: TƯ VẤN & QUYẾT TOÁN</span>
-                        <i class="fa-solid fa-chevron-down nav-section-arrow"></i>
-                    </div>
-                    <div class="nav-section-items">
-                        <div class="nav-item" data-target="page-tinh-hoa-hong">
-                            <div class="nav-icon"><i class="fa-solid fa-calculator"></i></div>
-                            Tính Hoa Hồng Giao Dịch
+                        <div class="nav-item" data-target="page-telesale">
+                            <div class="nav-icon"><i class="fa-solid fa-headset"></i></div>
+                            TeleSale
+                        </div>
+                        <div class="nav-item" data-target="page-mau-gui-thong-tin">
+                            <div class="nav-icon"><i class="fa-solid fa-paper-plane"></i></div>
+                            Mẫu gửi thông tin
+                        </div>
+                        <div class="nav-item" data-target="page-chien-luoc-fb">
+                            <div class="nav-icon"><i class="fa-solid fa-thumbs-up"></i></div>
+                            Chiến lược xây dựng thương hiệu cá nhân trên FB, Zalo
+                        </div>
+                        <div class="nav-item" data-target="page-cam-tay-chi-viec">
+                            <div class="nav-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                            Cầm Tay Chỉ Việc
                         </div>
                     </div>
                 </div>
@@ -351,8 +318,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
     <!-- Logic -->
-    <script src="/training-hub/auth.js?v=20260618-8"></script>
-    <script src="/training-hub/content.js?v=20260618-8"></script>
-    <script src="/training-hub/script.js?v=20260618-8"></script>
+    <script src="/training-hub/auth.js?v=20260620-1"></script>
+    <script src="/training-hub/content.js?v=20260620-1"></script>
+    <script src="/training-hub/script.js?v=20260620-1"></script>
 </body>
 </html>

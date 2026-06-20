@@ -2544,7 +2544,7 @@ function renderProfileUI(container) {
                                 <span class="profile-progress-label">Hoàn thành</span>
                             </div>
                         </div>
-                        <div class="profile-progress-step">Bước ${currentStepIdx + 1}/7 — ${currentStepName}</div>
+                        <div class="profile-progress-step">Đã học: ${completedCount}/${totalMods} bài học</div>
                     </div>
                 </div>
             </div>

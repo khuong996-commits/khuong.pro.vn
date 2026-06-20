@@ -495,22 +495,9 @@
 ---
 
 ## 🏢 TỔNG QUẢN & BAN HỆ THỐNG
-### 2026-06-12 21:55 - Thiết lập Multi-Content, kích hoạt HTTPS & Chuyển hướng Lời Nói Đầu
-- **Công việc đã hoàn thành:**
-  - **Tái cấu trúc thư mục Multi-Content:** Thiết lập cấu trúc thư mục gốc mới `khuong.pro.vn` để quản lý nhiều nội dung. Tạo trang chủ cá nhân (Bio) tại `/` và chuyển đổi Training Hub vào thư mục con `/training-hub`.
-  - **Cập nhật Router & Vá lỗi đường dẫn:** Sửa đổi logic routing trong `training-hub/script.js` và `training-hub/auth.js` để hỗ trợ base path `/training-hub/`. Chuyển đổi toàn bộ link liên kết CSS, JS và `iframe src` trong `training-hub/index.html` và `training-hub/content.js` từ tương đối sang tuyệt đối bắt đầu bằng `/training-hub/` để tránh lỗi vỡ giao diện khi người dùng truy cập địa chỉ không có gạch chéo cuối. Cấu hình `vercel.json` ở root để rewrite toàn bộ route ảo của Training Hub về `/training-hub/index.html`.
-  - **Đóng gói Trang chủ Premium:** Thiết kế trang chủ giới thiệu cá nhân (`index.html` và `styles.css`) tại thư mục gốc với phong cách Dark Mode Premium Glassmorphism sang trọng, có các nút liên kết mạng xã hội và nút truy cập nhanh vào Training Hub nội bộ.
-  - **Kích hoạt thành công HTTPS:** Liên kết thư mục gốc mới với dự án Vercel `team-khuongtrinh`. Xóa và add lại domain `khuong.pro.vn` / `www.khuong.pro.vn` để Let's Encrypt cấp chứng chỉ SSL mới hoạt động 100% trên cổng 443, sửa dứt điểm lỗi bảo mật.
-  - **Điều hướng đăng nhập:** Thay đổi trang mặc định sau khi đăng nhập thành công từ `'page-profile'` (Hồ Sơ) sang thẳng `'page-tb-loi-noi-dau'` (Lời Nói Đầu & Nhập Môn) đúng theo yêu cầu của sếp.
-- **Lưu ý quan trọng:**
-  - Toàn bộ trang chủ và trang Training Hub con đã hoạt động an toàn và đồng bộ hoàn hảo dưới địa chỉ chính thức [https://khuong.pro.vn](https://khuong.pro.vn).
-
----
-
-## 🏢 TỔNG QUẢN & BAN HỆ THỐNG
 ### 2026-06-19 16:21 - Cập nhật link thư mục nhóm Telegram Bảng Hàng Tổng
 - **Công việc đã hoàn thành:**
-  - Cập nhật link nhóm Telegram Bảng Hàng Tổng trong trang bài học "Lời Nói Đầu & Nhập Môn" ([TAN_BINH_LOI_NOI_DAU.html](file:///d:/file%20c%E1%BB%A7a%20th%E1%BA%AFng/l%C3%A0m%20vi%E1%BB%87c%20B%C4%90S/A-Z/khuong.pro.vn/training-hub/TAN_BINH_LOI_NOI_DAU.html#L170-L174)) thành link thư mục nhóm mới: `https://t.me/addlist/x0X31xFetQIyOWZl`.
+  - Cập nhật link nhóm Telegram Bảng Hàng Tổng trong trang bài học "Lời Nói Đầu & Nhập Môn" ([TAN_BINH_LOI_NOI_DAU.html](file:///d:/file%20c%E1%BB%A7a%20th%E1%BA%AFng/l%C3%A0m%20vi%E1%BB%87c%20B%C4%90S/A-Z/TRAINING_HUB/TAN_BINH_LOI_NOI_DAU.html#L170-L174)) thành link thư mục nhóm mới: `https://t.me/addlist/x0X31xFetQIyOWZl`.
 - **Lưu ý quan trọng:**
   - Link cũ `https://t.me/CongDongDiaOcTL/2548` đã được thay thế hoàn toàn để đảm bảo nhân sự mới có thể truy cập đúng thư mục chat của nhóm.
 
@@ -528,4 +515,17 @@
 - **Lưu ý quan trọng:**
   - Đồng bộ cấu trúc dữ liệu hiển thị trên trang Bảng Hàng Tổng Hợp của hệ thống.
 
+---
+
+## 🏢 TỔNG QUẢN & BAN HỆ THỐNG
+### 2026-06-20 15:55 - Khôi phục cấu trúc Sidebar cũ & Cập nhật nhãn tiến độ góc trang Hồ Sơ
+- **Công việc đã hoàn thành:**
+  - Khôi phục cấu trúc Sidebar điều hướng về định dạng cũ gồm 4 nhóm: **Quy Trình Tân Binh**, **Danh Mục Bảng Hàng**, **Danh Mục Đào Tạo**, và **DÀNH CHO SẾP** để bỏ phân chia 7 Bước rườm rà.
+  - Sắp xếp bài học mới **"Tuyệt Chiêu Lái Khách"** (`page-tuyet-ky-lai-khach`) vào nhóm **Danh Mục Đào Tạo** trên Sidebar.
+  - Giữ nguyên mục **Trang Chủ (Tiến Độ)** trên đầu Sidebar và dải phân cách.
+  - Chỉnh sửa nhãn tiến độ ở góc trên bên phải banner trang Hồ Sơ thành `Đã học: \${completedCount}/\${totalMods} bài học` thay vì hiển thị Bước X/7 như cũ.
+  - Nâng cấp phiên bản cache-busting trong `index.html` lên `?v=20260620-1` để buộc trình duyệt tải lại CSS và JS mới.
+  - Đồng bộ hóa toàn bộ thay đổi sang thư mục `khuong.pro.vn/training-hub/`.
+- **Lưu ý quan trọng:**
+  - Các ô tick bài học và logic tính toán tiến độ học tập trên trang Hồ Sơ vẫn được bảo toàn nguyên vẹn 100%.
 

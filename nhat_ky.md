@@ -111,3 +111,13 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Đồng bộ lại toàn bộ file sửa sang thư mục `TRAINING_HUB/` để đồng nhất với `khuong.pro.vn/training-hub/`.
 - **Kết quả:** Ô tích hoàn thành hiển thị chính xác và ổn định ở cuối tất cả các bài học.
 
+### 📌 Phiên ngày 20/06/2026 - 15:55
+- **Mục tiêu:** Khôi phục cấu trúc Sidebar cũ (không chia theo Bước 1-7) và cập nhật nhãn tiến độ góc trên bên phải banner trang Hồ Sơ.
+- **Nội dung thực hiện:**
+  - Cập nhật file `index.html` trong cả 2 thư mục `TRAINING_HUB` và `khuong.pro.vn/training-hub/` để khôi phục cấu trúc Sidebar cũ gồm 4 nhóm lớn: *Quy Trình Tân Binh*, *Danh Mục Bảng Hàng*, *Danh Mục Đào Tạo*, và *DÀNH CHO SẾP*.
+  - Sắp xếp bài học mới **"Tuyệt Chiêu Lái Khách"** (`page-tuyet-ky-lai-khach`) vào nhóm *Danh Mục Đào Tạo* trên Sidebar.
+  - Giữ mục **Trang Chủ (Tiến Độ)** trên đầu Sidebar và dải phân cách.
+  - Cập nhật hàm `renderProfileUI` trong `auth.js` để đổi nhãn tiến độ ở góc banner từ `Bước X/7 — [Tên bước]` thành `Đã học: \${completedCount}/\${totalMods} bài học`.
+  - Thay đổi phiên bản cache-busting trong `index.html` lên `?v=20260620-1`.
+- **Kết quả:** Sidebar phục hồi gọn gàng đúng thiết kế cũ của sếp, trang Hồ Sơ cập nhật nhãn tiến độ mới rõ ràng và chính xác.
+
