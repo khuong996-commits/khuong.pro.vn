@@ -2066,25 +2066,25 @@ const APP_CONTENT = {
                 <div class="cdkh-slide"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="Slide 11 - Bảng điểm" loading="lazy"/><div class="cdkh-slide-label">10 · Bảng Điểm – Chọn Chiến Thuật Chăm Sóc</div></div>
                 <div class="cdkh-slide"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="Slide 12 - Sau khi cọc" loading="lazy"/><div class="cdkh-slide-label">11 · Sau Khi Cọc – Giữ Niềm Tin & Tạo Giới Thiệu</div></div>
             </div>
-            <button class="cdkh-btn cdkh-btn-prev" onclick="cdkhPrev()" title="Slide trước">&#8592;</button>
-            <button class="cdkh-btn cdkh-btn-next" onclick="cdkhNext()" title="Slide tiếp theo">&#8594;</button>
+            <button class="cdkh-btn cdkh-btn-prev" onclick="window.cdkhSlideshow.prev()" title="Slide trước">&#8592;</button>
+            <button class="cdkh-btn cdkh-btn-next" onclick="window.cdkhSlideshow.next()" title="Slide tiếp theo">&#8594;</button>
             <div class="cdkh-counter" id="cdkhCounter">1 / 12</div>
         </div>
 
         <!-- DOTS -->
         <div class="cdkh-dots" id="cdkhDots">
-            <button class="cdkh-dot active" onclick="cdkhGoTo(0)" title="Slide 1"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(1)" title="Slide 2"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(2)" title="Slide 3"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(3)" title="Slide 4"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(4)" title="Slide 5"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(5)" title="Slide 6"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(6)" title="Slide 7"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(7)" title="Slide 8"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(8)" title="Slide 9"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(9)" title="Slide 10"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(10)" title="Slide 11"></button>
-            <button class="cdkh-dot" onclick="cdkhGoTo(11)" title="Slide 12"></button>
+            <button class="cdkh-dot active" onclick="window.cdkhSlideshow.goTo(0)" title="Slide 1"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(1)" title="Slide 2"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(2)" title="Slide 3"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(3)" title="Slide 4"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(4)" title="Slide 5"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(5)" title="Slide 6"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(6)" title="Slide 7"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(7)" title="Slide 8"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(8)" title="Slide 9"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(9)" title="Slide 10"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(10)" title="Slide 11"></button>
+            <button class="cdkh-dot" onclick="window.cdkhSlideshow.goTo(11)" title="Slide 12"></button>
         </div>
 
         <!-- MỤC LỤC NHANH -->
@@ -2113,55 +2113,19 @@ const APP_CONTENT = {
             <span style="color:#d4af37;">🖼️</span> Tất Cả Slides — Bấm để xem nhanh
         </div>
         <div class="cdkh-thumbs" id="cdkhThumbs">
-            <div class="cdkh-thumb active" onclick="cdkhGoTo(0)"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="01" loading="lazy"/><span class="cdkh-thumb-num">01</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(1)"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="02" loading="lazy"/><span class="cdkh-thumb-num">02</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(2)"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="03" loading="lazy"/><span class="cdkh-thumb-num">03</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(3)"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="04" loading="lazy"/><span class="cdkh-thumb-num">04</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(4)"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="05" loading="lazy"/><span class="cdkh-thumb-num">05</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(5)"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="06" loading="lazy"/><span class="cdkh-thumb-num">06</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(6)"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="07" loading="lazy"/><span class="cdkh-thumb-num">07</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(7)"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="08" loading="lazy"/><span class="cdkh-thumb-num">08</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(8)"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="09" loading="lazy"/><span class="cdkh-thumb-num">09</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(9)"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="10" loading="lazy"/><span class="cdkh-thumb-num">10</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(10)"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="11" loading="lazy"/><span class="cdkh-thumb-num">11</span></div>
-            <div class="cdkh-thumb" onclick="cdkhGoTo(11)"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="12" loading="lazy"/><span class="cdkh-thumb-num">12</span></div>
+            <div class="cdkh-thumb active" onclick="window.cdkhSlideshow.goTo(0)"><img src="/training-hub/assets/01_album_khach_hang_tl_land_pro.webp" alt="01" loading="lazy"/><span class="cdkh-thumb-num">01</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(1)"><img src="/training-hub/assets/02_album_khach_hang_tl_land_pro.webp" alt="02" loading="lazy"/><span class="cdkh-thumb-num">02</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(2)"><img src="/training-hub/assets/03_album_khach_hang_tl_land_pro.webp" alt="03" loading="lazy"/><span class="cdkh-thumb-num">03</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(3)"><img src="/training-hub/assets/04_album_khach_hang_tl_land_pro.webp" alt="04" loading="lazy"/><span class="cdkh-thumb-num">04</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(4)"><img src="/training-hub/assets/05_album_khach_hang_tl_land_pro.webp" alt="05" loading="lazy"/><span class="cdkh-thumb-num">05</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(5)"><img src="/training-hub/assets/06_album_khach_hang_tl_land_pro.webp" alt="06" loading="lazy"/><span class="cdkh-thumb-num">06</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(6)"><img src="/training-hub/assets/07_album_khach_hang_tl_land_pro.webp" alt="07" loading="lazy"/><span class="cdkh-thumb-num">07</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(7)"><img src="/training-hub/assets/08_album_khach_hang_tl_land_pro.webp" alt="08" loading="lazy"/><span class="cdkh-thumb-num">08</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(8)"><img src="/training-hub/assets/09_album_khach_hang_tl_land_pro.webp" alt="09" loading="lazy"/><span class="cdkh-thumb-num">09</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(9)"><img src="/training-hub/assets/10_album_khach_hang_tl_land_pro.webp" alt="10" loading="lazy"/><span class="cdkh-thumb-num">10</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(10)"><img src="/training-hub/assets/11_album_khach_hang_tl_land_pro.webp" alt="11" loading="lazy"/><span class="cdkh-thumb-num">11</span></div>
+            <div class="cdkh-thumb" onclick="window.cdkhSlideshow.goTo(11)"><img src="/training-hub/assets/12_album_khach_hang_tl_land_pro.webp" alt="12" loading="lazy"/><span class="cdkh-thumb-num">12</span></div>
         </div>
-
-        <script>
-            (function() {
-                var current = 0;
-                var total = 12;
-                function update(idx) {
-                    current = ((idx % total) + total) % total;
-                    document.getElementById('cdkhTrack').style.transform = 'translateX(-' + (current * 100) + '%)';
-                    document.getElementById('cdkhCounter').textContent = (current + 1) + ' / ' + total;
-                    var dots = document.querySelectorAll('.cdkh-dot');
-                    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-                    var thumbs = document.querySelectorAll('#cdkhThumbs .cdkh-thumb');
-                    thumbs.forEach(function(t, i) { t.classList.toggle('active', i === current); });
-                }
-                window.cdkhGoTo = function(idx) { update(idx); };
-                window.cdkhPrev = function() { update(current - 1); };
-                window.cdkhNext = function() { update(current + 1); };
-
-                // Keyboard navigation
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowRight') window.cdkhNext();
-                    if (e.key === 'ArrowLeft') window.cdkhPrev();
-                });
-
-                // Swipe support
-                var startX = 0;
-                var track = document.getElementById('cdkhTrack');
-                if (track) {
-                    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
-                    track.addEventListener('touchend', function(e) {
-                        var diff = startX - e.changedTouches[0].clientX;
-                        if (Math.abs(diff) > 40) { diff > 0 ? window.cdkhNext() : window.cdkhPrev(); }
-                    }, {passive: true});
-                }
-            })();
-        </script>
     `,
 
     // ---------------------------------------------------------

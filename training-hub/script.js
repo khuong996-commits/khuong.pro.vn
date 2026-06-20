@@ -126,6 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.mauDangTinAo.init();
                 }
             }
+            // Khởi tạo slideshow Chân Dung Khách Hàng
+            if (pageId === 'page-chan-dung-khach-hang') {
+                if (window.cdkhSlideshow && typeof window.cdkhSlideshow.init === 'function') {
+                    window.cdkhSlideshow.init();
+                }
+            }
             
             if (window.lucide) {
                 lucide.createIcons();
@@ -512,5 +518,41 @@ window.mauDangTinAo = {
         if (modal) {
             modal.classList.toggle('active');
         }
+    }
+};
+
+// ---- SLIDESHOW: CHÂN DUNG KHÁCH HÀNG ----
+window.cdkhSlideshow = {
+    current: 0,
+    total: 12,
+    init: function() {
+        this.current = 0;
+        this.update(0);
+        this._bindEvents();
+    },
+    update: function(idx) {
+        this.current = ((idx % this.total) + this.total) % this.total;
+        var track = document.getElementById('cdkhTrack');
+        var counter = document.getElementById('cdkhCounter');
+        if (track) track.style.transform = 'translateX(-' + (this.current * 100) + '%)';
+        if (counter) counter.textContent = (this.current + 1) + ' / ' + this.total;
+        var dots = document.querySelectorAll('.cdkh-dot');
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === window.cdkhSlideshow.current); });
+        var thumbs = document.querySelectorAll('#cdkhThumbs .cdkh-thumb');
+        thumbs.forEach(function(t, i) { t.classList.toggle('active', i === window.cdkhSlideshow.current); });
+    },
+    goTo: function(idx) { this.update(idx); },
+    prev: function() { this.update(this.current - 1); },
+    next: function() { this.update(this.current + 1); },
+    _bindEvents: function() {
+        var track = document.getElementById('cdkhTrack');
+        if (!track || track._cdkhBound) return;
+        track._cdkhBound = true;
+        var startX = 0;
+        track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+        track.addEventListener('touchend', function(e) {
+            var diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) { diff > 0 ? window.cdkhSlideshow.next() : window.cdkhSlideshow.prev(); }
+        }, {passive: true});
     }
 };
