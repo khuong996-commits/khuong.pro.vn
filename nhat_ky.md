@@ -121,3 +121,10 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Thay đổi phiên bản cache-busting trong `index.html` lên `?v=20260620-1`.
 - **Kết quả:** Sidebar phục hồi gọn gàng đúng thiết kế cũ của sếp, trang Hồ Sơ cập nhật nhãn tiến độ mới rõ ràng và chính xác.
 
+### 📌 Phiên ngày 21/06/2026 - 16:30
+- **Mục tiêu:** Khôi phục phần giao diện Chân Dung Khách Hàng (Customer Persona) về phiên bản gốc (dùng iframe tải file HTML tĩnh) theo yêu cầu.
+- **Nội dung thực hiện:**
+  - Khôi phục file `content.js` và `script.js` tại `khuong.pro.vn/training-hub/` về trạng thái tại commit `7696863`.
+  - Đồng bộ hóa các thay đổi bằng cách sao chép các file `content.js` và `script.js` đã khôi phục sang thư mục `TRAINING_HUB/` ở thư mục gốc.
+- **Kết quả:** Giao diện Chân Dung Khách Hàng đã quay lại dạng Iframe hiển thị file `CHAN_DUNG_KHACH_HANG_V2_1.html` chuẩn ban đầu, loại bỏ hoàn toàn mã nguồn slideshow tự chế.
+
