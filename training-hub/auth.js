@@ -436,6 +436,7 @@ async function removeWhitelistEmail(email) {
 
 let currentAdminTab = 'emails';
 let currentTreeZoom = 100;
+let currentProgressViewMode = 'list'; // 'list' hoặc 'tree'
 
 async function renderAdminEmailPage() {
     const container = document.getElementById('app-content');
@@ -1122,6 +1123,497 @@ async function renderAdminEmailPage() {
             .org-tree .tree-unassigned-group > ul::before {
                 border-color: rgba(245, 158, 11, 0.35) !important;
             }
+
+            /* ===== VIEW MODE TOGGLE BAR ===== */
+            .progress-controls-bar {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+                padding: 14px 18px;
+                background: var(--bg-secondary, rgba(255,255,255,0.6));
+                backdrop-filter: blur(10px);
+                border: 1px solid var(--border-glass, rgba(0,0,0,0.08));
+                border-radius: 14px;
+            }
+            .progress-view-toggle {
+                display: flex;
+                background: rgba(0,0,0,0.04);
+                border-radius: 10px;
+                padding: 3px;
+                gap: 3px;
+            }
+            .progress-view-btn {
+                background: transparent;
+                border: none;
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-secondary, #64748b);
+                cursor: pointer;
+                border-radius: 8px;
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                white-space: nowrap;
+            }
+            .progress-view-btn:hover {
+                color: var(--text-primary, #1e293b);
+                background: rgba(255,255,255,0.5);
+            }
+            .progress-view-btn.active {
+                background: #fff;
+                color: var(--accent-blue, #3b82f6);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            }
+            .progress-search-input {
+                flex: 1;
+                min-width: 180px;
+                padding: 9px 14px 9px 38px;
+                border: 1px solid var(--border-glass, rgba(0,0,0,0.1));
+                border-radius: 10px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: var(--text-primary, #1e293b);
+                background: var(--bg-primary, #fff);
+                outline: none;
+                transition: all 0.2s ease;
+            }
+            .progress-search-input:focus {
+                border-color: rgba(59, 130, 246, 0.4);
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+            }
+            .progress-search-wrap {
+                position: relative;
+                flex: 1;
+                min-width: 180px;
+            }
+            .progress-search-wrap i {
+                position: absolute;
+                left: 13px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--text-secondary, #94a3b8);
+                font-size: 0.85rem;
+                pointer-events: none;
+            }
+            .progress-leader-filter-select {
+                padding: 9px 14px;
+                border: 1px solid var(--border-glass, rgba(0,0,0,0.1));
+                border-radius: 10px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-primary, #1e293b);
+                background: var(--bg-primary, #fff);
+                cursor: pointer;
+                outline: none;
+            }
+            .progress-stats-summary {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin-left: auto;
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: var(--text-secondary, #64748b);
+                white-space: nowrap;
+            }
+            .progress-stats-summary .stat-num {
+                color: var(--accent-blue, #3b82f6);
+                font-size: 1.1rem;
+            }
+
+            /* ===== LIST VIEW GRID ===== */
+            .progress-list-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 16px;
+                animation: fadeInUp 0.4s ease-out;
+            }
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(12px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .progress-list-card {
+                background: var(--bg-secondary, rgba(255,255,255,0.7));
+                backdrop-filter: blur(12px);
+                border: 1px solid var(--border-glass, rgba(0,0,0,0.06));
+                border-radius: 18px;
+                padding: 20px;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+                position: relative;
+                overflow: hidden;
+            }
+            .progress-list-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: var(--card-accent-color, #38bdf8);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .progress-list-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+                border-color: rgba(59, 130, 246, 0.2);
+            }
+            .progress-list-card:hover::before {
+                opacity: 1;
+            }
+            .progress-list-card-top {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 14px;
+            }
+            .progress-list-card-avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2.5px solid var(--border-glass, #fff);
+                box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+                flex-shrink: 0;
+            }
+            .progress-list-card-avatar-placeholder {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 1.2rem;
+                flex-shrink: 0;
+            }
+            .progress-list-card-info h4 {
+                margin: 0;
+                font-size: 1.02rem;
+                font-weight: 700;
+                color: var(--text-primary, #1e293b);
+            }
+            .progress-list-card-info .card-email {
+                font-size: 0.8rem;
+                color: var(--text-secondary, #64748b);
+                margin-top: 2px;
+            }
+            .progress-list-card-info .card-leader-tag {
+                font-size: 0.72rem;
+                font-weight: 700;
+                color: #7c3aed;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-top: 3px;
+            }
+            .progress-list-card-progress {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+            .progress-list-card-bar {
+                flex: 1;
+                height: 8px;
+                background: rgba(0,0,0,0.05);
+                border-radius: 99px;
+                overflow: hidden;
+            }
+            .progress-list-card-bar-fill {
+                height: 100%;
+                border-radius: 99px;
+                transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .progress-list-card-pct {
+                font-size: 0.95rem;
+                font-weight: 800;
+                color: var(--text-primary, #1e293b);
+                min-width: 45px;
+                text-align: right;
+            }
+            .progress-list-card-bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .progress-list-card-step {
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: var(--text-secondary, #64748b);
+            }
+            .progress-list-card-level {
+                font-size: 0.72rem;
+                font-weight: 700;
+                padding: 3px 10px;
+                border-radius: 99px;
+                color: #fff;
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .progress-list-empty {
+                text-align: center;
+                padding: 50px 20px;
+                color: var(--text-secondary, #64748b);
+            }
+            .progress-list-empty i {
+                font-size: 3rem;
+                color: #cbd5e1;
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            /* ===== PROGRESS MODAL (Glassmorphism) ===== */
+            .progress-modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(15, 23, 42, 0.45);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                z-index: 10000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .progress-modal-overlay.open {
+                display: flex;
+                opacity: 1;
+            }
+            .progress-modal-content {
+                background: rgba(255, 255, 255, 0.88);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255,255,255,0.6);
+                width: 92%;
+                max-width: 620px;
+                max-height: 85vh;
+                border-radius: 24px;
+                padding: 0;
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+                display: flex;
+                flex-direction: column;
+                transform: translateY(30px) scale(0.97);
+                transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+                overflow: hidden;
+            }
+            .progress-modal-overlay.open .progress-modal-content {
+                transform: translateY(0) scale(1);
+            }
+            .progress-modal-top {
+                padding: 24px 28px 18px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                position: relative;
+            }
+            .progress-modal-top .modal-avatar {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 3px solid rgba(59, 130, 246, 0.2);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+                flex-shrink: 0;
+            }
+            .progress-modal-top .modal-avatar-placeholder {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3b82f6, #2563eb);
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 1.4rem;
+                flex-shrink: 0;
+            }
+            .progress-modal-top .modal-user-info h3 {
+                margin: 0;
+                font-size: 1.15rem;
+                font-weight: 800;
+                color: var(--text-primary, #1e293b);
+            }
+            .progress-modal-top .modal-user-info .modal-email {
+                font-size: 0.82rem;
+                color: var(--text-secondary, #64748b);
+                margin-top: 2px;
+            }
+            .progress-modal-close {
+                position: absolute;
+                top: 18px;
+                right: 22px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: rgba(0,0,0,0.04);
+                border: none;
+                color: var(--text-secondary, #64748b);
+                font-size: 1.2rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+            }
+            .progress-modal-close:hover {
+                background: rgba(239, 68, 68, 0.1);
+                color: #ef4444;
+            }
+            .progress-modal-ring-section {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                padding: 22px 28px;
+                background: rgba(255,255,255,0.4);
+            }
+            .progress-ring-svg {
+                width: 100px;
+                height: 100px;
+                flex-shrink: 0;
+            }
+            .progress-ring-track {
+                fill: none;
+                stroke: rgba(0,0,0,0.06);
+                stroke-width: 8;
+            }
+            .progress-ring-fill {
+                fill: none;
+                stroke-width: 8;
+                stroke-linecap: round;
+                transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: rotate(-90deg);
+                transform-origin: center;
+            }
+            .progress-ring-text {
+                font-size: 1.4rem;
+                font-weight: 800;
+                fill: var(--text-primary, #1e293b);
+            }
+            .progress-modal-stats-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .progress-modal-stat {
+                text-align: center;
+                padding: 10px;
+                background: rgba(255,255,255,0.5);
+                border-radius: 12px;
+                border: 1px solid rgba(0,0,0,0.04);
+            }
+            .progress-modal-stat .stat-value {
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: var(--text-primary, #1e293b);
+                display: block;
+            }
+            .progress-modal-stat .stat-label {
+                font-size: 0.72rem;
+                font-weight: 600;
+                color: var(--text-secondary, #64748b);
+                margin-top: 2px;
+                display: block;
+            }
+            .progress-modal-body {
+                flex: 1;
+                overflow-y: auto;
+                padding: 20px 28px 28px;
+            }
+            .progress-modal-body .modal-week {
+                margin-bottom: 18px;
+            }
+            .progress-modal-body .modal-week-title {
+                font-size: 0.88rem;
+                font-weight: 800;
+                color: var(--text-primary, #1e293b);
+                margin: 0 0 10px 0;
+                padding-bottom: 6px;
+                border-bottom: 2px solid rgba(59, 130, 246, 0.12);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .progress-modal-body .modal-module-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 12px;
+                border-radius: 10px;
+                margin-bottom: 6px;
+                background: rgba(255,255,255,0.5);
+                border: 1px solid rgba(0,0,0,0.03);
+                transition: all 0.2s ease;
+            }
+            .progress-modal-body .modal-module-row:hover {
+                background: rgba(255,255,255,0.9);
+            }
+            .progress-modal-body .modal-module-row.completed {
+                background: rgba(52, 211, 153, 0.05);
+                border-color: rgba(52, 211, 153, 0.15);
+            }
+            .progress-modal-body .modal-module-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex: 1;
+            }
+            .progress-modal-body .modal-module-left input[type="checkbox"] {
+                width: 17px;
+                height: 17px;
+                accent-color: #10b981;
+                cursor: pointer;
+            }
+            .progress-modal-body .modal-module-left .mod-name {
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-primary, #1e293b);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            @media (max-width: 640px) {
+                .progress-controls-bar {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+                .progress-view-toggle {
+                    width: 100%;
+                }
+                .progress-view-btn {
+                    flex: 1;
+                    justify-content: center;
+                }
+                .progress-list-grid {
+                    grid-template-columns: 1fr;
+                }
+                .progress-modal-content {
+                    width: 96%;
+                    max-height: 92vh;
+                    border-radius: 18px;
+                }
+                .progress-modal-ring-section {
+                    flex-direction: column;
+                    gap: 16px;
+                }
+            }
         `;
         document.head.appendChild(styleEl);
     }
@@ -1234,7 +1726,7 @@ async function renderCurrentAdminTabContent() {
         `;
         renderEmailList(emails);
     } else if (currentAdminTab === 'progress') {
-        // --- RENDERING TAB 2: THEO DÕI TIẾN ĐỘ HỌC TẬP (Tree View - Sơ Đồ Cây) ---
+        // --- RENDERING TAB 2: THEO DÕI TIẾN ĐỘ HỌC TẬP ---
         
         // 1. Tải tất cả các profiles để tính toán tiến độ
         const profilesMap = await loadAllProfiles();
@@ -1244,7 +1736,179 @@ async function renderCurrentAdminTabContent() {
         const members = emails.filter(e => e.role === 'member');
         const totalModules = TRAINING_ROADMAP.reduce((sum, week) => sum + week.modules.length, 0);
 
-        // Hàm helper render card nhân sự
+        // Xác định danh sách nhân sự hiển thị (Admin xem tất cả, Leader xem nhóm mình)
+        let visibleMembers = [];
+        if (isAdmin()) {
+            visibleMembers = [...members];
+        } else if (isLeader()) {
+            const leaderEmailLower = currentUser.email.toLowerCase().trim();
+            visibleMembers = members.filter(e =>
+                (e.leaderEmail && e.leaderEmail.toLowerCase().trim() === leaderEmailLower) ||
+                (e.addedBy && e.addedBy.toLowerCase().trim() === leaderEmailLower)
+            );
+        }
+
+        // Hàm helper tính tiến độ 1 nhân sự
+        const calcMemberProgress = (item) => {
+            const memberEmail = item.email.toLowerCase().trim();
+            const profile = profilesMap[memberEmail] || {};
+            const displayName = profile.displayName || memberEmail.split('@')[0];
+            const photoURL = profile.photoURL || '';
+            const pfCompleted = profile.completedModules || [];
+            const wlCompleted = item.completedModules || [];
+            const mergedCompleted = Array.from(new Set([...pfCompleted, ...wlCompleted]));
+            const completedCount = mergedCompleted.length;
+            const progress = totalModules > 0 ? Math.round((completedCount / totalModules) * 100) : 0;
+
+            let level = { name: 'Tân Binh', icon: '🌱', color: '#38bdf8' };
+            if (progress >= 100) level = { name: 'Sát Thủ Đất Nền', icon: '🔥', color: '#f59e0b' };
+            else if (progress >= 70) level = { name: 'Chiến Binh', icon: '⚔️', color: '#34d399' };
+            else if (progress >= 30) level = { name: 'Tân Binh Tiến Bộ', icon: '🌟', color: '#a78bfa' };
+
+            // Xác định bước hiện tại (tuần nào đang học)
+            let currentStep = 1;
+            let currentStepName = TRAINING_ROADMAP[0] ? TRAINING_ROADMAP[0].title : '';
+            for (let i = 0; i < TRAINING_ROADMAP.length; i++) {
+                const weekModules = TRAINING_ROADMAP[i].modules;
+                const allDone = weekModules.every(mod => mergedCompleted.includes(mod.id));
+                if (allDone) {
+                    currentStep = Math.min(i + 2, TRAINING_ROADMAP.length);
+                    currentStepName = TRAINING_ROADMAP[Math.min(i + 1, TRAINING_ROADMAP.length - 1)].title;
+                } else {
+                    currentStep = i + 1;
+                    currentStepName = TRAINING_ROADMAP[i].title;
+                    break;
+                }
+            }
+
+            // Tìm leader name
+            let leaderName = '';
+            const leaderEmail = item.leaderEmail || item.addedBy || '';
+            if (leaderEmail) {
+                const lProfile = profilesMap[leaderEmail.toLowerCase().trim()] || {};
+                leaderName = lProfile.displayName || leaderEmail.split('@')[0];
+            }
+
+            return {
+                email: memberEmail,
+                displayName,
+                photoURL,
+                pfCompleted,
+                wlCompleted,
+                mergedCompleted,
+                completedCount,
+                progress,
+                level,
+                currentStep,
+                currentStepName,
+                leaderEmail: leaderEmail.toLowerCase().trim(),
+                leaderName,
+                totalModules,
+                rawItem: item
+            };
+        };
+
+        // Tính toán tiến độ cho tất cả nhân sự
+        const membersData = visibleMembers.map(m => calcMemberProgress(m));
+
+        // Build leader filter options (cho Admin)
+        let leaderFilterHTML = '';
+        if (isAdmin() && leaders.length > 0) {
+            leaderFilterHTML = `
+                <select class="progress-leader-filter-select" id="progress-leader-filter-new" onchange="filterProgressByControls()">
+                    <option value="all">🏢 Tất cả nhóm</option>
+                    ${leaders.map(l => {
+                        const lEmail = l.email.toLowerCase().trim();
+                        const lProfile = profilesMap[lEmail] || {};
+                        const lName = lProfile.displayName || lEmail.split('@')[0];
+                        return `<option value="${lEmail}">⭐ ${lName}</option>`;
+                    }).join('')}
+                    <option value="unassigned">⚠️ Chưa phân nhóm</option>
+                </select>
+            `;
+        }
+
+        // ===== THANH ĐIỀU KHIỂN CHUNG =====
+        const controlsBarHTML = `
+            <div class="progress-controls-bar">
+                <div class="progress-view-toggle">
+                    <button class="progress-view-btn ${currentProgressViewMode === 'list' ? 'active' : ''}" onclick="switchProgressViewMode('list')">
+                        <i class="fa-solid fa-grip"></i> Danh sách
+                    </button>
+                    <button class="progress-view-btn ${currentProgressViewMode === 'tree' ? 'active' : ''}" onclick="switchProgressViewMode('tree')">
+                        <i class="fa-solid fa-sitemap"></i> Sơ đồ cây
+                    </button>
+                </div>
+                <div class="progress-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="progress-search-input" id="progress-search-input" placeholder="Tìm tên, email nhân sự..." oninput="filterProgressByControls()" />
+                </div>
+                ${leaderFilterHTML}
+                <div class="progress-stats-summary">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="stat-num" id="progress-visible-count">${membersData.length}</span>
+                    <span>nhân sự</span>
+                </div>
+            </div>
+        `;
+
+        // ===== RENDER LIST VIEW =====
+        const renderListView = () => {
+            if (membersData.length === 0) {
+                return `
+                    <div class="progress-list-empty">
+                        <i class="fa-solid fa-users-slash"></i>
+                        <h3>Chưa có nhân sự</h3>
+                        <p>Hãy thêm nhân sự vào hệ thống để theo dõi tiến độ học tập.</p>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="progress-list-grid" id="progress-list-grid">
+                    ${membersData.map(m => `
+                        <div class="progress-list-card" 
+                             style="--card-accent-color: ${m.level.color};"
+                             data-email="${m.email}"
+                             data-name="${m.displayName.toLowerCase()}"
+                             data-leader="${m.leaderEmail}"
+                             onclick="showMemberProgressModal('${m.email}')">
+                            <div class="progress-list-card-top">
+                                ${m.photoURL 
+                                    ? `<img class="progress-list-card-avatar" src="${m.photoURL}" alt="${m.displayName}" referrerpolicy="no-referrer" />`
+                                    : `<div class="progress-list-card-avatar-placeholder">${m.displayName.substring(0,1).toUpperCase()}</div>`
+                                }
+                                <div class="progress-list-card-info">
+                                    <h4>${m.displayName}</h4>
+                                    <div class="card-email">${m.email}</div>
+                                    ${m.leaderName 
+                                        ? `<div class="card-leader-tag"><i class="fa-solid fa-star"></i> ${m.leaderName}</div>`
+                                        : (isAdmin() ? `<div class="card-leader-tag" style="color:#f59e0b;"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</div>` : '')
+                                    }
+                                </div>
+                            </div>
+                            <div class="progress-list-card-progress">
+                                <div class="progress-list-card-bar">
+                                    <div class="progress-list-card-bar-fill" style="width: ${m.progress}%; background: ${m.level.color};"></div>
+                                </div>
+                                <div class="progress-list-card-pct">${m.progress}%</div>
+                            </div>
+                            <div class="progress-list-card-bottom">
+                                <div class="progress-list-card-step">
+                                    <i class="fa-solid fa-shoe-prints"></i>
+                                    Bước ${m.currentStep}/${TRAINING_ROADMAP.length} — ${m.currentStepName}
+                                </div>
+                                <div class="progress-list-card-level" style="background: ${m.level.color};">
+                                    ${m.level.icon} ${m.level.name}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        };
+
+        // Hàm helper render card nhân sự cho Tree View (giữ nguyên từ trước)
         const renderMemberCard = (item) => {
             const memberEmail = item.email.toLowerCase().trim();
             const profile = profilesMap[memberEmail] || {};
@@ -1331,224 +1995,244 @@ async function renderCurrentAdminTabContent() {
             `;
         };
 
-        if (isAdmin()) {
-            // --- SƠ ĐỒ CÂY CỦA PHÓ PHÒNG (ADMIN) ---
-            
-            // Xây dựng map phân nhóm
-            const tree = {};
-            leaders.forEach(l => {
-                tree[l.email.toLowerCase()] = {
-                    leaderInfo: l,
-                    members: []
-                };
-            });
+        // ===== RENDER TREE VIEW =====
+        const renderTreeView = () => {
+            if (isAdmin()) {
+                // --- SƠ ĐỒ CÂY CỦA PHÓ PHÒNG (ADMIN) ---
+                const tree = {};
+                leaders.forEach(l => {
+                    tree[l.email.toLowerCase()] = {
+                        leaderInfo: l,
+                        members: []
+                    };
+                });
 
-            const unassignedMembers = [];
-            members.forEach(m => {
-                const lEmail = m.leaderEmail ? m.leaderEmail.toLowerCase().trim() : '';
-                if (lEmail && tree[lEmail]) {
-                    tree[lEmail].members.push(m);
-                } else {
-                    unassignedMembers.push(m);
-                }
-            });
+                const unassignedMembers = [];
+                members.forEach(m => {
+                    const lEmail = m.leaderEmail ? m.leaderEmail.toLowerCase().trim() : '';
+                    if (lEmail && tree[lEmail]) {
+                        tree[lEmail].members.push(m);
+                    } else {
+                        unassignedMembers.push(m);
+                    }
+                });
 
-            // Tìm thông tin profile của Phó Phòng hiện tại (Root)
-            const rootEmail = currentUser.email.toLowerCase().trim();
-            const rootProfile = profilesMap[rootEmail] || {};
-            const rootName = rootProfile.displayName || "Sếp Khương Trịnh";
-            const rootPhoto = currentUser.photoURL || '';
+                const rootEmail = currentUser.email.toLowerCase().trim();
+                const rootProfile = profilesMap[rootEmail] || {};
+                const rootName = rootProfile.displayName || "Sếp Khương Trịnh";
+                const rootPhoto = currentUser.photoURL || '';
 
-            tabContentEl.innerHTML = `
-                <div class="org-tree-wrapper">
-                    <!-- Zoom Controls -->
-                    <div class="tree-zoom-controls">
-                        <button onclick="adjustTreeZoom('out')" title="Thu nhỏ (Zoom Out)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
-                        <span id="tree-zoom-indicator" class="tree-zoom-indicator">100%</span>
-                        <button onclick="adjustTreeZoom('in')" title="Phóng to (Zoom In)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-                        <button onclick="adjustTreeZoom('reset')" title="Đặt lại về 100%"><i class="fa-solid fa-rotate-left"></i></button>
-                    </div>
-                    <div class="org-tree">
-                        <ul>
-                            <li class="tree-root-group collapsed" id="root-group-main">
-                                <!-- Nút Gốc (Phó Phòng) -->
-                                <div class="tree-node-wrapper">
-                                    <div class="tree-root-box" onclick="toggleRootGroup(this)" style="display:flex; justify-content:space-between; align-items:center; gap:20px; width:340px;">
-                                        <div style="display:flex; align-items:center; gap:15px;">
-                                            ${rootPhoto 
-                                                ? `<img class="tree-root-avatar" src="${rootPhoto}" referrerpolicy="no-referrer" />`
-                                                : `<i class="fa-solid fa-crown" style="font-size:2.5rem; color:#f59e0b; background: rgba(255,255,255,0.8); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"></i>`
-                                            }
-                                            <div class="tree-root-info" style="text-align:left;">
-                                                <h3>${rootName}</h3>
-                                                <span class="tree-root-badge"><i class="fa-solid fa-crown"></i> PHÓ PHÒNG (ADMIN)</span>
+                return `
+                    <div class="org-tree-wrapper">
+                        <div class="tree-zoom-controls">
+                            <button onclick="adjustTreeZoom('out')" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                            <span id="tree-zoom-indicator" class="tree-zoom-indicator">100%</span>
+                            <button onclick="adjustTreeZoom('in')" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                            <button onclick="adjustTreeZoom('reset')" title="Đặt lại"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                        <div class="org-tree">
+                            <ul>
+                                <li class="tree-root-group collapsed" id="root-group-main">
+                                    <div class="tree-node-wrapper">
+                                        <div class="tree-root-box" onclick="toggleRootGroup(this)" style="display:flex; justify-content:space-between; align-items:center; gap:20px; width:340px;">
+                                            <div style="display:flex; align-items:center; gap:15px;">
+                                                ${rootPhoto 
+                                                    ? `<img class="tree-root-avatar" src="${rootPhoto}" referrerpolicy="no-referrer" />`
+                                                    : `<i class="fa-solid fa-crown" style="font-size:2.5rem; color:#f59e0b; background: rgba(255,255,255,0.8); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"></i>`
+                                                }
+                                                <div class="tree-root-info" style="text-align:left;">
+                                                    <h3>${rootName}</h3>
+                                                    <span class="tree-root-badge"><i class="fa-solid fa-crown"></i> PHÓ PHÒNG (ADMIN)</span>
+                                                </div>
                                             </div>
+                                            <div class="progress-accordion-arrow" style="color:#fff; font-size:1.1rem; margin-right:5px;"><i class="fa-solid fa-chevron-down"></i></div>
                                         </div>
-                                        <div class="progress-accordion-arrow" style="color:#fff; font-size:1.1rem; margin-right:5px;"><i class="fa-solid fa-chevron-down"></i></div>
                                     </div>
-                                </div>
 
-                                <!-- Nhánh Trưởng nhóm F1 -->
-                                <ul>
-                                    ${leaders.map(l => {
-                                        const lEmail = l.email.toLowerCase().trim();
-                                        const lProfile = profilesMap[lEmail] || {};
-                                        const lName = lProfile.displayName || lEmail.split('@')[0];
-                                        const lPhoto = lProfile.photoURL || '';
-                                        const lMembers = tree[lEmail] ? tree[lEmail].members : [];
+                                    <ul>
+                                        ${leaders.map(l => {
+                                            const lEmail = l.email.toLowerCase().trim();
+                                            const lProfile = profilesMap[lEmail] || {};
+                                            const lName = lProfile.displayName || lEmail.split('@')[0];
+                                            const lPhoto = lProfile.photoURL || '';
+                                            const lMembers = tree[lEmail] ? tree[lEmail].members : [];
 
-                                        return `
-                                            <li class="tree-leader-group collapsed" id="leader-group-${lEmail.replace(/[@.]/g, '_')}">
-                                                <!-- Nút Trưởng nhóm -->
+                                            return `
+                                                <li class="tree-leader-group collapsed" id="leader-group-${lEmail.replace(/[@.]/g, '_')}">
+                                                    <div class="tree-node-wrapper">
+                                                        <div class="tree-leader-box" onclick="toggleLeaderGroup('${lEmail}', this)">
+                                                            <div class="tree-leader-main">
+                                                                ${lPhoto 
+                                                                    ? `<img class="tree-leader-avatar" src="${lPhoto}" referrerpolicy="no-referrer" />`
+                                                                    : `<i class="fa-solid fa-circle-user" style="font-size:2.2rem; color:#94a3b8;"></i>`
+                                                                }
+                                                                <div style="display:flex; flex-direction:column; gap:2px;">
+                                                                    <span style="font-weight:700; color:var(--text-primary); font-size:1.02rem;">
+                                                                        ${lName}
+                                                                    </span>
+                                                                    <span class="tree-leader-badge"><i class="fa-solid fa-star"></i> TRƯỞNG NHÓM (F1)</span>
+                                                                    <span style="font-size:0.75rem; color:var(--text-secondary);">${lEmail}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div style="display:flex; align-items:center; gap:8px; margin-top:5px;">
+                                                                <span style="font-size:0.75rem; font-weight:700; color:#9333ea; background:rgba(147,51,234,0.08); padding:2px 8px; border-radius:6px;">
+                                                                    ${lMembers.length} nhân sự
+                                                                </span>
+                                                                <div class="progress-accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <ul>
+                                                        ${lMembers.length === 0 
+                                                            ? `<li>
+                                                                <div class="tree-node-wrapper" style="color:var(--text-secondary); font-style:italic; font-size:0.85rem; padding: 10px; background: rgba(0,0,0,0.02); border-radius:8px; border: 1px dashed rgba(0,0,0,0.08); width: 280px; text-align: center;">
+                                                                    (Trống)
+                                                                </div>
+                                                               </li>`
+                                                            : lMembers.map(m => `
+                                                                <li>
+                                                                    <div class="tree-node-wrapper">
+                                                                        ${renderMemberCard(m)}
+                                                                    </div>
+                                                                </li>
+                                                            `).join('')
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            `;
+                                        }).join('')}
+
+                                        ${unassignedMembers.length > 0 ? `
+                                            <li class="tree-leader-group tree-unassigned-group collapsed" id="leader-group-unassigned">
                                                 <div class="tree-node-wrapper">
-                                                    <div class="tree-leader-box" onclick="toggleLeaderGroup('${lEmail}', this)">
+                                                    <div class="tree-leader-box tree-unassigned-box" onclick="toggleLeaderGroup('unassigned', this)">
                                                         <div class="tree-leader-main">
-                                                            ${lPhoto 
-                                                                ? `<img class="tree-leader-avatar" src="${lPhoto}" referrerpolicy="no-referrer" />`
-                                                                : `<i class="fa-solid fa-circle-user" style="font-size:2.2rem; color:#94a3b8;"></i>`
-                                                            }
+                                                            <i class="fa-solid fa-circle-question" style="font-size:2rem; color:#f59e0b; background:rgba(245,158,11,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink: 0;"></i>
                                                             <div style="display:flex; flex-direction:column; gap:2px;">
                                                                 <span style="font-weight:700; color:var(--text-primary); font-size:1.02rem;">
-                                                                    ${lName}
+                                                                    Tự do
                                                                 </span>
-                                                                <span class="tree-leader-badge"><i class="fa-solid fa-star"></i> TRƯỞNG NHÓM (F1)</span>
-                                                                <span style="font-size:0.75rem; color:var(--text-secondary);">${lEmail}</span>
+                                                                <span class="tree-leader-badge tree-unassigned-badge"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</span>
                                                             </div>
                                                         </div>
                                                         <div style="display:flex; align-items:center; gap:8px; margin-top:5px;">
-                                                            <span style="font-size:0.75rem; font-weight:700; color:#9333ea; background:rgba(147,51,234,0.08); padding:2px 8px; border-radius:6px;">
-                                                                ${lMembers.length} nhân sự
+                                                            <span style="font-size:0.75rem; font-weight:700; color:#f59e0b; background:rgba(245,158,11,0.08); padding:2px 8px; border-radius:6px;">
+                                                                ${unassignedMembers.length} nhân sự
                                                             </span>
                                                             <div class="progress-accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- Nhánh các F2 thuộc Leader này -->
                                                 <ul>
-                                                    ${lMembers.length === 0 
-                                                        ? `<li>
-                                                            <div class="tree-node-wrapper" style="color:var(--text-secondary); font-style:italic; font-size:0.85rem; padding: 10px; background: rgba(0,0,0,0.02); border-radius:8px; border: 1px dashed rgba(0,0,0,0.08); width: 280px; text-align: center;">
-                                                                (Trống)
+                                                    ${unassignedMembers.map(m => `
+                                                        <li>
+                                                            <div class="tree-node-wrapper">
+                                                                ${renderMemberCard(m)}
                                                             </div>
-                                                           </li>`
-                                                        : lMembers.map(m => `
-                                                            <li>
-                                                                <div class="tree-node-wrapper">
-                                                                    ${renderMemberCard(m)}
-                                                                </div>
-                                                            </li>
-                                                        `).join('')
-                                                    }
+                                                        </li>
+                                                    `).join('')}
                                                 </ul>
                                             </li>
-                                        `;
-                                    }).join('')}
+                                        ` : ''}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (isLeader()) {
+                // --- SƠ ĐỒ CÂY CỦA TRƯỞNG NHÓM (LEADER) ---
+                const leaderEmailLower = currentUser.email.toLowerCase().trim();
+                const groupMembers = members.filter(e => 
+                    (e.leaderEmail && e.leaderEmail.toLowerCase().trim() === leaderEmailLower) || 
+                    (e.addedBy && e.addedBy.toLowerCase().trim() === leaderEmailLower)
+                );
 
-                                    <!-- Nhóm các nhân sự tự do/chưa phân nhóm -->
-                                    ${unassignedMembers.length > 0 ? `
-                                        <li class="tree-leader-group tree-unassigned-group collapsed" id="leader-group-unassigned">
-                                            <!-- Nút chưa phân nhóm -->
-                                            <div class="tree-node-wrapper">
-                                                <div class="tree-leader-box tree-unassigned-box" onclick="toggleLeaderGroup('unassigned', this)">
-                                                    <div class="tree-leader-main">
-                                                        <i class="fa-solid fa-circle-question" style="font-size:2rem; color:#f59e0b; background:rgba(245,158,11,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink: 0;"></i>
-                                                        <div style="display:flex; flex-direction:column; gap:2px;">
-                                                            <span style="font-weight:700; color:var(--text-primary); font-size:1.02rem;">
-                                                                Tự do
-                                                            </span>
-                                                            <span class="tree-leader-badge tree-unassigned-badge"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</span>
-                                                        </div>
-                                                    </div>
-                                                    <div style="display:flex; align-items:center; gap:8px; margin-top:5px;">
-                                                        <span style="font-size:0.75rem; font-weight:700; color:#f59e0b; background:rgba(245,158,11,0.08); padding:2px 8px; border-radius:6px;">
-                                                            ${unassignedMembers.length} nhân sự
-                                                        </span>
-                                                        <div class="progress-accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
-                                                    </div>
-                                                </div>
+                const lProfile = profilesMap[leaderEmailLower] || {};
+                const lName = lProfile.displayName || currentUser.displayName || leaderEmailLower.split('@')[0];
+                const lPhoto = currentUser.photoURL || '';
+
+                return `
+                    <div class="org-tree-wrapper">
+                        <div class="tree-zoom-controls">
+                            <button onclick="adjustTreeZoom('out')" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                            <span id="tree-zoom-indicator" class="tree-zoom-indicator">100%</span>
+                            <button onclick="adjustTreeZoom('in')" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                            <button onclick="adjustTreeZoom('reset')" title="Đặt lại"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                        <div class="org-tree">
+                            <ul>
+                                <li>
+                                    <div class="tree-node-wrapper">
+                                        <div class="tree-root-box" style="background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%); border-color: #6d28d9; color: #fff; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);">
+                                            ${lPhoto 
+                                                ? `<img class="tree-root-avatar" src="${lPhoto}" referrerpolicy="no-referrer" />`
+                                                : `<i class="fa-solid fa-star" style="font-size:2.2rem; color:#9333ea; background: rgba(255,255,255,0.8); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"></i>`
+                                            }
+                                            <div class="tree-root-info">
+                                                <h3>${lName}</h3>
+                                                <span class="tree-root-badge" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: #fff;"><i class="fa-solid fa-star"></i> TRƯỞNG NHÓM (F1)</span>
+                                                <span style="font-size:0.75rem; color:rgba(255, 255, 255, 0.85); display:block; margin-top:5px;"><i class="fa-solid fa-user-group"></i> ${groupMembers.length} nhân sự</span>
                                             </div>
-                                            <ul>
-                                                ${unassignedMembers.map(m => `
-                                                    <li>
-                                                        <div class="tree-node-wrapper">
-                                                            ${renderMemberCard(m)}
-                                                        </div>
-                                                    </li>
-                                                `).join('')}
-                                            </ul>
-                                        </li>
-                                    ` : ''}
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-        } else if (isLeader()) {
-            // --- SƠ ĐỒ CÂY CỦA TRƯỞNG NHÓM (LEADER) ---
-            const leaderEmailLower = currentUser.email.toLowerCase().trim();
-            const groupMembers = members.filter(e => 
-                (e.leaderEmail && e.leaderEmail.toLowerCase().trim() === leaderEmailLower) || 
-                (e.addedBy && e.addedBy.toLowerCase().trim() === leaderEmailLower)
-            );
-
-            const lProfile = profilesMap[leaderEmailLower] || {};
-            const lName = lProfile.displayName || currentUser.displayName || leaderEmailLower.split('@')[0];
-            const lPhoto = currentUser.photoURL || '';
-
-            tabContentEl.innerHTML = `
-                <div class="org-tree-wrapper">
-                    <!-- Zoom Controls -->
-                    <div class="tree-zoom-controls">
-                        <button onclick="adjustTreeZoom('out')" title="Thu nhỏ (Zoom Out)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
-                        <span id="tree-zoom-indicator" class="tree-zoom-indicator">100%</span>
-                        <button onclick="adjustTreeZoom('in')" title="Phóng to (Zoom In)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-                        <button onclick="adjustTreeZoom('reset')" title="Đặt lại về 100%"><i class="fa-solid fa-rotate-left"></i></button>
-                    </div>
-                    <div class="org-tree">
-                        <ul>
-                            <li>
-                                <!-- Nút Gốc Nhóm (Trưởng Nhóm) -->
-                                <div class="tree-node-wrapper">
-                                    <div class="tree-root-box" style="background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%); border-color: #6d28d9; color: #fff; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);">
-                                        ${lPhoto 
-                                            ? `<img class="tree-root-avatar" src="${lPhoto}" referrerpolicy="no-referrer" />`
-                                            : `<i class="fa-solid fa-star" style="font-size:2.2rem; color:#9333ea; background: rgba(255,255,255,0.8); width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;"></i>`
-                                        }
-                                        <div class="tree-root-info">
-                                            <h3>${lName}</h3>
-                                            <span class="tree-root-badge" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: #fff;"><i class="fa-solid fa-star"></i> TRƯỞNG NHÓM (F1)</span>
-                                            <span style="font-size:0.75rem; color:rgba(255, 255, 255, 0.85); display:block; margin-top:5px;"><i class="fa-solid fa-user-group"></i> ${groupMembers.length} nhân sự</span>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Nhánh các Nhân viên con F2 -->
-                                <ul>
-                                    ${groupMembers.length === 0 
-                                        ? `<li>
-                                            <div class="tree-node-wrapper" style="text-align: center; padding: 25px 35px; background: var(--bg-secondary); border-radius: 16px; border: 1px dashed var(--border-glass); width: 280px;">
-                                                <i class="fa-solid fa-users-slash" style="font-size: 2rem; color: #94a3b8; margin-bottom: 10px;"></i>
-                                                <h3 style="color: var(--text-primary); font-size: 0.95rem; margin: 0 0 5px 0;">Chưa có nhân sự dưới quyền</h3>
-                                                <p style="color: var(--text-secondary); margin: 0; font-size: 0.8rem;">Bạn chưa thêm nhân viên nào vào nhóm của mình.</p>
-                                            </div>
-                                           </li>`
-                                        : groupMembers.map(m => `
-                                            <li>
-                                                <div class="tree-node-wrapper">
-                                                    ${renderMemberCard(m)}
+                                    <ul>
+                                        ${groupMembers.length === 0 
+                                            ? `<li>
+                                                <div class="tree-node-wrapper" style="text-align: center; padding: 25px 35px; background: var(--bg-secondary); border-radius: 16px; border: 1px dashed var(--border-glass); width: 280px;">
+                                                    <i class="fa-solid fa-users-slash" style="font-size: 2rem; color: #94a3b8; margin-bottom: 10px;"></i>
+                                                    <h3 style="color: var(--text-primary); font-size: 0.95rem; margin: 0 0 5px 0;">Chưa có nhân sự dưới quyền</h3>
+                                                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.8rem;">Bạn chưa thêm nhân viên nào vào nhóm của mình.</p>
                                                 </div>
-                                            </li>
-                                        `).join('')
-                                    }
-                                </ul>
-                            </li>
-                        </ul>
+                                               </li>`
+                                            : groupMembers.map(m => `
+                                                <li>
+                                                    <div class="tree-node-wrapper">
+                                                        ${renderMemberCard(m)}
+                                                    </div>
+                                                </li>
+                                            `).join('')
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                `;
+            }
+            return '<p style="text-align:center; color:var(--text-secondary);">Không có dữ liệu.</p>';
+        };
+
+        // ===== GHÉP TOÀN BỘ =====
+        const viewContent = currentProgressViewMode === 'list' ? renderListView() : renderTreeView();
+        
+        tabContentEl.innerHTML = `
+            ${controlsBarHTML}
+            <div id="progress-view-container">
+                ${viewContent}
+            </div>
+            
+            <!-- Modal Chi Tiết Tiến Độ Học Tập (Glassmorphism) -->
+            <div class="progress-modal-overlay" id="progress-modal-overlay">
+                <div class="progress-modal-content">
+                    <div class="progress-modal-top" id="progress-modal-top"></div>
+                    <div class="progress-modal-ring-section" id="progress-modal-ring"></div>
+                    <div class="progress-modal-body" id="progress-modal-body"></div>
                 </div>
-            `;
-        }
+            </div>
+        `;
+
+        // Bind phím Esc để đóng modal
+        window._progressModalEscHandler = function(e) {
+            if (e.key === 'Escape') closeProgressModal();
+        };
+        window.addEventListener('keydown', window._progressModalEscHandler);
+
+        // Lưu membersData vào window để các hàm filter/modal truy cập
+        window._progressMembersData = membersData;
+        window._progressProfilesMap = profilesMap;
     } else if (currentAdminTab === 'access_logs') {
         // --- RENDERING TAB 3: NHẬT KÝ TRUY CẬP (Access Logs) ---
         const profilesMap = await loadAllProfiles();
@@ -1683,6 +2367,259 @@ async function loadAllProfiles() {
     } catch (error) {
         console.error("Lỗi tải danh sách profiles:", error);
         return {};
+    }
+}
+
+// Chuyển đổi chế độ xem List View / Tree View
+function switchProgressViewMode(mode) {
+    currentProgressViewMode = mode;
+    // Re-render toàn bộ tab progress
+    renderCurrentAdminTabContent();
+}
+
+// Lọc danh sách tiến trình theo Search + Leader (List View)
+function filterProgressByControls() {
+    const searchInput = document.getElementById('progress-search-input');
+    const leaderFilter = document.getElementById('progress-leader-filter-new');
+    
+    const searchVal = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const leaderVal = leaderFilter ? leaderFilter.value.trim().toLowerCase() : 'all';
+    
+    const cards = document.querySelectorAll('.progress-list-card');
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        const email = card.getAttribute('data-email') || '';
+        const leader = card.getAttribute('data-leader') || '';
+        
+        // Search filter
+        const matchSearch = !searchVal || name.includes(searchVal) || email.includes(searchVal);
+        
+        // Leader filter
+        let matchLeader = true;
+        if (leaderVal !== 'all') {
+            if (leaderVal === 'unassigned') {
+                matchLeader = !leader || leader === '';
+            } else {
+                matchLeader = leader === leaderVal;
+            }
+        }
+        
+        if (matchSearch && matchLeader) {
+            card.style.display = '';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Cập nhật counter
+    const countEl = document.getElementById('progress-visible-count');
+    if (countEl) countEl.textContent = visibleCount;
+}
+
+// Mở Modal chi tiết tiến độ học tập
+async function showMemberProgressModal(memberEmail) {
+    const overlay = document.getElementById('progress-modal-overlay');
+    if (!overlay) return;
+
+    const memberEmailLower = memberEmail.toLowerCase().trim();
+    
+    // Lấy dữ liệu từ cache hoặc tải mới
+    let memberData = null;
+    if (window._progressMembersData) {
+        memberData = window._progressMembersData.find(m => m.email === memberEmailLower);
+    }
+    
+    if (!memberData) {
+        // Fallback: tải dữ liệu trực tiếp
+        const db = firebase.firestore();
+        const wlDoc = await db.collection('whitelist').doc(memberEmailLower).get();
+        const pfDoc = await db.collection('profiles').doc(memberEmailLower).get();
+        if (!wlDoc.exists) return;
+        
+        const wlData = wlDoc.data();
+        const pfData = pfDoc.exists ? pfDoc.data() : {};
+        const totalModules = TRAINING_ROADMAP.reduce((s, w) => s + w.modules.length, 0);
+        const pfCompleted = pfData.completedModules || [];
+        const wlCompleted = wlData.completedModules || [];
+        const mergedCompleted = Array.from(new Set([...pfCompleted, ...wlCompleted]));
+        const completedCount = mergedCompleted.length;
+        const progress = totalModules > 0 ? Math.round((completedCount / totalModules) * 100) : 0;
+        
+        let level = { name: 'Tân Binh', icon: '🌱', color: '#38bdf8' };
+        if (progress >= 100) level = { name: 'Sát Thủ Đất Nền', icon: '🔥', color: '#f59e0b' };
+        else if (progress >= 70) level = { name: 'Chiến Binh', icon: '⚔️', color: '#34d399' };
+        else if (progress >= 30) level = { name: 'Tân Binh Tiến Bộ', icon: '🌟', color: '#a78bfa' };
+        
+        memberData = {
+            email: memberEmailLower,
+            displayName: pfData.displayName || memberEmailLower.split('@')[0],
+            photoURL: pfData.photoURL || '',
+            pfCompleted,
+            wlCompleted,
+            mergedCompleted,
+            completedCount,
+            progress,
+            level,
+            totalModules
+        };
+    }
+
+    const m = memberData;
+    const circumference = 2 * Math.PI * 42;
+    const offset = circumference - (m.progress / 100) * circumference;
+
+    // Render Header
+    document.getElementById('progress-modal-top').innerHTML = `
+        ${m.photoURL 
+            ? `<img class="modal-avatar" src="${m.photoURL}" referrerpolicy="no-referrer" />`
+            : `<div class="modal-avatar-placeholder">${m.displayName.substring(0,1).toUpperCase()}</div>`
+        }
+        <div class="modal-user-info">
+            <h3>${m.displayName}</h3>
+            <div class="modal-email">${m.email}</div>
+        </div>
+        <button class="progress-modal-close" onclick="closeProgressModal()" title="Đóng">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    `;
+
+    // Render Progress Ring + Stats
+    document.getElementById('progress-modal-ring').innerHTML = `
+        <svg class="progress-ring-svg" viewBox="0 0 100 100">
+            <circle class="progress-ring-track" cx="50" cy="50" r="42"></circle>
+            <circle class="progress-ring-fill" cx="50" cy="50" r="42"
+                    stroke="${m.level.color}"
+                    stroke-dasharray="${circumference}"
+                    stroke-dashoffset="${circumference}"></circle>
+            <text class="progress-ring-text" x="50" y="54" text-anchor="middle">${m.progress}%</text>
+        </svg>
+        <div class="progress-modal-stats-grid">
+            <div class="progress-modal-stat">
+                <span class="stat-value">${m.completedCount}/${m.totalModules}</span>
+                <span class="stat-label">Bài đã hoàn thành</span>
+            </div>
+            <div class="progress-modal-stat">
+                <span class="stat-value" style="color:${m.level.color};">${m.level.icon} ${m.level.name}</span>
+                <span class="stat-label">Cấp độ</span>
+            </div>
+        </div>
+    `;
+
+    // Render Module List
+    document.getElementById('progress-modal-body').innerHTML = TRAINING_ROADMAP.map(week => `
+        <div class="modal-week">
+            <h4 class="modal-week-title">
+                <i class="fa-solid fa-calendar-week" style="color: var(--accent-blue, #3b82f6);"></i>
+                Tuần ${week.week}: ${week.title}
+            </h4>
+            ${week.modules.map(mod => {
+                const isCompleted = m.mergedCompleted.includes(mod.id);
+                const isWl = m.wlCompleted.includes(mod.id);
+                const isPf = m.pfCompleted.includes(mod.id);
+                
+                let badgeHtml = '';
+                if (isWl) {
+                    badgeHtml = `<span class="detail-badge badge-approved"><i class="fa-solid fa-square-check"></i> Đã duyệt</span>`;
+                } else if (isPf) {
+                    badgeHtml = `<span class="detail-badge badge-self"><i class="fa-solid fa-user-check"></i> Nhân sự tick</span>`;
+                }
+
+                return `
+                    <div class="modal-module-row ${isCompleted ? 'completed' : ''}">
+                        <div class="modal-module-left">
+                            <input type="checkbox" 
+                                   ${isCompleted ? 'checked' : ''} 
+                                   onchange="toggleMemberModuleByLeaderFromModal('${m.email}', '${mod.id}', this.checked)" />
+                            <span class="mod-name">
+                                <i class="fa-solid ${mod.icon}"></i> ${mod.name}
+                            </span>
+                        </div>
+                        ${badgeHtml}
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `).join('');
+
+    // Mở modal với animation
+    overlay.style.display = 'flex';
+    requestAnimationFrame(() => {
+        overlay.classList.add('open');
+        // Animate progress ring
+        const ringFill = overlay.querySelector('.progress-ring-fill');
+        if (ringFill) {
+            setTimeout(() => {
+                ringFill.style.strokeDashoffset = offset;
+            }, 100);
+        }
+    });
+}
+
+// Đóng Modal chi tiết tiến độ
+function closeProgressModal() {
+    const overlay = document.getElementById('progress-modal-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 300);
+}
+
+// Duyệt module từ trong Modal (tương tự toggleMemberModuleByLeader nhưng re-render modal)
+async function toggleMemberModuleByLeaderFromModal(memberEmail, moduleId, isChecked) {
+    try {
+        const db = firebase.firestore();
+        const docRef = db.collection('whitelist').doc(memberEmail.toLowerCase().trim());
+        const doc = await docRef.get();
+        if (!doc.exists) {
+            alert("Tài khoản nhân sự này không tồn tại trong Whitelist!");
+            return;
+        }
+
+        let completed = doc.data().completedModules || [];
+        if (isChecked) {
+            if (!completed.includes(moduleId)) {
+                completed.push(moduleId);
+            }
+        } else {
+            completed = completed.filter(id => id !== moduleId);
+        }
+
+        await docRef.update({ completedModules: completed });
+
+        // Re-render modal với dữ liệu mới
+        // Cập nhật cache
+        if (window._progressMembersData) {
+            const idx = window._progressMembersData.findIndex(m => m.email === memberEmail.toLowerCase().trim());
+            if (idx >= 0) {
+                window._progressMembersData[idx].wlCompleted = completed;
+                window._progressMembersData[idx].mergedCompleted = Array.from(new Set([...window._progressMembersData[idx].pfCompleted, ...completed]));
+                window._progressMembersData[idx].completedCount = window._progressMembersData[idx].mergedCompleted.length;
+                window._progressMembersData[idx].progress = window._progressMembersData[idx].totalModules > 0 
+                    ? Math.round((window._progressMembersData[idx].completedCount / window._progressMembersData[idx].totalModules) * 100) 
+                    : 0;
+                
+                const p = window._progressMembersData[idx].progress;
+                if (p >= 100) window._progressMembersData[idx].level = { name: 'Sát Thủ Đất Nền', icon: '🔥', color: '#f59e0b' };
+                else if (p >= 70) window._progressMembersData[idx].level = { name: 'Chiến Binh', icon: '⚔️', color: '#34d399' };
+                else if (p >= 30) window._progressMembersData[idx].level = { name: 'Tân Binh Tiến Bộ', icon: '🌟', color: '#a78bfa' };
+                else window._progressMembersData[idx].level = { name: 'Tân Binh', icon: '🌱', color: '#38bdf8' };
+            }
+        }
+
+        // Re-render modal nội dung
+        await showMemberProgressModal(memberEmail);
+
+        // Cũng cập nhật card bên dưới (nếu đang ở List View)
+        await refreshMemberProgressUI(memberEmail);
+        
+        showAdminToast(isChecked ? `Đã duyệt hoàn thành bài học!` : `Đã hủy duyệt bài học!`, true);
+    } catch (error) {
+        console.error("Lỗi cập nhật tiến trình từ modal:", error);
+        showAdminToast("Lỗi cập nhật tiến độ!", false);
     }
 }
 
@@ -1891,6 +2828,27 @@ async function refreshMemberProgressUI(memberEmail) {
                     </div>
                 </div>
             `).join('');
+        }
+
+        // Cập nhật List View card (nếu đang hiện List View)
+        const listCard = document.querySelector(`.progress-list-card[data-email="${memberEmailLower}"]`);
+        if (listCard) {
+            const listBarFill = listCard.querySelector('.progress-list-card-bar-fill');
+            const listPct = listCard.querySelector('.progress-list-card-pct');
+            const listLevel = listCard.querySelector('.progress-list-card-level');
+            
+            if (listBarFill) {
+                listBarFill.style.width = `${progress}%`;
+                listBarFill.style.background = level.color;
+            }
+            if (listPct) {
+                listPct.textContent = `${progress}%`;
+            }
+            if (listLevel) {
+                listLevel.style.background = level.color;
+                listLevel.innerHTML = `${level.icon} ${level.name}`;
+            }
+            listCard.style.setProperty('--card-accent-color', level.color);
         }
     } catch (error) {
         console.error("Lỗi cập nhật card tiến độ tại chỗ:", error);
