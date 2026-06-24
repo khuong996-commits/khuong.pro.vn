@@ -1292,6 +1292,7 @@ async function renderCurrentAdminTabContent() {
                     </div>
                     <!-- Accordion detail -->
                     <div class="progress-member-details" id="details-${memberEmail.replace(/[@.]/g, '_')}" style="display: none;">
+                        ${renderMemberPersonalInfoHtml(memberEmail, profile)}
                         ${TRAINING_ROADMAP.map(week => `
                             <div class="details-week">
                                 <h5>Tuần ${week.week}: ${week.title}</h5>
@@ -1837,6 +1838,7 @@ async function refreshMemberProgressUI(memberEmail) {
         const barFill = card.querySelector('.progress-bar-fill');
         const pctText = card.querySelector('.progress-percent-text');
         const badge = card.querySelector('.progress-member-badge');
+        const nameEl = card.querySelector('.progress-member-name');
         
         if (barFill) {
             barFill.style.width = `${progress}%`;
@@ -1849,11 +1851,14 @@ async function refreshMemberProgressUI(memberEmail) {
             badge.style.background = level.color;
             badge.innerHTML = `${level.icon} ${level.name}`;
         }
+        if (nameEl) {
+            nameEl.textContent = pfData.displayName || memberEmailLower.split('@')[0];
+        }
 
         // Cập nhật các hàng chi tiết checkbox bên trong
         const detailsPanel = document.getElementById('details-' + emailEscaped);
         if (detailsPanel) {
-            detailsPanel.innerHTML = TRAINING_ROADMAP.map(week => `
+            detailsPanel.innerHTML = renderMemberPersonalInfoHtml(memberEmailLower, pfData) + TRAINING_ROADMAP.map(week => `
                 <div class="details-week">
                     <h5>Tuần ${week.week}: ${week.title}</h5>
                     <div class="details-modules">
@@ -3375,4 +3380,119 @@ function closeAccessDetails() {
     setTimeout(() => {
         modal.style.display = 'none';
     }, 300);
+}
+
+// ============================================
+// ADMIN/LEADER: MEMBER PERSONAL INFO MANAGEMENT
+// ============================================
+
+function renderMemberPersonalInfoHtml(memberEmail, profile) {
+    profile = profile || {};
+    const emailEscaped = memberEmail.replace(/[@.]/g, '_');
+    
+    return `
+        <div class="details-personal-info" style="grid-column: 1 / -1; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 18px; border-radius: 16px; border: 1px solid var(--border-glass, rgba(0,0,0,0.08)); margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.01);">
+            <h5 style="margin: 0; font-size: 0.95rem; font-weight: 800; color: var(--text-primary, #1e293b); border-bottom: 2px solid rgba(59, 130, 246, 0.15); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px;">
+                <i class="fa-solid fa-address-card" style="color: #3b82f6;"></i> THÔNG TIN CÁ NHÂN & LIÊN HỆ
+            </h5>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-user"></i> Họ tên</label>
+                    <input type="text" id="pf-name-${emailEscaped}" value="${profile.displayName || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" placeholder="Chưa nhập họ tên..." />
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-phone"></i> Số điện thoại</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="tel" id="pf-phone-${emailEscaped}" value="${profile.phone || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="0xxx xxx xxx" />
+                        ${profile.phone ? `<a href="tel:${profile.phone}" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; border-radius: 8px; text-decoration: none;" title="Gọi điện"><i class="fa-solid fa-phone"></i></a>` : ''}
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-cake-candles"></i> Ngày sinh</label>
+                    <input type="date" id="pf-birthday-${emailEscaped}" value="${profile.birthday || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-calendar-check"></i> Ngày vào Team</label>
+                    <input type="date" id="pf-joindate-${emailEscaped}" value="${profile.joinDate || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-brands fa-facebook"></i> Facebook</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="url" id="pf-facebook-${emailEscaped}" value="${profile.facebookUrl || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="https://facebook.com/..." />
+                        ${profile.facebookUrl ? `<a href="${profile.facebookUrl}" target="_blank" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #1877f2; color: #fff; border-radius: 8px; text-decoration: none;" title="Mở Facebook"><i class="fa-brands fa-facebook-f"></i></a>` : ''}
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-comment-dots"></i> Zalo</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="tel" id="pf-zalo-${emailEscaped}" value="${profile.zaloPhone || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="Số điện thoại Zalo" />
+                        ${profile.zaloPhone ? `<a href="https://zalo.me/${profile.zaloPhone.replace(/[^0-9]/g, '')}" target="_blank" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #0068ff; color: #fff; border-radius: 8px; text-decoration: none;" title="Nhắn Zalo"><i class="fa-solid fa-comment-dots"></i></a>` : ''}
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-pen-fancy"></i> Giới thiệu bản thân</label>
+                <textarea id="pf-bio-${emailEscaped}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; height: 50px; resize: vertical;" placeholder="Giới thiệu bản thân, mục tiêu...">${profile.bio || ''}</textarea>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 5px;">
+                <button onclick="handleSaveMemberProfileByLeader('${memberEmail}')" class="profile-save-btn" style="padding: 8px 16px; font-size: 0.8rem; border-radius: 8px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; display: flex; align-items: center; gap: 6px; cursor: pointer; border: none; font-weight: 700; transition: all 0.3s ease;">
+                    <i class="fa-solid fa-floppy-disk"></i> Lưu Thông Tin Nhân Sự
+                </button>
+                <span id="pf-save-status-${emailEscaped}" class="profile-save-status" style="font-size: 0.85rem; font-weight: 600;"></span>
+            </div>
+        </div>
+    `;
+}
+
+async function saveMemberProfileByLeader(memberEmail, data) {
+    try {
+        const db = firebase.firestore();
+        data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+        await db.collection('profiles').doc(memberEmail.toLowerCase().trim()).set(data, { merge: true });
+        
+        // Cập nhật bộ nhớ cục bộ (localStorage) nếu trùng với user hiện tại
+        if (currentUser && currentUser.email.toLowerCase().trim() === memberEmail.toLowerCase().trim()) {
+            const cacheKey = 'profile_' + memberEmail.toLowerCase().trim();
+            if (userProfile) Object.assign(userProfile, data);
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(userProfile));
+            } catch (e) {}
+        }
+        return true;
+    } catch (error) {
+        console.error('Lỗi lưu profile nhân viên:', error);
+        return false;
+    }
+}
+
+async function handleSaveMemberProfileByLeader(memberEmail) {
+    const emailEscaped = memberEmail.replace(/[@.]/g, '_');
+    const panel = document.getElementById('details-' + emailEscaped);
+    if (!panel) return;
+
+    const data = {
+        displayName: panel.querySelector('#pf-name-' + emailEscaped)?.value || '',
+        phone: panel.querySelector('#pf-phone-' + emailEscaped)?.value || '',
+        birthday: panel.querySelector('#pf-birthday-' + emailEscaped)?.value || '',
+        joinDate: panel.querySelector('#pf-joindate-' + emailEscaped)?.value || '',
+        facebookUrl: panel.querySelector('#pf-facebook-' + emailEscaped)?.value || '',
+        zaloPhone: panel.querySelector('#pf-zalo-' + emailEscaped)?.value || '',
+        bio: panel.querySelector('#pf-bio-' + emailEscaped)?.value || '',
+    };
+
+    const statusEl = panel.querySelector('#pf-save-status-' + emailEscaped);
+    if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang lưu...';
+
+    const success = await saveMemberProfileByLeader(memberEmail, data);
+
+    if (statusEl) {
+        statusEl.innerHTML = success
+            ? '<i class="fa-solid fa-check"></i> Đã lưu thành công!'
+            : '<i class="fa-solid fa-xmark"></i> Lỗi, thử lại';
+        statusEl.className = 'profile-save-status ' + (success ? 'save-success' : 'save-error');
+        setTimeout(() => { if (statusEl) statusEl.innerHTML = ''; }, 3000);
+    }
+    
+    // Refresh lại card hiển thị thông tin học tập của nhân viên để đồng bộ họ tên mới
+    await refreshMemberProgressUI(memberEmail);
 }
