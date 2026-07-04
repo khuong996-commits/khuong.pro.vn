@@ -976,7 +976,7 @@ async function addStaffFBLink(email) {
         // Re-render settings
         const settingsContainer = document.getElementById('cl-settings-list');
         if (settingsContainer) {
-            renderSettingsStaffList();
+            settingsContainer.innerHTML = renderSettingsStaffList();
         }
     } catch (error) {
         console.error('Lỗi thêm FB link:', error);
@@ -999,7 +999,7 @@ async function removeStaffFBLink(email, index) {
             // Re-render settings
             const settingsContainer = document.getElementById('cl-settings-list');
             if (settingsContainer) {
-                renderSettingsStaffList();
+                settingsContainer.innerHTML = renderSettingsStaffList();
             }
         }
     } catch (error) {

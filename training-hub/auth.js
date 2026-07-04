@@ -89,6 +89,9 @@ function initAuth() {
                 if (window.currentPageId === 'page-profile' && typeof renderProfilePage === 'function') {
                     renderProfilePage();
                 }
+                if (window.currentPageId === 'page-checklist-nhan-su' && typeof renderChecklistPage === 'function') {
+                    renderChecklistPage();
+                }
             }
 
             // Nếu người dùng truy cập trang chủ hoặc trang hồ sơ cũ -> vào thẳng trang Hồ Sơ
