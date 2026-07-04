@@ -16,6 +16,11 @@ const FIREBASE_CONFIG = {
 
 // Email admin mặc định
 const ADMIN_EMAIL = 'ih.khuongtrinh@gmail.com';
+// Danh sách admin bổ sung (trợ lý có full quyền)
+const ADMIN_EMAILS = [
+    'ih.khuongtrinh@gmail.com',
+    'thangckvt@gmail.com'  // Trợ lý Thắng
+];
 
 // ---- Auth State ----
 let currentUser = null;
@@ -112,8 +117,8 @@ function initAuth() {
 async function getUserRole(email) {
     email = email.toLowerCase().trim();
     
-    // Admin hardcoded
-    if (email === ADMIN_EMAIL.toLowerCase()) return 'admin';
+    // Admin hardcoded (check cả danh sách mở rộng)
+    if (ADMIN_EMAILS.some(e => e.toLowerCase() === email)) return 'admin';
 
     try {
         const db = firebase.firestore();

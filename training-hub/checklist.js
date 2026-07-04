@@ -1023,9 +1023,9 @@ function renderSettingsStaffList() {
 async function toggleStaffChecklist(email, checked) {
     try {
         const db = getChecklistDB();
-        await db.collection('whitelist').doc(email).update({
+        await db.collection('whitelist').doc(email).set({
             showInChecklist: checked
-        });
+        }, { merge: true });
         // Reload staff list
         await loadChecklistStaff();
     } catch (error) {
@@ -1046,9 +1046,9 @@ async function addStaffFBLink(email) {
     
     try {
         const db = getChecklistDB();
-        await db.collection('whitelist').doc(email).update({
+        await db.collection('whitelist').doc(email).set({
             facebook_links: firebase.firestore.FieldValue.arrayUnion(link)
-        });
+        }, { merge: true });
         input.value = '';
         // Re-render settings
         const settingsContainer = document.getElementById('cl-settings-list');
@@ -1094,9 +1094,9 @@ async function saveStaffSheet(email) {
     
     try {
         const db = getChecklistDB();
-        await db.collection('whitelist').doc(email).update({
+        await db.collection('whitelist').doc(email).set({
             customer_sheet_url: url
-        });
+        }, { merge: true });
         // Show success feedback
         const btn = input.nextElementSibling;
         if (btn) {
