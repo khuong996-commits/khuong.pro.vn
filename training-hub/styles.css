@@ -4254,6 +4254,71 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     color: #fff;
 }
 
+/* ---- Search Bar ---- */
+.cl-search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+.cl-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: var(--transition-fast);
+}
+.cl-search-input {
+    width: 100%;
+    padding: 12px 40px 12px 40px;
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    background: var(--bg-card);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-family: inherit;
+    transition: var(--transition-fast);
+    box-sizing: border-box;
+}
+.cl-search-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+.cl-search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+    background: var(--bg-secondary);
+}
+.cl-search-input:focus + .cl-search-icon,
+.cl-search-bar:focus-within .cl-search-icon {
+    color: var(--accent-blue);
+}
+.cl-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(0,0,0,0.06);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    transition: var(--transition-fast);
+}
+.cl-search-clear:hover {
+    background: rgba(248, 113, 113, 0.12);
+    color: var(--accent-red);
+}
+
 /* ---- Overview Stat Cards ---- */
 .cl-stats-grid {
     display: grid;

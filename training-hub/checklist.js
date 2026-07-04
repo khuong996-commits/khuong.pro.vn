@@ -68,6 +68,8 @@ let checklistSelectedDate = new Date();
 let checklistData = {}; // { 'YYYY-MM-DD_email': {...} }
 let checklistStaffList = []; // [{ email, name, role, showInChecklist, ... }]
 let checklistSettingsTab = 'dashboard'; // 'dashboard' | 'settings'
+let checklistSearchQuery = ''; // search filter
+let checklistSettingsSearchQuery = ''; // search filter for settings tab
 
 // ---- Load Staff List (from whitelist with showInChecklist) ----
 async function loadChecklistStaff() {
@@ -288,6 +290,16 @@ function renderDashboardTab() {
             </div>
         </div>
 
+        <!-- Search Bar -->
+        <div class="cl-search-bar">
+            <i class="fa-solid fa-magnifying-glass cl-search-icon"></i>
+            <input type="text" class="cl-search-input" id="cl-search-input" 
+                placeholder="Tìm theo tên hoặc email..." 
+                value="${checklistSearchQuery}"
+                oninput="onChecklistSearch(this.value)" />
+            ${checklistSearchQuery ? '<button class="cl-search-clear" onclick="clearChecklistSearch()"><i class="fa-solid fa-xmark"></i></button>' : ''}
+        </div>
+
         <!-- Overview Stats Cards -->
         ${renderOverviewCards(dates)}
 
@@ -356,7 +368,8 @@ async function refreshChecklistDashboard() {
 // ============================================
 
 function renderOverviewCards(dates) {
-    const totalStaff = checklistStaffList.length;
+    const filteredStaff = getFilteredStaff();
+    const totalStaff = filteredStaff.length;
     let completedCount = 0;
     let totalNewCustomers = 0;
     let totalViewingCustomers = 0;
@@ -364,7 +377,7 @@ function renderOverviewCards(dates) {
     let totalZaloPosts = 0;
 
     for (const date of dates) {
-        for (const staff of checklistStaffList) {
+        for (const staff of filteredStaff) {
             const key = `${date}_${staff.email}`;
             const entry = checklistData[key];
             if (entry) {
@@ -380,7 +393,7 @@ function renderOverviewCards(dates) {
     // For week/month, count "completed" = days where all items done
     if (checklistViewMode !== 'day') {
         completedCount = 0;
-        for (const staff of checklistStaffList) {
+        for (const staff of filteredStaff) {
             let allDone = true;
             for (const date of dates) {
                 const key = `${date}_${staff.email}`;
@@ -450,18 +463,28 @@ function renderOverviewCards(dates) {
 // ============================================
 
 function renderDayTable(dateStr) {
-    if (checklistStaffList.length === 0) {
+    const filteredStaff = getFilteredStaff();
+    if (filteredStaff.length === 0) {
+        if (checklistStaffList.length === 0) {
+            return `
+                <div class="cl-empty-state">
+                    <i class="fa-solid fa-user-slash"></i>
+                    <h3>Chưa có nhân sự nào được thêm vào checklist</h3>
+                    <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi cho từng nhân sự.</p>
+                </div>
+            `;
+        }
         return `
             <div class="cl-empty-state">
-                <i class="fa-solid fa-user-slash"></i>
-                <h3>Chưa có nhân sự nào được thêm vào checklist</h3>
-                <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi cho từng nhân sự.</p>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Không tìm thấy nhân sự "${checklistSearchQuery}"</h3>
+                <p>Thử tìm với tên hoặc email khác.</p>
             </div>
         `;
     }
 
     let rows = '';
-    for (const staff of checklistStaffList) {
+    for (const staff of filteredStaff) {
         const key = `${dateStr}_${staff.email}`;
         const entry = checklistData[key] || null;
         const status = getChecklistStatus(entry);
@@ -538,12 +561,22 @@ function renderDayTable(dateStr) {
 // ============================================
 
 function renderWeekTable(dates) {
-    if (checklistStaffList.length === 0) {
+    const filteredStaff = getFilteredStaff();
+    if (filteredStaff.length === 0) {
+        if (checklistStaffList.length === 0) {
+            return `
+                <div class="cl-empty-state">
+                    <i class="fa-solid fa-user-slash"></i>
+                    <h3>Chưa có nhân sự nào</h3>
+                    <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi.</p>
+                </div>
+            `;
+        }
         return `
             <div class="cl-empty-state">
-                <i class="fa-solid fa-user-slash"></i>
-                <h3>Chưa có nhân sự nào</h3>
-                <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi.</p>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Không tìm thấy nhân sự "${checklistSearchQuery}"</h3>
+                <p>Thử tìm với tên hoặc email khác.</p>
             </div>
         `;
     }
@@ -556,7 +589,7 @@ function renderWeekTable(dates) {
     }).join('');
 
     let rows = '';
-    for (const staff of checklistStaffList) {
+    for (const staff of filteredStaff) {
         let cells = '';
         let weekTotal = { fb: 0, zalo: 0, cust: 0, view: 0, daysOk: 0 };
         
@@ -626,18 +659,28 @@ function renderWeekTable(dates) {
 // ============================================
 
 function renderMonthTable(dates) {
-    if (checklistStaffList.length === 0) {
+    const filteredStaff = getFilteredStaff();
+    if (filteredStaff.length === 0) {
+        if (checklistStaffList.length === 0) {
+            return `
+                <div class="cl-empty-state">
+                    <i class="fa-solid fa-user-slash"></i>
+                    <h3>Chưa có nhân sự nào</h3>
+                    <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi.</p>
+                </div>
+            `;
+        }
         return `
             <div class="cl-empty-state">
-                <i class="fa-solid fa-user-slash"></i>
-                <h3>Chưa có nhân sự nào</h3>
-                <p>Vào tab <strong>Cài đặt nhân sự</strong> để bật theo dõi.</p>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Không tìm thấy nhân sự "${checklistSearchQuery}"</h3>
+                <p>Thử tìm với tên hoặc email khác.</p>
             </div>
         `;
     }
 
     let rows = '';
-    for (const staff of checklistStaffList) {
+    for (const staff of filteredStaff) {
         let monthTotal = { fb: 0, zalo: 0, cust: 0, view: 0, daysOk: 0, daysWithData: 0 };
         
         for (const date of dates) {
@@ -816,6 +859,14 @@ function renderSettingsTab() {
                 <h2><i class="fa-solid fa-users-gear" style="margin-right:8px;"></i>Quản lý nhân sự theo dõi</h2>
                 <p>Bật/tắt theo dõi, thêm link Facebook và Google Sheet cho từng nhân sự.</p>
             </div>
+            <div class="cl-search-bar">
+                <i class="fa-solid fa-magnifying-glass cl-search-icon"></i>
+                <input type="text" class="cl-search-input" id="cl-settings-search-input" 
+                    placeholder="Tìm nhân sự theo tên hoặc email..." 
+                    value="${checklistSettingsSearchQuery}"
+                    oninput="onSettingsSearch(this.value)" />
+                ${checklistSettingsSearchQuery ? '<button class="cl-search-clear" onclick="clearSettingsSearch()"><i class="fa-solid fa-xmark"></i></button>' : ''}
+            </div>
             <div id="cl-settings-list">
                 ${renderSettingsStaffList()}
             </div>
@@ -867,12 +918,24 @@ async function renderSettingsStaffListAsync() {
 function renderSettingsStaffList() {
     // This renders a placeholder, then async loads
     setTimeout(async () => {
-        const allStaff = await renderSettingsStaffListAsync();
+        let allStaff = await renderSettingsStaffListAsync();
         const container = document.getElementById('cl-settings-list');
         if (!container) return;
 
+        // Filter by search query
+        if (checklistSettingsSearchQuery.trim()) {
+            const q = checklistSettingsSearchQuery.toLowerCase().trim();
+            allStaff = allStaff.filter(s => 
+                s.name.toLowerCase().includes(q) || s.email.toLowerCase().includes(q)
+            );
+        }
+
         if (allStaff.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">Chưa có nhân sự nào trong hệ thống.</p>';
+            if (checklistSettingsSearchQuery.trim()) {
+                container.innerHTML = `<div class="cl-empty-state"><i class="fa-solid fa-magnifying-glass"></i><h3>Không tìm thấy "${checklistSettingsSearchQuery}"</h3><p>Thử tìm với tên hoặc email khác.</p></div>`;
+            } else {
+                container.innerHTML = '<p style="text-align:center; color: var(--text-secondary);">Chưa có nhân sự nào trong hệ thống.</p>';
+            }
             return;
         }
 
@@ -1034,6 +1097,105 @@ async function saveStaffSheet(email) {
         console.error('Lỗi lưu Sheet URL:', error);
         alert('Không thể lưu. Vui lòng thử lại.');
     }
+}
+
+// ---- Search Functions ----
+
+function getFilteredStaff() {
+    if (!checklistSearchQuery.trim()) return checklistStaffList;
+    const q = checklistSearchQuery.toLowerCase().trim();
+    return checklistStaffList.filter(s => 
+        s.name.toLowerCase().includes(q) || s.email.toLowerCase().includes(q)
+    );
+}
+
+function onChecklistSearch(value) {
+    checklistSearchQuery = value;
+    // Re-render chỉ phần bảng + cards, không full page để giữ focus input
+    const dates = getViewDates();
+    
+    // Update overview cards
+    const statsContainer = document.querySelector('.cl-stats-grid');
+    if (statsContainer) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = renderOverviewCards(dates);
+        const newStats = tempDiv.querySelector('.cl-stats-grid');
+        if (newStats) statsContainer.replaceWith(newStats);
+    }
+
+    // Update table
+    const tableWrapper = document.querySelector('.cl-table-wrapper');
+    const weekView = document.querySelector('.cl-week-view');
+    const targetWrapper = weekView || tableWrapper;
+    
+    if (targetWrapper) {
+        let newTableHTML = '';
+        if (checklistViewMode === 'day') newTableHTML = renderDayTable(dates[0]);
+        else if (checklistViewMode === 'week') newTableHTML = renderWeekTable(dates);
+        else newTableHTML = renderMonthTable(dates);
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = newTableHTML;
+        const parent = targetWrapper.parentNode;
+        // Remove old table + hint + legend
+        const oldHint = parent.querySelector('.cl-hint');
+        const oldLegend = parent.querySelector('.cl-week-legend');
+        if (oldHint) oldHint.remove();
+        if (oldLegend) oldLegend.remove();
+        targetWrapper.replaceWith(...tempDiv.children);
+    }
+
+    // Update clear button visibility
+    const searchBar = document.querySelector('#cl-search-input');
+    if (searchBar) {
+        const clearBtn = searchBar.parentNode.querySelector('.cl-search-clear');
+        if (checklistSearchQuery && !clearBtn) {
+            const btn = document.createElement('button');
+            btn.className = 'cl-search-clear';
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            btn.onclick = () => clearChecklistSearch();
+            searchBar.parentNode.appendChild(btn);
+        } else if (!checklistSearchQuery && clearBtn) {
+            clearBtn.remove();
+        }
+    }
+}
+
+function clearChecklistSearch() {
+    checklistSearchQuery = '';
+    const input = document.getElementById('cl-search-input');
+    if (input) { input.value = ''; input.focus(); }
+    onChecklistSearch('');
+}
+
+function onSettingsSearch(value) {
+    checklistSettingsSearchQuery = value;
+    // Re-render settings list
+    const container = document.getElementById('cl-settings-list');
+    if (container) {
+        container.innerHTML = renderSettingsStaffList();
+    }
+    // Update clear button
+    const searchBar = document.getElementById('cl-settings-search-input');
+    if (searchBar) {
+        const clearBtn = searchBar.parentNode.querySelector('.cl-search-clear');
+        if (checklistSettingsSearchQuery && !clearBtn) {
+            const btn = document.createElement('button');
+            btn.className = 'cl-search-clear';
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            btn.onclick = () => clearSettingsSearch();
+            searchBar.parentNode.appendChild(btn);
+        } else if (!checklistSettingsSearchQuery && clearBtn) {
+            clearBtn.remove();
+        }
+    }
+}
+
+function clearSettingsSearch() {
+    checklistSettingsSearchQuery = '';
+    const input = document.getElementById('cl-settings-search-input');
+    if (input) { input.value = ''; input.focus(); }
+    onSettingsSearch('');
 }
 
 // ---- Init: Called when Training Hub is loaded ----
