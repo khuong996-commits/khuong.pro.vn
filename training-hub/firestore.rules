@@ -33,9 +33,27 @@ service cloud.firestore {
         && request.auth.token.email == 'ih.khuongtrinh@gmail.com';
       
       // Leader: đọc/ghi profiles của team
-      allow read, write: if request.auth != null 
+      allow read, write: if request.auth != null
         && exists(/databases/$(database)/documents/whitelist/$(request.auth.token.email))
         && get(/databases/$(database)/documents/whitelist/$(request.auth.token.email)).data.role == 'leader';
+    }
+
+    match /checklist_daily/{docId} {
+      // Mọi user đã đăng nhập đều đọc được (dashboard không phân quyền)
+      allow read: if request.auth != null;
+      
+      // Admin: toàn quyền ghi
+      allow write: if request.auth != null 
+        && request.auth.token.email == 'ih.khuongtrinh@gmail.com';
+      
+      // Leader: ghi được tất cả doc
+      allow write: if request.auth != null
+        && exists(/databases/$(database)/documents/whitelist/$(request.auth.token.email))
+        && get(/databases/$(database)/documents/whitelist/$(request.auth.token.email)).data.role == 'leader';
+      
+      // Member: chỉ ghi được doc có email trùng với email đăng nhập
+      allow write: if request.auth != null
+        && request.resource.data.email == request.auth.token.email;
     }
   }
 }
