@@ -8,6 +8,20 @@ function getChecklistDB() {
     return firebase.firestore();
 }
 
+// ---- Checklist Permission ----
+// Danh sách email được quyền quản lý cài đặt checklist (ngoài admin/leader)
+const CHECKLIST_MANAGERS = [
+    'thangckvt@gmail.com'
+];
+
+function canManageChecklist() {
+    // Admin/Leader mặc định có quyền
+    if (canManageEmails()) return true;
+    // Kiểm tra thêm danh sách managers riêng
+    if (currentUser && CHECKLIST_MANAGERS.includes(currentUser.email.toLowerCase())) return true;
+    return false;
+}
+
 // ---- Date Helpers ----
 function formatDateKey(date) {
     const y = date.getFullYear();
@@ -237,7 +251,7 @@ function renderChecklistContent(container) {
                 <button class="cl-main-tab ${checklistSettingsTab === 'dashboard' ? 'active' : ''}" onclick="switchChecklistMainTab('dashboard')">
                     <i class="fa-solid fa-chart-line"></i> Dashboard
                 </button>
-                <button class="cl-main-tab ${checklistSettingsTab === 'settings' ? 'active' : ''}" onclick="switchChecklistMainTab('settings')" ${canManageEmails() ? '' : 'style="display:none;"'}>
+                <button class="cl-main-tab ${checklistSettingsTab === 'settings' ? 'active' : ''}" onclick="switchChecklistMainTab('settings')" ${canManageChecklist() ? '' : 'style="display:none;"'}>
                     <i class="fa-solid fa-gear"></i> Cài đặt nhân sự
                 </button>
             </div>
@@ -496,7 +510,7 @@ function renderDayTable(dateStr) {
 
         const fbClass = entry ? (entry.fb_posts >= 3 ? 'cl-cell-ok' : 'cl-cell-bad') : 'cl-cell-none';
         const zaloClass = entry ? (entry.zalo_posts >= 3 ? 'cl-cell-ok' : 'cl-cell-bad') : 'cl-cell-none';
-        const canEdit = canManageEmails() || (currentUser && currentUser.email === staff.email);
+        const canEdit = canManageChecklist() || (currentUser && currentUser.email === staff.email);
 
         rows += `
             <tr class="cl-data-row ${canEdit ? 'cl-editable' : ''}" ${canEdit ? `onclick="openChecklistModal('${dateStr}', '${staff.email}')"` : ''}>
@@ -597,7 +611,7 @@ function renderWeekTable(dates) {
             const key = `${date}_${staff.email}`;
             const entry = checklistData[key];
             const status = getChecklistStatus(entry);
-            const canEdit = canManageEmails() || (currentUser && currentUser.email === staff.email);
+            const canEdit = canManageChecklist() || (currentUser && currentUser.email === staff.email);
             
             if (entry) {
                 weekTotal.fb += entry.fb_posts || 0;
@@ -750,7 +764,7 @@ function renderMonthTable(dates) {
 
 function openChecklistModal(dateStr, email) {
     // Check permission
-    const canEdit = canManageEmails() || (currentUser && currentUser.email === email);
+    const canEdit = canManageChecklist() || (currentUser && currentUser.email === email);
     if (!canEdit) return;
 
     const staff = checklistStaffList.find(s => s.email === email);
