@@ -151,6 +151,7 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
 - **Nội dung thực hiện:**
   - Sao chép toàn bộ thư mục hình ảnh `media/` của Ninh Cơ Docs sang `khuong.pro.vn/training-hub/media/` và `TRAINING_HUB/media/`.
   - Cập nhật cấu trúc dữ liệu `docs` của cả 6 sản phẩm Ninh Cơ trong `BANG_HANG_TL_LAND.html` bao gồm đường dẫn ảnh bảng giá, nội dung vị trí, link Google Maps, iframe bản đồ, link thư mục sổ đỏ Drive, ảnh sổ đỏ mẫu và ảnh sơ đồ phân lô thực tế.
+  - Đổi tên sản phẩm **"25 lô đường bộ ven biển"** thành **"40 lô đường bộ ven biển"** cho đồng nhất với tài liệu chuẩn của dự án.
   - Lập trình lại hàm `openDetailsModal` để tự động render giao diện Dashboard 4 thẻ thông tin cực kỳ chuyên nghiệp (Bảng giá chi tiết, Vị trí & Bản đồ quy hoạch, Pháp lý & Sổ đỏ, Sơ đồ phân lô) kèm theo danh sách ảnh thực tế dự án bên dưới.
   - Thiết kế và tích hợp bộ xem ảnh **Lightbox** mượt mà hỗ trợ zoom bằng con lăn chuột, kéo thả bằng chuột, chạm kéo & pinch-to-zoom trên di động và double-click để bật/tắt phóng to.
   - Đồng bộ toàn bộ các cập nhật trên sang tệp tin `TRAINING_HUB/BANG_HANG_TL_LAND.html`.
