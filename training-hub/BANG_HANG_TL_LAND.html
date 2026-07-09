@@ -729,11 +729,17 @@ body {
 /* Modal Content Layout */
 .modal-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
+    .modal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
     .modal-grid {
         grid-template-columns: 1fr;
     }
@@ -2020,6 +2026,45 @@ const BANG_HANG_DATA = {
     document.getElementById('update-time').innerHTML =
         `<i class="fa-regular fa-clock"></i> Cập nhật lần cuối: ${data.lastUpdated}`;
 
+    const NINH_CO_ADVANTAGES = {
+        'Khu Kinh tế Ninh Cơ - NB (Ninh Bình)': [
+            'Nằm trong quy hoạch phát triển trọng điểm Khu kinh tế Ninh Cơ, tiềm năng tăng giá trị dài hạn cực lớn.',
+            'Vị trí đắc địa sát trục đường ven biển rộng 24m và đường đê sát bãi biển đẹp.',
+            'Quỹ đất vuông vắn, nhiều lô góc 2-3 mặt tiền thích hợp đầu tư kinh doanh, dịch vụ.',
+            'Pháp lý hoàn chỉnh, đất thổ cư lâu dài, sổ đỏ mang tên riêng từng nền sang tên được ngay.'
+        ],
+        '40 lô đường bộ ven biển': [
+            'Nằm sát trục đường bộ ven biển huyết mạch kết nối liên tỉnh, tính thanh khoản và khả năng thương mại cực cao.',
+            'Không gian sinh thái trong lành, ôm trọn quanh hồ điều hòa trung tâm mát mẻ.',
+            'Khoảng cách ra bãi tắm và biển Hải Xuân rất gần, chỉ vài bước chân di chuyển.',
+            'Pháp lý an toàn tuyệt đối, sổ đỏ thổ cư riêng biệt sẵn sàng công chứng ngay.'
+        ],
+        '66 lô Mặt biển Hải Xuân': [
+            'Vị trí độc tôn trực diện bãi biển Hải Xuân thơ mộng, đón gió biển và ánh bình minh tuyệt đẹp.',
+            'Bám dọc theo đường đê bao biển quy hoạch rộng thoáng, cực kỳ thuận lợi kinh doanh du lịch, khách sạn.',
+            'Nhiều sản phẩm là lô góc 2 mặt thoáng, thiết kế tối ưu tầm nhìn hướng biển.',
+            'Sổ đỏ lâu dài sở hữu vĩnh viễn, 100% đất ở đô thị.'
+        ],
+        '35 lô Giá rẻ Hải Xuân': [
+            'Đất nền giá tốt nhất phân khúc biển Hải Xuân, cơ hội vàng cho các nhà đầu tư F0.',
+            'Hạ tầng đồng bộ với đường rải nhựa rộng rãi kết nối thẳng ra trục chính QL21A.',
+            'Quỹ đất sạch hoàn chỉnh, 100% đất thổ cư lâu dài an tâm tuyệt đối.',
+            'Đón đầu sóng tăng trưởng hạ tầng du lịch biển đang phát triển mạnh mẽ.'
+        ],
+        '106 lô Mặt biển Hải Xuân': [
+            'Vị trí đắc địa tọa lạc ngay trung tâm bãi tắm Hải Xuân sầm uất và đông đúc.',
+            'Tiếp giáp trực tiếp giữa đường Quốc lộ 21A và đê bao biển, giao thương vô cùng thuận lợi.',
+            'Đặc biệt phù hợp xây dựng nhà hàng, khách sạn, quán cà phê kinh doanh dịch vụ du lịch biển.',
+            'Sổ đỏ cá nhân riêng biệt, pháp lý an toàn, sang tên nhanh chóng.'
+        ],
+        '16 lô View biển Hải Xuân': [
+            'Vị trí siêu vip trực diện view biển Hải Xuân với bãi cát mịn trắng trải dài hoang sơ.',
+            'Đất ở đô thị thổ cư 100% lâu dài, quy hoạch chuẩn chỉnh và an toàn.',
+            'Số lượng vô cùng hạn chế chỉ 16 lô, tính thanh khoản cao đón đầu làn sóng đầu tư du lịch.',
+            'Mặt tiền rộng từ 4.5m đến 13.2m thích hợp xây biệt thự nghỉ dưỡng hoặc homestay cao cấp.'
+        ]
+    };
+
     // === INIT ===
     data.regions.forEach(region => {
         region.subRegions.forEach(subReg => {
@@ -2038,6 +2083,19 @@ const BANG_HANG_DATA = {
                         layoutDesc: `Sơ đồ mặt bằng phân lô của rổ hàng ${product.name}.`,
                         realPhotos: []
                     };
+                }
+                
+                if (product.docs && !product.docs.advantages) {
+                    if (NINH_CO_ADVANTAGES[product.name]) {
+                        product.docs.advantages = NINH_CO_ADVANTAGES[product.name];
+                    } else {
+                        product.docs.advantages = [
+                            `Đất nền phân lô thổ cư lâu dài tại khu vực ${region.name}, hạ tầng hoàn thiện đồng bộ.`,
+                            `Vị trí đắc địa, kết nối giao thông thuận tiện, đón sóng quy hoạch phát triển vùng.`,
+                            `Pháp lý minh bạch, sổ đỏ sẵn sàng công chứng sang tên ngay trong ngày.`,
+                            `Tính thanh khoản cực cao, giá bán hấp dẫn F0 từ chủ đầu tư, tiềm năng tăng giá vượt trội.`
+                        ];
+                    }
                 }
             });
         });
@@ -2062,100 +2120,25 @@ const BANG_HANG_DATA = {
 
         if (!foundProduct) return;
 
+        window.currentModalProduct = foundProduct;
         document.getElementById('modal-title').textContent = foundProduct.name;
         const modalBody = document.querySelector('#detail-modal .modal-body');
-        
-        let lotsHtml = '';
-        if (foundProduct.detailLots) {
-            foundProduct.detailLots.forEach((lot, index) => {
-                const statusClass = lot.status === 'red' ? 'status-red' : 'status-yellow';
-                const statusText = lot.status === 'red' ? 'Full cọc' : 'Cọc thiếu';
-                
-                lotsHtml += `
-                    <tr>
-                        <td style="font-weight:600; color:var(--text-muted);">${index + 1}</td>
-                        <td style="font-weight:800; font-family:monospace; font-size:0.95rem; color:var(--accent-blue);">${lot.code}</td>
-                        <td style="font-weight:600;">${lot.area} m²</td>
-                        <td>${lot.frontage ? lot.frontage + ' m' : '—'}</td>
-                        <td>${lot.unitPrice}</td>
-                        <td style="font-weight:700; color:var(--accent-emerald);">${lot.totalPrice}</td>
-                        <td><span class="status-pill ${statusClass}">${statusText}</span></td>
-                        <td style="font-size:0.8rem; color:var(--text-muted);">${lot.note || '—'}</td>
-                    </tr>
-                `;
-            });
-        }
 
         let bodyHtml = '';
         if (foundProduct.docs) {
             const docs = foundProduct.docs;
+            const advantages = docs.advantages || [];
+            const advantagesHtml = advantages.map(adv => `<li>${adv}</li>`).join('');
+
             bodyHtml = `
                 <div class="modal-grid">
-                    <!-- Card 1: Bảng Giá Chi Tiết -->
-                    <div class="card">
-                        <div class="card-title">
-                            <div class="icon-wrap icon-gold" style="color:var(--accent-gold);"><i class="fa-solid fa-money-bill-wave"></i></div>
-                            Bảng Giá Chi Tiết
-                        </div>
-                        <p class="card-desc">${docs.priceBoardDesc || 'Danh sách bảng giá từ chủ đầu tư.'}</p>
-                        
-                        ${foundProduct.detailLots ? `
-                            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-                                <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Bảng trạng thái realtime</span>
-                                <div style="display: flex; gap: 8px; font-size: 0.7rem;">
-                                    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; background: #fee2e2; border: 1px solid #fca5a5; display: inline-block; border-radius: 2px;"></span> Đã cọc</span>
-                                    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; background: #fef3c7; border: 1px solid #fde68a; display: inline-block; border-radius: 2px;"></span> Cọc thiếu</span>
-                                </div>
-                            </div>
-                            <div class="modal-table-wrapper" style="max-height: 250px; overflow-y: auto;">
-                                <table class="modal-table">
-                                    <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Mã lô</th>
-                                            <th>Diện tích</th>
-                                            <th>Mặt tiền</th>
-                                            <th>Đơn giá</th>
-                                            <th>Giá bán</th>
-                                            <th>Trạng thái</th>
-                                            <th>Ghi chú</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${lotsHtml}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ` : ''}
-
-                        ${docs.priceBoardImg ? `
-                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
-                                ${Array.isArray(docs.priceBoardImg) ? `
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                                        ${docs.priceBoardImg.map((img, idx) => `
-                                            <div class="modal-gallery-card" onclick="openLightbox('${img}', 'Bảng giá ${foundProduct.name} (Phần ${idx + 1})')">
-                                                <img src="${img}" alt="Bảng giá phần ${idx + 1}" style="height: 100px; object-fit: contain; width: 100%; background: var(--bg-card-hover);">
-                                                <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem phần ${idx + 1} phóng to</p></div>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                ` : `
-                                    <div class="modal-gallery-card" onclick="openLightbox('${docs.priceBoardImg}', 'Bảng giá ${foundProduct.name}')">
-                                        <img src="${docs.priceBoardImg}" alt="Bảng giá" style="height: 140px; object-fit: contain; width: 100%; background: var(--bg-card-hover);">
-                                        <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem bảng giá phóng to</p></div>
-                                    </div>
-                                `}
-                            </div>
-                        ` : ''}
-                    </div>
-
-                    <!-- Card 2: Vị Trí & Bản Đồ Quy Hoạch -->
+                    <!-- Card 1: Vị Trí & Bản Đồ Quy Hoạch -->
                     <div class="card">
                         <div class="card-title">
                             <div class="icon-wrap icon-blue" style="color:var(--accent-blue);"><i class="fa-solid fa-map-location-dot"></i></div>
                             Vị Trí & Bản Đồ Quy Hoạch
                         </div>
-                        <div class="card-desc-box">${docs.locationText || ''}</div>
+                        <div class="card-desc-box" style="margin-bottom: 12px;">${docs.locationText || ''}</div>
                         
                         ${docs.googleMapsUrl ? `
                             <a href="${docs.googleMapsUrl}" target="_blank" class="btn-action-primary" style="background: var(--accent-blue); margin: 12px 0 8px;">
@@ -2165,18 +2148,18 @@ const BANG_HANG_DATA = {
 
                         ${docs.mapIframeSrc ? `
                             <div class="map-iframe-wrapper">
-                                <iframe src="${docs.mapIframeSrc}" width="100%" height="130" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                <iframe src="${docs.mapIframeSrc}" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                             </div>
                         ` : ''}
                     </div>
 
-                    <!-- Card 3: Pháp Lý & Sổ Đỏ -->
+                    <!-- Card 2: Pháp Lý & Sổ Đỏ -->
                     <div class="card">
                         <div class="card-title">
                             <div class="icon-wrap icon-purple" style="color:#8b5cf6;"><i class="fa-solid fa-file-shield"></i></div>
                             Pháp Lý & Sổ Đỏ
                         </div>
-                        <p class="card-desc">${docs.redBookDesc || 'Sổ đỏ thổ cư riêng từng nền của dự án, pháp lý an tâm tuyệt đối.'}</p>
+                        <p class="card-desc" style="margin-bottom: 12px;">${docs.redBookDesc || 'Sổ đỏ thổ cư riêng từng nền của dự án, pháp lý an tâm tuyệt đối.'}</p>
                         
                         ${docs.driveFolderUrl ? `
                             <a href="${docs.driveFolderUrl}" target="_blank" class="btn-action-primary" style="background:#8b5cf6; margin: 12px 0 8px;">
@@ -2185,62 +2168,29 @@ const BANG_HANG_DATA = {
                         ` : ''}
 
                         ${docs.redBookImg ? `
-                            <div class="modal-gallery-card" onclick="openLightbox('${docs.redBookImg}', 'Sổ đỏ mẫu ${foundProduct.name}')">
-                                <img src="${docs.redBookImg}" alt="Sổ đỏ mẫu" style="height: 100px; object-fit: cover; width: 100%;">
+                            <div class="modal-gallery-card" onclick="openLightbox('${docs.redBookImg}', 'Sổ đỏ mẫu ${foundProduct.name}')" style="margin-top: auto;">
+                                <img src="${docs.redBookImg}" alt="Sổ đỏ mẫu" style="height: 120px; object-fit: cover; width: 100%;">
                                 <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem mẫu sổ đỏ phóng to</p></div>
                             </div>
                         ` : ''}
                     </div>
 
-                    <!-- Card 4: Sơ Đồ Phân Lô -->
+                    <!-- Card 3: Ưu Điểm Nổi Bật -->
                     <div class="card">
                         <div class="card-title">
-                            <div class="icon-wrap icon-green" style="color:#10b981;"><i class="fa-solid fa-chart-area"></i></div>
-                            Sơ Đồ Phân Lô
+                            <div class="icon-wrap icon-gold" style="color:var(--accent-gold);"><i class="fa-solid fa-star"></i></div>
+                            Ưu Điểm Nổi Bật
                         </div>
-                        <p class="card-desc">${docs.layoutDesc || 'Bản vẽ mặt bằng phân lô chi tiết.'}</p>
-                        
-                        ${docs.layoutImg ? `
-                            <div class="modal-gallery-card" onclick="openLightbox('${docs.layoutImg}', 'Sơ đồ phân lô ${foundProduct.name}')" style="margin-top: auto;">
-                                <img src="${docs.layoutImg}" alt="Sơ đồ phân lô" style="height: 140px; object-fit: cover; width: 100%;" onerror="this.src='media/so_do_tuong_trung.png'">
-                                <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem sơ đồ phân lô phóng to</p></div>
-                            </div>
-                        ` : ''}
+                        <div class="card-desc-box" style="margin-bottom: 12px; flex: 1;">
+                            <ul style="margin: 0; padding-left: 18px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
+                                ${advantagesHtml}
+                            </ul>
+                        </div>
+                        <button onclick="copyAdvantages(event)" class="btn-action-primary" style="background: var(--accent-gold); color: #1a1f2e; font-weight: 800; margin-top: auto; border: none; cursor: pointer;">
+                            <i class="fa-regular fa-copy"></i> Sao Chép Ưu Điểm Gửi Khách
+                        </button>
                     </div>
                 </div>
-
-                <!-- Khối Thông Tin Chuyển Cọc (Nếu có detailLots) -->
-                ${foundProduct.detailLots ? `
-                    <div class="banking-card" style="margin-top: 20px;">
-                        <div class="banking-title">
-                            <i class="fa-solid fa-credit-card"></i> THÔNG TIN CHUYỂN CỌC CHÍNH THỨC
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                            <div>
-                                <div class="banking-info-row">
-                                    <span class="banking-label">Chủ tài khoản đất</span>
-                                    <span class="banking-value">TRAN THI HUE</span>
-                                </div>
-                                <div class="banking-info-row">
-                                    <span class="banking-label">Số tài khoản (Techcombank)</span>
-                                    <span class="banking-value copyable" onclick="copyText('9918837543', this)">
-                                        9918 8375 43 <i class="fa-regular fa-copy" style="font-size:0.75rem;"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="banking-info-row">
-                                    <span class="banking-label">Cú pháp chuyển khoản</span>
-                                    <span class="banking-value" style="color: var(--accent-red); font-family: monospace; font-size: 0.95rem; text-transform: uppercase;">Mã lô</span>
-                                </div>
-                                <div class="banking-info-row">
-                                    <span class="banking-label">Lưu ý</span>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Vui lòng chuyển khoản đúng cú pháp và gửi bill cọc cho sếp Khương để tiến hành khóa lô trên hệ thống.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ` : ''}
 
                 <!-- Khối Hình Ảnh Thực Tế Dự Án (Nếu có realPhotos) -->
                 ${docs.realPhotos && docs.realPhotos.length > 0 ? `
@@ -2260,28 +2210,6 @@ const BANG_HANG_DATA = {
                     </div>
                 ` : ''}
             `;
-        } else {
-            bodyHtml = `
-                <div class="modal-table-wrapper">
-                    <table class="modal-table">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Mã lô</th>
-                                <th>Diện tích</th>
-                                <th>Mặt tiền</th>
-                                <th>Đơn giá</th>
-                                <th>Giá bán</th>
-                                <th>Trạng thái</th>
-                                <th>Ghi chú</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${lotsHtml}
-                        </tbody>
-                    </table>
-                </div>
-            `;
         }
 
         modalBody.innerHTML = bodyHtml;
@@ -2300,6 +2228,27 @@ const BANG_HANG_DATA = {
             element.innerHTML = 'Đã copy! <i class="fa-solid fa-check" style="color:var(--accent-emerald);"></i>';
             setTimeout(() => {
                 element.innerHTML = originalHTML;
+            }, 1500);
+        });
+    };
+
+    window.copyAdvantages = function(event) {
+        if (event) event.stopPropagation();
+        const foundProduct = window.currentModalProduct;
+        if (!foundProduct || !foundProduct.docs || !foundProduct.docs.advantages) return;
+        
+        const textToCopy = foundProduct.docs.advantages.map(adv => `• ${adv}`).join('\n');
+        
+        const btn = event.currentTarget;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã sao chép ưu điểm!';
+            btn.style.background = 'var(--accent-emerald)';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = 'var(--accent-gold)';
+                btn.style.color = '#1a1f2e';
             }, 1500);
         });
     };
