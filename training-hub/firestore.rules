@@ -1,14 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isCoreAdmin() {
+      return isSignedIn()
+        && request.auth.token.email in ['ih.khuongtrinh@gmail.com', 'thangckvt@gmail.com'];
+    }
+
+    function isLeader() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/whitelist/$(request.auth.token.email))
+        && get(/databases/$(database)/documents/whitelist/$(request.auth.token.email)).data.role == 'leader';
+    }
+
+    function canManageTeamData() {
+      return isCoreAdmin() || isLeader();
+    }
+
     match /whitelist/{email} {
       // Mọi user đã đăng nhập Google đều được đọc whitelist
       // (App nội bộ — cần check email có trong danh sách không)
       allow read: if request.auth != null;
       
       // Admin: toàn quyền ghi
-      allow write: if request.auth != null 
-        && request.auth.token.email == 'ih.khuongtrinh@gmail.com';
+      allow write: if isCoreAdmin();
       
       // Leader: thêm/sửa member mới (role phải là 'member')
       allow create, update: if request.auth != null
@@ -29,8 +47,7 @@ service cloud.firestore {
         && request.auth.token.email == email;
       
       // Admin: đọc/ghi tất cả profiles
-      allow read, write: if request.auth != null 
-        && request.auth.token.email == 'ih.khuongtrinh@gmail.com';
+      allow read, write: if isCoreAdmin();
       
       // Leader: đọc/ghi profiles của team
       allow read, write: if request.auth != null
@@ -43,8 +60,7 @@ service cloud.firestore {
       allow read: if request.auth != null;
       
       // Admin: toàn quyền ghi
-      allow write: if request.auth != null 
-        && request.auth.token.email == 'ih.khuongtrinh@gmail.com';
+      allow write: if isCoreAdmin();
       
       // Leader: ghi được tất cả doc
       allow write: if request.auth != null
@@ -54,6 +70,28 @@ service cloud.firestore {
       // Member: chỉ ghi được doc có email trùng với email đăng nhập
       allow write: if request.auth != null
         && request.resource.data.email == request.auth.token.email;
+    }
+
+    match /team_schedule/{docId} {
+      // Mọi user đã đăng nhập đều xem được lịch tuần của team
+      allow read: if isSignedIn();
+
+      // Admin, trợ lý Thắng, trưởng nhóm: quản lý toàn bộ lịch
+      allow create, update, delete: if canManageTeamData();
+
+      // Nhân sự thường: chỉ tạo lịch cho chính mình
+      allow create: if isSignedIn()
+        && request.resource.data.ownerEmail == request.auth.token.email;
+
+      // Nhân sự thường: chỉ sửa lịch đang thuộc về chính mình,
+      // và không được chuyển owner sang người khác.
+      allow update: if isSignedIn()
+        && resource.data.ownerEmail == request.auth.token.email
+        && request.resource.data.ownerEmail == request.auth.token.email;
+
+      // Nhân sự thường: chỉ xóa lịch của chính mình
+      allow delete: if isSignedIn()
+        && resource.data.ownerEmail == request.auth.token.email;
     }
   }
 }

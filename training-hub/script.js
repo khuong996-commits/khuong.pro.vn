@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'page-tuyet-ky-lai-khach': 'tuyet-chieu-lai-khach',
         'page-admin-emails': 'admin-emails',
         'page-profile': 'ho-so',
-        'page-checklist-nhan-su': 'checklist-nhan-su'
+
+        'page-lich-di-khach': 'lich-di-khach-team'
     };
     const pathMap = {};
     for (let k in routeMap) pathMap[routeMap[k]] = k;
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function _getOrCreateDOM(pageId) {
         // Trang admin/profile render động, không cache
-        if (pageId === 'page-admin-emails' || pageId === 'page-profile' || pageId === 'page-checklist-nhan-su') {
+        if (pageId === 'page-admin-emails' || pageId === 'page-profile' || pageId === 'page-lich-di-khach') {
             return null;
         }
         if (!_domCache[pageId]) {
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navigate: function(pageId, pushState = true) {
             window.currentPageId = pageId;
             // Check if page exists in DB (except dynamic page-profile)
-            if (pageId !== 'page-profile' && pageId !== 'page-checklist-nhan-su' && !APP_CONTENT[pageId]) {
+            if (pageId !== 'page-profile' && pageId !== 'page-lich-di-khach' && !APP_CONTENT[pageId]) {
                 console.error('Page not found:', pageId);
                 return;
             }
@@ -88,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderAdminEmailPage();
             } else if (pageId === 'page-profile' && typeof renderProfilePage === 'function') {
                 renderProfilePage();
-            } else if (pageId === 'page-checklist-nhan-su' && typeof renderChecklistPage === 'function') {
-                renderChecklistPage();
+            } else if (pageId === 'page-lich-di-khach' && typeof renderTeamSchedulePage === 'function') {
+                renderTeamSchedulePage();
             } else {
                 const cached = _getOrCreateDOM(pageId);
                 if (cached) {

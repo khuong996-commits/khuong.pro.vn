@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest" async></script>
     <!-- Style -->
-    <link rel="stylesheet" href="/training-hub/styles.css?v=20260704">
+    <link rel="stylesheet" href="/training-hub/styles.css?v=20260709-1">
 </head>
 <body>
 
@@ -153,10 +153,11 @@
                     <div class="nav-icon"><i class="fa-solid fa-house"></i></div>
                     Trang Chủ (Tiến Độ)
                 </div>
-                <div class="nav-item" data-target="page-checklist-nhan-su">
-                    <div class="nav-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                    Checklist Nhân Sự
-                    <span class="nav-badge badge-new" style="background: var(--accent-emerald, #34d399); color: white;">NEW</span>
+
+                <div class="nav-item" data-target="page-lich-di-khach">
+                    <div class="nav-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    Lịch Đi Khách Team
+                    <span class="nav-badge badge-new" style="background: var(--accent-blue, #38bdf8); color: white;">NEW</span>
                 </div>
                 <div class="sidebar-divider" style="height: 1px; background: var(--border-glass, rgba(0,0,0,0.08)); margin: 10px 12px 15px 12px;"></div>
 
@@ -323,9 +324,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
     <!-- Logic -->
-    <script src="/training-hub/auth.js?v=20260621-2"></script>
+    <script src="/training-hub/auth.js?v=20260707-nicknames"></script>
     <script src="/training-hub/content.js?v=20260621-2"></script>
-    <script src="/training-hub/checklist.js?v=20260704"></script>
-    <script src="/training-hub/script.js?v=20260704"></script>
+
+    <script src="/training-hub/team-schedule.js?v=20260709-1"></script>
+    <script src="/training-hub/script.js?v=20260707"></script>
 </body>
 </html>

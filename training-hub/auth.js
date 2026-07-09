@@ -97,6 +97,9 @@ function initAuth() {
                 if (window.currentPageId === 'page-checklist-nhan-su' && typeof renderChecklistPage === 'function') {
                     renderChecklistPage();
                 }
+                if (window.currentPageId === 'page-lich-di-khach' && typeof renderTeamSchedulePage === 'function') {
+                    renderTeamSchedulePage();
+                }
             }
 
             // Nếu người dùng truy cập trang chủ hoặc trang hồ sơ cũ -> vào thẳng trang Hồ Sơ
@@ -338,7 +341,8 @@ async function loadWhitelistEmails() {
                 addedAt: doc.data().addedAt ? doc.data().addedAt.toDate() : new Date(),
                 addedBy: doc.data().addedBy || 'N/A',
                 leaderEmail: doc.data().leaderEmail || '',
-                completedModules: doc.data().completedModules || []
+                completedModules: doc.data().completedModules || [],
+                displayName: doc.data().displayName || ''
             });
         });
         return allowedEmails;
@@ -352,7 +356,7 @@ async function loadWhitelistEmails() {
 // Admin/Leader: Thêm email
 // ============================================
 
-async function addWhitelistEmail(email, role = 'member', leaderEmail = '') {
+async function addWhitelistEmail(email, role = 'member', leaderEmail = '', displayName = '') {
     if (!canManageEmails()) {
         alert('Bạn không có quyền thực hiện thao tác này.');
         return false;
@@ -380,7 +384,8 @@ async function addWhitelistEmail(email, role = 'member', leaderEmail = '') {
         const docData = {
             role: role,
             addedAt: firebase.firestore.FieldValue.serverTimestamp(),
-            addedBy: currentUser.email
+            addedBy: currentUser.email,
+            displayName: displayName.trim()
         };
 
         // Gán trưởng nhóm cho nhân sự (chỉ áp dụng cho member)
@@ -398,6 +403,27 @@ async function addWhitelistEmail(email, role = 'member', leaderEmail = '') {
         console.error('Lỗi thêm email:', error);
         alert('Không thể thêm email. Vui lòng thử lại.');
         return false;
+    }
+}
+
+// Cập nhật biệt danh hiển thị trực tiếp
+async function changeMemberDisplayName(memberEmail, newDisplayName) {
+    try {
+        const db = firebase.firestore();
+        const docRef = db.collection('whitelist').doc(memberEmail.toLowerCase().trim());
+        
+        await docRef.update({
+            displayName: newDisplayName.trim()
+        });
+
+        showAdminToast(`Đã cập nhật tên hiển thị thành công!`, true);
+        
+        // Tải lại và render lại whitelist
+        const emails = await loadWhitelistEmails();
+        renderEmailList(emails);
+    } catch (error) {
+        console.error("Lỗi cập nhật tên hiển thị:", error);
+        showAdminToast("Lỗi cập nhật tên hiển thị!", false);
     }
 }
 
@@ -1696,7 +1722,10 @@ async function renderCurrentAdminTabContent() {
                     </div>
                     <div class="admin-input-group" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
                         <input type="email" id="admin-email-input" placeholder="nhanvien@gmail.com" class="admin-input" 
-                               style="flex: 1; min-width: 200px;"
+                               style="flex: 1.2; min-width: 200px;"
+                               onkeydown="if(event.key==='Enter') handleAddEmail()" />
+                        <input type="text" id="admin-displayname-input" placeholder="Tên / Biệt danh hiển thị" class="admin-input" 
+                               style="flex: 1; min-width: 180px;"
                                onkeydown="if(event.key==='Enter') handleAddEmail()" />
                         ${isAdmin() ? `
                             <select id="admin-role-select" class="admin-role-select" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-glass);" onchange="toggleAdminLeaderSelect(this.value)">
@@ -1708,7 +1737,10 @@ async function renderCurrentAdminTabContent() {
                             <div id="admin-leader-select-container" class="admin-leader-select-wrap">
                                 <select id="admin-leader-select" class="admin-leader-select">
                                     <option value="">-- Chọn Trưởng Nhóm phụ trách --</option>
-                                    ${emails.filter(e => e.role === 'leader').map(l => `<option value="${l.email}">${l.email.split('@')[0]} (${l.email})</option>`).join('')}
+                                    ${emails.filter(e => e.role === 'leader').map(l => {
+                                        const lName = l.displayName || l.email.split('@')[0];
+                                        return `<option value="${l.email}">⭐ ${lName} (${l.email})</option>`;
+                                    }).join('')}
                                 </select>
                             </div>
                         ` : ''}
@@ -1760,7 +1792,7 @@ async function renderCurrentAdminTabContent() {
         const calcMemberProgress = (item) => {
             const memberEmail = item.email.toLowerCase().trim();
             const profile = profilesMap[memberEmail] || {};
-            const displayName = profile.displayName || memberEmail.split('@')[0];
+            const displayName = item.displayName || profile.displayName || memberEmail.split('@')[0];
             const photoURL = profile.photoURL || '';
             const pfCompleted = profile.completedModules || [];
             const wlCompleted = item.completedModules || [];
@@ -1793,8 +1825,9 @@ async function renderCurrentAdminTabContent() {
             let leaderName = '';
             const leaderEmail = item.leaderEmail || item.addedBy || '';
             if (leaderEmail) {
+                const lObj = emails.find(e => e.email.toLowerCase() === leaderEmail.toLowerCase().trim());
                 const lProfile = profilesMap[leaderEmail.toLowerCase().trim()] || {};
-                leaderName = lProfile.displayName || leaderEmail.split('@')[0];
+                leaderName = (lObj && lObj.displayName) || lProfile.displayName || leaderEmail.split('@')[0];
             }
 
             return {
@@ -1828,7 +1861,7 @@ async function renderCurrentAdminTabContent() {
                     ${leaders.map(l => {
                         const lEmail = l.email.toLowerCase().trim();
                         const lProfile = profilesMap[lEmail] || {};
-                        const lName = lProfile.displayName || lEmail.split('@')[0];
+                        const lName = l.displayName || lProfile.displayName || lEmail.split('@')[0];
                         return `<option value="${lEmail}">⭐ ${lName}</option>`;
                     }).join('')}
                     <option value="unassigned">⚠️ Chưa phân nhóm</option>
@@ -1920,7 +1953,7 @@ async function renderCurrentAdminTabContent() {
         const renderMemberCard = (item) => {
             const memberEmail = item.email.toLowerCase().trim();
             const profile = profilesMap[memberEmail] || {};
-            const displayName = profile.displayName || memberEmail.split('@')[0];
+            const displayName = item.displayName || profile.displayName || memberEmail.split('@')[0];
             const photoURL = profile.photoURL || '';
 
             // Tính tiến độ gộp
@@ -2061,7 +2094,7 @@ async function renderCurrentAdminTabContent() {
                                         ${leaders.map(l => {
                                             const lEmail = l.email.toLowerCase().trim();
                                             const lProfile = profilesMap[lEmail] || {};
-                                            const lName = lProfile.displayName || lEmail.split('@')[0];
+                                            const lName = l.displayName || lProfile.displayName || lEmail.split('@')[0];
                                             const lPhoto = lProfile.photoURL || '';
                                             const lMembers = tree[lEmail] ? tree[lEmail].members : [];
 
@@ -2916,13 +2949,19 @@ function renderEmailList(emails) {
                         <option value="">-- Chưa phân nhóm --</option>
                         ${leadersList.map(l => {
                             const isSelected = item.leaderEmail && item.leaderEmail.toLowerCase().trim() === l.email.toLowerCase().trim() ? 'selected' : '';
-                            return `<option value="${l.email}" ${isSelected}>⭐ Nhóm: ${l.email.split('@')[0]}</option>`;
+                            const lName = l.displayName || l.email.split('@')[0];
+                            return `<option value="${l.email}" ${isSelected}>⭐ Nhóm: ${lName}</option>`;
                         }).join('')}
                     </select>
                 `;
             } else {
+                let leaderNameToShow = item.leaderEmail ? item.leaderEmail.split('@')[0] : '';
+                if (item.leaderEmail) {
+                    const lObj = emails.find(e => e.email.toLowerCase() === item.leaderEmail.toLowerCase());
+                    if (lObj && lObj.displayName) leaderNameToShow = lObj.displayName;
+                }
                 leaderDropdown = item.leaderEmail 
-                    ? `<span style="font-size:0.75rem; background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-user-group"></i> Nhóm: ${item.leaderEmail.split('@')[0]}</span>`
+                    ? `<span style="font-size:0.75rem; background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-user-group"></i> Nhóm: ${leaderNameToShow}</span>`
                     : `<span style="font-size:0.75rem; background:rgba(245,158,11,0.1); color:#f59e0b; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</span>`;
             }
         }
@@ -2937,12 +2976,22 @@ function renderEmailList(emails) {
             canRemove = true; // Leader chỉ xóa member
         }
 
+        const nameToDisplay = item.displayName || item.email.split('@')[0];
+        const editBtn = item.isAdminEntry ? '' : `
+            <span class="edit-nickname-btn" onclick="promptEditNickname('${item.email}', '${item.displayName || ''}')" style="cursor:pointer; margin-left: 8px; color: #3b82f6; font-size: 0.8rem; opacity: 0.7; transition: all 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" title="Sửa biệt danh">
+                <i class="fa-solid fa-pen"></i>
+            </span>
+        `;
         return `
             <div class="admin-email-row ${rowClass}">
                 <div class="admin-email-info">
                     <span class="admin-email-addr">
                         <i class="fa-solid ${icon} ${iconColor}"></i>
-                        ${item.email}
+                        <span class="admin-email-addr-text">
+                            <strong>${nameToDisplay}</strong>
+                            <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:normal; margin-left: 5px;">(${item.email})</span>
+                        </span>
+                        ${editBtn}
                         ${badge}
                         ${leaderDropdown}
                     </span>
@@ -2987,6 +3036,7 @@ async function changeMemberLeaderByAdmin(memberEmail, newLeaderEmail) {
 
 async function handleAddEmail() {
     const input = document.getElementById('admin-email-input');
+    const displayNameInput = document.getElementById('admin-displayname-input');
     const roleSelect = document.getElementById('admin-role-select');
     const leaderSelect = document.getElementById('admin-leader-select');
     if (!input) return;
@@ -2994,12 +3044,14 @@ async function handleAddEmail() {
     const email = input.value.trim();
     if (!email) return;
 
+    const displayName = displayNameInput ? displayNameInput.value.trim() : '';
     const role = (roleSelect && isAdmin()) ? roleSelect.value : 'member';
     const leaderEmail = (leaderSelect && role === 'member') ? leaderSelect.value : '';
 
-    const success = await addWhitelistEmail(email, role, leaderEmail);
+    const success = await addWhitelistEmail(email, role, leaderEmail, displayName);
     if (success) {
         input.value = '';
+        if (displayNameInput) displayNameInput.value = '';
         if (roleSelect) {
             roleSelect.value = 'member';
             // Trigger thay đổi để ẩn/hiện dropdown chọn Leader
@@ -3007,6 +3059,14 @@ async function handleAddEmail() {
         }
         const emails = await loadWhitelistEmails();
         renderEmailList(emails);
+    }
+}
+
+// Hàm hỗ trợ sửa biệt danh trực tiếp từ giao diện
+function promptEditNickname(email, currentName) {
+    const newName = prompt(`Nhập tên hoặc biệt danh hiển thị cho nhân sự (${email}):`, currentName);
+    if (newName !== null) {
+        changeMemberDisplayName(email, newName);
     }
 }
 

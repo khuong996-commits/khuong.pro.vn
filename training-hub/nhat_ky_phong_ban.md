@@ -529,3 +529,17 @@
 - **Lưu ý quan trọng:**
   - Các ô tick bài học và logic tính toán tiến độ học tập trên trang Hồ Sơ vẫn được bảo toàn nguyên vẹn 100%.
 
+---
+
+## 👥 BAN NHÂN SỰ & HỆ THỐNG
+### 2026-07-07 22:15 - Tích hợp tính năng thêm/sửa Tên, Biệt danh hiển thị cho nhân sự và đồng bộ Sơ đồ cây cùng Lịch đi khách
+- **Công việc đã hoàn thành:**
+  - **Mở rộng whitelist trên Firestore:** Cập nhật `loadWhitelistEmails` và `addWhitelistEmail` để lưu trữ và đọc trường `displayName` (Tên / Biệt danh hiển thị) của nhân sự.
+  - **Bổ sung ô nhập khi thêm mới:** Thêm ô nhập liệu `admin-displayname-input` (Glassmorphism đồng bộ) cạnh ô nhập Email ở Tab 1. Cập nhật `handleAddEmail` để lưu dữ liệu này.
+  - **Chỉnh sửa biệt danh trực tiếp:** Tích hợp nút bút chì nhỏ (`fa-pen`) kế bên từng nhân sự trong danh sách whitelist và hàm `promptEditNickname` để sếp hoặc trưởng nhóm nhấp vào sửa trực tiếp và đồng bộ realtime lên Firestore qua hàm `changeMemberDisplayName`.
+  - **Đồng bộ hiển thị (Danh sách & Sơ đồ cây):** Cập nhật `calcMemberProgress` và `renderMemberCard` để ưu tiên hiển thị biệt danh được gán từ whitelist thay vì chỉ hiện email thô. Hiển thị biệt danh của trưởng nhóm tại các dropdown phân nhóm và trên các nút F1 của sơ đồ cây.
+  - **Đồng bộ sang Lịch đi khách (team-schedule.js):** Cập nhật `loadTeamScheduleStaff()` để đọc trường `displayName` từ whitelist làm tên hiển thị của nhân viên. Cập nhật `renderTeamScheduleCard()` và `renderTeamScheduleExecutiveRow()` để tự động tra cứu biệt danh mới nhất từ whitelist bằng `ownerEmail` của sự kiện đi khách, đảm bảo đổi biệt danh ở whitelist là lịch cập nhật ngay. Đồng bộ ô hiển thị tên nhân sự tự đăng lịch.
+  - **Cache-Busting (index.html):** Nâng cấp version của file `auth.js` và `team-schedule.js` trong file `index.html` thành `?v=20260707-nicknames` để ép trình duyệt của người dùng xóa cache và tải code mới của Lịch đi khách ngay lập tức.
+  - **Deploy:** Deploy thành công phiên bản mới trực tuyến lên dự án Vercel gốc `team-khuongtrinh` (liên kết trực tiếp với tên miền chính thức của sếp).
+- **Lưu ý quan trọng:**
+  - Giúp cải thiện trải nghiệm quản trị nhân sự của phó phòng và trưởng nhóm, dễ dàng nhận diện và đồng bộ thông tin biệt danh nhất quán trên toàn bộ hệ thống (Học tập, Sơ đồ, Lịch đi khách).
