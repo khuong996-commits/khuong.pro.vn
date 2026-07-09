@@ -729,7 +729,7 @@ body {
 /* Modal Content Layout */
 .modal-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
@@ -737,6 +737,123 @@ body {
     .modal-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.modal-grid .card {
+    background: var(--bg-card-hover);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+}
+
+.modal-grid .card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-grid .card-title .icon-wrap {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.icon-blue { background: rgba(2,132,199,0.1); }
+.icon-gold { background: rgba(245,158,11,0.12); }
+.icon-purple { background: rgba(124,58,237,0.1); }
+.icon-green { background: rgba(16,185,129,0.1); }
+
+.modal-grid .card-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.modal-grid .card-desc-box {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.modal-grid .card-desc-box strong {
+    color: var(--text);
+}
+
+.btn-action-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-action-primary:hover {
+    opacity: 0.9;
+}
+
+.map-iframe-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: auto;
+}
+
+.modal-gallery-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-gallery-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--accent-blue);
+}
+
+.modal-gallery-card img {
+    display: block;
+    transition: transform 0.3s;
+}
+
+.modal-gallery-card:hover img {
+    transform: scale(1.03);
+}
+
+.modal-gallery-card .gallery-card-body p {
+    font-size: 0.7rem;
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.real-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
 }
 
 /* Table styling in Modal */
@@ -864,37 +981,123 @@ body {
     text-decoration: underline;
 }
 
-/* Map placeholder in modal */
-.map-container {
-    margin-top: 16px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+/* Lightbox overlay styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.95);
+    z-index: 100000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     overflow: hidden;
-    background: var(--bg-card);
 }
 
-.map-container img {
-    width: 100%;
-    display: block;
-    height: auto;
+.lightbox.open {
+    display: flex;
 }
 
-.map-fallback-box {
-    padding: 30px;
+.lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-inner img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.1s ease;
+}
+
+.lightbox-caption {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 14px;
     text-align: center;
-    color: var(--text-muted);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.map-fallback-box i {
-    font-size: 2.2rem;
-    display: block;
-    margin-bottom: 8px;
-    opacity: 0.5;
+.lightbox-close {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
 }
 
-.map-fallback-box span {
+.lightbox-close:hover {
+    background: var(--accent-red);
+    transform: scale(1.1);
+}
+
+.lightbox-controls {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 14px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    align-items: center;
+    z-index: 100001;
+}
+
+.lightbox-controls button {
+    background: rgba(255,255,255,0.06);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.lightbox-controls button:hover {
+    background: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+.lightbox-controls .zoom-indicator {
+    color: #e2e8f0;
     font-size: 0.8rem;
-    line-height: 1.4;
+    font-weight: 700;
+    padding: 0 8px;
+    min-width: 48px;
+    text-align: center;
+    font-family: monospace;
 }
 
 /* Card action button */
@@ -962,7 +1165,23 @@ const BANG_HANG_DATA = {
                             area: '71 – 106 m²',
                             frontage: '4 – 18,6 m',
                             commission: '4% + thưởng 200 triệu',
-                            note: 'Nhiều lô mặt đường, view biển, lô góc 2–3 MT. Một số lô đã cọc.'
+                            note: 'Nhiều lô mặt đường, view biển, lô góc 2–3 MT. Một số lô đã cọc.',
+                            docs: {
+                                priceBoardImg: 'media/media__1780895186472.jpg',
+                                priceBoardDesc: 'Danh sách mã lô, diện tích và tổng giá bán khu kinh tế Ninh Cơ.',
+                                locationText: '<strong>Vị trí:</strong> Khu kinh tế Ninh Cơ, Ninh Bình.<br><strong>Tiềm năng:</strong> Nằm sát trục đường ven biển rộng 24m và đường đê sát bãi biển.',
+                                googleMapsUrl: 'https://maps.app.goo.gl/iQ6odFbGdPkuHL978?g_st=iz',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.0911031,106.2785223&hl=vi&z=15&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1qWP9_7-DZcej8ZhzcfzHs6sGAySRIcsv',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Sổ đỏ đất thổ cư mang tên riêng, an tâm pháp lý sang tên ngay.',
+                                layoutImg: 'media/media__1780895386538.jpg',
+                                layoutDesc: 'Bản vẽ mặt bằng chi tiết hướng ra biển và đường ven biển rộng 24m.',
+                                realPhotos: [
+                                    { img: 'media/media__1780895461369.jpg', label: 'Ảnh thực tế Khu kinh tế Ninh Cơ 1' },
+                                    { img: 'media/media__1780895519823.jpg', label: 'Ảnh thực tế Khu kinh tế Ninh Cơ 2' }
+                                ]
+                            }
                         },
                         {
                             name: '25 lô đường bộ ven biển',
@@ -970,7 +1189,22 @@ const BANG_HANG_DATA = {
                             unitPrice: '18 triệu/m²',
                             area: '81 m²',
                             frontage: '5 – 9 m',
-                            commission: '4% + thưởng 200 triệu'
+                            commission: '4% + thưởng 200 triệu',
+                            docs: {
+                                priceBoardImg: 'media/media__1780896031765.png',
+                                priceBoardDesc: 'Bảng giá phân lô quỹ đất view hồ bám sát trục đường bộ ven biển.',
+                                locationText: '<strong>Vị trí:</strong> Trục đường bộ ven biển, Ninh Bình.<br><strong>Đặc điểm:</strong> Phân lô bao quanh hồ điều hòa trung tâm, kết nối thẳng ra bãi biển Hải Xuân.',
+                                googleMapsUrl: 'https://www.google.com/maps/place/20%C2%B005\'44.7%22N+106%C2%B016\'39.0%22E/@20.095752,106.2726224,1030m/data=!3m2!1e3!4b1!4m10!1m5!3m4!2zMjDCsDA1JzMxLjEiTiAxMDbCsDE2JzQ3LjIiRQ!8m2!3d20.0919829!4d106.2797648!3m3!8m2!3d20.095747!4d106.277488!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.095747,106.277488&hl=vi&z=15&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1bZHnEOrTaJVjWGW5IahfNKIzSp9n7-OL',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Sổ riêng từng nền thổ cư lâu dài, hỗ trợ thủ tục sang tên nhanh chóng.',
+                                layoutImg: 'media/media__1780896059396.jpg',
+                                layoutDesc: 'Sơ đồ quy hoạch phân lô ôm quanh hồ điều hòa trung tâm sát đê biển.',
+                                realPhotos: [
+                                    { img: 'media/media__1780896134942.jpg', label: 'Thực tế hồ điều hòa trung tâm' }
+                                ]
+                            }
                         },
                         {
                             name: '66 lô Mặt biển Hải Xuân',
@@ -979,7 +1213,23 @@ const BANG_HANG_DATA = {
                             area: '80 – 104 m²',
                             frontage: '4,4 – 19,5 m',
                             commission: '4% + thưởng 200 triệu',
-                            note: 'Nhiều lô mặt biển, hai mặt thoáng, lô góc. Một số lô đã cọc.'
+                            note: 'Nhiều lô mặt biển, hai mặt thoáng, lô góc. Một số lô đã cọc.',
+                            docs: {
+                                priceBoardImg: 'media/media__1780896337710.png',
+                                priceBoardDesc: 'Danh sách bảng giá chi tiết của 66 lô đất nền trực diện biển Hải Xuân.',
+                                locationText: '<strong>Vị trí:</strong> Mặt tiền biển Hải Xuân, Ninh Bình.<br><strong>Đặc điểm:</strong> Trục đường đê ven biển bãi cát rộng, kết nối thuận lợi với Quốc lộ 21A.',
+                                googleMapsUrl: 'https://goo.gl/maps/RpeFbmxcS3uJ6pf38',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.084041,106.271306&hl=vi&z=15&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1Txz5R-MOCeVTJvc0i892xkCKviXmett0',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Sổ đỏ thổ cư riêng từng nền mặt biển, pháp lý rõ ràng.',
+                                layoutImg: 'media/media__1780896383064.jpg',
+                                layoutDesc: 'Sơ đồ quy hoạch phân lô bám dọc đường đê ven biển Hải Xuân.',
+                                realPhotos: [
+                                    { img: 'media/media__1780896453677.jpg', label: 'Ảnh thực tế phân lô bám biển 1' },
+                                    { img: 'media/media__1780896470707.jpg', label: 'Ảnh thực tế phân lô bám biển 2' }
+                                ]
+                            }
                         },
                         {
                             name: '35 lô Giá rẻ Hải Xuân',
@@ -988,7 +1238,23 @@ const BANG_HANG_DATA = {
                             area: '66 – 111 m²',
                             frontage: '4,5 – 16,9 m',
                             commission: 'Hoa hồng 4% + thưởng 100 triệu',
-                            note: 'Có lô view hồ, lô góc 2–3 MT, hai mặt thoáng. Một số lô đã cọc.'
+                            note: 'Có lô view hồ, lô góc 2–3 MT, hai mặt thoáng. Một số lô đã cọc.',
+                            docs: {
+                                priceBoardImg: 'media/media__1780892876283.png',
+                                priceBoardDesc: 'Danh sách mã lô, diện tích, đơn giá và tổng giá bán từ chủ đầu tư.',
+                                locationText: '<strong>Vị trí:</strong> Xã Hải Xuân, KĐT Ninh Cơ, Ninh Bình.<br><strong>Liên kết:</strong> Tiếp cận bãi tắm Hải Xuân, thuận lợi di chuyển và đầu tư du lịch nghỉ dưỡng.',
+                                googleMapsUrl: 'https://www.google.com/maps?q=20.0896420,106.2779010&entry=gps&shh=CAE&lucs=,94297699,100808504,94284490,94231188,94280568,47071704,100809209,94218641,94282134,94286869&skid=36003e2b-5ce8-4a2f-a737-b9a0eccb8307&g_st=ic&g_st=ic&g_ep=Eg1tbF8yMDI2MDQyN18wIOC7DCoASAJQAg%3D%3D',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.0896420,106.2779010&hl=vi&z=15&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1D3nikEu_RMCGL5biBoJkX1MKrbX23iYb',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Hồ sơ sổ đỏ từng nền của dự án, 100% thổ cư lâu dài an tâm tuyệt đối.',
+                                layoutImg: 'media/media__1780892917682.jpg',
+                                layoutDesc: 'Bản vẽ mặt bằng phân lô chi tiết của 35 lô đất nền Hải Xuân sát biển.',
+                                realPhotos: [
+                                    { img: 'media/media__1780893072274.jpg', label: 'Hạ tầng đường rải nhựa' },
+                                    { img: 'media/media__1780893090495.jpg', label: 'Cảnh quan thực tế ven biển' }
+                                ]
+                            }
                         },
                         {
                             name: '106 lô Mặt biển Hải Xuân',
@@ -997,7 +1263,23 @@ const BANG_HANG_DATA = {
                             area: '61 – 112 m²',
                             frontage: '3,6 – 18,7 m',
                             commission: '4% + thưởng 200 triệu',
-                            note: 'Nhiều lô view biển, lô góc 2–3 mặt tiền. Một số lô đã cọc — liên hệ sếp để check realtime.'
+                            note: 'Nhiều lô view biển, lô góc 2–3 mặt tiền. Một số lô đã cọc — liên hệ sếp để check realtime.',
+                            docs: {
+                                priceBoardImg: ['media/media__1780895695597.png', 'media/media__1780895710386.png'],
+                                priceBoardDesc: 'Danh sách bảng giá 106 lô Hải Xuân phân khu bãi tắm (gồm 2 phần).',
+                                locationText: '<strong>Vị trí:</strong> Phân khu bãi tắm Hải Xuân, Ninh Bình.<br><strong>Đặc điểm:</strong> Trục đường Quốc lộ 21A và tiếp cận trực diện trục đường đê biển.',
+                                googleMapsUrl: 'https://maps.google.com/maps?q=20.082258,106.269856&ll=20.082258,106.269856&z=16',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.082258,106.269856&hl=vi&z=16&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1VlxdIhoKx_k6rnuWRMmCMcGJqvmxahAn',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Sổ đỏ đất thổ cư bãi tắm Hải Xuân mang tên cá nhân, sang tên ngay.',
+                                layoutImg: 'media/media__1780895784665.jpg',
+                                layoutDesc: 'Sơ đồ mặt bằng chi tiết 106 lô sát Quốc lộ 21A và đê biển.',
+                                realPhotos: [
+                                    { img: 'media/media__1780895913522.jpg', label: 'Cảnh quan quy hoạch phân khu bãi tắm từ cao' },
+                                    { img: 'media/media__1780895965490.jpg', label: 'Hạ tầng thực tế sát bãi tắm' }
+                                ]
+                            }
                         },
                         {
                             name: '16 lô View biển Hải Xuân',
@@ -1023,7 +1305,21 @@ const BANG_HANG_DATA = {
                                 { code: 'E12B', area: 92, frontage: 5.1, unitPrice: '24.000.000', totalPrice: '2.208.000.000', status: 'yellow', note: 'Mặt biển' },
                                 { code: 'E12C', area: 101, frontage: 6.2, unitPrice: '26.500.000', totalPrice: '2.676.500.000', status: 'yellow', note: 'Lô góc - Mặt biển' },
                                 { code: 'E15', area: 97, frontage: 4.5, unitPrice: '18.000.000', totalPrice: '1.746.000.000', status: 'yellow', note: '' }
-                            ]
+                            ],
+                            docs: {
+                                priceBoardDesc: 'Danh sách chi tiết trạng thái cọc, diện tích, mặt tiền và tổng giá bán từ chủ đất.',
+                                locationText: '<strong>Vị trí:</strong> Xã Hải Xuân, KĐT Ninh Cơ, Ninh Bình.<br><strong>Đặc điểm:</strong> Trực diện biển Hải Xuân, bãi cát mịn, vị trí vô cùng đắc địa đón đầu quy hoạch du lịch.',
+                                googleMapsUrl: 'https://goo.gl/maps/RpeFbmxcS3uJ6pf38',
+                                mapIframeSrc: 'https://maps.google.com/maps?q=20.084041,106.271306&hl=vi&z=15&t=&output=embed',
+                                driveFolderUrl: 'https://drive.google.com/drive/folders/1Txz5R-MOCeVTJvc0i892xkCKviXmett0',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Hồ sơ sổ đỏ từng lô, 100% đất ở đô thị (thổ cư lâu dài), sẵn sàng công chứng sang tên.',
+                                layoutImg: 'assets/16_lo_view_bien.jpg',
+                                layoutDesc: 'Sơ đồ phân lô chi tiết của 16 lô View biển Hải Xuân.',
+                                realPhotos: [
+                                    { img: 'assets/16_lo_view_bien.jpg', label: 'Sơ đồ phân lô thực tế' }
+                                ]
+                            }
                         }
                     ]
                 }
@@ -1611,11 +1907,11 @@ const BANG_HANG_DATA = {
         }
 
         let detailBtn = '';
-        if (product.detailLots) {
+        if (product.docs || product.detailLots) {
             detailBtn = `
                 <div class="card-action-btn-wrapper">
                     <button class="btn-open-details" onclick="openDetailsModal('${product.name}')">
-                        <i class="fa-solid fa-table-cells"></i> Xem Bảng Giá & Sơ Đồ Chi Tiết
+                        <i class="fa-solid fa-folder-open"></i> Xem Bảng Giá & Tài Liệu Chi Tiết
                     </button>
                 </div>`;
         }
@@ -1734,7 +2030,7 @@ const BANG_HANG_DATA = {
         for (const region of data.regions) {
             for (const subReg of region.subRegions) {
                 const prod = subReg.products.find(p => p.name === productName);
-                if (prod && prod.detailLots) {
+                if (prod) {
                     foundProduct = prod;
                     break;
                 }
@@ -1745,28 +2041,228 @@ const BANG_HANG_DATA = {
         if (!foundProduct) return;
 
         document.getElementById('modal-title').textContent = foundProduct.name;
-        const tbody = document.getElementById('modal-lots-table-body');
+        const modalBody = document.querySelector('#detail-modal .modal-body');
         
-        let html = '';
-        foundProduct.detailLots.forEach((lot, index) => {
-            const statusClass = lot.status === 'red' ? 'status-red' : 'status-yellow';
-            const statusText = lot.status === 'red' ? 'Full cọc' : 'Cọc thiếu';
-            
-            html += `
-                <tr>
-                    <td style="font-weight:600; color:var(--text-muted);">${index + 1}</td>
-                    <td style="font-weight:800; font-family:monospace; font-size:0.95rem; color:var(--accent-blue);">${lot.code}</td>
-                    <td style="font-weight:600;">${lot.area} m²</td>
-                    <td>${lot.frontage ? lot.frontage + ' m' : '—'}</td>
-                    <td>${lot.unitPrice}</td>
-                    <td style="font-weight:700; color:var(--accent-emerald);">${lot.totalPrice}</td>
-                    <td><span class="status-pill ${statusClass}">${statusText}</span></td>
-                    <td style="font-size:0.8rem; color:var(--text-muted);">${lot.note || '—'}</td>
-                </tr>
-            `;
-        });
-        tbody.innerHTML = html;
+        let lotsHtml = '';
+        if (foundProduct.detailLots) {
+            foundProduct.detailLots.forEach((lot, index) => {
+                const statusClass = lot.status === 'red' ? 'status-red' : 'status-yellow';
+                const statusText = lot.status === 'red' ? 'Full cọc' : 'Cọc thiếu';
+                
+                lotsHtml += `
+                    <tr>
+                        <td style="font-weight:600; color:var(--text-muted);">${index + 1}</td>
+                        <td style="font-weight:800; font-family:monospace; font-size:0.95rem; color:var(--accent-blue);">${lot.code}</td>
+                        <td style="font-weight:600;">${lot.area} m²</td>
+                        <td>${lot.frontage ? lot.frontage + ' m' : '—'}</td>
+                        <td>${lot.unitPrice}</td>
+                        <td style="font-weight:700; color:var(--accent-emerald);">${lot.totalPrice}</td>
+                        <td><span class="status-pill ${statusClass}">${statusText}</span></td>
+                        <td style="font-size:0.8rem; color:var(--text-muted);">${lot.note || '—'}</td>
+                    </tr>
+                `;
+            });
+        }
 
+        let bodyHtml = '';
+        if (foundProduct.docs) {
+            const docs = foundProduct.docs;
+            bodyHtml = `
+                <div class="modal-grid">
+                    <!-- Card 1: Bảng Giá Chi Tiết -->
+                    <div class="card">
+                        <div class="card-title">
+                            <div class="icon-wrap icon-gold" style="color:var(--accent-gold);"><i class="fa-solid fa-money-bill-wave"></i></div>
+                            Bảng Giá Chi Tiết
+                        </div>
+                        <p class="card-desc">${docs.priceBoardDesc || 'Danh sách bảng giá từ chủ đầu tư.'}</p>
+                        
+                        ${foundProduct.detailLots ? `
+                            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                                <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Bảng trạng thái realtime</span>
+                                <div style="display: flex; gap: 8px; font-size: 0.7rem;">
+                                    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; background: #fee2e2; border: 1px solid #fca5a5; display: inline-block; border-radius: 2px;"></span> Đã cọc</span>
+                                    <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; background: #fef3c7; border: 1px solid #fde68a; display: inline-block; border-radius: 2px;"></span> Cọc thiếu</span>
+                                </div>
+                            </div>
+                            <div class="modal-table-wrapper" style="max-height: 250px; overflow-y: auto;">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Mã lô</th>
+                                            <th>Diện tích</th>
+                                            <th>Mặt tiền</th>
+                                            <th>Đơn giá</th>
+                                            <th>Giá bán</th>
+                                            <th>Trạng thái</th>
+                                            <th>Ghi chú</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${lotsHtml}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ` : ''}
+
+                        ${docs.priceBoardImg ? `
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+                                ${Array.isArray(docs.priceBoardImg) ? `
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                        ${docs.priceBoardImg.map((img, idx) => `
+                                            <div class="modal-gallery-card" onclick="openLightbox('${img}', 'Bảng giá ${foundProduct.name} (Phần ${idx + 1})')">
+                                                <img src="${img}" alt="Bảng giá phần ${idx + 1}" style="height: 100px; object-fit: contain; width: 100%; background: var(--bg-card-hover);">
+                                                <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem phần ${idx + 1} phóng to</p></div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : `
+                                    <div class="modal-gallery-card" onclick="openLightbox('${docs.priceBoardImg}', 'Bảng giá ${foundProduct.name}')">
+                                        <img src="${docs.priceBoardImg}" alt="Bảng giá" style="height: 140px; object-fit: contain; width: 100%; background: var(--bg-card-hover);">
+                                        <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem bảng giá phóng to</p></div>
+                                    </div>
+                                `}
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Card 2: Vị Trí & Bản Đồ Quy Hoạch -->
+                    <div class="card">
+                        <div class="card-title">
+                            <div class="icon-wrap icon-blue" style="color:var(--accent-blue);"><i class="fa-solid fa-map-location-dot"></i></div>
+                            Vị Trí & Bản Đồ Quy Hoạch
+                        </div>
+                        <div class="card-desc-box">${docs.locationText || ''}</div>
+                        
+                        ${docs.googleMapsUrl ? `
+                            <a href="${docs.googleMapsUrl}" target="_blank" class="btn-action-primary" style="background: var(--accent-blue); margin: 12px 0 8px;">
+                                <i class="fa-solid fa-map-marked-alt"></i> Mở Bản Đồ Google Maps Trực Tuyến
+                            </a>
+                        ` : ''}
+
+                        ${docs.mapIframeSrc ? `
+                            <div class="map-iframe-wrapper">
+                                <iframe src="${docs.mapIframeSrc}" width="100%" height="130" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Card 3: Pháp Lý & Sổ Đỏ -->
+                    <div class="card">
+                        <div class="card-title">
+                            <div class="icon-wrap icon-purple" style="color:#8b5cf6;"><i class="fa-solid fa-file-shield"></i></div>
+                            Pháp Lý & Sổ Đỏ
+                        </div>
+                        <p class="card-desc">${docs.redBookDesc || 'Sổ đỏ thổ cư riêng từng nền của dự án, pháp lý an tâm tuyệt đối.'}</p>
+                        
+                        ${docs.driveFolderUrl ? `
+                            <a href="${docs.driveFolderUrl}" target="_blank" class="btn-action-primary" style="background:#8b5cf6; margin: 12px 0 8px;">
+                                <i class="fa-brands fa-google-drive"></i> Xem Thư Mục Sổ Đỏ Trên Google Drive
+                            </a>
+                        ` : ''}
+
+                        ${docs.redBookImg ? `
+                            <div class="modal-gallery-card" onclick="openLightbox('${docs.redBookImg}', 'Sổ đỏ mẫu ${foundProduct.name}')">
+                                <img src="${docs.redBookImg}" alt="Sổ đỏ mẫu" style="height: 100px; object-fit: cover; width: 100%;">
+                                <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem mẫu sổ đỏ phóng to</p></div>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Card 4: Sơ Đồ Phân Lô -->
+                    <div class="card">
+                        <div class="card-title">
+                            <div class="icon-wrap icon-green" style="color:#10b981;"><i class="fa-solid fa-chart-area"></i></div>
+                            Sơ Đồ Phân Lô
+                        </div>
+                        <p class="card-desc">${docs.layoutDesc || 'Bản vẽ mặt bằng phân lô chi tiết.'}</p>
+                        
+                        ${docs.layoutImg ? `
+                            <div class="modal-gallery-card" onclick="openLightbox('${docs.layoutImg}', 'Sơ đồ phân lô ${foundProduct.name}')" style="margin-top: auto;">
+                                <img src="${docs.layoutImg}" alt="Sơ đồ phân lô" style="height: 140px; object-fit: cover; width: 100%;" onerror="this.src='media/so_do_tuong_trung.png'">
+                                <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">🔍 Xem sơ đồ phân lô phóng to</p></div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <!-- Khối Thông Tin Chuyển Cọc (Nếu có detailLots) -->
+                ${foundProduct.detailLots ? `
+                    <div class="banking-card" style="margin-top: 20px;">
+                        <div class="banking-title">
+                            <i class="fa-solid fa-credit-card"></i> THÔNG TIN CHUYỂN CỌC CHÍNH THỨC
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div class="banking-info-row">
+                                    <span class="banking-label">Chủ tài khoản đất</span>
+                                    <span class="banking-value">TRAN THI HUE</span>
+                                </div>
+                                <div class="banking-info-row">
+                                    <span class="banking-label">Số tài khoản (Techcombank)</span>
+                                    <span class="banking-value copyable" onclick="copyText('9918837543', this)">
+                                        9918 8375 43 <i class="fa-regular fa-copy" style="font-size:0.75rem;"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="banking-info-row">
+                                    <span class="banking-label">Cú pháp chuyển khoản</span>
+                                    <span class="banking-value" style="color: var(--accent-red); font-family: monospace; font-size: 0.95rem; text-transform: uppercase;">Mã lô</span>
+                                </div>
+                                <div class="banking-info-row">
+                                    <span class="banking-label">Lưu ý</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">Vui lòng chuyển khoản đúng cú pháp và gửi bill cọc cho sếp Khương để tiến hành khóa lô trên hệ thống.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+
+                <!-- Khối Hình Ảnh Thực Tế Dự Án (Nếu có realPhotos) -->
+                ${docs.realPhotos && docs.realPhotos.length > 0 ? `
+                    <div style="margin-top: 20px;">
+                        <div class="card-title" style="margin-bottom: 12px; display:flex; align-items:center; gap:8px;">
+                            <div class="icon-wrap icon-blue" style="color:var(--accent-blue); width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:8px;"><i class="fa-solid fa-camera"></i></div>
+                            Hình Ảnh Thực Tế Dự Án
+                        </div>
+                        <div class="real-photos-grid">
+                            ${docs.realPhotos.map(photo => `
+                                <div class="modal-gallery-card" onclick="openLightbox('${photo.img}', '${photo.label}')">
+                                    <img src="${photo.img}" alt="${photo.label}" style="height: 120px; object-fit: cover; width: 100%;">
+                                    <div class="gallery-card-body" style="padding: 6px; text-align: center;"><p style="font-size: 0.7rem; margin: 0; font-weight: 600;">${photo.label}</p></div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+        } else {
+            bodyHtml = `
+                <div class="modal-table-wrapper">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã lô</th>
+                                <th>Diện tích</th>
+                                <th>Mặt tiền</th>
+                                <th>Đơn giá</th>
+                                <th>Giá bán</th>
+                                <th>Trạng thái</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${lotsHtml}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        modalBody.innerHTML = bodyHtml;
         const modal = document.getElementById('detail-modal');
         modal.classList.add('active');
     };
@@ -1786,6 +2282,194 @@ const BANG_HANG_DATA = {
         });
     };
 
+    let zoomScale = 1;
+    let zoomIsDragging = false;
+    let zoomStartX = 0;
+    let zoomStartY = 0;
+    let zoomPanX = 0;
+    let zoomPanY = 0;
+
+    function updateLightboxTransform() {
+        const img = document.getElementById('lightbox-img');
+        if (!img) return;
+        img.style.transform = `translate(${zoomPanX}px, ${zoomPanY}px) scale(${zoomScale})`;
+        if (zoomScale > 1) {
+            img.style.cursor = zoomIsDragging ? 'grabbing' : 'grab';
+        } else {
+            img.style.cursor = 'zoom-in';
+        }
+        const indicator = document.getElementById('zoom-indicator');
+        if (indicator) {
+            indicator.textContent = Math.round(zoomScale * 100) + '%';
+        }
+    }
+
+    function resetLightboxZoom() {
+        zoomScale = 1;
+        zoomPanX = 0;
+        zoomPanY = 0;
+        zoomIsDragging = false;
+        updateLightboxTransform();
+    }
+
+    window.openLightbox = function(src, caption) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-caption').innerHTML = caption || '';
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        resetLightboxZoom();
+    };
+
+    window.closeLightbox = function() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+        resetLightboxZoom();
+    };
+
+    window.closeLightboxOnBg = function(e) {
+        if (e.target === document.getElementById('lightbox')) {
+            closeLightbox();
+        }
+    };
+
+    window.zoomInBtn = function(e) {
+        if (e) e.stopPropagation();
+        zoomScale = Math.min(zoomScale + 0.5, 6);
+        updateLightboxTransform();
+    };
+
+    window.zoomOutBtn = function(e) {
+        if (e) e.stopPropagation();
+        zoomScale = Math.max(zoomScale - 0.5, 1);
+        if (zoomScale === 1) {
+            zoomPanX = 0;
+            zoomPanY = 0;
+        }
+        updateLightboxTransform();
+    };
+
+    window.zoomResetBtn = function(e) {
+        if (e) e.stopPropagation();
+        resetLightboxZoom();
+    };
+
+    // Attach events for lightbox
+    setTimeout(() => {
+        const lightboxImg = document.getElementById('lightbox-img');
+        if (lightboxImg) {
+            lightboxImg.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                const zoomFactor = 0.15;
+                if (e.deltaY < 0) {
+                    zoomScale = Math.min(zoomScale + zoomFactor, 6);
+                } else {
+                    zoomScale = Math.max(zoomScale - zoomFactor, 1);
+                    if (zoomScale === 1) {
+                        zoomPanX = 0;
+                        zoomPanY = 0;
+                    }
+                }
+                updateLightboxTransform();
+            }, { passive: false });
+
+            lightboxImg.addEventListener('mousedown', function(e) {
+                if (zoomScale <= 1) return;
+                e.preventDefault();
+                zoomIsDragging = true;
+                zoomStartX = e.clientX - zoomPanX;
+                zoomStartY = e.clientY - zoomPanY;
+                updateLightboxTransform();
+            });
+
+            window.addEventListener('mousemove', function(e) {
+                if (!zoomIsDragging) return;
+                zoomPanX = e.clientX - zoomStartX;
+                zoomPanY = e.clientY - zoomStartY;
+                updateLightboxTransform();
+            });
+
+            window.addEventListener('mouseup', function(e) {
+                if (zoomIsDragging) {
+                    zoomIsDragging = false;
+                    updateLightboxTransform();
+                }
+            });
+
+            lightboxImg.addEventListener('dblclick', function(e) {
+                e.stopPropagation();
+                if (zoomScale === 1) {
+                    zoomScale = 2.5;
+                    zoomPanX = 0;
+                    zoomPanY = 0;
+                } else {
+                    zoomScale = 1;
+                    zoomPanX = 0;
+                    zoomPanY = 0;
+                }
+                updateLightboxTransform();
+            });
+
+            lightboxImg.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            let lastTouchDistance = 0;
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            lightboxImg.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    if (zoomScale > 1) {
+                        zoomIsDragging = true;
+                        touchStartX = e.touches[0].clientX - zoomPanX;
+                        touchStartY = e.touches[0].clientY - zoomPanY;
+                    }
+                } else if (e.touches.length === 2) {
+                    zoomIsDragging = false;
+                    lastTouchDistance = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                }
+            });
+
+            lightboxImg.addEventListener('touchmove', function(e) {
+                if (e.touches.length === 1 && zoomIsDragging) {
+                    zoomPanX = e.touches[0].clientX - touchStartX;
+                    zoomPanY = e.touches[0].clientY - touchStartY;
+                    updateLightboxTransform();
+                } else if (e.touches.length === 2) {
+                    const dist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    const factor = dist / lastTouchDistance;
+                    lastTouchDistance = dist;
+                    zoomScale = Math.max(1, Math.min(zoomScale * factor, 6));
+                    if (zoomScale === 1) {
+                        zoomPanX = 0;
+                        zoomPanY = 0;
+                    }
+                    updateLightboxTransform();
+                }
+            });
+
+            lightboxImg.addEventListener('touchend', function(e) {
+                zoomIsDragging = false;
+            });
+        }
+    }, 100);
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (document.getElementById('lightbox').classList.contains('open')) {
+                closeLightbox();
+            } else {
+                closeDetailsModal();
+            }
+        }
+    });
+
     document.getElementById('detail-modal').addEventListener('click', (e) => {
         if (e.target.id === 'detail-modal') {
             closeDetailsModal();
@@ -1802,72 +2486,23 @@ const BANG_HANG_DATA = {
             <button class="modal-close-btn" id="modal-close" onclick="closeDetailsModal()">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="modal-grid">
-                <!-- Cột trái: Bảng giá chi tiết -->
-                <div>
-                    <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Danh sách 16 lô thuộc rổ hàng</span>
-                        <div style="display: flex; gap: 12px; font-size: 0.75rem;">
-                            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #fee2e2; border: 1px solid #fca5a5; display: inline-block; border-radius: 2px;"></span> Đã cọc</span>
-                            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #fef3c7; border: 1px solid #fde68a; display: inline-block; border-radius: 2px;"></span> Cọc thiếu</span>
-                        </div>
-                    </div>
-                    <div class="modal-table-wrapper">
-                        <table class="modal-table">
-                            <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Mã lô</th>
-                                    <th>Diện tích</th>
-                                    <th>Mặt tiền</th>
-                                    <th>Đơn giá</th>
-                                    <th>Giá bán</th>
-                                    <th>Trạng thái</th>
-                                    <th>Ghi chú</th>
-                                </tr>
-                            </thead>
-                            <tbody id="modal-lots-table-body">
-                                <!-- Dynamic rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <!-- Cột phải: Thông tin thanh toán & Sơ đồ -->
-                <div>
-                    <div class="banking-card">
-                        <div class="banking-title">
-                            <i class="fa-solid fa-credit-card"></i> THÔNG TIN CHUYỂN CỌC
-                        </div>
-                        <div class="banking-info-row">
-                            <span class="banking-label">Chủ tài khoản đất</span>
-                            <span class="banking-value">TRAN THI HUE</span>
-                        </div>
-                        <div class="banking-info-row">
-                            <span class="banking-label">Số tài khoản (Techcombank)</span>
-                            <span class="banking-value copyable" onclick="copyText('9918837543', this)">
-                                9918 8375 43 <i class="fa-regular fa-copy" style="font-size:0.75rem;"></i>
-                            </span>
-                        </div>
-                        <div class="banking-info-row">
-                            <span class="banking-label">Cú pháp chuyển khoản</span>
-                            <span class="banking-value" style="color: var(--accent-red); font-family: monospace; font-size: 0.95rem; text-transform: uppercase;">Mã lô</span>
-                        </div>
-                        <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px;">
-                            <i class="fa-solid fa-circle-info"></i> Sau khi chuyển khoản cọc, vui lòng gửi bill chụp màn hình cho sếp Khương để khóa lô trên hệ thống realtime.
-                        </div>
-                    </div>
-                    
-                    <div class="map-container">
-                        <img src="assets/16_lo_view_bien.jpg" alt="Sơ đồ phân lô 16 lô View biển Hải Xuân" onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';">
-                        <div id="map-fallback" class="map-fallback-box" style="display:none;">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                            <span>Sơ đồ phân lô (Vui lòng đặt ảnh vào <code>training-hub/assets/16_lo_view_bien.jpg</code> để hiển thị)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Dynamic Content -->
         </div>
+    </div>
+</div>
+
+<!-- Lightbox Image Zoom Viewer -->
+<div id="lightbox" class="lightbox" onclick="closeLightboxOnBg(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-inner">
+        <img id="lightbox-img" src="" alt="Zoom Image">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+    <div class="lightbox-controls">
+        <button onclick="zoomOutBtn(event)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <div class="zoom-indicator" id="zoom-indicator">100%</div>
+        <button onclick="zoomInBtn(event)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <button onclick="zoomResetBtn(event)"><i class="fa-solid fa-compress"></i></button>
     </div>
 </div>
 
