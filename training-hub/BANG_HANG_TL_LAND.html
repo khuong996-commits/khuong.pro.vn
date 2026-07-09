@@ -1549,7 +1549,35 @@ const BANG_HANG_DATA = {
                             area: '80 – 122 m²',
                             frontage: '4,4 – 5 m',
                             commission: '4% + thưởng 200 triệu + 1 vé bốc Tucson',
-                            note: 'Q6A, Q9, Q15, Q16A, Q16B, Q18, I1, I9, I22B, I32A: 2 vé/lô'
+                            note: 'Q6A, Q9, Q15, Q16A, Q16B, Q18, I1, I9, I22B, I32A: 2 vé/lô',
+                            docs: {
+                                locationText: '<strong>Vị trí:</strong> Phân khu I và Phân khu U, Xã Giao Phong, Quất Lâm, Nam Định.<br><strong>Đặc điểm:</strong> Nằm sát trục đường chính kết nối UBND và Trung tâm Hành chính xã, sát các khu nghỉ dưỡng lớn.',
+                                googleMapsUrl: [
+                                    { label: 'Định vị Khu I', url: 'https://maps.app.goo.gl/eASeByxjZiD4Aa5c6?g_st=ipc' },
+                                    { label: 'Định vị Khu U', url: 'https://maps.app.goo.gl/2bteGWqdEZC1vbES7' }
+                                ],
+                                mapIframeSrc: [
+                                    { label: 'Bản đồ Khu I', src: 'https://maps.google.com/maps?q=20.2046104,106.3998487&hl=vi&z=15&t=&output=embed' },
+                                    { label: 'Bản đồ Khu U', src: 'https://maps.google.com/maps?q=20.203904,106.400519&hl=vi&z=15&t=&output=embed' }
+                                ],
+                                driveFolderUrl: [
+                                    { label: 'Khu I', url: 'https://drive.google.com/drive/folders/1g3E3tRmos2_3RS4uiOxZlezkpVmZ9p0Y' },
+                                    { label: 'Khu U', url: 'https://drive.google.com/drive/folders/1ZLceaih2lT4ccmVzewBRTZxj0Ha8gzaL' }
+                                ],
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Hồ sơ pháp lý và sổ đỏ mẫu của rổ hàng 62 lô Giao Ninh.',
+                                advantages: [
+                                    'Nằm sát trên đường Trục chính nối ra Uỷ Ban, Trung tâm Hành chính xã',
+                                    'Nằm ngay trung tâm của Bãi Tắm 1 và 2',
+                                    'Cách mặt biển chỉ 50 - 100 mét',
+                                    'Cách Khu Nghỉ dưỡng Tập đoàn Flamingo, An Thịnh, Trường An chỉ 100 mét.',
+                                    'Đường rộng, 2 - 3 ô tô tránh nhau thoải mái',
+                                    'Dân cư xung quanh sầm uất, toàn Biệt thự sát đất',
+                                    'Cách Khu Công Nghiệp VSIP lớn nhất Miền Bắc 1100 ha (Tháng 8/2025 khởi công) chỉ 3-5 phút di chuyển',
+                                    'Cách nút ra cao tốc chỉ 3-5 phút di chuyển',
+                                    'Cách khu vực Quảng trường biển, công viên cây xanh, phố đi bộ, khu chợ đêm chỉ 1-2 phút di chuyển'
+                                ]
+                            }
                         },
                         {
                             name: '20 lô Mặt biển (Bãi tắm 1)',
@@ -2305,11 +2333,19 @@ const BANG_HANG_DATA = {
                         </div>
                         <p class="card-desc" style="margin-bottom: 12px;">${docs.redBookDesc || 'Sổ đỏ thổ cư riêng từng nền của dự án, pháp lý an tâm tuyệt đối.'}</p>
                         
-                        ${docs.driveFolderUrl ? `
-                            <a href="${docs.driveFolderUrl}" target="_blank" class="btn-action-primary" style="background:#8b5cf6; margin: 12px 0 8px;">
-                                <i class="fa-brands fa-google-drive"></i> Xem Thư Mục Sổ Đỏ Trên Google Drive
-                            </a>
-                        ` : ''}
+                        ${docs.driveFolderUrl ? (
+                            Array.isArray(docs.driveFolderUrl)
+                            ? docs.driveFolderUrl.map(d => `
+                                <a href="${d.url}" target="_blank" class="btn-action-primary" style="background:#8b5cf6; margin: 6px 0;">
+                                    <i class="fa-brands fa-google-drive"></i> Xem Sổ Đỏ ${d.label}
+                                </a>
+                            `).join('')
+                            : `
+                                <a href="${docs.driveFolderUrl}" target="_blank" class="btn-action-primary" style="background:#8b5cf6; margin: 12px 0 8px;">
+                                    <i class="fa-brands fa-google-drive"></i> Xem Thư Mục Sổ Đỏ Trên Google Drive
+                                </a>
+                            `
+                        ) : ''}
 
                         ${docs.redBookImg ? `
                             <div class="modal-gallery-card" onclick="openLightbox('${docs.redBookImg}', 'Sổ đỏ mẫu ${foundProduct.name}')" style="margin-top: auto;">
