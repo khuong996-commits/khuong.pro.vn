@@ -47,6 +47,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- DOM Cache cho tốc độ tải trang ----
     const _domCache = {};
     let _currentPageId = null;
+    const ROADMAP_RETURN_STORAGE_KEY = 'trainingHubRoadmapReturn';
+
+    function saveRoadmapReturn(returnState) {
+        if (!returnState) return;
+        window._roadmapReturnState = returnState;
+        try {
+            sessionStorage.setItem(ROADMAP_RETURN_STORAGE_KEY, JSON.stringify(returnState));
+        } catch (e) {
+            console.warn('Không thể lưu trạng thái quay lại lộ trình:', e);
+        }
+    }
+
+    function readRoadmapReturn() {
+        if (window._roadmapReturnState) return window._roadmapReturnState;
+        try {
+            const stored = sessionStorage.getItem(ROADMAP_RETURN_STORAGE_KEY);
+            if (!stored) return null;
+            window._roadmapReturnState = JSON.parse(stored);
+            return window._roadmapReturnState;
+        } catch (e) {
+            console.warn('Không thể đọc trạng thái quay lại lộ trình:', e);
+            return null;
+        }
+    }
+
+    function clearRoadmapReturn() {
+        window._roadmapReturnState = null;
+        window._pendingRoadmapReturn = null;
+        try {
+            sessionStorage.removeItem(ROADMAP_RETURN_STORAGE_KEY);
+        } catch (e) {}
+    }
+
+    function renderRoadmapReturnBar(pageId) {
+        const existing = document.getElementById('roadmap-return-bar');
+        if (existing) existing.remove();
+
+        const returnState = readRoadmapReturn();
+        if (!returnState || returnState.moduleId !== pageId) return;
+
+        const moduleName = returnState.moduleName || 'bài học vừa mở';
+        const bar = document.createElement('div');
+        bar.id = 'roadmap-return-bar';
+        bar.className = 'roadmap-return-bar';
+        bar.innerHTML = `
+            <button type="button" class="roadmap-return-btn" onclick="window.appRoutes.backToRoadmap()">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Quay lại lộ trình</span>
+            </button>
+            <div class="roadmap-return-context">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>${moduleName}</span>
+            </div>
+        `;
+        appContent.prepend(bar);
+    }
 
     function _getOrCreateDOM(pageId) {
         // Trang admin/profile render động, không cache
@@ -62,7 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.appRoutes = {
-        navigate: function(pageId, pushState = true) {
+        navigate: function(pageId, pushState = true, options = {}) {
+            if (options.fromRoadmap) {
+                saveRoadmapReturn(options.fromRoadmap);
+            }
+            if (pageId === 'page-profile') {
+                const restoreState = options.restoreRoadmap || (options.restoreRoadmapFromSession ? readRoadmapReturn() : null);
+                if (restoreState) {
+                    window._pendingRoadmapReturn = restoreState;
+                }
+            }
+
             window.currentPageId = pageId;
             // Check if page exists in DB (except dynamic page-profile)
             if (pageId !== 'page-profile' && pageId !== 'page-lich-di-khach' && !APP_CONTENT[pageId]) {
@@ -71,12 +137,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Không navigate lại trang đang xem
-            if (pageId === _currentPageId) return;
+            if (pageId === _currentPageId) {
+                if (pageId === 'page-profile' && typeof window.applyPendingRoadmapReturn === 'function') {
+                    window.applyPendingRoadmapReturn();
+                }
+                return;
+            }
             _currentPageId = pageId;
 
             // Push state to URL
             if (pushState && routeMap[pageId]) {
-                window.history.pushState({ pageId: pageId }, '', '/training-hub/' + routeMap[pageId]);
+                const historyState = { pageId: pageId };
+                if (options.fromRoadmap) historyState.fromRoadmap = options.fromRoadmap;
+                window.history.pushState(historyState, '', '/training-hub/' + routeMap[pageId]);
             }
 
             // Tạm dừng iframe cũ trước khi swap (giải phóng tài nguyên)
@@ -107,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Append completion card at the bottom if it's a roadmap module
                 const isRoadmapPage = typeof TRAINING_ROADMAP !== 'undefined' && TRAINING_ROADMAP.some(step => step.modules.some(m => m.id === pageId));
                 if (isRoadmapPage) {
+                    renderRoadmapReturnBar(pageId);
                     let compContainer = document.getElementById('lesson-completion-container');
                     if (!compContainer) {
                         compContainer = document.createElement('div');
@@ -158,8 +232,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Scroll to top
-            window.scrollTo(0, 0);
-        }
+            const shouldScrollTop = options.scrollTop !== false && !options.restoreRoadmap && !options.restoreRoadmapFromSession;
+            if (shouldScrollTop) {
+                window.scrollTo(0, 0);
+            }
+        },
+
+        backToRoadmap: function() {
+            const returnState = readRoadmapReturn();
+            if (!returnState) {
+                this.navigate('page-profile', true);
+                return;
+            }
+            this.navigate(returnState.returnPageId || 'page-profile', true, {
+                restoreRoadmap: returnState,
+                scrollTop: false
+            });
+        },
+
+        getRoadmapReturn: readRoadmapReturn,
+        clearRoadmapReturn: clearRoadmapReturn
     };
 
     // ---- Sidebar Toggle Logic ----
@@ -190,12 +282,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle popstate (Back/Forward browser buttons)
     window.addEventListener('popstate', (e) => {
         if (e.state && e.state.pageId) {
-            window.appRoutes.navigate(e.state.pageId, false);
+            window.appRoutes.navigate(e.state.pageId, false, {
+                restoreRoadmapFromSession: e.state.pageId === 'page-profile'
+            });
         } else {
             const currentPath = window.location.pathname.replace(/^\/+/, '');
             const relativePath = currentPath.replace(/^training-hub\/?/, '').replace(/^\/+/, '');
             const pageId = pathMap[relativePath] || 'page-profile';
-            window.appRoutes.navigate(pageId, false);
+            window.appRoutes.navigate(pageId, false, {
+                restoreRoadmapFromSession: pageId === 'page-profile'
+            });
         }
     });
 

@@ -3446,9 +3446,70 @@ async function renderLessonCompletionCard(pageId) {
 }
 
 // ---- Navigate đến trang module ----
-function navigateToModule(pageId) {
+function findRoadmapModule(pageId) {
+    for (let stepIdx = 0; stepIdx < TRAINING_ROADMAP.length; stepIdx++) {
+        const module = TRAINING_ROADMAP[stepIdx].modules.find(m => m.id === pageId);
+        if (module) {
+            return { module, stepIdx };
+        }
+    }
+    return null;
+}
+
+function escapeAttrSelector(value) {
+    return String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+function applyPendingRoadmapReturn() {
+    const returnState = window._pendingRoadmapReturn;
+    if (!returnState || window.currentPageId !== 'page-profile') return;
+
+    const moduleSelector = `.roadmap-module[data-module-id="${escapeAttrSelector(returnState.moduleId)}"]`;
+    const targetModule = document.querySelector(moduleSelector);
+    const targetStep = targetModule
+        ? targetModule.closest('.roadmap-step-card')
+        : document.querySelector(`.roadmap-step-card[data-step-idx="${returnState.stepIdx}"]`);
+
+    if (targetStep) {
+        targetStep.classList.add('expanded');
+    }
+
+    requestAnimationFrame(() => {
+        const freshTarget = document.querySelector(moduleSelector);
+        if (freshTarget) {
+            freshTarget.classList.add('roadmap-module-returned');
+            freshTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                freshTarget.classList.remove('roadmap-module-returned');
+            }, 2200);
+        } else if (Number.isFinite(returnState.scrollY)) {
+            window.scrollTo({ top: returnState.scrollY, behavior: 'smooth' });
+        }
+
+        if (window.appRoutes && typeof window.appRoutes.clearRoadmapReturn === 'function') {
+            window.appRoutes.clearRoadmapReturn();
+        } else {
+            window._pendingRoadmapReturn = null;
+        }
+    });
+}
+
+window.applyPendingRoadmapReturn = applyPendingRoadmapReturn;
+
+function navigateToModule(pageId, stepIdx) {
     if (window.appRoutes) {
-        window.appRoutes.navigate(pageId, true);
+        const meta = findRoadmapModule(pageId);
+        const resolvedStepIdx = Number.isInteger(stepIdx) ? stepIdx : meta?.stepIdx;
+        window.appRoutes.navigate(pageId, true, {
+            fromRoadmap: {
+                returnPageId: 'page-profile',
+                moduleId: pageId,
+                moduleName: meta?.module?.name || 'Bài học',
+                stepIdx: resolvedStepIdx,
+                scrollY: window.scrollY,
+                createdAt: Date.now()
+            }
+        });
     }
 }
 
@@ -3624,11 +3685,11 @@ function renderProfileUI(container) {
                                     ${step.modules.map(mod => {
                                         const isCompleted = completedModules.includes(mod.id);
                                         return `
-                                            <div class="roadmap-module ${isCompleted ? 'completed' : ''}">
+                                            <div class="roadmap-module ${isCompleted ? 'completed' : ''}" data-module-id="${mod.id}" data-step-idx="${idx}">
                                                 <div class="roadmap-module-check" onclick="toggleModuleComplete('${mod.id}')">
                                                     <i class="fa-solid ${isCompleted ? 'fa-circle-check' : 'fa-circle'}"></i>
                                                 </div>
-                                                <div class="roadmap-module-content" onclick="navigateToModule('${mod.id}')">
+                                                <div class="roadmap-module-content" onclick="navigateToModule('${mod.id}', ${idx})">
                                                     <div class="roadmap-module-icon" style="color:${step.color}">
                                                         <i class="fa-solid ${mod.icon}"></i>
                                                     </div>
@@ -3720,6 +3781,7 @@ function renderProfileUI(container) {
     `;
 
     window.defaultProfileTab = null;
+    applyPendingRoadmapReturn();
 }
 
 // ---- Toggle expand/collapse roadmap step card ----

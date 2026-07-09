@@ -2327,6 +2327,12 @@ a:hover { color: var(--accent-purple); }
     transform: translateX(3px);
 }
 
+.roadmap-module-returned {
+    border-color: rgba(56, 189, 248, 0.65) !important;
+    background: rgba(56, 189, 248, 0.08) !important;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12), 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
 /* ---- Right Column: Info + Stats ---- */
 .profile-col-right {
     display: flex;
@@ -3990,6 +3996,62 @@ body.dark-mode .access-logs-table tr {
 /* ============================================
    LESSON COMPLETION CARD
    ============================================ */
+.roadmap-return-bar {
+    max-width: 980px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(56, 189, 248, 0.20);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.roadmap-return-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #38bdf8, #3b82f6);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.22);
+    transition: var(--transition-fast);
+}
+
+.roadmap-return-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 9px 20px rgba(59, 130, 246, 0.28);
+}
+
+.roadmap-return-context {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.roadmap-return-context span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .lesson-completion-card {
     margin: 50px auto 20px;
     max-width: 800px;
@@ -4125,6 +4187,17 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     .btn-toggle-lesson-complete {
         justify-content: center;
     }
+    .roadmap-return-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .roadmap-return-btn {
+        width: 100%;
+    }
+    .roadmap-return-context {
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 
@@ -4216,6 +4289,44 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+}
+
+.ts-date-nav .cl-nav-btn,
+.ts-date-nav .cl-today-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: #ffffff;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 850;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    transition: var(--transition-fast);
+}
+
+.ts-date-nav .cl-nav-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    color: var(--accent-blue);
+}
+
+.ts-date-nav .cl-today-btn {
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 11px;
+    font-size: 0.84rem;
+}
+
+.ts-date-nav .cl-nav-btn:hover,
+.ts-date-nav .cl-today-btn:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(56, 189, 248, 0.10);
+    color: var(--accent-blue);
 }
 
 .ts-week-label {
@@ -5371,7 +5482,7 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: min(620px, 92vw);
+    width: min(720px, 94vw);
     max-height: 90vh;
     overflow: hidden;
     transform: translate(-50%, -50%) scale(0.94);
@@ -5413,6 +5524,27 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     color: var(--accent-blue);
 }
 
+.ts-modal .cl-modal-close {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.ts-modal .cl-modal-close:hover {
+    background: rgba(248, 113, 113, 0.14);
+    color: #dc2626;
+}
+
 .ts-modal-body {
     padding: 24px;
     max-height: calc(90vh - 78px);
@@ -5430,15 +5562,142 @@ body.dark-mode .btn-toggle-lesson-complete.completed {
     grid-column: 1 / -1;
 }
 
+.ts-modal .cl-form-group {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0;
+}
+
+.ts-modal .cl-form-group label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 850;
+    line-height: 1.25;
+}
+
+.ts-modal .cl-form-group label i {
+    width: 16px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.ts-modal .cl-input,
+.ts-modal .cl-textarea {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    border-radius: 12px;
+    background: #f8fafc;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 750;
+    outline: none;
+    box-shadow: none;
+    transition: var(--transition-fast);
+}
+
+.ts-modal .cl-input {
+    min-height: 44px;
+    padding: 0 12px;
+}
+
+.ts-modal select.cl-input {
+    cursor: pointer;
+}
+
+.ts-modal .cl-textarea {
+    min-height: 96px;
+    padding: 12px;
+    resize: vertical;
+    line-height: 1.45;
+}
+
+.ts-modal .cl-input:focus,
+.ts-modal .cl-textarea:focus {
+    border-color: rgba(56, 189, 248, 0.75);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
 .ts-staff-multiselect {
-    min-height: 138px;
+    height: 170px;
     padding: 8px;
+    overflow: auto;
+    line-height: 1.35;
 }
 
 .ts-staff-multiselect option {
+    margin-bottom: 3px;
     padding: 8px 10px;
     border-radius: 8px;
     font-weight: 750;
+}
+
+.ts-staff-multiselect option:checked {
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.26), rgba(56, 189, 248, 0.16));
+    color: var(--text-primary);
+}
+
+.ts-modal .cl-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 2px;
+}
+
+.ts-modal .cl-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 18px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 850;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.ts-modal .cl-btn-cancel {
+    background: #ffffff;
+    border-color: rgba(148, 163, 184, 0.30);
+    color: var(--text-secondary);
+}
+
+.ts-modal .cl-btn-cancel:hover {
+    background: #f8fafc;
+    color: var(--text-primary);
+}
+
+.ts-modal .cl-btn-save {
+    background: var(--gradient-main);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(56, 189, 248, 0.24);
+}
+
+.ts-modal .cl-btn-save:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.30);
+}
+
+.ts-modal .cl-btn:disabled {
+    cursor: wait;
+    opacity: 0.72;
+    transform: none;
 }
 
 .ts-helper-text {
