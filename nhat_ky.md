@@ -128,3 +128,22 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Đồng bộ hóa các thay đổi bằng cách sao chép các file `content.js` và `script.js` đã khôi phục sang thư mục `TRAINING_HUB/` ở thư mục gốc.
 - **Kết quả:** Giao diện Chân Dung Khách Hàng đã quay lại dạng Iframe hiển thị file `CHAN_DUNG_KHACH_HANG_V2_1.html` chuẩn ban đầu, loại bỏ hoàn toàn mã nguồn slideshow tự chế.
 
+### 📌 Phiên ngày 25/06/2026 - 10:20
+- **Mục tiêu:** Kích hoạt và tích hợp skill mới "Phong Cách Khương Trịnh (phong-cach-khuong)" tải về từ mục tải xuống.
+- **Nội dung thực hiện:**
+  - Đọc hồ sơ giọng điệu (Brand Voice) & quy trình viết bài Facebook tự động trong file `phong-cach-khuong_SKILL.md` tại mục Downloads.
+  - Kích hoạt skill bằng cách sao chép file cấu hình dưới tên `phong-cach-khuong.md` vào các thư mục quản lý skill của IDE: `C:\Users\ACER\.gemini\antigravity-ide\skills\` và `C:\Users\ACER\.gemini\config\skills\`.
+  - Tạo thư mục mới `Skill_Phong_Cach_Khuong` trong thư mục quản lý dự án của anh Thắng (`D:\file của thắng\làm việc BĐS\Skill tổng quản\`) để lưu giữ mã nguồn và tài liệu của skill này.
+- **Kết quả:** Đã kích hoạt hoàn toàn skill "phong-cach-khuong" trên hệ thống và lưu trữ cấu trúc thư mục mới phục vụ phát triển.
+
+### 📌 Phiên ngày 09/07/2026 - 14:14
+- **Mục tiêu:** Cập nhật rổ hàng mới cho khu vực Ninh Cơ trong Bảng Hàng Tổng Hợp và tích hợp bảng giá chi tiết 16 lô.
+- **Nội dung thực hiện:**
+  - Thêm sản phẩm mới **"16 lô View biển Hải Xuân"** với đầy đủ thông số tổng quan (Tổng giá: 1,4 - 3,64 tỷ; Đơn giá: 18 - 29 triệu/m²; Diện tích: 72 - 155 m²; Mặt tiền: 4,5 - 13,2 m; Hoa hồng: 4% + thưởng 200 triệu) vào mảng dữ liệu `BANG_HANG_DATA` của file `BANG_HANG_TL_LAND.html` ở cả hai thư mục `khuong.pro.vn/training-hub/` và `TRAINING_HUB/`.
+  - Tích hợp cấu trúc dữ liệu chi tiết cho 16 lô đất (`detailLots`) gồm: Mã lô (E01-E15), diện tích, mặt tiền, đơn giá, tổng giá, trạng thái cọc (E6B: Full cọc - Đỏ, các lô còn lại: Cọc thiếu - Vàng) và ghi chú đi kèm.
+  - Thiết kế và lập trình giao diện **Modal Overlay Glassmorphism** cao cấp để hiển thị bảng giá chi tiết này kèm theo thông tin chuyển cọc (Techcombank - TRAN THI HUE) và sơ đồ phân lô liên kết (`assets/16_lo_view_bien.jpg`).
+  - Thêm tính năng **Copy nhanh số tài khoản** bằng 1 cú click ngay tại modal.
+  - Cập nhật thời gian `lastUpdated` thành ngày hiện tại để làm mới giao diện cho nhân sự.
+- **Kết quả:** Bảng hàng Ninh Cơ hiển thị thêm rổ hàng mới trực quan, tổng số lượng rổ hàng tự động tăng lên 6 và tổng số lượng rổ hàng toàn công ty cập nhật chính xác (48 rổ hàng). Nhân sự có thể click trực tiếp vào nút "Xem Bảng Giá & Sơ Đồ Chi Tiết" để xem trạng thái cọc và thông tin chuyển khoản một cách chuyên nghiệp.
+
+

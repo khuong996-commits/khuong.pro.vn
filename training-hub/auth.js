@@ -4436,6 +4436,13 @@ async function handleSaveMemberProfileByLeader(memberEmail) {
     const panel = document.getElementById('details-' + emailEscaped);
     if (!panel) return;
 
+    const saveBtn = panel.querySelector('.profile-save-btn');
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.style.opacity = '0.6';
+        saveBtn.style.cursor = 'not-allowed';
+    }
+
     const data = {
         displayName: panel.querySelector('#pf-name-' + emailEscaped)?.value || '',
         phone: panel.querySelector('#pf-phone-' + emailEscaped)?.value || '',
@@ -4461,4 +4468,10 @@ async function handleSaveMemberProfileByLeader(memberEmail) {
     
     // Refresh lại card hiển thị thông tin học tập của nhân viên để đồng bộ họ tên mới
     await refreshMemberProgressUI(memberEmail);
+
+    if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.style.opacity = '';
+        saveBtn.style.cursor = '';
+    }
 }

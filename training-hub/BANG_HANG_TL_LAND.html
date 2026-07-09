@@ -636,6 +636,298 @@ body {
     .spec-label-small { font-size: 0.6rem; }
     .spec-value { font-size: 0.75rem; }
 }
+
+/* === MODAL STYLES === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes modalScale {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to right, rgba(2,132,199,0.03), rgba(124,58,237,0.03));
+}
+
+.modal-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    color: var(--text);
+    background: rgba(0,0,0,0.05);
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Modal Content Layout */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Table styling in Modal */
+.modal-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.modal-table th, .modal-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-table th {
+    background: var(--bg-card-hover);
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.modal-table tr:last-child td {
+    border-bottom: none;
+}
+
+.modal-table tr:hover td {
+    background: rgba(2,132,199,0.02);
+}
+
+/* Lot status styling */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.status-pill.status-yellow {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fde68a;
+}
+
+.status-pill.status-red {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.status-pill.status-green {
+    background: #d1fae5;
+    color: #047857;
+    border: 1px solid #6ee7b7;
+}
+
+/* Banking card */
+.banking-card {
+    background: var(--bg-card-hover);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    height: fit-content;
+}
+
+.banking-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.banking-title i {
+    color: var(--accent-blue);
+}
+
+.banking-info-row {
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+}
+
+.banking-info-row span {
+    display: block;
+}
+
+.banking-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.banking-value {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.banking-value.copyable {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--accent-blue);
+}
+
+.banking-value.copyable:hover {
+    text-decoration: underline;
+}
+
+/* Map placeholder in modal */
+.map-container {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.map-container img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.map-fallback-box {
+    padding: 30px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.map-fallback-box i {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.map-fallback-box span {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Card action button */
+.card-action-btn-wrapper {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-open-details {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--accent-blue);
+    background: transparent;
+    color: var(--accent-blue);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-open-details:hover {
+    background: var(--gradient-main);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(2,132,199,0.15);
+}
     </style>
 </head>
 <body>
@@ -645,7 +937,7 @@ body {
 <!-- ========================================== -->
 <script>
 const BANG_HANG_DATA = {
-    lastUpdated: '19/06/2026 — 16:46',
+    lastUpdated: '09/07/2026 — 14:13',
 
     regions: [
         // =============================================
@@ -706,6 +998,32 @@ const BANG_HANG_DATA = {
                             frontage: '3,6 – 18,7 m',
                             commission: '4% + thưởng 200 triệu',
                             note: 'Nhiều lô view biển, lô góc 2–3 mặt tiền. Một số lô đã cọc — liên hệ sếp để check realtime.'
+                        },
+                        {
+                            name: '16 lô View biển Hải Xuân',
+                            totalPrice: '1,4 tỷ – 3,64 tỷ',
+                            unitPrice: '18 – 29 triệu/m²',
+                            area: '72 – 155 m²',
+                            frontage: '4,5 – 13,2 m',
+                            commission: '4% + thưởng 200 triệu',
+                            detailLots: [
+                                { code: 'E01', area: 99, frontage: 4.5, unitPrice: '19.500.000', totalPrice: '1.930.500.000', status: 'yellow', note: '' },
+                                { code: 'E2A', area: 82, frontage: 8.2, unitPrice: '19.650.000', totalPrice: '1.611.300.000', status: 'yellow', note: '' },
+                                { code: 'E2B', area: 72, frontage: 13.2, unitPrice: '19.500.000', totalPrice: '1.404.000.000', status: 'yellow', note: '' },
+                                { code: 'E2C', area: 76, frontage: null, unitPrice: '26.500.000', totalPrice: '2.014.000.000', status: 'yellow', note: 'Lô góc - Mặt biển' },
+                                { code: 'E05', area: 98, frontage: 4.5, unitPrice: '24.600.000', totalPrice: '2.410.800.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E6A', area: 88, frontage: 4.8, unitPrice: '25.000.000', totalPrice: '2.200.000.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E6B', area: 82, frontage: 5, unitPrice: '25.000.000', totalPrice: '2.050.000.000', status: 'red', note: 'Mặt biển (Full cọc)' },
+                                { code: 'E08', area: 85, frontage: 4.5, unitPrice: '25.000.000', totalPrice: '2.125.000.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E09', area: 109, frontage: 5, unitPrice: '25.500.000', totalPrice: '2.779.500.000', status: 'yellow', note: 'Hai mặt thoáng - Mặt biển' },
+                                { code: 'E9A', area: 101, frontage: 5, unitPrice: '29.000.000', totalPrice: '2.929.000.000', status: 'yellow', note: 'Hai mặt thoáng - Mặt biển' },
+                                { code: 'E10', area: 155, frontage: 5, unitPrice: '23.500.000', totalPrice: '3.642.500.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E11', area: 102, frontage: 4.6, unitPrice: '24.000.000', totalPrice: '2.448.000.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E12A', area: 97, frontage: 4.8, unitPrice: '24.000.000', totalPrice: '2.328.000.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E12B', area: 92, frontage: 5.1, unitPrice: '24.000.000', totalPrice: '2.208.000.000', status: 'yellow', note: 'Mặt biển' },
+                                { code: 'E12C', area: 101, frontage: 6.2, unitPrice: '26.500.000', totalPrice: '2.676.500.000', status: 'yellow', note: 'Lô góc - Mặt biển' },
+                                { code: 'E15', area: 97, frontage: 4.5, unitPrice: '18.000.000', totalPrice: '1.746.000.000', status: 'yellow', note: '' }
+                            ]
                         }
                     ]
                 }
@@ -1292,6 +1610,16 @@ const BANG_HANG_DATA = {
                 </div>`;
         }
 
+        let detailBtn = '';
+        if (product.detailLots) {
+            detailBtn = `
+                <div class="card-action-btn-wrapper">
+                    <button class="btn-open-details" onclick="openDetailsModal('${product.name}')">
+                        <i class="fa-solid fa-table-cells"></i> Xem Bảng Giá & Sơ Đồ Chi Tiết
+                    </button>
+                </div>`;
+        }
+
         return `
             <div class="product-card ${regionId}" style="animation-delay:${delay}ms">
                 <div class="card-title">
@@ -1301,6 +1629,7 @@ const BANG_HANG_DATA = {
                 ${!product.commission && product.note ? `<div class="card-note"><i class="fa-solid fa-circle-info"></i> ${product.note}</div>` : ''}
                 <div class="card-specs">${specsHtml}</div>
                 ${commissionHtml}
+                ${detailBtn}
             </div>`;
     }
 
@@ -1398,8 +1727,149 @@ const BANG_HANG_DATA = {
     // === INIT ===
     renderFilters();
     renderContent();
+
+    // === EXPOSE MODAL FUNCTIONS ===
+    window.openDetailsModal = function(productName) {
+        let foundProduct = null;
+        for (const region of data.regions) {
+            for (const subReg of region.subRegions) {
+                const prod = subReg.products.find(p => p.name === productName);
+                if (prod && prod.detailLots) {
+                    foundProduct = prod;
+                    break;
+                }
+            }
+            if (foundProduct) break;
+        }
+
+        if (!foundProduct) return;
+
+        document.getElementById('modal-title').textContent = foundProduct.name;
+        const tbody = document.getElementById('modal-lots-table-body');
+        
+        let html = '';
+        foundProduct.detailLots.forEach((lot, index) => {
+            const statusClass = lot.status === 'red' ? 'status-red' : 'status-yellow';
+            const statusText = lot.status === 'red' ? 'Full cọc' : 'Cọc thiếu';
+            
+            html += `
+                <tr>
+                    <td style="font-weight:600; color:var(--text-muted);">${index + 1}</td>
+                    <td style="font-weight:800; font-family:monospace; font-size:0.95rem; color:var(--accent-blue);">${lot.code}</td>
+                    <td style="font-weight:600;">${lot.area} m²</td>
+                    <td>${lot.frontage ? lot.frontage + ' m' : '—'}</td>
+                    <td>${lot.unitPrice}</td>
+                    <td style="font-weight:700; color:var(--accent-emerald);">${lot.totalPrice}</td>
+                    <td><span class="status-pill ${statusClass}">${statusText}</span></td>
+                    <td style="font-size:0.8rem; color:var(--text-muted);">${lot.note || '—'}</td>
+                </tr>
+            `;
+        });
+        tbody.innerHTML = html;
+
+        const modal = document.getElementById('detail-modal');
+        modal.classList.add('active');
+    };
+
+    window.closeDetailsModal = function() {
+        const modal = document.getElementById('detail-modal');
+        modal.classList.remove('active');
+    };
+
+    window.copyText = function(text, element) {
+        navigator.clipboard.writeText(text).then(() => {
+            const originalHTML = element.innerHTML;
+            element.innerHTML = 'Đã copy! <i class="fa-solid fa-check" style="color:var(--accent-emerald);"></i>';
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+            }, 1500);
+        });
+    };
+
+    document.getElementById('detail-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'detail-modal') {
+            closeDetailsModal();
+        }
+    });
 })();
 </script>
+
+<!-- Modal Bảng Giá Chi Tiết -->
+<div id="detail-modal" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 id="modal-title">Chi Tiết Bảng Giá</h2>
+            <button class="modal-close-btn" id="modal-close" onclick="closeDetailsModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-grid">
+                <!-- Cột trái: Bảng giá chi tiết -->
+                <div>
+                    <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Danh sách 16 lô thuộc rổ hàng</span>
+                        <div style="display: flex; gap: 12px; font-size: 0.75rem;">
+                            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #fee2e2; border: 1px solid #fca5a5; display: inline-block; border-radius: 2px;"></span> Đã cọc</span>
+                            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: #fef3c7; border: 1px solid #fde68a; display: inline-block; border-radius: 2px;"></span> Cọc thiếu</span>
+                        </div>
+                    </div>
+                    <div class="modal-table-wrapper">
+                        <table class="modal-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã lô</th>
+                                    <th>Diện tích</th>
+                                    <th>Mặt tiền</th>
+                                    <th>Đơn giá</th>
+                                    <th>Giá bán</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-lots-table-body">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Cột phải: Thông tin thanh toán & Sơ đồ -->
+                <div>
+                    <div class="banking-card">
+                        <div class="banking-title">
+                            <i class="fa-solid fa-credit-card"></i> THÔNG TIN CHUYỂN CỌC
+                        </div>
+                        <div class="banking-info-row">
+                            <span class="banking-label">Chủ tài khoản đất</span>
+                            <span class="banking-value">TRAN THI HUE</span>
+                        </div>
+                        <div class="banking-info-row">
+                            <span class="banking-label">Số tài khoản (Techcombank)</span>
+                            <span class="banking-value copyable" onclick="copyText('9918837543', this)">
+                                9918 8375 43 <i class="fa-regular fa-copy" style="font-size:0.75rem;"></i>
+                            </span>
+                        </div>
+                        <div class="banking-info-row">
+                            <span class="banking-label">Cú pháp chuyển khoản</span>
+                            <span class="banking-value" style="color: var(--accent-red); font-family: monospace; font-size: 0.95rem; text-transform: uppercase;">Mã lô</span>
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px;">
+                            <i class="fa-solid fa-circle-info"></i> Sau khi chuyển khoản cọc, vui lòng gửi bill chụp màn hình cho sếp Khương để khóa lô trên hệ thống realtime.
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <img src="assets/16_lo_view_bien.jpg" alt="Sơ đồ phân lô 16 lô View biển Hải Xuân" onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';">
+                        <div id="map-fallback" class="map-fallback-box" style="display:none;">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Sơ đồ phân lô (Vui lòng đặt ảnh vào <code>training-hub/assets/16_lo_view_bien.jpg</code> để hiển thị)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
