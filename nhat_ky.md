@@ -182,3 +182,11 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Gán biến chia sẻ này cho tất cả 6 sản phẩm Ninh Cơ trong đối tượng `NINH_CO_ADVANTAGES` của file `BANG_HANG_TL_LAND.html`.
   - Đồng bộ file HTML sang thư mục `TRAINING_HUB/`.
 - **Kết quả:** Tất cả 6 sản phẩm Ninh Cơ trên website đều được cập nhật bộ ưu điểm đồng bộ, giúp việc tư vấn của nhân sự luôn thống nhất.
+
+### 📌 Phiên ngày 09/07/2026 - 15:10
+- **Mục tiêu:** Cập nhật tài liệu thực tế (Google Drive sổ đỏ, định vị Google Maps, ảnh thực địa) của sản phẩm **"16 lô View biển Hải Xuân"**.
+- **Nội dung thực hiện:**
+  - Sao chép 3 hình ảnh thực tế được cung cấp sang thư mục `training-hub/media/16_lo_thuc_te_1.jpg`, `16_lo_thuc_te_2.jpg`, `16_lo_thuc_te_3.jpg` và đồng bộ sang `TRAINING_HUB/media/`.
+  - Cập nhật các đường dẫn liên kết tài liệu thực tế của rổ hàng "16 lô View biển Hải Xuân": `googleMapsUrl` trỏ về định vị mới, `mapIframeSrc` nhúng bản đồ vệ tinh chính xác theo tọa độ `20.088281, 106.276618`, `driveFolderUrl` liên kết thư mục chứa sổ đỏ của 16 lô, và cập nhật mảng `realPhotos` để hiển thị 3 ảnh thực địa.
+  - Đồng bộ file HTML sang thư mục `TRAINING_HUB/`.
+- **Kết quả:** Rổ hàng "16 lô View biển Hải Xuân" đã tích hợp đầy đủ dữ liệu thực tế giúp nâng cao độ tin cậy và chuyên nghiệp của rổ hàng trên trang web.
