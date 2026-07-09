@@ -2021,6 +2021,28 @@ const BANG_HANG_DATA = {
         `<i class="fa-regular fa-clock"></i> Cập nhật lần cuối: ${data.lastUpdated}`;
 
     // === INIT ===
+    data.regions.forEach(region => {
+        region.subRegions.forEach(subReg => {
+            subReg.products.forEach(product => {
+                if (!product.docs && !product.isSpecial) {
+                    product.docs = {
+                        priceBoardImg: 'media/so_do_tuong_trung.png',
+                        priceBoardDesc: `Danh sách bảng giá chi tiết của rổ hàng ${product.name}.`,
+                        locationText: `<strong>Vị trí:</strong> Khu vực ${region.name}${subReg.name ? ' - ' + subReg.name : ''}.<br><strong>Tiềm năng:</strong> Đang cập nhật thông tin vị trí và liên kết vùng chi tiết.`,
+                        googleMapsUrl: '',
+                        mapIframeSrc: '',
+                        driveFolderUrl: '',
+                        redBookImg: 'media/so_do_tuong_trung.png',
+                        redBookDesc: `Hồ sơ pháp lý và sổ đỏ mẫu của rổ hàng ${product.name}.`,
+                        layoutImg: 'media/so_do_tuong_trung.png',
+                        layoutDesc: `Sơ đồ mặt bằng phân lô của rổ hàng ${product.name}.`,
+                        realPhotos: []
+                    };
+                }
+            });
+        });
+    });
+
     renderFilters();
     renderContent();
 

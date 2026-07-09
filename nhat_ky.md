@@ -147,14 +147,15 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
 - **Kết quả:** Bảng hàng Ninh Cơ hiển thị thêm rổ hàng mới trực quan, tổng số lượng rổ hàng tự động tăng lên 6 và tổng số lượng rổ hàng toàn công ty cập nhật chính xác (48 rổ hàng). Nhân sự có thể click trực tiếp vào nút "Xem Bảng Giá & Sơ Đồ Chi Tiết" để xem trạng thái cọc và thông tin chuyển khoản một cách chuyên nghiệp.
 
 ### 📌 Phiên ngày 09/07/2026 - 14:33
-- **Mục tiêu:** Di chuyển và tích hợp tài liệu dự án chi tiết (Ninh Cơ Docs) cùng tính năng zoom tương tác (Lightbox) từ Website_NinhCo.html vào Bảng Hàng Tổng Hợp.
+- **Mục tiêu:** Di chuyển và tích hợp tài liệu dự án chi tiết (Ninh Cơ Docs) cùng tính năng zoom tương tác (Lightbox) từ Website_NinhCo.html vào Bảng Hàng Tổng Hợp, đồng thời mở rộng bộ khung tài liệu cho tất cả các thị trường khác.
 - **Nội dung thực hiện:**
   - Sao chép toàn bộ thư mục hình ảnh `media/` của Ninh Cơ Docs sang `khuong.pro.vn/training-hub/media/` và `TRAINING_HUB/media/`.
   - Cập nhật cấu trúc dữ liệu `docs` của cả 6 sản phẩm Ninh Cơ trong `BANG_HANG_TL_LAND.html` bao gồm đường dẫn ảnh bảng giá, nội dung vị trí, link Google Maps, iframe bản đồ, link thư mục sổ đỏ Drive, ảnh sổ đỏ mẫu và ảnh sơ đồ phân lô thực tế.
   - Đổi tên sản phẩm **"25 lô đường bộ ven biển"** thành **"40 lô đường bộ ven biển"** cho đồng nhất với tài liệu chuẩn của dự án.
+  - Viết thuật toán tự động tạo bộ khung tài liệu **Docs Placeholder** khi khởi tạo (`INIT`) cho toàn bộ sản phẩm của các thị trường còn lại (Quất Lâm, Hoà Lạc, Sơn Tây, Thị Trường Khác) nếu chưa khai báo trường `docs` trong JSON, giúp hiển thị nút "Xem Bảng Giá & Tài Liệu Chi Tiết" trên 100% rổ hàng để người dùng dễ dàng cập nhật thông tin dần dần.
   - Lập trình lại hàm `openDetailsModal` để tự động render giao diện Dashboard 4 thẻ thông tin cực kỳ chuyên nghiệp (Bảng giá chi tiết, Vị trí & Bản đồ quy hoạch, Pháp lý & Sổ đỏ, Sơ đồ phân lô) kèm theo danh sách ảnh thực tế dự án bên dưới.
   - Thiết kế và tích hợp bộ xem ảnh **Lightbox** mượt mà hỗ trợ zoom bằng con lăn chuột, kéo thả bằng chuột, chạm kéo & pinch-to-zoom trên di động và double-click để bật/tắt phóng to.
   - Đồng bộ toàn bộ các cập nhật trên sang tệp tin `TRAINING_HUB/BANG_HANG_TL_LAND.html`.
-- **Kết quả:** Bảng hàng Ninh Cơ sở hữu tính năng xem tài liệu dự án chi tiết vô cùng trực quan và hiện đại tương đương với Dashboard tài liệu cũ, mang lại trải nghiệm tư vấn tốt nhất cho nhân sự.
+- **Kết quả:** Bảng hàng Ninh Cơ sở hữu tính năng xem tài liệu dự án chi tiết vô cùng trực quan và hiện đại tương đương với Dashboard tài liệu cũ. Đồng thời, toàn bộ 48 rổ hàng của công ty đều đã được trang bị bộ khung tài liệu chi tiết sẵn sàng để cập nhật thêm thông tin.
 
 
