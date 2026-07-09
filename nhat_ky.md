@@ -190,3 +190,11 @@ Tài liệu này lưu trữ nhật ký tất cả các buổi làm việc, các 
   - Cập nhật các đường dẫn liên kết tài liệu thực tế của rổ hàng "16 lô View biển Hải Xuân": `googleMapsUrl` trỏ về định vị mới, `mapIframeSrc` nhúng bản đồ vệ tinh chính xác theo tọa độ `20.088281, 106.276618`, `driveFolderUrl` liên kết thư mục chứa sổ đỏ của 16 lô, và cập nhật mảng `realPhotos` để hiển thị 3 ảnh thực địa.
   - Đồng bộ file HTML sang thư mục `TRAINING_HUB/`.
 - **Kết quả:** Rổ hàng "16 lô View biển Hải Xuân" đã tích hợp đầy đủ dữ liệu thực tế giúp nâng cao độ tin cậy và chuyên nghiệp của rổ hàng trên trang web.
+
+### 📌 Phiên ngày 09/07/2026 - 15:31
+- **Mục tiêu:** Khởi động cập nhật dữ liệu tài liệu cho thị trường Quất Lâm, bắt đầu với sản phẩm **"16 lô Mặt biển"** (Khu E & Khu F).
+- **Nội dung thực hiện:**
+  - Nâng cấp hàm `openDetailsModal` để tự động phát hiện và hỗ trợ hiển thị các rổ hàng có nhiều phân khu dưới dạng mảng (Array) cho các nút định vị Google Maps và bản đồ nhúng Iframe.
+  - Cập nhật thông tin định vị 2 phân khu E và F, bản đồ vệ tinh tương ứng, và link thư mục sổ đỏ Drive cho sản phẩm "16 lô Mặt biển" trong dữ liệu `BANG_HANG_DATA`.
+  - Đồng bộ file HTML sang thư mục `TRAINING_HUB/`.
+- **Kết quả:** Sản phẩm 16 lô Mặt biển Quất Lâm hiển thị chính xác định vị và sổ đỏ của cả hai phân khu E và F vô cùng chuyên nghiệp.

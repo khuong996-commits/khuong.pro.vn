@@ -1371,7 +1371,21 @@ const BANG_HANG_DATA = {
                             unitPrice: '38 – 47 triệu/m²',
                             area: '100 – 104 m²',
                             frontage: '4,8 m',
-                            commission: '4% + thưởng 200 triệu + vé bốc Tucson'
+                            commission: '4% + thưởng 200 triệu + vé bốc Tucson',
+                            docs: {
+                                locationText: '<strong>Vị trí:</strong> Phân khu E và Phân khu F, Xóm Liên Phong (sát biển), Quất Lâm, Nam Định.<br><strong>Đặc điểm:</strong> Vị trí trực diện mặt biển Quất Lâm tuyệt đẹp, đón quy hoạch du lịch biển sầm uất.',
+                                googleMapsUrl: [
+                                    { label: 'Định vị Khu E', url: 'https://www.google.com/maps/place/20%C2%B012\'08.6%22N+106%C2%B024\'09.0%22E/@20.2023783,106.4018589,259m/data=!3m2!1e3!4b1!4m13!1m8!3m7!1s0x3136060cad3ca6c7:0xce6e980558f5d6e0!2zR2lhbyBUaOG7i25oLCBHaWFvIFRodeG7tywgTmFtIMSQ4buLbmgsIFZp4buHdCBOYW0!3b1!8m2!3d20.2262522!4d106.3669834!16s%2Fg%2F1hb_gfsc3!3m3!8m2!3d20.202377!4d106.402504?entry=ttu&g_ep=EgoyMDI1MDYxNS4wIKXMDSoASAFQAw%3D%3D' },
+                                    { label: 'Định vị Khu F', url: 'https://maps.app.goo.gl/mYCsGeXfMViiGAnT7?g_st=iz' }
+                                ],
+                                mapIframeSrc: [
+                                    { label: 'Bản đồ Khu E', src: 'https://maps.google.com/maps?q=20.202377,106.402504&hl=vi&z=15&t=&output=embed' },
+                                    { label: 'Bản đồ Khu F', src: 'https://maps.google.com/maps?q=20.2024299,106.4028977&hl=vi&z=15&t=&output=embed' }
+                                ],
+                                driveFolderUrl: 'https://drive.google.com/drive/u/1/folders/1KR_L1DkVJErt3n7kD9QXh6eB4AsnXyjC',
+                                redBookImg: 'media/so_do_tuong_trung.png',
+                                redBookDesc: 'Hồ sơ pháp lý và sổ đỏ mẫu của rổ hàng 16 lô Mặt biển.'
+                            }
                         },
                         {
                             name: '30 lô Giao Phong',
@@ -2123,17 +2137,34 @@ const BANG_HANG_DATA = {
                         </div>
                         <div class="card-desc-box" style="margin-bottom: 12px;">${docs.locationText || ''}</div>
                         
-                        ${docs.googleMapsUrl ? `
-                            <a href="${docs.googleMapsUrl}" target="_blank" class="btn-action-primary" style="background: var(--accent-blue); margin: 12px 0 8px;">
-                                <i class="fa-solid fa-map-marked-alt"></i> Mở Bản Đồ Google Maps Trực Tuyến
-                            </a>
-                        ` : ''}
+                        ${docs.googleMapsUrl ? (
+                            Array.isArray(docs.googleMapsUrl)
+                            ? docs.googleMapsUrl.map(m => `
+                                <a href="${m.url}" target="_blank" class="btn-action-primary" style="background: var(--accent-blue); margin: 6px 0;">
+                                    <i class="fa-solid fa-map-marked-alt"></i> Mở Bản Đồ ${m.label}
+                                </a>
+                            `).join('')
+                            : `
+                                <a href="${docs.googleMapsUrl}" target="_blank" class="btn-action-primary" style="background: var(--accent-blue); margin: 12px 0 8px;">
+                                    <i class="fa-solid fa-map-marked-alt"></i> Mở Bản Đồ Google Maps Trực Tuyến
+                                </a>
+                            `
+                        ) : ''}
 
-                        ${docs.mapIframeSrc ? `
-                            <div class="map-iframe-wrapper">
-                                <iframe src="${docs.mapIframeSrc}" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                            </div>
-                        ` : ''}
+                        ${docs.mapIframeSrc ? (
+                            Array.isArray(docs.mapIframeSrc)
+                            ? docs.mapIframeSrc.map(ifr => `
+                                <div class="map-iframe-wrapper" style="margin-top: 8px;">
+                                    <div style="font-size: 0.7rem; font-weight: 700; padding: 4px 10px; background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--border); color:var(--text-secondary);">${ifr.label}</div>
+                                    <iframe src="${ifr.src}" width="100%" height="130" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            `).join('')
+                            : `
+                                <div class="map-iframe-wrapper">
+                                    <iframe src="${docs.mapIframeSrc}" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            `
+                        ) : ''}
                     </div>
 
                     <!-- Card 2: Pháp Lý & Sổ Đỏ -->
