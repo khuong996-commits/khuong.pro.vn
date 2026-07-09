@@ -2026,50 +2026,27 @@ const BANG_HANG_DATA = {
     document.getElementById('update-time').innerHTML =
         `<i class="fa-regular fa-clock"></i> Cập nhật lần cuối: ${data.lastUpdated}`;
 
+    const SHARED_NINH_CO_ADVANTAGES = [
+        'TÀI CHÍNH NHỈNH 1 TỶ - SỞ HỮU NGAY LÔ ĐẤT BIỂN:',
+        '1. Nằm đối diện Bãi Tắm và Khu đô thị Biển của Tập Đoàn Xuân Thiện',
+        '2. Cách đường bộ ven biển chỉ 200 mét',
+        '3. Cách Khu Đô Thị Biển rộng 25.000 ha của Tập Đoàn Xuân Thiện chỉ 50 mét',
+        '4. Cách đặc khu Kinh tế Ninh Cơ rộng 13.000 ha chỉ khoảng 3-5 phút di chuyển',
+        '5. Cách Khu vực cảng biển chỉ khoảng 3-5 phút di chuyển',
+        '6. Cách Khu Công Nghiệp rạng đông chỉ khoảng 5 phút di chuyển',
+        '7. Cách Tổ Hợp Thép Xanh Xuân Thiện, Quy mô đầu tư 100.000 tỷ (Khởi công tháng 6/2025) chỉ khoảng 5 phút di chuyển',
+        '8. Cách Uỷ Ban, trường học, quốc lộ, y tế, ngân hàng chỉ: 50-100 mét',
+        '9. Hạ tầng đồng bộ, đường 2-3 ô tô tránh',
+        'P/s: KHU NÀY MUA ĐẦU TƯ LÃI VỐN HOẶC MUA XÂY KHÁCH SẠN, NHÀ HÀNG, KINH DOANH HOẶC MUA ĐỂ Ở ĐỀU RẤT PHÙ HỢP'
+    ];
+
     const NINH_CO_ADVANTAGES = {
-        'Khu Kinh tế Ninh Cơ - NB (Ninh Bình)': [
-            'Nằm trong quy hoạch phát triển trọng điểm Khu kinh tế Ninh Cơ, tiềm năng tăng giá trị dài hạn cực lớn.',
-            'Vị trí đắc địa sát trục đường ven biển rộng 24m và đường đê sát bãi biển đẹp.',
-            'Quỹ đất vuông vắn, nhiều lô góc 2-3 mặt tiền thích hợp đầu tư kinh doanh, dịch vụ.',
-            'Pháp lý hoàn chỉnh, đất thổ cư lâu dài, sổ đỏ mang tên riêng từng nền sang tên được ngay.'
-        ],
-        '40 lô đường bộ ven biển': [
-            'TÀI CHÍNH NHỈNH 1 TỶ - SỞ HỮU NGAY LÔ ĐẤT BIỂN:',
-            '1. Nằm đối diện Bãi Tắm và Khu đô thị Biển của Tập Đoàn Xuân Thiện',
-            '2. Cách đường bộ ven biển chỉ 200 mét',
-            '3. Cách Khu Đô Thị Biển rộng 25.000 ha của Tập Đoàn Xuân Thiện chỉ 50 mét',
-            '4. Cách đặc khu Kinh tế Ninh Cơ rộng 13.000 ha chỉ khoảng 3-5 phút di chuyển',
-            '5. Cách Khu vực cảng biển chỉ khoảng 3-5 phút di chuyển',
-            '6. Cách Khu Công Nghiệp rạng đông chỉ khoảng 5 phút di chuyển',
-            '7. Cách Tổ Hợp Thép Xanh Xuân Thiện, Quy mô đầu tư 100.000 tỷ (Khởi công tháng 6/2025) chỉ khoảng 5 phút di chuyển',
-            '8. Cách Uỷ Ban, trường học, quốc lộ, y tế, ngân hàng chỉ: 50-100 mét',
-            '9. Hạ tầng đồng bộ, đường 2-3 ô tô tránh',
-            'P/s: KHU NÀY MUA ĐẦU TƯ LÃI VỐN HOẶC MUA XÂY KHÁCH SẠN, NHÀ HÀNG, KINH DOANH HOẶC MUA ĐỂ Ở ĐỀU RẤT PHÙ HỢP'
-        ],
-        '66 lô Mặt biển Hải Xuân': [
-            'Vị trí độc tôn trực diện bãi biển Hải Xuân thơ mộng, đón gió biển và ánh bình minh tuyệt đẹp.',
-            'Bám dọc theo đường đê bao biển quy hoạch rộng thoáng, cực kỳ thuận lợi kinh doanh du lịch, khách sạn.',
-            'Nhiều sản phẩm là lô góc 2 mặt thoáng, thiết kế tối ưu tầm nhìn hướng biển.',
-            'Sổ đỏ lâu dài sở hữu vĩnh viễn, 100% đất ở đô thị.'
-        ],
-        '35 lô Giá rẻ Hải Xuân': [
-            'Đất nền giá tốt nhất phân khúc biển Hải Xuân, cơ hội vàng cho các nhà đầu tư F0.',
-            'Hạ tầng đồng bộ với đường rải nhựa rộng rãi kết nối thẳng ra trục chính QL21A.',
-            'Quỹ đất sạch hoàn chỉnh, 100% đất thổ cư lâu dài an tâm tuyệt đối.',
-            'Đón đầu sóng tăng trưởng hạ tầng du lịch biển đang phát triển mạnh mẽ.'
-        ],
-        '106 lô Mặt biển Hải Xuân': [
-            'Vị trí đắc địa tọa lạc ngay trung tâm bãi tắm Hải Xuân sầm uất và đông đúc.',
-            'Tiếp giáp trực tiếp giữa đường Quốc lộ 21A và đê bao biển, giao thương vô cùng thuận lợi.',
-            'Đặc biệt phù hợp xây dựng nhà hàng, khách sạn, quán cà phê kinh doanh dịch vụ du lịch biển.',
-            'Sổ đỏ cá nhân riêng biệt, pháp lý an toàn, sang tên nhanh chóng.'
-        ],
-        '16 lô View biển Hải Xuân': [
-            'Vị trí siêu vip trực diện view biển Hải Xuân với bãi cát mịn trắng trải dài hoang sơ.',
-            'Đất ở đô thị thổ cư 100% lâu dài, quy hoạch chuẩn chỉnh và an toàn.',
-            'Số lượng vô cùng hạn chế chỉ 16 lô, tính thanh khoản cao đón đầu làn sóng đầu tư du lịch.',
-            'Mặt tiền rộng từ 4.5m đến 13.2m thích hợp xây biệt thự nghỉ dưỡng hoặc homestay cao cấp.'
-        ]
+        'Khu Kinh tế Ninh Cơ - NB (Ninh Bình)': SHARED_NINH_CO_ADVANTAGES,
+        '40 lô đường bộ ven biển': SHARED_NINH_CO_ADVANTAGES,
+        '66 lô Mặt biển Hải Xuân': SHARED_NINH_CO_ADVANTAGES,
+        '35 lô Giá rẻ Hải Xuân': SHARED_NINH_CO_ADVANTAGES,
+        '106 lô Mặt biển Hải Xuân': SHARED_NINH_CO_ADVANTAGES,
+        '16 lô View biển Hải Xuân': SHARED_NINH_CO_ADVANTAGES
     };
 
     // === INIT ===
