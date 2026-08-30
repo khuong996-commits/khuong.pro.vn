@@ -459,3 +459,29 @@ footer {
   .ecosystem-grid, .markets-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 38px; }
 }
+
+@media (max-width: 640px) {
+  .site-shell { padding: 0 18px; }
+  .topbar { padding: 18px 0; }
+  .brand { font-size: 18px; letter-spacing: 1.4px; }
+  .topnav-links { display: none; }
+  .topbar-cta { font-size: 10px; padding: 9px 12px; letter-spacing: .5px; }
+  .hero { gap: 32px; padding: 40px 0 22px; }
+  .hero h1 { font-size: clamp(32px, 10vw, 42px); line-height: 1.12; }
+  .hero-lead { font-size: 15px; line-height: 1.6; margin-bottom: 26px; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn-luxury-primary, .btn-luxury-secondary { justify-content: center; width: 100%; padding: 13px 16px; font-size: 11px; }
+  .hero-portrait-frame { padding: 7px; }
+  .hero-portrait-frame img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .portrait-badge { bottom: -14px; right: 12px; padding: 8px 11px; font-size: 10px; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 0; padding: 22px 8px; margin: 35px 0 55px; }
+  .stat-box { padding: 10px 4px; }
+  .stat-box strong { font-size: 27px; }
+  .stat-box span { font-size: 9px; letter-spacing: .5px; }
+  .section-head { margin-bottom: 28px; }
+  .section-head h2 { font-size: 29px; }
+  .markets-section { padding: 45px 0 55px; }
+  .market-item { padding: 22px 20px; }
+  .eco-card { padding: 28px 22px; }
+  footer { flex-direction: column; gap: 8px; align-items: flex-start; padding: 30px 0; font-size: 11px; }
+}

@@ -21,4 +21,11 @@ test('Landing page luxury real estate structure verification', () => {
     assert.match(html, /Ninh Cơ/i, 'Phải có thị trường Ninh Cơ');
     assert.match(html, /Quất Lâm/i, 'Phải có thị trường Quất Lâm');
     assert.match(html, /Hòa Lạc/i, 'Phải có thị trường Hòa Lạc');
+
+    // 5. Mobile phải có stylesheet riêng để không vỡ bố cục trên màn hình 360px
+    const css = fs.readFileSync('/Users/khuongtrinh/Downloads/antigravity/khuong.pro.vn/styles.css', 'utf8');
+    assert.match(css, /@media\s*\(max-width:\s*640px\)/, 'Phải có breakpoint mobile 640px');
+    assert.match(css, /\.hero-actions\s*\{[^}]*flex-direction:\s*column/s, 'Nút hero phải xếp dọc trên mobile');
+    assert.match(css, /\.topnav-links\s*\{[^}]*display:\s*none/s, 'Menu dài phải ẩn trên mobile');
+    assert.match(css, /\.hero-portrait-frame\s+img\s*\{[^}]*aspect-ratio:/s, 'Ảnh hero phải có tỉ lệ cố định trên mobile');
 });
