@@ -2,13 +2,10 @@
 
 :root {
   --navy-deep: #030813;
-  --navy-silk: #071529;
   --gold: #d8b45a;
   --gold-soft: #f4de9f;
-  --gold-glow: rgba(216, 180, 90, 0.28);
   --cream: #f7f3ea;
   --muted: #b0bccd;
-  --line-silk: rgba(244, 222, 159, 0.22);
   --serif: 'Playfair Display', Georgia, serif;
   --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
 }
@@ -25,43 +22,16 @@ body {
   position: relative;
 }
 
-/* NỀN VẢI NAVY LƯỢN SÓNG & ĐƯỜNG CHỈ VÀNG METALLIC */
+/* PHÔNG NỀN LỤA 3D CHUẨN XỊN 100% NHƯ ẢNH GỐC */
 body::before {
   content: '';
   position: fixed;
   z-index: -2;
   inset: 0;
   background: 
-    radial-gradient(ellipse at 80% 20%, rgba(216, 180, 90, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 80%, rgba(7, 21, 41, 0.9) 0%, transparent 60%),
-    linear-gradient(135deg, rgba(3, 8, 19, 0.94) 0%, rgba(7, 21, 41, 0.82) 45%, rgba(3, 8, 19, 0.95) 100%),
+    linear-gradient(180deg, rgba(3, 8, 19, 0.4) 0%, rgba(3, 8, 19, 0.7) 100%),
     url('luxury-background.jpg') center / cover no-repeat;
-  background-blend-mode: normal, normal, multiply;
-}
-
-/* HIỆU ỨNG DÒNG CHẢY LƯỢN SÓNG MỀM MẠI */
-body::after {
-  content: '';
-  position: fixed;
-  z-index: -1;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  opacity: 0.25;
-  pointer-events: none;
-  background: 
-    radial-gradient(circle at 50% 50%, transparent 40%, rgba(216, 180, 90, 0.08) 45%, transparent 50%),
-    repeating-linear-gradient(
-      130deg,
-      transparent 0px,
-      transparent 140px,
-      rgba(244, 222, 159, 0.15) 141px,
-      rgba(216, 180, 90, 0.35) 143px,
-      rgba(244, 222, 159, 0.15) 145px,
-      transparent 146px,
-      transparent 320px
-    );
-  transform: rotate(-5deg);
+  background-blend-mode: multiply;
 }
 
 .site-shell {
@@ -84,17 +54,17 @@ body::after {
 }
 
 .profile-avatar {
-  width: 106px;
-  height: 106px;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--gold);
   padding: 4px;
-  background: linear-gradient(145deg, #0d223d, #030813);
+  background: rgba(7, 21, 41, 0.85);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.7),
-    0 0 30px var(--gold-glow);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    0 14px 40px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(216, 180, 90, 0.35);
+  transition: transform 0.4s ease;
 }
 
 .profile-avatar:hover {
@@ -105,6 +75,7 @@ body::after {
   font: 700 32px/1.2 var(--serif);
   letter-spacing: 0.5px;
   color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .role-tag {
@@ -116,7 +87,7 @@ body::after {
   font-weight: 600;
 }
 
-/* MENU LIST VỚI ĐƯỜNG CONG LỤA & ÁNH KIM */
+/* MENU LIST - THẺ KÍNH MỜ LƯỢN SÓNG */
 .menu-list {
   display: flex;
   flex-direction: column;
@@ -131,19 +102,18 @@ body::after {
   padding: 24px 28px;
   color: inherit;
   text-decoration: none;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(13, 34, 61, 0.75) 0%, rgba(7, 21, 41, 0.6) 60%, rgba(3, 8, 19, 0.8) 100%);
-  border: 1px solid var(--line-silk);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(13, 34, 61, 0.45) 0%, rgba(7, 21, 41, 0.35) 100%);
+  border: 1px solid rgba(244, 222, 159, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(244, 222, 159, 0.2);
+    0 12px 35px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(244, 222, 159, 0.3);
   transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
   overflow: hidden;
 }
 
-/* VIỀN LƯỢN SÓNG VÀNG ÁNH KIM TRÊN CARD */
 .menu-item::before {
   content: '';
   position: absolute;
@@ -151,43 +121,27 @@ body::after {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(244, 222, 159, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(244, 222, 159, 0.2), transparent);
   transition: left 0.6s ease;
 }
 
-.menu-item::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-}
-
 .menu-item:hover {
-  transform: translateY(-3px) scale(1.005);
-  border-color: rgba(216, 180, 90, 0.6);
-  background: linear-gradient(135deg, rgba(18, 45, 80, 0.85) 0%, rgba(10, 28, 54, 0.75) 100%);
+  transform: translateY(-3px);
+  border-color: rgba(216, 180, 90, 0.7);
+  background: linear-gradient(135deg, rgba(18, 45, 80, 0.65) 0%, rgba(10, 28, 54, 0.55) 100%);
   box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(216, 180, 90, 0.2),
-    inset 0 1px 0 rgba(244, 222, 159, 0.4);
+    0 18px 45px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(216, 180, 90, 0.3),
+    inset 0 1px 0 rgba(244, 222, 159, 0.5);
 }
 
 .menu-item:hover::before {
   left: 100%;
 }
 
-.menu-item:hover::after {
-  opacity: 1;
-}
-
 .menu-item.highlight {
-  border-color: rgba(216, 180, 90, 0.45);
-  background: linear-gradient(135deg, rgba(24, 52, 90, 0.85) 0%, rgba(11, 28, 52, 0.7) 100%);
+  border-color: rgba(216, 180, 90, 0.5);
+  background: linear-gradient(135deg, rgba(24, 52, 90, 0.55) 0%, rgba(11, 28, 52, 0.45) 100%);
 }
 
 .item-left {
@@ -200,7 +154,7 @@ body::after {
 .item-num {
   color: var(--gold);
   font: 700 20px var(--serif);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .item-text h2 {
@@ -228,26 +182,16 @@ body::after {
   color: #ffffff;
 }
 
-/* BIO BOX UỐN LƯỢN MỀM MẠI */
+/* BIO BOX */
 .bio-box {
   margin-top: 40px;
   padding: 30px;
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(13, 34, 61, 0.6) 0%, rgba(4, 11, 22, 0.8) 100%);
-  border: 1px solid var(--line-silk);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-.bio-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 20%;
-  right: 20%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(13, 34, 61, 0.45) 0%, rgba(4, 11, 22, 0.55) 100%);
+  border: 1px solid rgba(244, 222, 159, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
 }
 
 .bio-header {
@@ -256,7 +200,7 @@ body::after {
   gap: 10px;
   align-items: baseline;
   margin-bottom: 16px;
-  border-bottom: 1px solid rgba(244, 222, 159, 0.12);
+  border-bottom: 1px solid rgba(244, 222, 159, 0.15);
   padding-bottom: 12px;
 }
 
@@ -306,7 +250,7 @@ body::after {
 .footer {
   margin-top: 42px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   color: #78889b;
   font-size: 11px;
@@ -317,10 +261,10 @@ body::after {
 @media (max-width: 520px) {
   .site-shell { padding: 38px 16px 28px; }
   .profile-info h1 { font-size: 26px; }
-  .menu-item { padding: 20px 18px; border-radius: 14px; }
+  .menu-item { padding: 20px 18px; border-radius: 16px; }
   .item-left { gap: 14px; }
   .item-text h2 { font-size: 17px; }
   .item-text p { font-size: 12px; }
-  .bio-box { padding: 22px 18px; border-radius: 14px; }
+  .bio-box { padding: 22px 18px; border-radius: 16px; }
   .bio-header { flex-direction: column; gap: 4px; }
 }
