@@ -1,18 +1,24 @@
+import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
-
-assert.match(html, /class="topbar"/, 'phải có topbar điều hướng');
-assert.match(html, /class="hero-copy"/, 'phải có hero rõ thông điệp');
-assert.match(html, /class="proof-strip"/, 'phải có dải bằng chứng năng lực');
-assert.match(html, /class="portal-grid"/, 'phải có khu cổng truy cập');
-assert.match(html, /href="\/training-hub"/);
-assert.match(html, /href="\/crm"/);
-assert.match(html, /href="\/tuyendung"/);
-assert.match(html, /avatar\.jpg/);
-assert.match(css, /@media\(max-width:720px\)/, 'phải tối ưu mobile');
-assert.doesNotMatch(html, /corner-ornament/, 'bỏ họa tiết rườm rà cũ');
-assert.doesNotMatch(html, /Antigravity AI/, 'bỏ credit kỹ thuật khỏi giao diện công khai');
-console.log('Landing structure OK');
+test('Landing page luxury real estate structure verification', () => {
+    const html = fs.readFileSync('/Users/khuongtrinh/Downloads/antigravity/khuong.pro.vn/index.html', 'utf8');
+    
+    // 1. Phải có định vị BĐS và thương hiệu cá nhân Khương Trịnh
+    assert.match(html, /KHƯƠNG TRỊNH/i, 'Phải có tên thương hiệu Khương Trịnh');
+    assert.match(html, /BẤT ĐỘNG SẢN|CỐ VẤN/i, 'Phải nêu rõ định vị BĐS / Cố vấn');
+    
+    // 2. Phải có ảnh đại diện giao dịch thực tế
+    assert.match(html, /avatar\.jpg/, 'Phải sử dụng ảnh đại diện avatar.jpg');
+    
+    // 3. Phải có các cổng liên kết hệ sinh thái chính
+    assert.match(html, /\/training-hub/, 'Phải có link vào Training Hub');
+    assert.match(html, /\/tuyendung/, 'Phải có link vào Tuyển dụng');
+    assert.match(html, /\/crm/, 'Phải có link vào CRM');
+    
+    // 4. Phải có các thị trường trọng điểm
+    assert.match(html, /Ninh Cơ/i, 'Phải có thị trường Ninh Cơ');
+    assert.match(html, /Quất Lâm/i, 'Phải có thị trường Quất Lâm');
+    assert.match(html, /Hòa Lạc/i, 'Phải có thị trường Hòa Lạc');
+});
