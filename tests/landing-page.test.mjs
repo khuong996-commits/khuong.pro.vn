@@ -22,4 +22,9 @@ test('Landing page minimalist structure verification', () => {
     
     // 4. Phải có ảnh avatar
     assert.match(html, /avatar\.jpg/, 'Phải có ảnh avatar.jpg');
+
+    // 5. Phải dùng phông nền luxury navy-gold do anh cung cấp
+    const css = fs.readFileSync('/Users/khuongtrinh/Downloads/antigravity/khuong.pro.vn/styles.css', 'utf8');
+    assert.match(css, /luxury-background\.jpg/, 'Phải dùng ảnh phông nền luxury navy-gold');
+    assert.match(css, /background-blend-mode:/, 'Phải hòa trộn nền để chữ dễ đọc');
 });
