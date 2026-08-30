@@ -1,69 +1,326 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --navy: #071426;
-  --navy-deep: #040b16;
+  --navy-deep: #030813;
+  --navy-silk: #071529;
   --gold: #d8b45a;
-  --gold-soft: #f0d994;
-  --cream: #f5f0e6;
-  --muted: #b7c0cc;
-  --line: rgba(240, 217, 148, .24);
+  --gold-soft: #f4de9f;
+  --gold-glow: rgba(216, 180, 90, 0.28);
+  --cream: #f7f3ea;
+  --muted: #b0bccd;
+  --line-silk: rgba(244, 222, 159, 0.22);
   --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'Plus Jakarta Sans', Arial, sans-serif;
+  --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
 body {
   min-height: 100vh;
   color: var(--cream);
   font-family: var(--sans);
   background: var(--navy-deep);
   overflow-x: hidden;
+  position: relative;
 }
+
+/* NỀN VẢI NAVY LƯỢN SÓNG & ĐƯỜNG CHỈ VÀNG METALLIC */
 body::before {
   content: '';
   position: fixed;
   z-index: -2;
   inset: 0;
-  background: linear-gradient(115deg, rgba(4,11,22,.98) 0%, rgba(7,20,38,.77) 48%, rgba(3,9,18,.94) 100%), url('luxury-background.jpg') center / cover;
-  background-blend-mode: multiply;
+  background: 
+    radial-gradient(ellipse at 80% 20%, rgba(216, 180, 90, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(7, 21, 41, 0.9) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(3, 8, 19, 0.94) 0%, rgba(7, 21, 41, 0.82) 45%, rgba(3, 8, 19, 0.95) 100%),
+    url('luxury-background.jpg') center / cover no-repeat;
+  background-blend-mode: normal, normal, multiply;
 }
+
+/* HIỆU ỨNG DÒNG CHẢY LƯỢN SÓNG MỀM MẠI */
 body::after {
   content: '';
   position: fixed;
   z-index: -1;
-  inset: 0;
-  opacity: .18;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.25;
   pointer-events: none;
-  background: repeating-linear-gradient(122deg, transparent 0 110px, rgba(240,217,148,.18) 111px, transparent 112px 260px);
-  mix-blend-mode: screen;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(216, 180, 90, 0.08) 45%, transparent 50%),
+    repeating-linear-gradient(
+      130deg,
+      transparent 0px,
+      transparent 140px,
+      rgba(244, 222, 159, 0.15) 141px,
+      rgba(216, 180, 90, 0.35) 143px,
+      rgba(244, 222, 159, 0.15) 145px,
+      transparent 146px,
+      transparent 320px
+    );
+  transform: rotate(-5deg);
 }
-.site-shell { width: min(760px, 100%); margin: auto; padding: 62px 24px 34px; }
-.header { text-align: center; margin-bottom: 42px; }
-.profile-badge { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-.profile-avatar { width: 102px; height: 102px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); padding: 4px; background: var(--navy); box-shadow: 0 10px 36px #0009, 0 0 28px #d8b45a33; }
-.profile-info h1 { font: 700 32px/1.15 var(--serif); letter-spacing: .5px; }
-.role-tag { margin-top: 7px; color: var(--gold-soft); font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; }
-.menu-list { display: flex; flex-direction: column; gap: 13px; }
-.menu-item { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 23px 25px; color: inherit; text-decoration: none; border: 1px solid var(--line); border-radius: 3px; background: linear-gradient(110deg, #0b1b31cc, #07142699); box-shadow: 0 14px 35px #0003; transition: .25s ease; overflow: hidden; }
-.menu-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); transform: scaleY(0); transition: .25s ease; }
-.menu-item:hover { transform: translateX(5px); border-color: var(--gold); background: #10243dcc; }
-.menu-item:hover::before, .menu-item.highlight::before { transform: scaleY(1); }
-.menu-item.highlight { border-color: #d8b45a77; background: linear-gradient(110deg, #1a2b42cc, #0b192dcc); }
-.item-left { display: flex; align-items: center; gap: 21px; min-width: 0; }
-.item-num { color: var(--gold); font: 700 19px var(--serif); }
-.item-text h2 { font: 700 20px var(--serif); letter-spacing: .15px; }
-.item-text p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
-.item-arrow { color: var(--gold-soft); font-size: 21px; margin-left: 16px; }
-.bio-box { margin-top: 38px; padding: 25px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #07142666; }
-.bio-header { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; margin-bottom: 15px; }
-.bio-header h3 { color: var(--gold-soft); font: 700 19px var(--serif); }
-.bio-sub { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
-.bio-content p, .bio-content li { color: var(--muted); font-size: 13px; line-height: 1.65; }
-.bio-content strong { color: var(--cream); }
-.bio-content ul { list-style: none; margin-top: 10px; }
-.bio-content li { position: relative; padding-left: 15px; margin-top: 7px; }
-.bio-content li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
-.footer { margin-top: 38px; padding-top: 18px; border-top: 1px solid #ffffff12; text-align: center; color: #8290a2; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
-@media (max-width: 520px) { .site-shell { padding: 38px 15px 25px; } .profile-info h1 { font-size: 27px; } .menu-item { padding: 19px 17px; } .item-left { gap: 13px; } .item-text h2 { font-size: 17px; } .item-text p { font-size: 11px; } .bio-box { padding: 20px 4px; } .bio-header { display: block; } .bio-sub { display: block; margin-top: 6px; } }
+
+.site-shell {
+  width: min(760px, 100%);
+  margin: auto;
+  padding: 55px 24px 40px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.profile-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 106px;
+  height: 106px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  padding: 4px;
+  background: linear-gradient(145deg, #0d223d, #030813);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    0 0 30px var(--gold-glow);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-avatar:hover {
+  transform: scale(1.03);
+}
+
+.profile-info h1 {
+  font: 700 32px/1.2 var(--serif);
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.role-tag {
+  margin-top: 6px;
+  color: var(--gold-soft);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* MENU LIST VỚI ĐƯỜNG CONG LỤA & ÁNH KIM */
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(13, 34, 61, 0.75) 0%, rgba(7, 21, 41, 0.6) 60%, rgba(3, 8, 19, 0.8) 100%);
+  border: 1px solid var(--line-silk);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(244, 222, 159, 0.2);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+}
+
+/* VIỀN LƯỢN SÓNG VÀNG ÁNH KIM TRÊN CARD */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(244, 222, 159, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-3px) scale(1.005);
+  border-color: rgba(216, 180, 90, 0.6);
+  background: linear-gradient(135deg, rgba(18, 45, 80, 0.85) 0%, rgba(10, 28, 54, 0.75) 100%);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(216, 180, 90, 0.2),
+    inset 0 1px 0 rgba(244, 222, 159, 0.4);
+}
+
+.menu-item:hover::before {
+  left: 100%;
+}
+
+.menu-item:hover::after {
+  opacity: 1;
+}
+
+.menu-item.highlight {
+  border-color: rgba(216, 180, 90, 0.45);
+  background: linear-gradient(135deg, rgba(24, 52, 90, 0.85) 0%, rgba(11, 28, 52, 0.7) 100%);
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-width: 0;
+}
+
+.item-num {
+  color: var(--gold);
+  font: 700 20px var(--serif);
+  opacity: 0.9;
+}
+
+.item-text h2 {
+  font: 700 20px var(--serif);
+  letter-spacing: 0.2px;
+  color: #ffffff;
+}
+
+.item-text p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.item-arrow {
+  color: var(--gold-soft);
+  font-size: 20px;
+  margin-left: 16px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item:hover .item-arrow {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+/* BIO BOX UỐN LƯỢN MỀM MẠI */
+.bio-box {
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(13, 34, 61, 0.6) 0%, rgba(4, 11, 22, 0.8) 100%);
+  border: 1px solid var(--line-silk);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.bio-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+}
+
+.bio-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(244, 222, 159, 0.12);
+  padding-bottom: 12px;
+}
+
+.bio-header h3 {
+  color: var(--gold-soft);
+  font: 700 20px var(--serif);
+}
+
+.bio-sub {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bio-content p, .bio-content li {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.bio-content strong {
+  color: #ffffff;
+}
+
+.bio-content ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.bio-content li {
+  position: relative;
+  padding-left: 18px;
+  margin-top: 8px;
+}
+
+.bio-content li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 11px;
+  top: 2px;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 42px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  color: #78889b;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .site-shell { padding: 38px 16px 28px; }
+  .profile-info h1 { font-size: 26px; }
+  .menu-item { padding: 20px 18px; border-radius: 14px; }
+  .item-left { gap: 14px; }
+  .item-text h2 { font-size: 17px; }
+  .item-text p { font-size: 12px; }
+  .bio-box { padding: 22px 18px; border-radius: 14px; }
+  .bio-header { flex-direction: column; gap: 4px; }
+}
