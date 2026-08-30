@@ -27,4 +27,9 @@ test('Landing page minimalist structure verification', () => {
     const css = fs.readFileSync('/Users/khuongtrinh/Downloads/antigravity/khuong.pro.vn/styles.css', 'utf8');
     assert.match(css, /luxury-background\.jpg/, 'Phải dùng ảnh phông nền luxury navy-gold');
     assert.match(css, /background-blend-mode:/, 'Phải hòa trộn nền để chữ dễ đọc');
+
+    // 6. Các ô lựa chọn phải nổi rõ trên nền lụa
+    assert.match(css, /\.menu-item\s*\{[^}]*background:\s*linear-gradient/s, 'Ô lựa chọn phải có nền gradient tương phản');
+    assert.match(css, /\.menu-item\s*\{[^}]*border:\s*2px\s+solid/s, 'Ô lựa chọn phải có viền vàng 2px rõ nét');
+    assert.match(css, /\.menu-item\s*\{[^}]*box-shadow:[^}]*0\s+0\s+28px/s, 'Ô lựa chọn phải có hào quang vàng');
 });
