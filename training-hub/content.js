@@ -466,28 +466,28 @@ const APP_CONTENT = {
 
                         <!-- Infographic 1 -->
                         <div style="background: rgba(255,255,255,0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                            <img src="media/xuan_khanh_2_vi_sao_tiem_nang.jpg" alt="Vì sao thị trường Xuân Khanh có tiềm năng?" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
+                            <img src="/training-hub/media/xuan_khanh_2_vi_sao_tiem_nang.jpg" alt="Vì sao thị trường Xuân Khanh có tiềm năng?" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
                             <div style="padding: 12px 14px; font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">📈 Vì sao thị trường này có tiềm năng?</div>
                             <div style="padding: 0 14px 12px; font-size: 0.8rem; color: var(--text-secondary);">Chu kỳ tăng giá 6 bước, bài học từ Hoài Đức – Đan Phượng – Hòa Lạc, chu kỳ 2026–2030.</div>
                         </div>
 
                         <!-- Infographic 2 -->
                         <div style="background: rgba(255,255,255,0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                            <img src="media/xuan_khanh_1_tai_lieu_tu_van.jpg" alt="10 điểm bán hàng chính Xuân Khanh" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
+                            <img src="/training-hub/media/xuan_khanh_1_tai_lieu_tu_van.jpg" alt="10 điểm bán hàng chính Xuân Khanh" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
                             <div style="padding: 12px 14px; font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">🎯 Tư duy cốt lõi & 10 điểm bán hàng chính</div>
                             <div style="padding: 0 14px 12px; font-size: 0.8rem; color: var(--text-secondary);">Mua đón đầu trước khi tiềm năng rõ ràng. Kết nối Vành đai 5, QL32, Metro, trường ĐH, KCN, bệnh viện.</div>
                         </div>
 
                         <!-- Infographic 3 -->
                         <div style="background: rgba(255,255,255,0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                            <img src="media/xuan_khanh_3_the_manh.jpg" alt="4 thế mạnh Xuân Khanh so với Hòa Lạc" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
+                            <img src="/training-hub/media/xuan_khanh_3_the_manh.jpg" alt="4 thế mạnh Xuân Khanh so với Hòa Lạc" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
                             <div style="padding: 12px 14px; font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">🏠 BĐS giá trị thực – So sánh với Hòa Lạc</div>
                             <div style="padding: 0 14px 12px; font-size: 0.8rem; color: var(--text-secondary);">4 trụ cột: Hạ tầng, Dân cư thực (20k sinh viên), Tiện ích hiện hữu, Pháp lý ODT – vay 70-80%, dòng tiền kép.</div>
                         </div>
 
                         <!-- Infographic 4 -->
                         <div style="background: rgba(255,255,255,0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                            <img src="media/xuan_khanh_4_khung_tu_van_chot.jpg" alt="Khung tư vấn & chốt khách Xuân Khanh" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
+                            <img src="/training-hub/media/xuan_khanh_4_khung_tu_van_chot.jpg" alt="Khung tư vấn & chốt khách Xuân Khanh" style="width: 100%; display: block; border-radius: 12px 12px 0 0;" loading="lazy">
                             <div style="padding: 12px 14px; font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">🔑 Khung tư vấn & chốt khách</div>
                             <div style="padding: 0 14px 12px; font-size: 0.8rem; color: var(--text-secondary);">6 bước tư vấn · 4 objection phổ biến · 3 phương án chốt (vốn vừa, vốn lớn, khách mua ở).</div>
                         </div>
@@ -520,6 +520,237 @@ const APP_CONTENT = {
                         </div>
                     </div>
                 </div>
+                </div>
+            </div>
+<!-- Quất Lâm -->
+            <div class="strategy-card warn">
+                <div class="card-badge">🏖️ Thị trường 3</div>
+                <h3 style="margin-bottom: 12px;">Quất Lâm</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Đón đầu quy hoạch phát triển du lịch biển, bất động sản nghỉ dưỡng tiềm năng.</p>
+                <!-- 4 Nút Tài Liệu sếp gửi -->
+                <div class="ql-resources-buttons" style="display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0 30px 0;">
+                    <a href="https://zalo.me/g/lzmqxo830" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+                        <i class="fa-solid fa-image"></i> Hình ảnh – Tài liệu – Video Quất Lâm
+                    </a>
+                    <a href="https://docs.google.com/document/d/1SctCIsFawNmHt6_REmsonsYbDoZPrK_18dt-aB2o2NU/edit?tab=t.0" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+                        <i class="fa-solid fa-file-contract"></i> Tại sao nên đầu tư Quất Lâm
+                    </a>
+                    <a href="https://bom.so/zolvMS" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+                        <i class="fa-solid fa-person-chalkboard"></i> Slide đào tạo Quất Lâm
+                    </a>
+                    <a href="https://bom.so/OV5YDG" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-glass); padding: 12px 24px; border-radius: 50px; text-decoration: none; color: #0284c7; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-sm); transition: all 0.2s ease;">
+                        <i class="fa-solid fa-camera"></i> Ảnh thật Quất Lâm
+                    </a>
+                </div>
+
+                <!-- Grid Video Đào Tạo Bản Đồ -->
+                <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
+                    <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Quất Lâm
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                        <!-- Video 1 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 1)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/YE-BbQ0xqnY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 2 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 2)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/alBjvqprOOc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 3 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 3)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/mTdfic4HPFs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 4 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 4)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/E7S0jdGm9LY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 5 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 5)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/scD4CnTU7lc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Video 6 -->
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Quất Lâm (Phần 6)
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/VwhYhCJVSt4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ninh Cơ -->
+            <div class="strategy-card danger">
+                <div class="card-badge">📍 Thị trường 4</div>
+                <h3 style="margin-bottom: 10px;">Ninh Cơ</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Hệ thống bài giảng bản đồ chuyên sâu, video thực tế và tài liệu hỗ trợ bán hàng Ninh Cơ.</p>
+
+                <!-- Grid Video 1: 2 Video đào tạo bản đồ chính -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 30px;">
+                    <!-- Video Sếp Huy -->
+                    <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                        <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-circle-play" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ — Sếp Huy Otis
+                        </div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <iframe src="https://www.youtube.com/embed/bfqJ0uO8l-I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Video Bản đồ -->
+                    <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                        <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-map" style="font-size: 1.1rem;"></i> Đào tạo bản đồ Ninh Cơ (Chi tiết)
+                        </div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <iframe src="https://www.youtube.com/embed/WKd_SORPVfQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Video 2: Chuỗi video Trần Tuyên -->
+                <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 30px;">
+                    <h4 style="font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-film" style="color: #6366f1;"></i> Chuỗi bài giảng Bản đồ Ninh Cơ — Trần Tuyên
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                        <!-- Tập 1 -->
+                        <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
+                            <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 1</span> Bản đồ
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
+                                <iframe src="https://www.youtube.com/embed/ikyEAwAYxqk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Tập 2 -->
+                        <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
+                            <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 2</span> Bản đồ
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
+                                <iframe src="https://www.youtube.com/embed/vHy-sbt1HsA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Tập 3 -->
+                        <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
+                            <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                <span style="background: rgba(99, 102, 241, 0.1); color: #6366f1; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Phần 3</span> Bản đồ
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
+                                <iframe src="https://www.youtube.com/embed/U6w3ezwo4mQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Short -->
+                        <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 10px;">
+                            <div style="font-weight: 600; color: #475569; margin-bottom: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+                                <span style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; font-weight: 700;">Short</span> Video ngắn
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden;">
+                                <iframe src="https://www.youtube.com/embed/Kwq8WG9lTys" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner Nhóm Zalo Ninh Cơ độc lập -->
+                <a href="https://zalo.me/g/aouere171" target="_blank" style="display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02)); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 16px; padding: 16px 20px; text-decoration: none; color: inherit; transition: all 0.2s ease; box-shadow: var(--shadow-sm); cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='rgba(14, 165, 233, 0.4)';" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='rgba(14, 165, 233, 0.25)';">
+                    <div style="background: #0ea5e9; color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(14, 165, 233, 0.2);">
+                        <i class="fa-solid fa-people-group" style="font-size: 1.25rem;"></i>
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <strong style="color: #0369a1; font-size: 1rem; display: block; margin-bottom: 4px;">Nhóm tài liệu Zalo — Thị trường Ninh Cơ</strong>
+                        <span style="font-size: 0.85rem; color: #64748b;">Nơi cập nhật thông tin dự án, pháp lý và bản đồ quy hoạch Ninh Cơ mới nhất. Bấm để tham gia!</span>
+                    </div>
+                    <div style="color: #0ea5e9; font-size: 1.1rem; padding-left: 8px;">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Phú Thọ -->
+            <div class="strategy-card safe">
+                <div class="card-badge">🏔️ Thị trường 5</div>
+                <h3 style="margin-bottom: 12px;">Phú Thọ</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Đất nền khu công nghiệp, tiềm năng tăng trưởng vùng trung du.</p>
+                
+                <!-- Grid Video Đào Tạo Bản Đồ Phú Thọ -->
+                <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
+                    <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Phú Thọ
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Phú Thọ
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/w-Jw2ObEIx0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hải Phòng -->
+            <div class="strategy-card vip">
+                <div class="card-badge">⚓ Thị trường 6</div>
+                <h3 style="margin-bottom: 12px;">Hải Phòng</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 15px;">Thành phố cảng công nghiệp, bất động sản ven đô và khu công nghiệp lớn.</p>
+                
+                <!-- Grid Video Đào Tạo Bản Đồ Hải Phòng -->
+                <div style="border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; margin-bottom: 10px;">
+                    <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-map-location-dot" style="color: var(--accent-orange, #f97316);"></i> Video chia sẻ bản đồ Hải Phòng
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                        <div style="background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 14px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                            <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-circle-play" style="color: #ef4444;"></i> Video chia sẻ bản đồ Hải Phòng
+                            </div>
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.youtube.com/embed/kmqUoGOmXAI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
