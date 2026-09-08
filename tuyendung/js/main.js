@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (form.dataset.recruitmentPaused === 'true') return;
 
       const submitBtn = form.querySelector('.form-submit');
       const originalText = submitBtn.innerHTML;

@@ -596,7 +596,7 @@
 
       <div class="form-wrapper">
         <div class="form-card reveal">
-          <form id="application-form">
+          <form id="application-form" data-recruitment-paused="true">
             <div class="form-group" aria-hidden="true" style="position: absolute; left: -10000px; opacity: 0; pointer-events: none;">
               <label for="application-company">Công ty</label>
               <input id="application-company" type="text" name="company" tabindex="-1" autocomplete="off">
@@ -648,8 +648,11 @@
               <textarea name="questions" class="form-textarea" placeholder="Bạn có câu hỏi gì muốn hỏi trước khi gặp mặt?"></textarea>
             </div>
 
-            <button type="submit" class="form-submit">
-              🔥 ĐẶT LỊCH PHỎNG VẤN NGAY
+            <p role="status" style="margin: 0 0 1rem; color: rgba(255, 255, 255, 0.86); text-align: center;">
+              Form tuyển dụng đang tạm dừng.
+            </p>
+            <button type="button" class="form-submit" disabled aria-disabled="true" style="cursor: not-allowed; opacity: 0.55;">
+              ⏸ TẠM DỪNG NHẬN HỒ SƠ
             </button>
           </form>
 
@@ -691,7 +694,7 @@
 
   <!-- ============ FLOATING CTA (Mobile) ============ -->
   <div class="floating-cta" id="floating-cta">
-    <a href="#form-section" class="btn-primary" style="width: 100%; text-align: center;">🔥 Đặt Lịch Phỏng Vấn Ngay</a>
+    <span class="btn-primary" aria-disabled="true" style="width: 100%; text-align: center; cursor: not-allowed; opacity: 0.55;">⏸ Form đang tạm dừng</span>
   </div>
 
   <script src="/tuyendung/js/main.js?v=security-20260908"></script>
