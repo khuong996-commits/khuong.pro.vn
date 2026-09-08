@@ -100,6 +100,28 @@ let currentView = 'customers'; // 'customers' or 'dashboard'
 let activeClient = null;
 let currentActiveTab = 'loc'; // Active tab state
 
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#96;');
+}
+
+function safeHttpsUrl(value) {
+    try {
+        const url = new URL(String(value || ''));
+        return url.protocol === 'https:' ? escapeAttribute(url.href) : '';
+    } catch (_) {
+        return '';
+    }
+}
+
 // DOM Elements
 const roleSelect = document.getElementById('role-select');
 const searchInput = document.getElementById('search-input');
@@ -357,16 +379,16 @@ function showAccessDeniedScreen(user) {
     
     if (deniedUserInfo && user) {
         const displayName = user.displayName || user.email.split('@')[0];
-        const photoURL = user.photoURL;
+        const photoURL = safeHttpsUrl(user.photoURL);
         deniedUserInfo.innerHTML = `
             <div class="denied-avatar-wrap">
                 ${photoURL 
-                    ? `<img class="denied-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+                    ? `<img class="denied-avatar" src="${photoURL}" alt="${escapeAttribute(displayName)}" referrerpolicy="no-referrer" />`
                     : `<i class="fa-solid fa-circle-user denied-avatar-icon"></i>`
                 }
             </div>
-            <div class="denied-name">${displayName}</div>
-            <div class="denied-email">${user.email}</div>
+            <div class="denied-name">${escapeHtml(displayName)}</div>
+            <div class="denied-email">${escapeHtml(user.email)}</div>
         `;
     }
 }
@@ -391,7 +413,7 @@ function showLoginLoading(show) {
 function showLoginError(message) {
     const errorEl = document.getElementById('login-error');
     if (errorEl) {
-        errorEl.innerHTML = message;
+        errorEl.textContent = message;
         errorEl.style.display = 'block';
     }
     showLoginLoading(false);
@@ -407,7 +429,7 @@ function updateUserInterface() {
     if (!currentUser) return;
     
     const displayName = currentUser.displayName || currentUser.email.split('@')[0];
-    const photoURL = currentUser.photoURL;
+    const photoURL = safeHttpsUrl(currentUser.photoURL);
     
     if (currentUserName) currentUserName.textContent = displayName;
     if (currentUserRole) {
@@ -417,7 +439,7 @@ function updateUserInterface() {
     const userAvatarContainer = document.querySelector('.user-avatar');
     if (userAvatarContainer) {
         userAvatarContainer.innerHTML = photoURL 
-            ? `<img src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+            ? `<img src="${photoURL}" alt="${escapeAttribute(displayName)}" referrerpolicy="no-referrer" />`
             : `<i class="fa-solid fa-circle-user"></i>`;
     }
     
@@ -545,21 +567,28 @@ function renderBoard() {
         const card = document.createElement('div');
         card.className = 'client-card';
         card.setAttribute('data-id', client.id);
+
+        const clientId = escapeAttribute(client.id);
+        const clientName = escapeHtml(client.name);
+        const source = escapeHtml(client.source);
+        const sales = escapeHtml(client.sales);
+        const appointment = escapeHtml(client.nextAppointment);
+        const lastUpdate = escapeHtml(client.lastUpdate);
         
         const todayStr = new Date().toISOString().split('T')[0];
         if (client.nextAppointment === todayStr) {
             card.classList.add('appointment-today');
         }
         
-        const dispPhone = formatPhone(client.phone, currentRole);
+        const dispPhone = escapeHtml(formatPhone(client.phone, currentRole));
         
         const notesHtml = (client.notes || []).map(n => `
             <div class="card-note-item">
                 <div class="card-note-meta-row">
-                    <span class="card-note-author">${n.author}</span>
-                    <span class="card-note-time">${n.time}</span>
+                    <span class="card-note-author">${escapeHtml(n.author)}</span>
+                    <span class="card-note-time">${escapeHtml(n.time)}</span>
                 </div>
-                <div class="card-note-text">${n.content}</div>
+                <div class="card-note-text">${escapeHtml(n.content)}</div>
             </div>
         `).join('');
         
@@ -567,19 +596,19 @@ function renderBoard() {
             <!-- Cột 1: Thông tin liên hệ -->
             <div class="card-info-col">
                 <div class="card-info-header">
-                    <h4>${client.name}</h4>
-                    <span class="source-tag">${client.source}</span>
+                    <h4>${clientName}</h4>
+                    <span class="source-tag">${source}</span>
                 </div>
                 <div class="card-info-body">
                     <span class="card-info-phone"><i class="fa-solid fa-phone-flip"></i> ${dispPhone}</span>
-                    <span><i class="fa-solid fa-user-shield"></i> Sales: ${client.sales}</span>
-                    ${client.nextAppointment ? `<span style="color: var(--color-hen_gap); font-weight: 600;"><i class="fa-solid fa-calendar-check"></i> Hẹn: ${client.nextAppointment}</span>` : ''}
+                    <span><i class="fa-solid fa-user-shield"></i> Sales: ${sales}</span>
+                    ${client.nextAppointment ? `<span style="color: var(--color-hen_gap); font-weight: 600;"><i class="fa-solid fa-calendar-check"></i> Hẹn: ${appointment}</span>` : ''}
                 </div>
-                <button class="btn btn-sm btn-outline btn-call" onclick="event.stopPropagation(); triggerCall('${client.id}')">
+                <button class="btn btn-sm btn-outline btn-call">
                     <i class="fa-solid fa-phone"></i> Gọi điện
                 </button>
                 <div class="card-info-footer">
-                    <span class="time-tag">Lần cuối: ${client.lastUpdate}</span>
+                    <span class="time-tag">Lần cuối: ${lastUpdate}</span>
                 </div>
             </div>
             
@@ -592,15 +621,15 @@ function renderBoard() {
             </div>
             
             <!-- Cột 3: Hành động nhanh -->
-            <div class="card-actions-col" onclick="event.stopPropagation();">
+            <div class="card-actions-col">
                 <h5>Hành động nhanh</h5>
                 <div class="card-quick-note-form">
-                    <input type="text" placeholder="Nhập ghi chú và nhấn Enter..." class="quick-note-input" data-id="${client.id}">
-                    <button class="btn-quick-note-save" data-id="${client.id}"><i class="fa-solid fa-paper-plane"></i></button>
+                    <input type="text" placeholder="Nhập ghi chú và nhấn Enter..." class="quick-note-input" data-id="${clientId}">
+                    <button class="btn-quick-note-save" data-id="${clientId}"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
                 <div class="quick-status-selector">
                     <label>Chuyển trạng thái:</label>
-                    <select class="card-status-select" data-id="${client.id}">
+                    <select class="card-status-select" data-id="${clientId}">
                         <option value="loc" ${client.status === 'loc' ? 'selected' : ''}>Lọc Nguồn</option>
                         <option value="quan_tam" ${client.status === 'quan_tam' ? 'selected' : ''}>Quan Tâm</option>
                         <option value="hen_gap" ${client.status === 'hen_gap' ? 'selected' : ''}>Hẹn Gặp / Xem Đất</option>
@@ -612,6 +641,11 @@ function renderBoard() {
         `;
         
         card.addEventListener('click', () => openCustomerModal(client.id));
+        card.querySelector('.btn-call').addEventListener('click', (event) => {
+            event.stopPropagation();
+            triggerCall(client.id);
+        });
+        card.querySelector('.card-actions-col').addEventListener('click', (event) => event.stopPropagation());
         clientsListContainer.appendChild(card);
     });
     
@@ -743,7 +777,11 @@ function openCustomerModal(id) {
     activeClient = client;
     
     document.getElementById('cust-name').textContent = client.name;
-    document.getElementById('cust-source').innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> Nguồn: ${client.source}`;
+    const sourceEl = document.getElementById('cust-source');
+    sourceEl.replaceChildren();
+    const sourceIcon = document.createElement('i');
+    sourceIcon.className = 'fa-solid fa-arrow-up-right-from-square';
+    sourceEl.append(sourceIcon, document.createTextNode(` Nguồn: ${client.source}`));
     document.getElementById('cust-phone').textContent = formatPhone(client.phone, currentRole);
     document.getElementById('cust-sales').textContent = client.sales;
     document.getElementById('cust-last-update').textContent = client.lastUpdate;
@@ -790,11 +828,11 @@ function renderTimeline() {
         item.className = 'timeline-item';
         item.innerHTML = `
             <div class="timeline-header">
-                <span class="note-author">${note.author}</span>
-                <span class="note-time">${note.time}</span>
+                <span class="note-author">${escapeHtml(note.author)}</span>
+                <span class="note-time">${escapeHtml(note.time)}</span>
             </div>
             <div class="timeline-body">
-                ${note.content}
+                ${escapeHtml(note.content)}
             </div>
         `;
         timeline.appendChild(item);

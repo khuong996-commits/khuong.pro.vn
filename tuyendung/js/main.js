@@ -134,10 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('application-form');
   const formSuccess = document.getElementById('form-success');
 
-  // Telegram Bot config
-  const TELEGRAM_BOT_TOKEN = '8780458091:AAEu-1zvdI38HKjEEol_u9NKIDpZifULcF4';
-  const TELEGRAM_CHAT_ID = '5402623277';
-
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -153,58 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const formData = new FormData(form);
 
-        // Collect form fields
-        const name = formData.get('name') || 'Không điền';
-        const birthday = formData.get('birthday') || 'Không điền';
-        const phone = formData.get('phone') || 'Không điền';
-        const area = formData.get('area') || 'Không điền';
-        const currentJob = formData.get('current_job') || 'Không điền';
-        const currentIncome = formData.get('current_income') || 'Không điền';
-        const experience = formData.get('experience') || 'Không điền';
-        const desire = formData.get('desire') || 'Không điền';
-        const questions = formData.get('questions') || 'Không có';
-
-        // Format date for readability
-        const birthdayFormatted = birthday !== 'Không điền'
-          ? new Date(birthday).toLocaleDateString('vi-VN')
-          : 'Không điền';
-        const now = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-
-        // Build Telegram message
-        const message = `🔥 <b>ỨNG VIÊN MỚI — Landing Page TL Land</b>\n` +
-          `━━━━━━━━━━━━━━━━━━\n` +
-          `👤 <b>Họ tên:</b> ${name}\n` +
-          `🎂 <b>Ngày sinh:</b> ${birthdayFormatted}\n` +
-          `📱 <b>SĐT:</b> ${phone}\n` +
-          `📍 <b>Khu vực:</b> ${area}\n` +
-          `💼 <b>Nghề hiện tại:</b> ${currentJob}\n` +
-          `💰 <b>Thu nhập hiện tại:</b> ${currentIncome}\n` +
-          `━━━━━━━━━━━━━━━━━━\n` +
-          `📋 <b>Kinh nghiệm:</b>\n${experience}\n` +
-          `🎯 <b>Mong muốn:</b>\n${desire}\n` +
-          `❓ <b>Câu hỏi:</b>\n${questions}\n` +
-          `━━━━━━━━━━━━━━━━━━\n` +
-          `🕐 <i>${now}</i>`;
-
-        // Send to Telegram
-        const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        const response = await fetch(telegramUrl, {
+        const response = await fetch('/api/recruitment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: 'HTML'
-          })
+          body: JSON.stringify(Object.fromEntries(formData.entries()))
         });
-
-        const result = await response.json();
-
-        if (result.ok) {
-          showSuccess();
-        } else {
-          throw new Error(result.description || 'Gửi Telegram thất bại');
-        }
+        if (!response.ok) throw new Error('Gửi đơn thất bại');
+        showSuccess();
       } catch (error) {
         console.error('Form error:', error);
         // Hiện thông báo lỗi trung thực

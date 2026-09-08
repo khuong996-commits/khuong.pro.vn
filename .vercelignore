@@ -1,0 +1,13 @@
+# Never ship credentials, local tooling, or deployment-only configuration.
+.env*
+.claude/
+.agents/
+.vercel/
+.vercel.old/
+*.rules
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.db

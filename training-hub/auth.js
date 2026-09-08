@@ -28,6 +28,31 @@ let allowedEmails = [];
 let userRole = null; // 'admin' | 'leader' | 'member' | null
 let accessDeniedActive = false; // Flag ngăn showLoginScreen ghi đè access denied
 
+// Data from Firebase Auth and Firestore is untrusted until it is encoded for
+// its HTML context. Keep these helpers close to the rendering code so new
+// templates do not accidentally reintroduce stored XSS.
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, '&#96;');
+}
+
+function safeHttpsUrl(value) {
+    try {
+        const url = new URL(String(value || ''));
+        return url.protocol === 'https:' ? escapeAttribute(url.href) : '';
+    } catch (_) {
+        return '';
+    }
+}
+
 // ---- Computed helpers ----
 function isAdmin() { return userRole === 'admin'; }
 function isLeader() { return userRole === 'leader'; }
@@ -218,16 +243,16 @@ function showAccessDeniedScreen(user) {
     
     if (deniedUserInfo && user) {
         const displayName = user.displayName || user.email.split('@')[0];
-        const photoURL = user.photoURL;
+        const photoURL = safeHttpsUrl(user.photoURL);
         deniedUserInfo.innerHTML = `
             <div class="denied-avatar-wrap">
                 ${photoURL 
-                    ? `<img class="denied-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+                    ? `<img class="denied-avatar" src="${photoURL}" alt="${escapeAttribute(displayName)}" referrerpolicy="no-referrer" />`
                     : `<i class="fa-solid fa-circle-user denied-avatar-icon"></i>`
                 }
             </div>
-            <div class="denied-name">${displayName}</div>
-            <div class="denied-email">${user.email}</div>
+            <div class="denied-name">${escapeHtml(displayName)}</div>
+            <div class="denied-email">${escapeHtml(user.email)}</div>
         `;
     }
 }
@@ -252,7 +277,7 @@ function showLoginLoading(show) {
 function showLoginError(message) {
     const errorEl = document.getElementById('login-error');
     if (errorEl) {
-        errorEl.innerHTML = message;
+        errorEl.textContent = message;
         errorEl.style.display = 'block';
     }
     showLoginLoading(false);
@@ -271,17 +296,17 @@ function updateTopbarUser(user) {
     const userInfoEl = document.getElementById('topbar-user-info');
     if (userInfoEl && user) {
         const displayName = user.displayName || user.email.split('@')[0];
-        const photoURL = user.photoURL;
+        const photoURL = safeHttpsUrl(user.photoURL);
         
         const roleBadge = isAdmin() ? 'Admin' : isLeader() ? 'Trưởng nhóm' : '';
         
         userInfoEl.innerHTML = `
-            <div class="user-profile" onclick="window.appRoutes.navigate('page-profile', true)" style="cursor: pointer;" title="Hồ sơ của tôi (${user.email})">
+            <div class="user-profile" onclick="window.appRoutes.navigate('page-profile', true)" style="cursor: pointer;" title="Hồ sơ của tôi (${escapeAttribute(user.email)})">
                 ${photoURL 
-                    ? `<img class="user-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+                    ? `<img class="user-avatar" src="${photoURL}" alt="${escapeAttribute(displayName)}" referrerpolicy="no-referrer" />`
                     : `<i class="fa-solid fa-circle-user user-avatar-icon"></i>`
                 }
-                <span class="user-name">${displayName}</span>
+                <span class="user-name">${escapeHtml(displayName)}</span>
                 ${roleBadge ? `<span class="user-role-badge ${isAdmin() ? 'role-admin' : 'role-leader'}">${roleBadge}</span>` : ''}
             </div>
             <button class="btn-logout" onclick="logout()" title="Đăng xuất">
@@ -1739,7 +1764,7 @@ async function renderCurrentAdminTabContent() {
                                     <option value="">-- Chọn Trưởng Nhóm phụ trách --</option>
                                     ${emails.filter(e => e.role === 'leader').map(l => {
                                         const lName = l.displayName || l.email.split('@')[0];
-                                        return `<option value="${l.email}">⭐ ${lName} (${l.email})</option>`;
+                                        return `<option value="${escapeAttribute(l.email)}">⭐ ${escapeHtml(lName)} (${escapeHtml(l.email)})</option>`;
                                     }).join('')}
                                 </select>
                             </div>
@@ -1862,7 +1887,7 @@ async function renderCurrentAdminTabContent() {
                         const lEmail = l.email.toLowerCase().trim();
                         const lProfile = profilesMap[lEmail] || {};
                         const lName = l.displayName || lProfile.displayName || lEmail.split('@')[0];
-                        return `<option value="${lEmail}">⭐ ${lName}</option>`;
+                        return `<option value="${escapeAttribute(lEmail)}">⭐ ${escapeHtml(lName)}</option>`;
                     }).join('')}
                     <option value="unassigned">⚠️ Chưa phân nhóm</option>
                 </select>
@@ -1907,23 +1932,30 @@ async function renderCurrentAdminTabContent() {
 
             return `
                 <div class="progress-list-grid" id="progress-list-grid">
-                    ${membersData.map(m => `
+                    ${membersData.map(m => {
+                        const memberEmail = escapeAttribute(m.email);
+                        const memberName = escapeHtml(m.displayName);
+                        const memberNameAttribute = escapeAttribute(m.displayName.toLowerCase());
+                        const leaderEmail = escapeAttribute(m.leaderEmail);
+                        const leaderName = escapeHtml(m.leaderName);
+                        const photoUrl = safeHttpsUrl(m.photoURL);
+                        return `
                         <div class="progress-list-card" 
                              style="--card-accent-color: ${m.level.color};"
-                             data-email="${m.email}"
-                             data-name="${m.displayName.toLowerCase()}"
-                             data-leader="${m.leaderEmail}"
+                             data-email="${memberEmail}"
+                             data-name="${memberNameAttribute}"
+                             data-leader="${leaderEmail}"
                              onclick="showMemberProgressModal('${m.email}')">
                             <div class="progress-list-card-top">
-                                ${m.photoURL 
-                                    ? `<img class="progress-list-card-avatar" src="${m.photoURL}" alt="${m.displayName}" referrerpolicy="no-referrer" />`
-                                    : `<div class="progress-list-card-avatar-placeholder">${m.displayName.substring(0,1).toUpperCase()}</div>`
+                                ${photoUrl
+                                    ? `<img class="progress-list-card-avatar" src="${photoUrl}" alt="${escapeAttribute(m.displayName)}" referrerpolicy="no-referrer" />`
+                                    : `<div class="progress-list-card-avatar-placeholder">${escapeHtml(m.displayName.substring(0,1).toUpperCase())}</div>`
                                 }
                                 <div class="progress-list-card-info">
-                                    <h4>${m.displayName}</h4>
-                                    <div class="card-email">${m.email}</div>
+                                    <h4>${memberName}</h4>
+                                    <div class="card-email">${escapeHtml(m.email)}</div>
                                     ${m.leaderName 
-                                        ? `<div class="card-leader-tag"><i class="fa-solid fa-star"></i> ${m.leaderName}</div>`
+                                        ? `<div class="card-leader-tag"><i class="fa-solid fa-star"></i> ${leaderName}</div>`
                                         : (isAdmin() ? `<div class="card-leader-tag" style="color:#f59e0b;"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</div>` : '')
                                     }
                                 </div>
@@ -1944,7 +1976,8 @@ async function renderCurrentAdminTabContent() {
                                 </div>
                             </div>
                         </div>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </div>
             `;
         };
@@ -1954,7 +1987,7 @@ async function renderCurrentAdminTabContent() {
             const memberEmail = item.email.toLowerCase().trim();
             const profile = profilesMap[memberEmail] || {};
             const displayName = item.displayName || profile.displayName || memberEmail.split('@')[0];
-            const photoURL = profile.photoURL || '';
+            const photoURL = safeHttpsUrl(profile.photoURL);
 
             // Tính tiến độ gộp
             const pfCompleted = profile.completedModules || [];
@@ -1970,21 +2003,21 @@ async function renderCurrentAdminTabContent() {
             else if (progress >= 30) level = { name: 'Tân Binh Tiến Bộ', icon: '🌟', color: '#a78bfa' };
 
             return `
-                <div class="progress-member-card" data-email="${memberEmail}">
+                <div class="progress-member-card" data-email="${escapeAttribute(memberEmail)}">
                     <div class="progress-member-header" onclick="toggleMemberAccordion('${memberEmail}', this)">
                         <div class="progress-member-main">
                             <div class="progress-member-avatar-wrap">
                                 ${photoURL 
-                                    ? `<img class="progress-member-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+                                    ? `<img class="progress-member-avatar" src="${photoURL}" alt="${escapeAttribute(displayName)}" referrerpolicy="no-referrer" />`
                                     : `<i class="fa-solid fa-circle-user progress-member-placeholder"></i>`
                                 }
                             </div>
                             <div class="progress-member-info">
                                 <div class="progress-member-name-row">
-                                    <span class="progress-member-name">${displayName}</span>
+                                    <span class="progress-member-name">${escapeHtml(displayName)}</span>
                                     <span class="progress-member-badge" style="background: ${level.color}">${level.icon} ${level.name}</span>
                                 </div>
-                                <div class="progress-member-email">${memberEmail}</div>
+                                <div class="progress-member-email">${escapeHtml(memberEmail)}</div>
                             </div>
                         </div>
                         <div class="progress-member-stats">
@@ -2060,8 +2093,8 @@ async function renderCurrentAdminTabContent() {
 
                 const rootEmail = currentUser.email.toLowerCase().trim();
                 const rootProfile = profilesMap[rootEmail] || {};
-                const rootName = rootProfile.displayName || "Sếp Khương Trịnh";
-                const rootPhoto = currentUser.photoURL || '';
+                const rootName = escapeHtml(rootProfile.displayName || "Sếp Khương Trịnh");
+                const rootPhoto = safeHttpsUrl(currentUser.photoURL);
 
                 return `
                     <div class="org-tree-wrapper">
@@ -2094,8 +2127,8 @@ async function renderCurrentAdminTabContent() {
                                         ${leaders.map(l => {
                                             const lEmail = l.email.toLowerCase().trim();
                                             const lProfile = profilesMap[lEmail] || {};
-                                            const lName = l.displayName || lProfile.displayName || lEmail.split('@')[0];
-                                            const lPhoto = lProfile.photoURL || '';
+                                            const lName = escapeHtml(l.displayName || lProfile.displayName || lEmail.split('@')[0]);
+                                            const lPhoto = safeHttpsUrl(lProfile.photoURL);
                                             const lMembers = tree[lEmail] ? tree[lEmail].members : [];
 
                                             return `
@@ -2112,7 +2145,7 @@ async function renderCurrentAdminTabContent() {
                                                                         ${lName}
                                                                     </span>
                                                                     <span class="tree-leader-badge"><i class="fa-solid fa-star"></i> TRƯỞNG NHÓM (F1)</span>
-                                                                    <span style="font-size:0.75rem; color:var(--text-secondary);">${lEmail}</span>
+                                                                    <span style="font-size:0.75rem; color:var(--text-secondary);">${escapeHtml(lEmail)}</span>
                                                                 </div>
                                                             </div>
                                                             <div style="display:flex; align-items:center; gap:8px; margin-top:5px;">
@@ -2191,8 +2224,8 @@ async function renderCurrentAdminTabContent() {
                 );
 
                 const lProfile = profilesMap[leaderEmailLower] || {};
-                const lName = lProfile.displayName || currentUser.displayName || leaderEmailLower.split('@')[0];
-                const lPhoto = currentUser.photoURL || '';
+                const lName = escapeHtml(lProfile.displayName || currentUser.displayName || leaderEmailLower.split('@')[0]);
+                const lPhoto = safeHttpsUrl(currentUser.photoURL);
 
                 return `
                     <div class="org-tree-wrapper">
@@ -2310,17 +2343,19 @@ async function renderCurrentAdminTabContent() {
                              <tbody>
                                  ${logUsers.map(user => {
                                      const email = user.email.toLowerCase().trim();
-                                     const displayName = user.displayName || email.split('@')[0];
-                                     const avatar = user.photoURL 
-                                         ? `<img src="${user.photoURL}" class="access-user-avatar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--accent-blue);" referrerpolicy="no-referrer" />` 
-                                         : `<div class="access-user-avatar-text" style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue, #3b82f6), #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 1.5px solid var(--accent-blue);">${displayName.substring(0, 1).toUpperCase()}</div>`;
+                                     const rawDisplayName = user.displayName || email.split('@')[0];
+                                     const displayName = escapeHtml(rawDisplayName);
+                                     const photoUrl = safeHttpsUrl(user.photoURL);
+                                     const avatar = photoUrl
+                                         ? `<img src="${photoUrl}" alt="${escapeAttribute(rawDisplayName)}" class="access-user-avatar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--accent-blue);" referrerpolicy="no-referrer" />`
+                                         : `<div class="access-user-avatar-text" style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue, #3b82f6), #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 1.5px solid var(--accent-blue);">${escapeHtml(rawDisplayName.substring(0, 1).toUpperCase())}</div>`;
                                      
                                      let timeStr = '<span style="color: var(--text-muted); font-style: italic;">Chưa từng truy cập</span>';
                                      if (user.lastLogin) {
                                          timeStr = `<strong style="color: var(--text-primary);">${formatRelativeTime(user.lastLogin)}</strong> <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 3px;">(${formatFullTime(user.lastLogin)})</span>`;
                                      }
                                      
-                                     const device = user.deviceInfo || 'Không xác định';
+                                     const device = escapeHtml(user.deviceInfo || 'Không xác định');
                                      const hasHistory = user.accessHistory && user.accessHistory.length > 0;
                                      const isMobile = device.includes('Phone') || device.includes('Thoại') || device.includes('Mobile');
                                      
@@ -2331,7 +2366,7 @@ async function renderCurrentAdminTabContent() {
                                                      ${avatar}
                                                      <div class="access-user-details" style="display: flex; flex-direction: column;">
                                                          <span class="access-user-name" style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">${displayName}</span>
-                                                         <span class="access-user-email" style="font-size: 0.8rem; color: var(--text-muted);">${email}</span>
+                                                         <span class="access-user-email" style="font-size: 0.8rem; color: var(--text-muted);">${escapeHtml(email)}</span>
                                                      </div>
                                                  </div>
                                              </td>
@@ -2513,14 +2548,18 @@ async function showMemberProgressModal(memberEmail) {
     const offset = circumference - (m.progress / 100) * circumference;
 
     // Render Header
+    const modalPhotoUrl = safeHttpsUrl(m.photoURL);
+    const modalName = escapeHtml(m.displayName);
+    const modalEmail = escapeHtml(m.email);
+    const memberEmailJs = escapeAttribute(JSON.stringify(m.email));
     document.getElementById('progress-modal-top').innerHTML = `
-        ${m.photoURL 
-            ? `<img class="modal-avatar" src="${m.photoURL}" referrerpolicy="no-referrer" />`
-            : `<div class="modal-avatar-placeholder">${m.displayName.substring(0,1).toUpperCase()}</div>`
+        ${modalPhotoUrl
+            ? `<img class="modal-avatar" src="${modalPhotoUrl}" alt="${escapeAttribute(m.displayName)}" referrerpolicy="no-referrer" />`
+            : `<div class="modal-avatar-placeholder">${escapeHtml(m.displayName.substring(0,1).toUpperCase())}</div>`
         }
         <div class="modal-user-info">
-            <h3>${m.displayName}</h3>
-            <div class="modal-email">${m.email}</div>
+            <h3>${modalName}</h3>
+            <div class="modal-email">${modalEmail}</div>
         </div>
         <button class="progress-modal-close" onclick="closeProgressModal()" title="Đóng">
             <i class="fa-solid fa-xmark"></i>
@@ -2573,7 +2612,7 @@ async function showMemberProgressModal(memberEmail) {
                         <div class="modal-module-left">
                             <input type="checkbox" 
                                    ${isCompleted ? 'checked' : ''} 
-                                   onchange="toggleMemberModuleByLeaderFromModal('${m.email}', '${mod.id}', this.checked)" />
+                                   onchange="toggleMemberModuleByLeaderFromModal(${memberEmailJs}, '${mod.id}', this.checked)" />
                             <span class="mod-name">
                                 <i class="fa-solid ${mod.icon}"></i> ${mod.name}
                             </span>
@@ -2795,6 +2834,7 @@ async function refreshMemberProgressUI(memberEmail) {
         const pfData = pfDoc.exists ? pfDoc.data() : {};
         
         const emailEscaped = memberEmailLower.replace(/[@.]/g, '_');
+        const memberEmailJs = escapeAttribute(JSON.stringify(memberEmailLower));
         const card = document.querySelector(`.progress-member-card[data-email="${memberEmailLower}"]`);
         if (!card) return;
 
@@ -2857,7 +2897,7 @@ async function refreshMemberProgressUI(memberEmail) {
                                     <label class="details-checkbox-label">
                                         <input type="checkbox" 
                                                ${isCompleted ? 'checked' : ''} 
-                                               onchange="toggleMemberModuleByLeader('${memberEmailLower}', '${mod.id}', this.checked)" />
+                                               onchange="toggleMemberModuleByLeader(${memberEmailJs}, '${mod.id}', this.checked)" />
                                         <span class="details-module-name">
                                             <i class="fa-solid ${mod.icon}"></i> ${mod.name}
                                         </span>
@@ -2930,6 +2970,8 @@ function renderEmailList(emails) {
     listEl.innerHTML = allEmails.map(item => {
         const itemRole = item.isAdminEntry ? 'admin' : (item.role || 'member');
         const rowClass = itemRole === 'admin' ? 'admin-row' : itemRole === 'leader' ? 'leader-row' : '';
+        const itemEmailJs = escapeAttribute(JSON.stringify(item.email));
+        const itemDisplayNameJs = escapeAttribute(JSON.stringify(item.displayName || ''));
         
         const icon = itemRole === 'admin' ? 'fa-crown' : itemRole === 'leader' ? 'fa-star' : 'fa-envelope';
         const iconColor = itemRole === 'admin' ? 'icon-admin' : itemRole === 'leader' ? 'icon-leader' : '';
@@ -2944,13 +2986,13 @@ function renderEmailList(emails) {
             if (isAdmin()) {
                 const leadersList = emails.filter(e => e.role === 'leader');
                 leaderDropdown = `
-                    <select onchange="changeMemberLeaderByAdmin('${item.email}', this.value)" 
+                    <select onchange="changeMemberLeaderByAdmin(${itemEmailJs}, this.value)"
                             style="font-size: 0.75rem; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-glass, rgba(0,0,0,0.12)); background: rgba(255,255,255,0.7); color: #3b82f6; font-weight: 600; margin-left: 10px; outline: none; cursor: pointer; backdrop-filter: blur(5px);">
                         <option value="">-- Chưa phân nhóm --</option>
                         ${leadersList.map(l => {
                             const isSelected = item.leaderEmail && item.leaderEmail.toLowerCase().trim() === l.email.toLowerCase().trim() ? 'selected' : '';
                             const lName = l.displayName || l.email.split('@')[0];
-                            return `<option value="${l.email}" ${isSelected}>⭐ Nhóm: ${lName}</option>`;
+                            return `<option value="${escapeAttribute(l.email)}" ${isSelected}>⭐ Nhóm: ${escapeHtml(lName)}</option>`;
                         }).join('')}
                     </select>
                 `;
@@ -2961,7 +3003,7 @@ function renderEmailList(emails) {
                     if (lObj && lObj.displayName) leaderNameToShow = lObj.displayName;
                 }
                 leaderDropdown = item.leaderEmail 
-                    ? `<span style="font-size:0.75rem; background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-user-group"></i> Nhóm: ${leaderNameToShow}</span>`
+                    ? `<span style="font-size:0.75rem; background:rgba(59,130,246,0.1); color:#3b82f6; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-user-group"></i> Nhóm: ${escapeHtml(leaderNameToShow)}</span>`
                     : `<span style="font-size:0.75rem; background:rgba(245,158,11,0.1); color:#f59e0b; padding:2px 8px; border-radius:4px; margin-left:8px; font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> Chưa phân nhóm</span>`;
             }
         }
@@ -2976,9 +3018,9 @@ function renderEmailList(emails) {
             canRemove = true; // Leader chỉ xóa member
         }
 
-        const nameToDisplay = item.displayName || item.email.split('@')[0];
+        const nameToDisplay = escapeHtml(item.displayName || item.email.split('@')[0]);
         const editBtn = item.isAdminEntry ? '' : `
-            <span class="edit-nickname-btn" onclick="promptEditNickname('${item.email}', '${item.displayName || ''}')" style="cursor:pointer; margin-left: 8px; color: #3b82f6; font-size: 0.8rem; opacity: 0.7; transition: all 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" title="Sửa biệt danh">
+            <span class="edit-nickname-btn" onclick="promptEditNickname(${itemEmailJs}, ${itemDisplayNameJs})" style="cursor:pointer; margin-left: 8px; color: #3b82f6; font-size: 0.8rem; opacity: 0.7; transition: all 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" title="Sửa biệt danh">
                 <i class="fa-solid fa-pen"></i>
             </span>
         `;
@@ -2989,18 +3031,18 @@ function renderEmailList(emails) {
                         <i class="fa-solid ${icon} ${iconColor}"></i>
                         <span class="admin-email-addr-text">
                             <strong>${nameToDisplay}</strong>
-                            <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:normal; margin-left: 5px;">(${item.email})</span>
+                            <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:normal; margin-left: 5px;">(${escapeHtml(item.email)})</span>
                         </span>
                         ${editBtn}
                         ${badge}
                         ${leaderDropdown}
                     </span>
                     <span class="admin-email-meta">
-                        Thêm bởi: ${item.addedBy || 'N/A'} — ${item.addedAt ? formatDate(item.addedAt) : 'N/A'}
+                        Thêm bởi: ${escapeHtml(item.addedBy || 'N/A')} — ${item.addedAt ? formatDate(item.addedAt) : 'N/A'}
                     </span>
                 </div>
                 ${canRemove ? `
-                    <button onclick="handleRemoveEmail('${item.email}')" class="admin-btn-remove" title="Xóa email">
+                    <button onclick="handleRemoveEmail(${itemEmailJs})" class="admin-btn-remove" title="Xóa email">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 ` : ''}
@@ -3567,9 +3609,10 @@ function renderProfileUI(container) {
 
     const profile = userProfile || {};
     const user = currentUser;
-    const displayName = profile.displayName || user?.displayName || '';
-    const email = user?.email || '';
-    const photoURL = user?.photoURL || '';
+    const rawDisplayName = profile.displayName || user?.displayName || '';
+    const displayName = escapeHtml(rawDisplayName);
+    const email = escapeHtml(user?.email || '');
+    const photoURL = safeHttpsUrl(user?.photoURL);
     const roleBadge = isAdmin() ? 'Admin' : isLeader() ? 'Trưởng Nhóm' : 'Nhân Viên';
     const roleClass = isAdmin() ? 'role-admin' : isLeader() ? 'role-leader' : 'role-member';
     const level = getCurrentLevel();
@@ -3604,7 +3647,7 @@ function renderProfileUI(container) {
                 <div class="profile-hero-content">
                     <div class="profile-avatar-wrap">
                         ${photoURL
-                            ? `<img class="profile-avatar" src="${photoURL}" alt="${displayName}" referrerpolicy="no-referrer" />`
+                            ? `<img class="profile-avatar" src="${photoURL}" alt="${escapeAttribute(rawDisplayName)}" referrerpolicy="no-referrer" />`
                             : `<div class="profile-avatar-placeholder"><i class="fa-solid fa-user"></i></div>`
                         }
                         <div class="profile-level-badge" id="profile-level-badge" style="background:${level.color}">
@@ -3741,31 +3784,31 @@ function renderProfileUI(container) {
                         <div class="profile-info-compact">
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-user"></i> Họ tên</label>
-                                <input type="text" id="pf-name" value="${profile.displayName || ''}" placeholder="Nhập họ tên..." class="profile-input" />
+                                <input type="text" id="pf-name" value="${escapeAttribute(profile.displayName)}" placeholder="Nhập họ tên..." class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-phone"></i> Số điện thoại</label>
-                                <input type="tel" id="pf-phone" value="${profile.phone || ''}" placeholder="0xxx xxx xxx" class="profile-input" />
+                                <input type="tel" id="pf-phone" value="${escapeAttribute(profile.phone)}" placeholder="0xxx xxx xxx" class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-cake-candles"></i> Ngày sinh</label>
-                                <input type="date" id="pf-birthday" value="${profile.birthday || ''}" class="profile-input" />
+                                <input type="date" id="pf-birthday" value="${escapeAttribute(profile.birthday)}" class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-calendar-check"></i> Ngày vào Team</label>
-                                <input type="date" id="pf-joindate" value="${profile.joinDate || ''}" class="profile-input" />
+                                <input type="date" id="pf-joindate" value="${escapeAttribute(profile.joinDate)}" class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-brands fa-facebook"></i> Facebook</label>
-                                <input type="url" id="pf-facebook" value="${profile.facebookUrl || ''}" placeholder="https://facebook.com/..." class="profile-input" />
+                                <input type="url" id="pf-facebook" value="${escapeAttribute(profile.facebookUrl)}" placeholder="https://facebook.com/..." class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-comment-dots"></i> Zalo</label>
-                                <input type="tel" id="pf-zalo" value="${profile.zaloPhone || ''}" placeholder="Số điện thoại Zalo" class="profile-input" />
+                                <input type="tel" id="pf-zalo" value="${escapeAttribute(profile.zaloPhone)}" placeholder="Số điện thoại Zalo" class="profile-input" />
                             </div>
                             <div class="profile-field-compact">
                                 <label><i class="fa-solid fa-pen-fancy"></i> Giới thiệu</label>
-                                <textarea id="pf-bio" placeholder="Vài dòng về bản thân..." class="profile-input profile-textarea">${profile.bio || ''}</textarea>
+                                <textarea id="pf-bio" placeholder="Vài dòng về bản thân..." class="profile-input profile-textarea">${escapeHtml(profile.bio)}</textarea>
                             </div>
                             <div class="profile-save-bar">
                                 <button class="profile-save-btn" onclick="handleSaveProfile()">
@@ -3807,43 +3850,43 @@ function renderProfileInfoTab(profile) {
             <div class="profile-field">
                 <label><i class="fa-solid fa-user"></i> Họ tên</label>
                 <div class="profile-field-value">
-                    <input type="text" id="pf-name" value="${profile.displayName || ''}" placeholder="Nhập họ tên..." class="profile-input" />
+                    <input type="text" id="pf-name" value="${escapeAttribute(profile.displayName)}" placeholder="Nhập họ tên..." class="profile-input" />
                 </div>
             </div>
             <div class="profile-field">
                 <label><i class="fa-solid fa-cake-candles"></i> Ngày sinh</label>
                 <div class="profile-field-value">
-                    <input type="date" id="pf-birthday" value="${profile.birthday || ''}" class="profile-input" />
+                    <input type="date" id="pf-birthday" value="${escapeAttribute(profile.birthday)}" class="profile-input" />
                 </div>
             </div>
             <div class="profile-field">
                 <label><i class="fa-solid fa-phone"></i> Số điện thoại</label>
                 <div class="profile-field-value">
-                    <input type="tel" id="pf-phone" value="${profile.phone || ''}" placeholder="0xxx xxx xxx" class="profile-input" />
+                    <input type="tel" id="pf-phone" value="${escapeAttribute(profile.phone)}" placeholder="0xxx xxx xxx" class="profile-input" />
                 </div>
             </div>
             <div class="profile-field">
                 <label><i class="fa-solid fa-calendar-check"></i> Ngày vào Team</label>
                 <div class="profile-field-value">
-                    <input type="date" id="pf-joindate" value="${profile.joinDate || ''}" class="profile-input" />
+                    <input type="date" id="pf-joindate" value="${escapeAttribute(profile.joinDate)}" class="profile-input" />
                 </div>
             </div>
             <div class="profile-field">
                 <label><i class="fa-brands fa-facebook"></i> Facebook cá nhân</label>
                 <div class="profile-field-value">
-                    <input type="url" id="pf-facebook" value="${profile.facebookUrl || ''}" placeholder="https://facebook.com/..." class="profile-input" />
+                    <input type="url" id="pf-facebook" value="${escapeAttribute(profile.facebookUrl)}" placeholder="https://facebook.com/..." class="profile-input" />
                 </div>
             </div>
             <div class="profile-field">
                 <label><i class="fa-solid fa-comment-dots"></i> Zalo</label>
                 <div class="profile-field-value">
-                    <input type="tel" id="pf-zalo" value="${profile.zaloPhone || ''}" placeholder="Số điện thoại Zalo" class="profile-input" />
+                    <input type="tel" id="pf-zalo" value="${escapeAttribute(profile.zaloPhone)}" placeholder="Số điện thoại Zalo" class="profile-input" />
                 </div>
             </div>
             <div class="profile-field full-width">
                 <label><i class="fa-solid fa-pen-fancy"></i> Giới thiệu bản thân</label>
                 <div class="profile-field-value">
-                    <textarea id="pf-bio" placeholder="Vài dòng về bản thân, sở trường, mục tiêu..." class="profile-input profile-textarea">${profile.bio || ''}</textarea>
+                    <textarea id="pf-bio" placeholder="Vài dòng về bản thân, sở trường, mục tiêu..." class="profile-input profile-textarea">${escapeHtml(profile.bio)}</textarea>
                 </div>
             </div>
         </div>
@@ -4413,10 +4456,12 @@ async function showAccessDetails(email) {
     const user = profilesMap[email.toLowerCase().trim()];
     if (!user) return;
     
-    const displayName = user.displayName || email.split('@')[0];
-    const avatar = user.photoURL 
-        ? `<img src="${user.photoURL}" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--accent-blue);" referrerpolicy="no-referrer" />`
-        : `<div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border: 1.5px solid var(--accent-blue);">${displayName.substring(0, 1).toUpperCase()}</div>`;
+    const rawDisplayName = user.displayName || email.split('@')[0];
+    const displayName = escapeHtml(rawDisplayName);
+    const photoUrl = safeHttpsUrl(user.photoURL);
+    const avatar = photoUrl
+        ? `<img src="${photoUrl}" alt="${escapeAttribute(rawDisplayName)}" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--accent-blue);" referrerpolicy="no-referrer" />`
+        : `<div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; border: 1.5px solid var(--accent-blue);">${escapeHtml(rawDisplayName.substring(0, 1).toUpperCase())}</div>`;
         
     modalUser.innerHTML = `
         ${avatar}
@@ -4433,8 +4478,9 @@ async function showAccessDetails(email) {
         timeline.innerHTML = history.map((log, idx) => {
             const timeFull = formatFullTime(log.timestamp);
             const timeRelative = formatRelativeTime(log.timestamp);
-            const device = log.device || 'Thiết bị không xác định';
-            const isMobile = device.includes('Phone') || device.includes('Thoại') || device.includes('Mobile');
+            const rawDevice = log.device || 'Thiết bị không xác định';
+            const device = escapeHtml(rawDevice);
+            const isMobile = rawDevice.includes('Phone') || rawDevice.includes('Thoại') || rawDevice.includes('Mobile');
             
             return `
                 <div class="timeline-item" style="position: relative; padding-bottom: 4px;">
@@ -4477,6 +4523,13 @@ function closeAccessDetails() {
 function renderMemberPersonalInfoHtml(memberEmail, profile) {
     profile = profile || {};
     const emailEscaped = memberEmail.replace(/[@.]/g, '_');
+    const displayName = escapeAttribute(profile.displayName);
+    const phone = escapeAttribute(profile.phone);
+    const birthday = escapeAttribute(profile.birthday);
+    const joinDate = escapeAttribute(profile.joinDate);
+    const facebookUrl = safeHttpsUrl(profile.facebookUrl);
+    const zaloPhone = String(profile.zaloPhone || '').replace(/[^0-9]/g, '');
+    const bio = escapeHtml(profile.bio);
     
     return `
         <div class="details-personal-info" style="grid-column: 1 / -1; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 18px; border-radius: 16px; border: 1px solid var(--border-glass, rgba(0,0,0,0.08)); margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.01);">
@@ -4486,41 +4539,41 @@ function renderMemberPersonalInfoHtml(memberEmail, profile) {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px;">
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-user"></i> Họ tên</label>
-                    <input type="text" id="pf-name-${emailEscaped}" value="${profile.displayName || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" placeholder="Chưa nhập họ tên..." />
+                    <input type="text" id="pf-name-${emailEscaped}" value="${displayName}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" placeholder="Chưa nhập họ tên..." />
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-phone"></i> Số điện thoại</label>
                     <div style="display: flex; gap: 8px;">
-                        <input type="tel" id="pf-phone-${emailEscaped}" value="${profile.phone || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="0xxx xxx xxx" />
-                        ${profile.phone ? `<a href="tel:${profile.phone}" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; border-radius: 8px; text-decoration: none;" title="Gọi điện"><i class="fa-solid fa-phone"></i></a>` : ''}
+                        <input type="tel" id="pf-phone-${emailEscaped}" value="${phone}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="0xxx xxx xxx" />
+                        ${phone ? `<a href="tel:${phone}" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; border-radius: 8px; text-decoration: none;" title="Gọi điện"><i class="fa-solid fa-phone"></i></a>` : ''}
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-cake-candles"></i> Ngày sinh</label>
-                    <input type="date" id="pf-birthday-${emailEscaped}" value="${profile.birthday || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
+                    <input type="date" id="pf-birthday-${emailEscaped}" value="${birthday}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-calendar-check"></i> Ngày vào Team</label>
-                    <input type="date" id="pf-joindate-${emailEscaped}" value="${profile.joinDate || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
+                    <input type="date" id="pf-joindate-${emailEscaped}" value="${joinDate}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px;" />
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-brands fa-facebook"></i> Facebook</label>
                     <div style="display: flex; gap: 8px;">
-                        <input type="url" id="pf-facebook-${emailEscaped}" value="${profile.facebookUrl || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="https://facebook.com/..." />
-                        ${profile.facebookUrl ? `<a href="${profile.facebookUrl}" target="_blank" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #1877f2; color: #fff; border-radius: 8px; text-decoration: none;" title="Mở Facebook"><i class="fa-brands fa-facebook-f"></i></a>` : ''}
+                        <input type="url" id="pf-facebook-${emailEscaped}" value="${facebookUrl}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="https://facebook.com/..." />
+                        ${facebookUrl ? `<a href="${facebookUrl}" target="_blank" rel="noopener noreferrer" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #1877f2; color: #fff; border-radius: 8px; text-decoration: none;" title="Mở Facebook"><i class="fa-brands fa-facebook-f"></i></a>` : ''}
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 4px;">
                     <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-comment-dots"></i> Zalo</label>
                     <div style="display: flex; gap: 8px;">
-                        <input type="tel" id="pf-zalo-${emailEscaped}" value="${profile.zaloPhone || ''}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="Số điện thoại Zalo" />
-                        ${profile.zaloPhone ? `<a href="https://zalo.me/${profile.zaloPhone.replace(/[^0-9]/g, '')}" target="_blank" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #0068ff; color: #fff; border-radius: 8px; text-decoration: none;" title="Nhắn Zalo"><i class="fa-solid fa-comment-dots"></i></a>` : ''}
+                        <input type="tel" id="pf-zalo-${emailEscaped}" value="${escapeAttribute(profile.zaloPhone)}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; flex: 1;" placeholder="Số điện thoại Zalo" />
+                        ${zaloPhone ? `<a href="https://zalo.me/${zaloPhone}" target="_blank" rel="noopener noreferrer" class="profile-action-btn" style="padding: 8px 12px; display: flex; align-items: center; justify-content: center; background: #0068ff; color: #fff; border-radius: 8px; text-decoration: none;" title="Nhắn Zalo"><i class="fa-solid fa-comment-dots"></i></a>` : ''}
                     </div>
                 </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 4px;">
                 <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary, #64748b);"><i class="fa-solid fa-pen-fancy"></i> Giới thiệu bản thân</label>
-                <textarea id="pf-bio-${emailEscaped}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; height: 50px; resize: vertical;" placeholder="Giới thiệu bản thân, mục tiêu...">${profile.bio || ''}</textarea>
+                <textarea id="pf-bio-${emailEscaped}" class="profile-input" style="padding: 8px 12px; font-size: 0.85rem; border-radius: 8px; height: 50px; resize: vertical;" placeholder="Giới thiệu bản thân, mục tiêu...">${bio}</textarea>
             </div>
             <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 5px;">
                 <button onclick="handleSaveMemberProfileByLeader('${memberEmail}')" class="profile-save-btn" style="padding: 8px 16px; font-size: 0.8rem; border-radius: 8px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; display: flex; align-items: center; gap: 6px; cursor: pointer; border: none; font-weight: 700; transition: all 0.3s ease;">
