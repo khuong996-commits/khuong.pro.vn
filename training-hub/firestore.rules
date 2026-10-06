@@ -35,6 +35,11 @@ service cloud.firestore {
       return email.matches('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$');
     }
 
+    function profileFields() {
+      return ['displayName', 'email', 'birthday', 'phone', 'joinDate', 'facebookUrl', 'zaloPhone', 'bio',
+        'completedModules', 'createdAt', 'updatedAt', 'accessHistory', 'lastLogin', 'deviceInfo', 'photoURL'];
+    }
+
     function isValidSelfServiceMembership(uid) {
       return isVerifiedGoogleUser()
         && request.auth.uid == uid
@@ -94,14 +99,54 @@ service cloud.firestore {
     match /profiles/{email} {
       allow get: if isActiveTrainingMember() && (currentEmail() == email || isAdmin());
       allow list: if isAdmin();
-      allow create: if isActiveTrainingMember() && currentEmail() == email;
-      allow update: if isActiveTrainingMember() && (currentEmail() == email || isAdmin());
+      allow create: if isAdmin() || (isActiveTrainingMember() && currentEmail() == email
+        && request.resource.data.keys().hasOnly(profileFields())
+        && request.resource.data.email == email
+        && request.resource.data.completedModules == []);
+      allow update: if isAdmin() || (isActiveTrainingMember() && currentEmail() == email
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'displayName', 'birthday', 'phone', 'joinDate', 'facebookUrl', 'zaloPhone', 'bio',
+          'updatedAt', 'accessHistory', 'lastLogin', 'deviceInfo', 'photoURL', 'completedModules'])
+        && request.resource.data.completedModules is list
+        && request.resource.data.completedModules.size() <= 500
+        && request.resource.data.bio is string
+        && request.resource.data.bio.size() <= 5000);
       allow delete: if isAdmin();
     }
 
     match /team_schedule/{event} {
       allow read: if isActiveTrainingMember();
-      allow create, update, delete: if isAdmin() || isLeader();
+      allow create: if isActiveTrainingMember()
+        && request.resource.data.ownerUid is string
+        && (isAdmin() || (request.resource.data.ownerUid == request.auth.uid
+          && request.resource.data.ownerEmail == currentEmail()))
+        && request.resource.data.createdBy == request.auth.token.email
+        && request.resource.data.keys().hasOnly(scheduleFields())
+        && validSchedule();
+      allow update: if isActiveTrainingMember() && (isAdmin() || resource.data.ownerUid == request.auth.uid)
+        && (('ownerUid' in resource.data && request.resource.data.ownerUid == resource.data.ownerUid)
+          || (!('ownerUid' in resource.data) && isAdmin() && request.resource.data.ownerUid is string))
+        && request.resource.data.ownerEmail == resource.data.ownerEmail
+        && request.resource.data.createdBy == resource.data.createdBy
+        && request.resource.data.keys().hasOnly(scheduleFields())
+        && validSchedule();
+      allow delete: if isActiveTrainingMember() && (isAdmin() || resource.data.ownerUid == request.auth.uid);
+    }
+
+    function validSchedule() {
+      return request.resource.data.date is string && request.resource.data.date.size() == 10
+        && request.resource.data.customerName is string && request.resource.data.customerName.size() <= 300
+        && request.resource.data.notes is string && request.resource.data.notes.size() <= 10000
+        && request.resource.data.participantEmails is list && request.resource.data.participantEmails.size() <= 100
+        && request.resource.data.supportEmails is list && request.resource.data.supportEmails.size() <= 100;
+    }
+
+    function scheduleFields() {
+      return ['ownerUid', 'ownerEmail', 'ownerName', 'customerName', 'date', 'startTime', 'type', 'status',
+        'participantEmails', 'participantNames', 'participantExtra', 'participantExtraNames', 'participantLabels',
+        'supportEmails', 'supportNames', 'supportExtra', 'supportExtraNames', 'supportLabels', 'notes', 'updatedBy',
+        'updatedAt', 'createdBy', 'createdAt', 'sourceConsultingId', 'sourceConsultingDate', 'sourceConsultingTime',
+        'sourceConsultingCustomer', 'latestFieldTripId', 'latestFieldTripDate', 'latestFieldTripTime'];
     }
 
     match /web_finance/{account} {
