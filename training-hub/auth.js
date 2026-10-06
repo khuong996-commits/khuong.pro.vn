@@ -85,7 +85,7 @@ function initAuth() {
             currentUser = user;
             
             // Xác định role
-            const role = await getUserRole(user.email);
+            const role = await getUserRole(user);
             if (!role) {
                 // Email không nằm trong whitelist
                 // Lưu thông tin user trước khi signOut
@@ -142,23 +142,39 @@ function initAuth() {
 }
 
 // ---- Xác định role của user ----
-async function getUserRole(email) {
-    email = email.toLowerCase().trim();
-    
-    // Admin hardcoded (check cả danh sách mở rộng)
-    if (ADMIN_EMAILS.some(e => e.toLowerCase() === email)) return 'admin';
+async function getUserRole(user) {
+    const email = user?.email?.toLowerCase().trim();
+    if (!email || !user?.uid) return null;
 
     try {
         const db = firebase.firestore();
-        const doc = await db.collection('whitelist').doc(email).get();
-        if (!doc.exists) return null;
-        
-        const data = doc.data();
-        return data.role || 'member'; // Mặc định là member nếu không có field role
+        const membershipRef = db.collection('web_memberships').doc(user.uid);
+        let membershipDoc = await membershipRef.get();
+
+        // Tài khoản chỉ kích hoạt đúng role đã được cấp trong whitelist. Leader
+        // không thể tạo lời mời leader, còn không có đường nào để client tự xin
+        // quyền admin.
+        if (!membershipDoc.exists) {
+            const invitationDoc = await db.collection('whitelist').doc(email).get();
+            if (!invitationDoc.exists) return null;
+
+            const invitationRole = invitationDoc.data()?.role;
+            const role = invitationRole === 'leader' ? 'leader' : 'member';
+            await membershipRef.set({
+                email,
+                enabled: true,
+                role,
+                apps: { training: true }
+            });
+            membershipDoc = await membershipRef.get();
+        }
+
+        const data = membershipDoc.data();
+        if (!data?.enabled || data?.apps?.training !== true) return null;
+        return ['admin', 'leader', 'member'].includes(data.role) ? data.role : null;
     } catch (error) {
-        console.error('Lỗi kiểm tra role:', error);
-        // Nếu Firestore lỗi, chỉ cho phép admin
-        return email === ADMIN_EMAIL.toLowerCase() ? 'admin' : null;
+        console.error('Lỗi kiểm tra quyền Training Hub:', error);
+        return null;
     }
 }
 

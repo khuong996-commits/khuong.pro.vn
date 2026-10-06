@@ -1,94 +1,124 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isSignedIn() {
+    function isVerifiedGoogleUser() {
       return request.auth != null
         && request.auth.token.email != null
         && request.auth.token.email_verified == true
         && request.auth.token.firebase.sign_in_provider == 'google.com';
     }
 
-    function isCoreAdmin() {
-      return isSignedIn()
-        && request.auth.token.email in ['ih.khuongtrinh@gmail.com', 'thangckvt@gmail.com'];
+    function currentEmail() {
+      return request.auth.token.email.lower();
     }
 
-    function isTeamMember() {
-      return isSignedIn()
-        && exists(/databases/$(database)/documents/whitelist/$(request.auth.token.email));
+    function membership() {
+      return get(/databases/$(database)/documents/web_memberships/$(request.auth.uid)).data;
+    }
+
+    function isActiveTrainingMember() {
+      return isVerifiedGoogleUser()
+        && membership().enabled == true
+        && membership().apps.training == true
+        && membership().role in ['admin', 'leader', 'member'];
+    }
+
+    function isAdmin() {
+      return isActiveTrainingMember() && membership().role == 'admin';
     }
 
     function isLeader() {
-      return isTeamMember()
-        && get(/databases/$(database)/documents/whitelist/$(request.auth.token.email)).data.role == 'leader';
-    }
-
-    function canManageTeamData() {
-      return isCoreAdmin() || isLeader();
-    }
-
-    function ownsEmail(email) {
-      return isTeamMember() && request.auth.token.email == email;
+      return isActiveTrainingMember() && membership().role == 'leader';
     }
 
     function isValidEmail(email) {
       return email.matches('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$');
     }
 
+    function isValidSelfServiceMembership(uid) {
+      return isVerifiedGoogleUser()
+        && request.auth.uid == uid
+        && exists(/databases/$(database)/documents/whitelist/$(currentEmail()))
+        && request.resource.data.keys().hasAll(['email', 'enabled', 'role', 'apps'])
+        && request.resource.data.keys().hasOnly(['email', 'enabled', 'role', 'apps'])
+        && request.resource.data.email == currentEmail()
+        && request.resource.data.enabled == true
+        && request.resource.data.role == get(/databases/$(database)/documents/whitelist/$(currentEmail())).data.role
+        && request.resource.data.role in ['member', 'leader']
+        && request.resource.data.apps.keys().hasAll(['training'])
+        && request.resource.data.apps.keys().hasOnly(['training'])
+        && request.resource.data.apps.training == true;
+    }
+
+    function leaderCreatesOwnMember(email) {
+      return isLeader()
+        && email != currentEmail()
+        && isValidEmail(email)
+        && request.resource.data.role == 'member'
+        && request.resource.data.leaderEmail == currentEmail()
+        && request.resource.data.addedBy == currentEmail();
+    }
+
+    function leaderUpdatesOwnMember(email) {
+      return isLeader()
+        && email != currentEmail()
+        && resource.data.role == 'member'
+        && resource.data.leaderEmail == currentEmail()
+        && request.resource.data.role == 'member'
+        && request.resource.data.leaderEmail == currentEmail()
+        && request.resource.data.addedBy == resource.data.addedBy;
+    }
+
+    function leaderDeletesOwnMember(email) {
+      return isLeader()
+        && email != currentEmail()
+        && resource.data.role == 'member'
+        && resource.data.leaderEmail == currentEmail();
+    }
+
+    match /web_memberships/{uid} {
+      allow get: if isVerifiedGoogleUser() && request.auth.uid == uid;
+      allow create: if isValidSelfServiceMembership(uid);
+      allow list, update, delete: if false;
+    }
+
     match /whitelist/{email} {
-      // The UI needs the staff directory for scheduling. It is now limited to
-      // a verified Google account that is already present in the team.
-      allow read: if isTeamMember();
-
-      allow write: if isCoreAdmin();
-
-      // Leaders may manage ordinary members but may not create a leader/admin.
-      allow create, update: if isValidEmail(email) && isLeader()
-        && request.resource.data.role == 'member';
-      allow delete: if isValidEmail(email) && isLeader()
-        && resource.data.role == 'member';
+      allow get: if isActiveTrainingMember()
+        || (isVerifiedGoogleUser() && currentEmail() == email);
+      allow list: if isActiveTrainingMember();
+      allow create: if isAdmin() || leaderCreatesOwnMember(email);
+      allow update: if isAdmin() || leaderUpdatesOwnMember(email);
+      allow delete: if isAdmin() || leaderDeletesOwnMember(email);
     }
 
     match /profiles/{email} {
-      // A staff member can only access their own profile. Leaders and core
-      // admins retain the existing team-management view.
-      allow get: if ownsEmail(email) || canManageTeamData();
-      allow list: if canManageTeamData();
-      allow create: if ownsEmail(email);
-      allow update: if ownsEmail(email) || canManageTeamData();
-      allow delete: if isCoreAdmin();
+      allow get: if isActiveTrainingMember() && (currentEmail() == email || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isActiveTrainingMember() && currentEmail() == email;
+      allow update: if isActiveTrainingMember() && (currentEmail() == email || isAdmin());
+      allow delete: if isAdmin();
     }
 
-    match /checklist_daily/{docId} {
-      allow read: if isTeamMember();
-      allow create: if ownsEmail(request.resource.data.email);
-      allow update: if canManageTeamData()
-        || (ownsEmail(resource.data.email)
-          && request.resource.data.email == request.auth.token.email);
-      allow delete: if canManageTeamData();
+    match /team_schedule/{event} {
+      allow read: if isActiveTrainingMember();
+      allow create, update, delete: if isAdmin() || isLeader();
     }
 
-    match /team_schedule/{docId} {
-      allow read: if isTeamMember();
-      allow create, update, delete: if canManageTeamData();
-      allow create: if ownsEmail(request.resource.data.ownerEmail);
-      allow update: if ownsEmail(resource.data.ownerEmail)
-        && request.resource.data.ownerEmail == request.auth.token.email;
-      allow delete: if ownsEmail(resource.data.ownerEmail);
+    match /web_finance/{account} {
+      allow read: if isActiveTrainingMember()
+        && membership().apps.finance == true
+        && membership().financeAccount == account;
+      allow create, update: if isActiveTrainingMember()
+        && membership().apps.finance == true
+        && membership().financeAccount == account
+        && request.resource.data.keys().hasOnly(['payload'])
+        && request.resource.data.payload is string
+        && request.resource.data.payload.size() <= 550000;
+      allow delete: if false;
     }
 
-    match /clients/{docId} {
-      // CRM records may only be queried or changed by their owner, except for
-      // the two designated core admins. The client query already filters on
-      // ownerEmail for non-admin users.
-      allow get, list: if isCoreAdmin()
-        || (isTeamMember() && resource.data.ownerEmail == request.auth.token.email);
-      allow create: if ownsEmail(request.resource.data.ownerEmail);
-      allow update: if isCoreAdmin()
-        || (ownsEmail(resource.data.ownerEmail)
-          && request.resource.data.ownerEmail == request.auth.token.email);
-      allow delete: if isCoreAdmin()
-        || ownsEmail(resource.data.ownerEmail);
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
